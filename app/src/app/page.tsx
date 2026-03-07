@@ -2,7 +2,12 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { tutorialMeals, allMeals, type FoodSwap } from "@/data/foods";
+import {
+  tutorialMeals as staticTutorial,
+  allMeals as staticAll,
+  type FoodSwap,
+  type FoodItem,
+} from "@/data/foods";
 import MealCard from "@/components/MealCard";
 import RunningCounter from "@/components/RunningCounter";
 import dynamic from "next/dynamic";
@@ -57,6 +62,89 @@ export default function Home() {
   });
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [dbMeals, setDbMeals] = useState<FoodSwap[] | null>(null);
+
+  // ─── Fetch meals from API ──────────────────────
+  useEffect(() => {
+    fetch("/api/foods")
+      .then((res) => res.ok ? res.json() : Promise.reject())
+      .then((data) => {
+        // Transform API response into FoodSwap[] shape
+        interface ApiSwap {
+          original_id: string;
+          swap_id: string;
+          original_name: string;
+          original_restaurant: string;
+          original_calories: number;
+          original_emoji: string;
+          original_serving: string;
+          original_protein: number;
+          original_cuisine: string;
+          swap_name: string;
+          swap_restaurant: string;
+          swap_calories: number;
+          swap_emoji: string;
+          swap_serving: string;
+          swap_protein: number;
+          swap_cuisine: string;
+          calorie_savings: number;
+          protein_gain: number;
+          rationale: string;
+        }
+        const foodMap: Record<string, FoodItem> = {};
+        for (const f of data.foods) {
+          foodMap[f.id] = {
+            id: f.id,
+            name: f.name,
+            restaurant: f.restaurant,
+            cuisine: f.cuisine,
+            calories: f.calories,
+            protein: f.protein_g,
+            carbs: f.carbs_g,
+            fat: f.fat_g,
+            serving: f.serving,
+            emoji: f.emoji || "",
+          };
+        }
+        const meals: FoodSwap[] = data.swaps.map((s: ApiSwap) => ({
+          original: foodMap[s.original_id] || {
+            id: s.original_id,
+            name: s.original_name,
+            restaurant: s.original_restaurant,
+            cuisine: s.original_cuisine,
+            calories: s.original_calories,
+            protein: s.original_protein,
+            carbs: 0,
+            fat: 0,
+            serving: s.original_serving,
+            emoji: s.original_emoji || "",
+          },
+          swaps: [
+            foodMap[s.swap_id] || {
+              id: s.swap_id,
+              name: s.swap_name,
+              restaurant: s.swap_restaurant,
+              cuisine: s.swap_cuisine,
+              calories: s.swap_calories,
+              protein: s.swap_protein,
+              carbs: 0,
+              fat: 0,
+              serving: s.swap_serving,
+              emoji: s.swap_emoji || "",
+            },
+          ],
+          rationale: s.rationale,
+        }));
+        setDbMeals(meals);
+      })
+      .catch(() => {
+        // API unavailable — static data will be used as fallback
+      });
+  }, []);
+
+  // Use DB meals if loaded, otherwise fall back to static data
+  const tutorialMeals = (dbMeals ?? staticTutorial).slice(0, 6);
+  const allMeals = dbMeals ?? staticAll;
 
   // ─── Computed values ─────────────────────────────
   const totalCaloriesSaved = useMemo(
@@ -117,27 +205,82 @@ export default function Home() {
     });
   }
 
+  function trackEvent(eventType: string, eventData?: Record<string, unknown>, screenNumber?: number) {
+    fetch("/api/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: sessionId, event_type: eventType, event_data: eventData, screen_number: screenNumber }),
+    }).catch(() => {});
+  }
+
   function handlePersonalize() {
     const heightInches =
       parseInt(formData.heightFt) * 12 + parseInt(formData.heightIn);
-    setPersonalData({
+    const pd = {
       age: parseInt(formData.age),
       weight: parseFloat(formData.weight),
       height: heightInches,
       gender: formData.gender,
       goalWeight: parseFloat(formData.goalWeight),
-    });
+    };
+    setPersonalData(pd);
     setStep(4);
+
+    // Save session + track event
+    fetch("/api/session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        session_id: sessionId,
+        age: pd.age,
+        weight_lbs: pd.weight,
+        height_inches: pd.height,
+        gender: pd.gender,
+        goal_weight_lbs: pd.goalWeight,
+        selections: swaps.map((s) => ({ original_id: s.originalId, swap_id: s.swapId })),
+      }),
+    }).catch(() => {});
+    trackEvent("personalize", pd, 3);
   }
 
   function handleEmailSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitted(true);
     setStep(5);
+
+    // Save email to session
+    fetch("/api/session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: sessionId, email }),
+    }).catch(() => {});
+    trackEvent("email_capture", { email }, 5);
   }
 
   // ─── Which meals to show ─────────────────────────
   const mealsToShow = step <= 1 ? tutorialMeals : allMeals;
+
+  // ─── Session tracking ──────────────────────────
+  const sessionId = useMemo(() => {
+    if (typeof window === "undefined") return "";
+    let id = sessionStorage.getItem("bb_session_id");
+    if (!id) {
+      id = crypto.randomUUID();
+      sessionStorage.setItem("bb_session_id", id);
+    }
+    return id;
+  }, []);
+
+  // Track screen views
+  useEffect(() => {
+    if (sessionId) {
+      fetch("/api/events", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ session_id: sessionId, event_type: "screen_view", screen_number: step }),
+      }).catch(() => {});
+    }
+  }, [step, sessionId]);
 
   // ─── Render ──────────────────────────────────────
   return (
