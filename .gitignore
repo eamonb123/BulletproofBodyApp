@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+bulletproof_body.db
+bulletproof_body.db
+bulletproof_body.db
+mcp/.venv/
+node_modules/
+.next/

@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: bulletproof-body-app
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: RESEND_API_KEY
+        sync: false  # Set manually in Render dashboard
+      - key: GHL_API_KEY
+        sync: false  # Set manually in Render dashboard
+      - key: GHL_LOCATION_ID
+        sync: false  # Set manually in Render dashboard
+    disk:
+      name: bulletproof-body-data
+      mountPath: /data
+      sizeGB: 1
