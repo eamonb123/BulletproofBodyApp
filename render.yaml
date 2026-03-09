@@ -14,3 +14,5 @@ services:
         sync: false
       - key: GHL_LOCATION_ID
         sync: false
+      - key: CHECKIN_SERVICE_URL
+        sync: false

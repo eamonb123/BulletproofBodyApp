@@ -13,7 +13,7 @@
 
 | # | Task | Why It's P0 | Source | Status |
 |---|------|-------------|--------|--------|
-| 1 | **Deploy live** (domain, Render hosting, production DB) | Nothing matters if no one can use it. The tool needs to be live and accessible. | Deploy priority 3/9 | TODO |
+| 1 | **Deploy live** (domain, Render hosting, production DB) | Nothing matters if no one can use it. The tool needs to be live and accessible. | Deploy priority 3/9 | DONE 3/9 |
 | 2 | **Email delivery (Resend API)** | Leads save but emails don't send. Blocks lead capture → nurture → VSL. | HANDOFF.md (carried) | TODO |
 | 3 | **VSL link working and accessible from app** | The free tool must funnel to the VSL. If the link is broken or missing, the funnel is broken. | Funnel correction 3/9 | TODO |
 | 4 | **Pick and polish ONE lead magnet flow** | Three flows exist (Fast Food, Snack, general). Pick the strongest one and make it bulletproof end-to-end. Ship one thing well. | Funnel correction 3/9 | TODO |
@@ -22,6 +22,7 @@
 
 | # | Task | Why It's P1 | Source | Status |
 |---|------|-------------|--------|--------|
+| 5a | **Trademark check: "Bulletproof Body"** | Dave Asprey owns "BULLETPROOF" (filed 3/26/2012, reg #4253196) for supplements/food/coffee. His mark is in different classes (5,9,29,30) than coaching (41/44), but it's a famous mark with broad protection. No one has TM'd "Bulletproof Body" yet. **Action:** 30-min consult with trademark attorney ($150-300) before investing more in the brand. Risk = C&D if they notice. | Research 3/9 | TODO |
 | 5 | **VSL re-script for concierge wellness frame** | Current VSL v1 needs to educate on the concierge experience BEFORE the strategy call. Reframe around "we do it for you." | Offer Spec 3/9 | TODO |
 | 6 | **Connect VSL CTA to real booking link** | VSL must end with a working strategy call booking link (Calendly or equivalent). Without this, the funnel dead-ends. | Funnel correction 3/9 | TODO |
 | 7 | **Testimonial lens shift** | All organic marketing should reflect the concierge experience, not just transformation numbers. Update extraction criteria. | Offer Spec 3/9 | TODO |
