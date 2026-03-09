@@ -104,12 +104,16 @@ const LOGO_EXTENSION_BY_ID: Record<string, string> = {
   zaxbys: "png",
 };
 
-// Per-logo style overrides: [maxSize%, yOffsetPx]
-// Positive yOffset = shift up. Default: 90% size, 8px up.
+// Per-logo style overrides for grid cards.
+// size = max-height/max-width %. Default 88%. yOffset = px shift up. Default 8.
 const LOGO_OVERRIDES: Record<string, { size?: number; yOffset?: number }> = {
-  tacobell: { yOffset: 20 },
-  smoothieking: { yOffset: 16 },
-  sonic: { yOffset: 14 },
+  chipotle: { size: 96 },
+  dunkin: { size: 96 },
+  innout: { size: 96 },
+  papajohns: { size: 96 },
+  tacobell: { yOffset: 20, size: 94 },
+  smoothieking: { yOffset: 16, size: 94 },
+  sonic: { yOffset: 14, size: 94 },
 };
 
 function getLogoCandidates(id: string | null | undefined): string[] {
@@ -135,6 +139,7 @@ function RestaurantLogo({
   imageClassName = "h-auto w-auto max-h-[72%] max-w-[72%]",
   placeholderClassName = "text-3xl font-semibold tracking-wide text-zinc-400",
   yOffset = 0,
+  maxSize,
 }: {
   id: string;
   name: string;
@@ -142,6 +147,7 @@ function RestaurantLogo({
   imageClassName?: string;
   placeholderClassName?: string;
   yOffset?: number;
+  maxSize?: number;
 }) {
   const candidates = useMemo(() => getLogoCandidates(id), [id]);
   const [candidateIndex, setCandidateIndex] = useState(0);
@@ -154,7 +160,12 @@ function RestaurantLogo({
     );
   }
 
-  const imgStyle = yOffset ? { transform: `translateY(-${yOffset}px)` } : undefined;
+  const imgStyle: React.CSSProperties = {};
+  if (yOffset) imgStyle.transform = `translateY(-${yOffset}px)`;
+  if (maxSize) {
+    imgStyle.maxHeight = `${maxSize}%`;
+    imgStyle.maxWidth = `${maxSize}%`;
+  }
 
   return (
     <div className={`${className} flex items-center justify-center bg-white`}>
@@ -164,7 +175,7 @@ function RestaurantLogo({
         loading="lazy"
         decoding="async"
         className={imageClassName}
-        style={imgStyle}
+        style={Object.keys(imgStyle).length ? imgStyle : undefined}
         onError={() => setCandidateIndex((idx) => idx + 1)}
       />
     </div>
@@ -212,6 +223,7 @@ export default function BiblePage() {
   const [restaurantData, setRestaurantData] = useState<Record<string, RestaurantDetail>>({});
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
+  const [viewMode, setViewMode] = useState<"browse" | "glance">("browse");
   const loadingDetail = !!selectedId && !restaurantData[selectedId];
 
   // ─── Fetch restaurant list ─────────────────────────
@@ -297,10 +309,39 @@ export default function BiblePage() {
           <p className="mt-1 text-base text-zinc-400">
             Every swap. Every restaurant. Search anything.
           </p>
+          {/* View toggle */}
+          <div className="mt-3 inline-flex rounded-lg border border-zinc-700 bg-zinc-900 p-0.5">
+            <button
+              onClick={() => setViewMode("browse")}
+              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                viewMode === "browse"
+                  ? "bg-zinc-700 text-white"
+                  : "text-zinc-400 hover:text-zinc-200"
+              }`}
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z" />
+              </svg>
+              Browse
+            </button>
+            <button
+              onClick={() => setViewMode("glance")}
+              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                viewMode === "glance"
+                  ? "bg-zinc-700 text-white"
+                  : "text-zinc-400 hover:text-zinc-200"
+              }`}
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h.75a.75.75 0 0 1 0 1.5H6a.75.75 0 0 0-.75.75v.75a.75.75 0 0 1-1.5 0V6ZM3.75 15.75a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 0 1.5H4.5a.75.75 0 0 0-.75.75v.75a.75.75 0 0 1-1.5 0v-.75ZM9 3.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-1.5 0V4.5a.75.75 0 0 1 .75-.75ZM12 3.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-1.5 0V4.5a.75.75 0 0 1 .75-.75ZM15 3.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-1.5 0V4.5a.75.75 0 0 1 .75-.75Z" />
+              </svg>
+              All
+            </button>
+          </div>
         </div>
       </header>
 
-      <main className="mx-auto max-w-3xl px-4 pb-20 pt-4">
+      <main className={`mx-auto px-4 pb-20 pt-4 ${viewMode === "glance" ? "max-w-6xl" : "max-w-3xl"}`}>
         {/* Search bar */}
         <div className="sticky top-0 z-10 bg-black pb-4 pt-2">
           <div className="relative">
@@ -387,10 +428,10 @@ export default function BiblePage() {
                 </motion.div>
               )}
 
-              {/* ─── Restaurant Grid ──────────────── */}
-              {!selectedId && (!query || filteredRestaurants.length > 0) && (
+              {/* ─── Restaurant Grid (Browse) ──────── */}
+              {!selectedId && viewMode === "browse" && (!query || filteredRestaurants.length > 0) && (
                 <motion.div
-                  key="grid"
+                  key="grid-browse"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -413,7 +454,8 @@ export default function BiblePage() {
                             id={r.id}
                             name={r.name}
                             className="h-full w-full transition-transform group-hover:scale-105"
-                            imageClassName="h-auto w-auto max-h-[88%] max-w-[88%]"
+                            imageClassName="h-auto w-auto"
+                            maxSize={LOGO_OVERRIDES[r.id]?.size ?? 88}
                             placeholderClassName="text-4xl font-semibold tracking-wide text-zinc-400"
                             yOffset={LOGO_OVERRIDES[r.id]?.yOffset ?? 8}
                           />
@@ -425,6 +467,52 @@ export default function BiblePage() {
                             {r.meal_count} meals &middot; {r.swap_count} swaps
                           </p>
                         </div>
+                      </motion.button>
+                    ))}
+                  </div>
+
+                  {filteredRestaurants.length === 0 && query && (
+                    <div className="py-16 text-center">
+                      <p className="text-zinc-500">No restaurants match &ldquo;{searchQuery}&rdquo;</p>
+                    </div>
+                  )}
+                </motion.div>
+              )}
+
+              {/* ─── Restaurant Grid (Glance / All) ── */}
+              {!selectedId && viewMode === "glance" && (!query || filteredRestaurants.length > 0) && (
+                <motion.div
+                  key="grid-glance"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  {query && filteredRestaurants.length > 0 && (
+                    <p className="mb-3 text-base font-medium uppercase tracking-wider text-zinc-400">
+                      Restaurants
+                    </p>
+                  )}
+                  <div className="grid grid-cols-5 gap-2 sm:grid-cols-6 md:grid-cols-7">
+                    {filteredRestaurants.map((r) => (
+                      <motion.button
+                        key={r.id}
+                        layoutId={`restaurant-${r.id}`}
+                        onClick={() => setSelectedId(r.id)}
+                        className="group flex flex-col items-center gap-1"
+                      >
+                        <div className="relative aspect-square w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 transition-colors group-hover:border-zinc-600">
+                          <RestaurantLogo
+                            id={r.id}
+                            name={r.name}
+                            className="h-full w-full transition-transform group-hover:scale-110"
+                            imageClassName="h-auto w-auto"
+                            maxSize={92}
+                            placeholderClassName="text-lg font-semibold tracking-wide text-zinc-400"
+                          />
+                        </div>
+                        <p className="max-w-full truncate text-xs font-medium text-zinc-400 group-hover:text-white">
+                          {r.name}
+                        </p>
                       </motion.button>
                     ))}
                   </div>
