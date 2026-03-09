@@ -1,0 +1,425 @@
+{
+  "restaurant": {
+    "id": "popeyes",
+    "name": "Popeyes Louisiana Kitchen",
+    "logo_emoji": "🍗",
+    "cuisine": "fast_food",
+    "website": "https://www.popeyes.com",
+    "nutrition_source": "PLK_Nutrition.pdf (Popeyes official, October 2025)"
+  },
+  "categories": [
+    { "id": "popeyes_chicken", "name": "Signature Chicken", "display_order": 1, "selection_type": "single", "description": "Bone-in fried chicken pieces" },
+    { "id": "popeyes_tenders", "name": "Tenders", "display_order": 2, "selection_type": "single", "description": "Chicken tenders - classic, spicy, or blackened" },
+    { "id": "popeyes_wings", "name": "Wings", "display_order": 3, "selection_type": "single", "description": "Boneless and bone-in wings with sauce rubs" },
+    { "id": "popeyes_sandwiches", "name": "Sandwiches", "display_order": 4, "selection_type": "single", "description": "Chicken sandwiches" },
+    { "id": "popeyes_seafood", "name": "Seafood", "display_order": 5, "selection_type": "single", "description": "Popcorn shrimp and seafood items" },
+    { "id": "popeyes_sides", "name": "Sides", "display_order": 6, "selection_type": "multiple", "description": "Signature side dishes" },
+    { "id": "popeyes_sauces", "name": "Dipping Sauces", "display_order": 7, "selection_type": "multiple", "description": "Dipping sauces" },
+    { "id": "popeyes_drinks", "name": "Drinks", "display_order": 8, "selection_type": "optional", "description": "Beverages" },
+    { "id": "popeyes_desserts", "name": "Desserts", "display_order": 9, "selection_type": "optional", "description": "Dessert items" }
+  ],
+  "ingredients": [
+    {
+      "id": "pop_wing", "category_id": "popeyes_chicken",
+      "name": "Chicken Wing (1 pc)", "portion_size": "1 pc",
+      "calories": 210, "calories_from_fat": 130,
+      "total_fat_g": 14, "saturated_fat_g": 4, "trans_fat_g": 0,
+      "cholesterol_mg": 60, "sodium_mg": 610,
+      "carbohydrate_g": 8, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 13,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_leg", "category_id": "popeyes_chicken",
+      "name": "Chicken Leg (1 pc)", "portion_size": "1 pc",
+      "calories": 160, "calories_from_fat": 80,
+      "total_fat_g": 9, "saturated_fat_g": 4, "trans_fat_g": 0,
+      "cholesterol_mg": 40, "sodium_mg": 460,
+      "carbohydrate_g": 5, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 14,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_thigh", "category_id": "popeyes_chicken",
+      "name": "Chicken Thigh (1 pc)", "portion_size": "1 pc",
+      "calories": 280, "calories_from_fat": 190,
+      "total_fat_g": 21, "saturated_fat_g": 8, "trans_fat_g": 0,
+      "cholesterol_mg": 50, "sodium_mg": 640,
+      "carbohydrate_g": 7, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 14,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_breast", "category_id": "popeyes_chicken",
+      "name": "Chicken Breast (1 pc)", "portion_size": "1 pc",
+      "calories": 380, "calories_from_fat": 180,
+      "total_fat_g": 20, "saturated_fat_g": 8, "trans_fat_g": 1,
+      "cholesterol_mg": 125, "sodium_mg": 1230,
+      "carbohydrate_g": 16, "dietary_fiber_g": 2, "sugar_g": 0, "protein_g": 35,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "pop_tenders_classic_3pc", "category_id": "popeyes_tenders",
+      "name": "Classic Tenders (3 pc)", "portion_size": "3 pc",
+      "calories": 390, "calories_from_fat": 170,
+      "total_fat_g": 19, "saturated_fat_g": 9, "trans_fat_g": 1,
+      "cholesterol_mg": 100, "sodium_mg": 1700,
+      "carbohydrate_g": 40, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 35,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "pop_tenders_classic_5pc", "category_id": "popeyes_tenders",
+      "name": "Classic Tenders (5 pc)", "portion_size": "5 pc",
+      "calories": 650, "calories_from_fat": 300,
+      "total_fat_g": 32, "saturated_fat_g": 15, "trans_fat_g": 2,
+      "cholesterol_mg": 170, "sodium_mg": 2840,
+      "carbohydrate_g": 68, "dietary_fiber_g": 2, "sugar_g": 0, "protein_g": 58,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_tenders_blackened_3pc", "category_id": "popeyes_tenders",
+      "name": "Blackened Tenders (3 pc)", "portion_size": "3 pc",
+      "calories": 210, "calories_from_fat": 50,
+      "total_fat_g": 6, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 105, "sodium_mg": 1020,
+      "carbohydrate_g": 3, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 37,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_tenders_blackened_5pc", "category_id": "popeyes_tenders",
+      "name": "Blackened Tenders (5 pc)", "portion_size": "5 pc",
+      "calories": 360, "calories_from_fat": 90,
+      "total_fat_g": 10, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 175, "sodium_mg": 1700,
+      "carbohydrate_g": 5, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 62,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_boneless_classic_6pc", "category_id": "popeyes_wings",
+      "name": "Classic Boneless Wings (6 pc)", "portion_size": "6 pc",
+      "calories": 480, "calories_from_fat": 310,
+      "total_fat_g": 34, "saturated_fat_g": 16, "trans_fat_g": 2,
+      "cholesterol_mg": 90, "sodium_mg": 990,
+      "carbohydrate_g": 23, "dietary_fiber_g": 2, "sugar_g": 1, "protein_g": 27,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_bonein_classic_6pc", "category_id": "popeyes_wings",
+      "name": "Classic Bone-In Wings (6 pc)", "portion_size": "6 pc",
+      "calories": 650, "calories_from_fat": 400,
+      "total_fat_g": 44, "saturated_fat_g": 18, "trans_fat_g": 1,
+      "cholesterol_mg": 180, "sodium_mg": 1780,
+      "carbohydrate_g": 27, "dietary_fiber_g": 2, "sugar_g": 1, "protein_g": 38,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_sandwich_classic", "category_id": "popeyes_sandwiches",
+      "name": "Chicken Sandwich - Classic", "portion_size": "1 ea",
+      "calories": 700, "calories_from_fat": 380,
+      "total_fat_g": 42, "saturated_fat_g": 14, "trans_fat_g": 2,
+      "cholesterol_mg": 90, "sodium_mg": 1440,
+      "carbohydrate_g": 50, "dietary_fiber_g": 2, "sugar_g": 8, "protein_g": 28,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "pop_sandwich_spicy", "category_id": "popeyes_sandwiches",
+      "name": "Chicken Sandwich - Spicy", "portion_size": "1 ea",
+      "calories": 700, "calories_from_fat": 380,
+      "total_fat_g": 42, "saturated_fat_g": 14, "trans_fat_g": 2,
+      "cholesterol_mg": 90, "sodium_mg": 1470,
+      "carbohydrate_g": 50, "dietary_fiber_g": 2, "sugar_g": 8, "protein_g": 28,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_popcorn_shrimp", "category_id": "popeyes_seafood",
+      "name": "Popcorn Shrimp (1/4 lb)", "portion_size": "1/4 lb",
+      "calories": 390, "calories_from_fat": 220,
+      "total_fat_g": 25, "saturated_fat_g": 8, "trans_fat_g": 1,
+      "cholesterol_mg": 80, "sodium_mg": 1390,
+      "carbohydrate_g": 28, "dietary_fiber_g": 3, "sugar_g": 0, "protein_g": 14,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_biscuit", "category_id": "popeyes_sides",
+      "name": "Biscuit", "portion_size": "1 ea",
+      "calories": 210, "calories_from_fat": 120,
+      "total_fat_g": 13, "saturated_fat_g": 6, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 440,
+      "carbohydrate_g": 20, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 3,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "pop_cajun_fries_reg", "category_id": "popeyes_sides",
+      "name": "Cajun Fries (Regular)", "portion_size": "Regular",
+      "calories": 270, "calories_from_fat": 130,
+      "total_fat_g": 14, "saturated_fat_g": 5, "trans_fat_g": 1,
+      "cholesterol_mg": 5, "sodium_mg": 590,
+      "carbohydrate_g": 33, "dietary_fiber_g": 3, "sugar_g": 3, "protein_g": 3,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "pop_mac_cheese_reg", "category_id": "popeyes_sides",
+      "name": "Homestyle Mac & Cheese (Regular)", "portion_size": "Regular",
+      "calories": 280, "calories_from_fat": 180,
+      "total_fat_g": 21, "saturated_fat_g": 21, "trans_fat_g": 0.5,
+      "cholesterol_mg": 60, "sodium_mg": 510,
+      "carbohydrate_g": 16, "dietary_fiber_g": 0, "sugar_g": 4, "protein_g": 5,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_mashed_potatoes_reg", "category_id": "popeyes_sides",
+      "name": "Mashed Potatoes w/ Cajun Gravy (Regular)", "portion_size": "Regular",
+      "calories": 110, "calories_from_fat": 40,
+      "total_fat_g": 4, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 590,
+      "carbohydrate_g": 18, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 2,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_red_beans_rice_reg", "category_id": "popeyes_sides",
+      "name": "Red Beans & Rice (Regular)", "portion_size": "Regular",
+      "calories": 250, "calories_from_fat": 140,
+      "total_fat_g": 16, "saturated_fat_g": 5, "trans_fat_g": 0,
+      "cholesterol_mg": 15, "sodium_mg": 610,
+      "carbohydrate_g": 22, "dietary_fiber_g": 6, "sugar_g": 0, "protein_g": 8,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_coleslaw_reg", "category_id": "popeyes_sides",
+      "name": "Coleslaw (Regular)", "portion_size": "Regular",
+      "calories": 140, "calories_from_fat": 90,
+      "total_fat_g": 10, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 190,
+      "carbohydrate_g": 12, "dietary_fiber_g": 1, "sugar_g": 9, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_green_beans_reg", "category_id": "popeyes_sides",
+      "name": "Green Beans (Regular)", "portion_size": "Regular",
+      "calories": 50, "calories_from_fat": 15,
+      "total_fat_g": 1.5, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 280,
+      "carbohydrate_g": 7, "dietary_fiber_g": 2, "sugar_g": 1, "protein_g": 2,
+      "is_default": false, "is_premium": false,
+      "tags": ["lean_swap"]
+    },
+    {
+      "id": "pop_sauce_blackened_ranch", "category_id": "popeyes_sauces",
+      "name": "Blackened Ranch", "portion_size": "1 ea",
+      "calories": 120, "calories_from_fat": 110,
+      "total_fat_g": 12, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 250,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_sauce_buttermilk_ranch", "category_id": "popeyes_sauces",
+      "name": "Buttermilk Ranch", "portion_size": "1 ea",
+      "calories": 140, "calories_from_fat": 140,
+      "total_fat_g": 15, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 230,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_sauce_bbq", "category_id": "popeyes_sauces",
+      "name": "BoldBQ Sauce", "portion_size": "1 ea",
+      "calories": 70, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 440,
+      "carbohydrate_g": 16, "dietary_fiber_g": 0, "sugar_g": 13, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_sauce_bayou_buffalo", "category_id": "popeyes_sauces",
+      "name": "Bayou Buffalo Sauce", "portion_size": "1 ea",
+      "calories": 60, "calories_from_fat": 50,
+      "total_fat_g": 6, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 450,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "tags": ["lean_swap"]
+    },
+    {
+      "id": "pop_sauce_cocktail", "category_id": "popeyes_sauces",
+      "name": "Cocktail Sauce", "portion_size": "1 ea",
+      "calories": 40, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 400,
+      "carbohydrate_g": 9, "dietary_fiber_g": 0, "sugar_g": 7, "protein_g": 1,
+      "is_default": false, "is_premium": false,
+      "tags": ["lean_swap"]
+    },
+    {
+      "id": "pop_sauce_sweet_heat", "category_id": "popeyes_sauces",
+      "name": "Sweet Heat Sauce", "portion_size": "1 ea",
+      "calories": 70, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 290,
+      "carbohydrate_g": 19, "dietary_fiber_g": 0, "sugar_g": 16, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_cinnamon_apple_pie", "category_id": "popeyes_desserts",
+      "name": "Cinnamon Apple Pie", "portion_size": "1 ea",
+      "calories": 240, "calories_from_fat": 140,
+      "total_fat_g": 16, "saturated_fat_g": 6, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 260,
+      "carbohydrate_g": 35, "dietary_fiber_g": 1, "sugar_g": 12, "protein_g": 3,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "pop_diet_coke_sm", "category_id": "popeyes_drinks",
+      "name": "Diet Coke (Small)", "portion_size": "Small",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 65,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "tags": ["lean_swap"]
+    },
+    {
+      "id": "pop_unsweetened_tea_sm", "category_id": "popeyes_drinks",
+      "name": "Unsweetened Tea (Small)", "portion_size": "Small",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 10,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "tags": ["lean_swap"]
+    },
+    {
+      "id": "pop_coke_sm", "category_id": "popeyes_drinks",
+      "name": "Coke (Small)", "portion_size": "Small",
+      "calories": 240, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 60,
+      "carbohydrate_g": 66, "dietary_fiber_g": 0, "sugar_g": 66, "protein_g": 0,
+      "is_default": true, "is_premium": false
+    }
+  ],
+  "template_meals": [
+    {
+      "id": "pop_chicken_sandwich_combo",
+      "name": "Chicken Sandwich Combo",
+      "description": "Classic chicken sandwich + regular cajun fries + Coke",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": [
+        "pop_sandwich_classic", "pop_cajun_fries_reg", "pop_coke_sm"
+      ],
+      "totals": {
+        "calories": 1210, "total_fat_g": 56, "protein_g": 31, "carbohydrate_g": 149
+      }
+    },
+    {
+      "id": "pop_3pc_chicken_dinner",
+      "name": "3-Piece Chicken Dinner",
+      "description": "Breast + leg + thigh with cajun fries, biscuit, and Coke",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": [
+        "pop_breast", "pop_leg", "pop_thigh", "pop_cajun_fries_reg", "pop_biscuit", "pop_coke_sm"
+      ],
+      "totals": {
+        "calories": 1540, "total_fat_g": 82, "protein_g": 69, "carbohydrate_g": 147
+      }
+    },
+    {
+      "id": "pop_tenders_combo",
+      "name": "5-Piece Tenders Combo",
+      "description": "5 classic tenders + regular cajun fries + biscuit + Coke",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": [
+        "pop_tenders_classic_5pc", "pop_cajun_fries_reg", "pop_biscuit", "pop_coke_sm"
+      ],
+      "totals": {
+        "calories": 1370, "total_fat_g": 59, "protein_g": 64, "carbohydrate_g": 187
+      }
+    },
+    {
+      "id": "pop_wing_combo",
+      "name": "6-Piece Boneless Wings Combo",
+      "description": "6 classic boneless wings + regular cajun fries + biscuit + Coke",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": [
+        "pop_boneless_classic_6pc", "pop_cajun_fries_reg", "pop_biscuit", "pop_coke_sm"
+      ],
+      "totals": {
+        "calories": 1200, "total_fat_g": 61, "protein_g": 33, "carbohydrate_g": 142
+      }
+    },
+    {
+      "id": "pop_shrimp_dinner",
+      "name": "Popcorn Shrimp Dinner",
+      "description": "Popcorn shrimp + regular cajun fries + biscuit + Coke",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": [
+        "pop_popcorn_shrimp", "pop_cajun_fries_reg", "pop_biscuit", "pop_coke_sm"
+      ],
+      "totals": {
+        "calories": 1110, "total_fat_g": 52, "protein_g": 20, "carbohydrate_g": 147
+      }
+    },
+    {
+      "id": "pop_sandwich_lean",
+      "name": "Lean Spicy Sandwich (No Fries, No Soda)",
+      "description": "Spicy chicken sandwich + green beans + unsweetened tea. Same sandwich, smarter sides.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "pop_chicken_sandwich_combo",
+      "swap_rationale": "Swap fries for green beans (-220 cal) and Coke for unsweetened tea (-240 cal). Saves 460 calories while keeping the legendary sandwich. Protein stays at 30g (97% retained).",
+      "ingredients": [
+        "pop_sandwich_spicy", "pop_green_beans_reg", "pop_unsweetened_tea_sm"
+      ],
+      "totals": {
+        "calories": 750, "total_fat_g": 43.5, "protein_g": 30, "carbohydrate_g": 57
+      }
+    },
+    {
+      "id": "pop_blackened_tenders_lean",
+      "name": "Blackened Tenders Power Meal",
+      "description": "5 blackened tenders + mashed potatoes + green beans + diet Coke. 66g protein for 520 calories.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "pop_tenders_combo",
+      "swap_rationale": "Blackened tenders vs classic saves 290 cal (360 vs 650) with MORE protein (62g vs 58g). Swap fries for mashed potatoes (-160 cal), drop biscuit (-210 cal), diet Coke (-240 cal). Saves 850 calories total, protein goes UP to 66g.",
+      "ingredients": [
+        "pop_tenders_blackened_5pc", "pop_mashed_potatoes_reg", "pop_green_beans_reg", "pop_diet_coke_sm"
+      ],
+      "totals": {
+        "calories": 520, "total_fat_g": 15.5, "protein_g": 66, "carbohydrate_g": 30
+      }
+    },
+    {
+      "id": "pop_3pc_lean_dinner",
+      "name": "Lean 3-Piece Dinner",
+      "description": "2 legs + 1 breast (skip the thigh) + green beans + mashed potatoes + unsweetened tea.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "pop_3pc_chicken_dinner",
+      "swap_rationale": "Swap thigh for a 2nd leg (saves 120 cal, more protein per calorie). Fries to green beans (-220 cal), biscuit to mashed potatoes (-100 cal), Coke to tea (-240 cal). Saves 680 calories, protein stays at 65g (94% retained).",
+      "ingredients": [
+        "pop_breast", { "id": "pop_leg", "quantity": 2 }, "pop_green_beans_reg", "pop_mashed_potatoes_reg", "pop_unsweetened_tea_sm"
+      ],
+      "totals": {
+        "calories": 860, "total_fat_g": 43.5, "protein_g": 65, "carbohydrate_g": 37
+      }
+    },
+    {
+      "id": "pop_blackened_3pc_lean",
+      "name": "Blackened Tenders + Red Beans",
+      "description": "3 blackened tenders + red beans & rice + bayou buffalo sauce + diet Coke. The leanest Popeyes meal.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "pop_wing_combo",
+      "swap_rationale": "Blackened tenders: 210 cal for 37g protein — best item on the menu. Red beans add fiber. Buffalo sauce only 60 cal. Saves 680 calories vs wings combo while protein jumps from 33g to 45g.",
+      "ingredients": [
+        "pop_tenders_blackened_3pc", "pop_red_beans_rice_reg", "pop_sauce_bayou_buffalo", "pop_diet_coke_sm"
+      ],
+      "totals": {
+        "calories": 520, "total_fat_g": 28, "protein_g": 45, "carbohydrate_g": 27
+      }
+    }
+  ]
+}

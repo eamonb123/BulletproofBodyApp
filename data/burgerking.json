@@ -1,0 +1,409 @@
+{
+  "restaurant": {
+    "id": "burgerking",
+    "name": "Burger King",
+    "logo_emoji": "\ud83d\udc51",
+    "cuisine": "fast_food",
+    "website": "https://www.bk.com",
+    "nutrition_source": "BK.com Nutrition Explorer + USDA FoodData Central (fastfoodnutrition.org, nutritionvalue.org, 2025)"
+  },
+  "categories": [
+    { "id": "burgerking_burgers", "name": "Burgers", "display_order": 1, "selection_type": "single", "description": "Flame-grilled burgers" },
+    { "id": "burgerking_chicken", "name": "Chicken & Fish", "display_order": 2, "selection_type": "single", "description": "Chicken sandwiches, nuggets, fish" },
+    { "id": "burgerking_breakfast", "name": "Breakfast", "display_order": 3, "selection_type": "single", "description": "Breakfast sandwiches and platters" },
+    { "id": "burgerking_sides", "name": "Sides", "display_order": 4, "selection_type": "single", "description": "Fries, onion rings, and more" },
+    { "id": "burgerking_drinks", "name": "Drinks", "display_order": 5, "selection_type": "single", "description": "Beverages" },
+    { "id": "burgerking_sauces", "name": "Sauces", "display_order": 6, "selection_type": "multiple", "description": "Dipping sauces and condiments" }
+  ],
+  "ingredients": [
+    {
+      "id": "bk_whopper", "category_id": "burgerking_burgers",
+      "name": "Whopper", "portion_size": "1 sandwich (291g)",
+      "calories": 660, "calories_from_fat": 360,
+      "total_fat_g": 40, "saturated_fat_g": 12, "trans_fat_g": 1.5,
+      "cholesterol_mg": 90, "sodium_mg": 980,
+      "carbohydrate_g": 49, "dietary_fiber_g": 2, "sugar_g": 11, "protein_g": 28,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_whopper_cheese", "category_id": "burgerking_burgers",
+      "name": "Whopper with Cheese", "portion_size": "1 sandwich (315g)",
+      "calories": 770, "calories_from_fat": 450,
+      "total_fat_g": 48, "saturated_fat_g": 18, "trans_fat_g": 2,
+      "cholesterol_mg": 115, "sodium_mg": 1350,
+      "carbohydrate_g": 49, "dietary_fiber_g": 2, "sugar_g": 11, "protein_g": 33,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_double_whopper", "category_id": "burgerking_burgers",
+      "name": "Double Whopper", "portion_size": "1 sandwich (374g)",
+      "calories": 900, "calories_from_fat": 540,
+      "total_fat_g": 56, "saturated_fat_g": 20, "trans_fat_g": 3,
+      "cholesterol_mg": 175, "sodium_mg": 1050,
+      "carbohydrate_g": 49, "dietary_fiber_g": 2, "sugar_g": 11, "protein_g": 48,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_whopper_jr", "category_id": "burgerking_burgers",
+      "name": "Whopper Jr.", "portion_size": "1 sandwich (149g)",
+      "calories": 310, "calories_from_fat": 160,
+      "total_fat_g": 18, "saturated_fat_g": 6, "trans_fat_g": 0.5,
+      "cholesterol_mg": 40, "sodium_mg": 390,
+      "carbohydrate_g": 27, "dietary_fiber_g": 1, "sugar_g": 7, "protein_g": 13,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_hamburger", "category_id": "burgerking_burgers",
+      "name": "Hamburger", "portion_size": "1 sandwich (109g)",
+      "calories": 250, "calories_from_fat": 90,
+      "total_fat_g": 10, "saturated_fat_g": 3.5, "trans_fat_g": 0.5,
+      "cholesterol_mg": 35, "sodium_mg": 380,
+      "carbohydrate_g": 29, "dietary_fiber_g": 1, "sugar_g": 7, "protein_g": 13,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_cheeseburger", "category_id": "burgerking_burgers",
+      "name": "Cheeseburger", "portion_size": "1 sandwich (121g)",
+      "calories": 290, "calories_from_fat": 120,
+      "total_fat_g": 13, "saturated_fat_g": 6, "trans_fat_g": 0.5,
+      "cholesterol_mg": 50, "sodium_mg": 590,
+      "carbohydrate_g": 29, "dietary_fiber_g": 1, "sugar_g": 7, "protein_g": 16,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_bacon_cheeseburger", "category_id": "burgerking_burgers",
+      "name": "Bacon Cheeseburger", "portion_size": "1 sandwich (135g)",
+      "calories": 320, "calories_from_fat": 140,
+      "total_fat_g": 15, "saturated_fat_g": 7, "trans_fat_g": 0.5,
+      "cholesterol_mg": 55, "sodium_mg": 710,
+      "carbohydrate_g": 29, "dietary_fiber_g": 1, "sugar_g": 7, "protein_g": 18,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_impossible_whopper", "category_id": "burgerking_burgers",
+      "name": "Impossible Whopper", "portion_size": "1 sandwich (276g)",
+      "calories": 630, "calories_from_fat": 310,
+      "total_fat_g": 34, "saturated_fat_g": 10, "trans_fat_g": 0,
+      "cholesterol_mg": 15, "sodium_mg": 1240,
+      "carbohydrate_g": 58, "dietary_fiber_g": 4, "sugar_g": 12, "protein_g": 25,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_original_chicken", "category_id": "burgerking_chicken",
+      "name": "Original Chicken Sandwich", "portion_size": "1 sandwich (199g)",
+      "calories": 660, "calories_from_fat": 350,
+      "total_fat_g": 40, "saturated_fat_g": 7, "trans_fat_g": 2.5,
+      "cholesterol_mg": 50, "sodium_mg": 1170,
+      "carbohydrate_g": 52, "dietary_fiber_g": 3, "sugar_g": 5, "protein_g": 23,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_royal_crispy_chicken", "category_id": "burgerking_chicken",
+      "name": "Royal Crispy Chicken Sandwich", "portion_size": "1 sandwich (248g)",
+      "calories": 750, "calories_from_fat": 440,
+      "total_fat_g": 49, "saturated_fat_g": 9, "trans_fat_g": 2,
+      "cholesterol_mg": 70, "sodium_mg": 1360,
+      "carbohydrate_g": 52, "dietary_fiber_g": 2, "sugar_g": 8, "protein_g": 31,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_crispy_chicken_jr", "category_id": "burgerking_chicken",
+      "name": "Crispy Chicken Jr.", "portion_size": "1 sandwich (110g)",
+      "calories": 440, "calories_from_fat": 240,
+      "total_fat_g": 27, "saturated_fat_g": 5, "trans_fat_g": 1,
+      "cholesterol_mg": 30, "sodium_mg": 700,
+      "carbohydrate_g": 39, "dietary_fiber_g": 2, "sugar_g": 5, "protein_g": 13,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_chicken_nuggets_4pc", "category_id": "burgerking_chicken",
+      "name": "Chicken Nuggets (4 pc)", "portion_size": "4 pieces (64g)",
+      "calories": 190, "calories_from_fat": 110,
+      "total_fat_g": 12, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 25, "sodium_mg": 490,
+      "carbohydrate_g": 12, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 9,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_chicken_nuggets_8pc", "category_id": "burgerking_chicken",
+      "name": "Chicken Nuggets (8 pc)", "portion_size": "8 pieces (128g)",
+      "calories": 380, "calories_from_fat": 220,
+      "total_fat_g": 24, "saturated_fat_g": 5, "trans_fat_g": 0,
+      "cholesterol_mg": 50, "sodium_mg": 980,
+      "carbohydrate_g": 24, "dietary_fiber_g": 2, "sugar_g": 0, "protein_g": 18,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_chicken_fries_9pc", "category_id": "burgerking_chicken",
+      "name": "Chicken Fries (9 pc)", "portion_size": "9 pieces (85g)",
+      "calories": 280, "calories_from_fat": 150,
+      "total_fat_g": 17, "saturated_fat_g": 3.5, "trans_fat_g": 0,
+      "cholesterol_mg": 35, "sodium_mg": 790,
+      "carbohydrate_g": 19, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 14,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_croissanwich_sausage_egg_cheese", "category_id": "burgerking_breakfast",
+      "name": "Croissan'wich Sausage, Egg & Cheese", "portion_size": "1 sandwich (171g)",
+      "calories": 530, "calories_from_fat": 310,
+      "total_fat_g": 35, "saturated_fat_g": 14, "trans_fat_g": 0,
+      "cholesterol_mg": 185, "sodium_mg": 1060,
+      "carbohydrate_g": 30, "dietary_fiber_g": 1, "sugar_g": 5, "protein_g": 20,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_croissanwich_ham_egg_cheese", "category_id": "burgerking_breakfast",
+      "name": "Croissan'wich Ham, Egg & Cheese", "portion_size": "1 sandwich (152g)",
+      "calories": 350, "calories_from_fat": 160,
+      "total_fat_g": 18, "saturated_fat_g": 8, "trans_fat_g": 0,
+      "cholesterol_mg": 165, "sodium_mg": 1030,
+      "carbohydrate_g": 28, "dietary_fiber_g": 1, "sugar_g": 5, "protein_g": 18,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_croissanwich_egg_cheese", "category_id": "burgerking_breakfast",
+      "name": "Croissan'wich Egg & Cheese", "portion_size": "1 sandwich (120g)",
+      "calories": 300, "calories_from_fat": 150,
+      "total_fat_g": 17, "saturated_fat_g": 7, "trans_fat_g": 0,
+      "cholesterol_mg": 155, "sodium_mg": 660,
+      "carbohydrate_g": 27, "dietary_fiber_g": 1, "sugar_g": 5, "protein_g": 12,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_egg_normous_burrito", "category_id": "burgerking_breakfast",
+      "name": "Egg-normous Burrito", "portion_size": "1 burrito (249g)",
+      "calories": 530, "calories_from_fat": 290,
+      "total_fat_g": 32, "saturated_fat_g": 12, "trans_fat_g": 0.5,
+      "cholesterol_mg": 320, "sodium_mg": 1310,
+      "carbohydrate_g": 36, "dietary_fiber_g": 1, "sugar_g": 3, "protein_g": 24,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_pancake_platter", "category_id": "burgerking_breakfast",
+      "name": "Pancake Platter (3 pc)", "portion_size": "3 pancakes (151g)",
+      "calories": 430, "calories_from_fat": 120,
+      "total_fat_g": 13, "saturated_fat_g": 3.5, "trans_fat_g": 0,
+      "cholesterol_mg": 25, "sodium_mg": 820,
+      "carbohydrate_g": 73, "dietary_fiber_g": 2, "sugar_g": 17, "protein_g": 8,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_small_fries", "category_id": "burgerking_sides",
+      "name": "French Fries (Small)", "portion_size": "1 small (128g)",
+      "calories": 320, "calories_from_fat": 140,
+      "total_fat_g": 15, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 480,
+      "carbohydrate_g": 43, "dietary_fiber_g": 3, "sugar_g": 0, "protein_g": 4,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_medium_fries", "category_id": "burgerking_sides",
+      "name": "French Fries (Medium)", "portion_size": "1 medium (150g)",
+      "calories": 380, "calories_from_fat": 170,
+      "total_fat_g": 18, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 570,
+      "carbohydrate_g": 51, "dietary_fiber_g": 4, "sugar_g": 0, "protein_g": 5,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_large_fries", "category_id": "burgerking_sides",
+      "name": "French Fries (Large)", "portion_size": "1 large (190g)",
+      "calories": 430, "calories_from_fat": 190,
+      "total_fat_g": 21, "saturated_fat_g": 3.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 640,
+      "carbohydrate_g": 57, "dietary_fiber_g": 5, "sugar_g": 0, "protein_g": 5,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_onion_rings_small", "category_id": "burgerking_sides",
+      "name": "Onion Rings (Small)", "portion_size": "1 small (91g)",
+      "calories": 320, "calories_from_fat": 150,
+      "total_fat_g": 16, "saturated_fat_g": 3, "trans_fat_g": 3,
+      "cholesterol_mg": 0, "sodium_mg": 490,
+      "carbohydrate_g": 40, "dietary_fiber_g": 2, "sugar_g": 4, "protein_g": 4,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_mozzarella_sticks_4pc", "category_id": "burgerking_sides",
+      "name": "Mozzarella Sticks (4 pc)", "portion_size": "4 pieces (83g)",
+      "calories": 330, "calories_from_fat": 180,
+      "total_fat_g": 20, "saturated_fat_g": 7, "trans_fat_g": 0,
+      "cholesterol_mg": 25, "sodium_mg": 770,
+      "carbohydrate_g": 24, "dietary_fiber_g": 1, "sugar_g": 2, "protein_g": 13,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_garden_side_salad", "category_id": "burgerking_sides",
+      "name": "Garden Side Salad (no dressing)", "portion_size": "1 salad (106g)",
+      "calories": 60, "calories_from_fat": 25,
+      "total_fat_g": 3, "saturated_fat_g": 1.5, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 65,
+      "carbohydrate_g": 4, "dietary_fiber_g": 1, "sugar_g": 2, "protein_g": 4,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_medium_coke", "category_id": "burgerking_drinks",
+      "name": "Coca-Cola (Medium)", "portion_size": "22 fl oz",
+      "calories": 260, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 5,
+      "carbohydrate_g": 72, "dietary_fiber_g": 0, "sugar_g": 72, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_water", "category_id": "burgerking_drinks",
+      "name": "Water Bottle", "portion_size": "16.9 fl oz",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_diet_coke", "category_id": "burgerking_drinks",
+      "name": "Diet Coke (Medium)", "portion_size": "22 fl oz",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 10,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_bbq_sauce", "category_id": "burgerking_sauces",
+      "name": "BBQ Dipping Sauce", "portion_size": "1 oz (28g)",
+      "calories": 50, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 310,
+      "carbohydrate_g": 12, "dietary_fiber_g": 0, "sugar_g": 11, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_ranch_sauce", "category_id": "burgerking_sauces",
+      "name": "Ranch Dipping Sauce", "portion_size": "1 oz (28g)",
+      "calories": 140, "calories_from_fat": 130,
+      "total_fat_g": 15, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 230,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_honey_mustard_sauce", "category_id": "burgerking_sauces",
+      "name": "Honey Mustard Dipping Sauce", "portion_size": "1 oz (28g)",
+      "calories": 90, "calories_from_fat": 50,
+      "total_fat_g": 6, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 170,
+      "carbohydrate_g": 8, "dietary_fiber_g": 0, "sugar_g": 7, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_buffalo_sauce", "category_id": "burgerking_sauces",
+      "name": "Buffalo Dipping Sauce", "portion_size": "1 oz (28g)",
+      "calories": 80, "calories_from_fat": 70,
+      "total_fat_g": 8, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 370,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "bk_zesty_sauce", "category_id": "burgerking_sauces",
+      "name": "Zesty Dipping Sauce", "portion_size": "1 oz (28g)",
+      "calories": 150, "calories_from_fat": 140,
+      "total_fat_g": 15, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 230,
+      "carbohydrate_g": 3, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    }
+  ],
+  "template_meals": [
+    {
+      "id": "burgerking_whopper_meal",
+      "name": "Whopper Meal",
+      "description": "Whopper, medium fries, and a medium Coke. The classic BK combo.",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["bk_whopper", "bk_medium_fries", "bk_medium_coke"]
+    },
+    {
+      "id": "burgerking_original_chicken_meal",
+      "name": "Original Chicken Sandwich Meal",
+      "description": "Original Chicken Sandwich, medium fries, and a medium Coke.",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["bk_original_chicken", "bk_medium_fries", "bk_medium_coke"]
+    },
+    {
+      "id": "burgerking_chicken_fries_meal",
+      "name": "Chicken Fries Meal",
+      "description": "9-piece Chicken Fries with medium fries, ranch sauce, and a medium Coke.",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["bk_chicken_fries_9pc", "bk_medium_fries", "bk_ranch_sauce", "bk_medium_coke"]
+    },
+    {
+      "id": "burgerking_nuggets_meal",
+      "name": "8-Piece Nuggets Meal",
+      "description": "8-piece Chicken Nuggets, medium fries, BBQ sauce, and a medium Coke.",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["bk_chicken_nuggets_8pc", "bk_medium_fries", "bk_bbq_sauce", "bk_medium_coke"]
+    },
+    {
+      "id": "burgerking_breakfast_combo",
+      "name": "Sausage Croissan'wich Combo",
+      "description": "Sausage, Egg & Cheese Croissan'wich with small fries and a medium Coke.",
+      "meal_type": "breakfast",
+      "is_swap": false,
+      "ingredients": ["bk_croissanwich_sausage_egg_cheese", "bk_small_fries", "bk_medium_coke"]
+    },
+    {
+      "id": "burgerking_lean_burger_swap",
+      "name": "Lean Whopper Swap",
+      "description": "Whopper Jr. plus a Hamburger, garden side salad, and water. Two burgers, still less than one Whopper meal.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "burgerking_whopper_meal",
+      "swap_rationale": "A Whopper meal is 1300 cal with only 33g protein. Two smaller burgers give you 26g protein for 560 cal. Swap fries for side salad and Coke for water. Saves 680 cal with 79% of the protein and you get TWO burgers.",
+      "ingredients": ["bk_whopper_jr", "bk_hamburger", "bk_garden_side_salad", "bk_water"]
+    },
+    {
+      "id": "burgerking_lean_chicken_swap",
+      "name": "Lean Chicken Swap",
+      "description": "Crispy Chicken Jr. with garden side salad and diet Coke. Smaller sandwich, same crunch.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "burgerking_original_chicken_meal",
+      "swap_rationale": "The Original Chicken Sandwich meal is 1300 cal with 28g protein. Crispy Chicken Jr. is 440 cal with 13g protein - nearly half the sandwich for a third of the calories. Add side salad instead of fries and diet Coke. Saves 800 cal.",
+      "ingredients": ["bk_crispy_chicken_jr", "bk_chicken_nuggets_4pc", "bk_garden_side_salad", "bk_diet_coke"]
+    },
+    {
+      "id": "burgerking_lean_nuggets_swap",
+      "name": "Lean Nuggets Swap",
+      "description": "8-piece Chicken Nuggets, BBQ sauce, garden side salad, and water. All the nuggets, none of the extras.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "burgerking_nuggets_meal",
+      "swap_rationale": "Keep all 8 nuggets (18g protein). Swap medium fries for side salad (-320 cal) and Coke for water (-260 cal). You keep the protein and lose 580 calories of sides and sugar.",
+      "ingredients": ["bk_chicken_nuggets_8pc", "bk_bbq_sauce", "bk_garden_side_salad", "bk_water"]
+    },
+    {
+      "id": "burgerking_lean_breakfast_swap",
+      "name": "Lean Breakfast Swap",
+      "description": "Ham, Egg & Cheese Croissan'wich plus 4-piece Chicken Nuggets and water. More protein, way fewer calories.",
+      "meal_type": "breakfast",
+      "is_swap": true,
+      "swap_for": "burgerking_breakfast_combo",
+      "swap_rationale": "Swap sausage for ham (350 vs 530 cal) and add 4 nuggets for 9g extra protein. Drop the fries and Coke for water. Total: 540 cal with 27g protein vs 1110 cal with 24g. You get MORE protein for half the calories.",
+      "ingredients": ["bk_croissanwich_ham_egg_cheese", "bk_chicken_nuggets_4pc", "bk_water"]
+    },
+    {
+      "id": "burgerking_lean_chicken_fries_swap",
+      "name": "Chicken Fries Lean Swap",
+      "description": "9-piece Chicken Fries, BBQ sauce, garden side salad, and water. Keep the chicken fries, ditch the carb sides.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "burgerking_chicken_fries_meal",
+      "swap_rationale": "Chicken Fries are already 280 cal with 14g protein - the leanest part of the meal. Ranch is 140 cal of pure fat - swap for BBQ at 50 cal. Side salad instead of fries, water instead of Coke. Saves 670 cal, keeps 95% protein.",
+      "ingredients": ["bk_chicken_fries_9pc", "bk_bbq_sauce", "bk_garden_side_salad", "bk_water"]
+    }
+  ]
+}

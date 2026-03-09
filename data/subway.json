@@ -1,0 +1,757 @@
+{
+  "restaurant": {
+    "id": "subway",
+    "name": "Subway",
+    "logo_emoji": "🥖",
+    "cuisine": "fast_food",
+    "website": "https://www.subway.com",
+    "nutrition_source": "us_nutrition_eng_1-23-25.pdf (Subway official, January 2025)"
+  },
+  "meal_ranges": {
+    "6_inch_sub": [220, 480],
+    "footlong_sub": [440, 960],
+    "wrap": [310, 950],
+    "salad": [50, 520]
+  },
+  "categories": [
+    { "id": "subway_bread", "name": "Bread", "display_order": 1, "selection_type": "single", "description": "6-inch bread choice (double all values for footlong)" },
+    { "id": "subway_protein", "name": "Protein", "display_order": 2, "selection_type": "single", "description": "Protein choice (amount on 6-inch sub, double for footlong/wrap)" },
+    { "id": "subway_cheese", "name": "Cheese", "display_order": 3, "selection_type": "single", "description": "Cheese choice (amount on 6-inch sub)" },
+    { "id": "subway_veggies", "name": "Vegetables", "display_order": 4, "selection_type": "multiple", "description": "Fresh veggies (amount on 6-inch sub)" },
+    { "id": "subway_sauce", "name": "Sauces & Condiments", "display_order": 5, "selection_type": "multiple", "description": "Sauce choice (amount on 6-inch sub, double for salad dressing)" },
+    { "id": "subway_seasoning", "name": "Seasonings", "display_order": 6, "selection_type": "multiple", "description": "Salt, pepper, oregano" },
+    { "id": "subway_sides", "name": "Sides & Cookies", "display_order": 7, "selection_type": "optional", "description": "Cookies, chips, and sides" },
+    { "id": "subway_soup", "name": "Soup", "display_order": 8, "selection_type": "optional", "description": "8 oz bowl soups" }
+  ],
+  "ingredients": [
+    {
+      "id": "sub_artisan_italian", "category_id": "subway_bread",
+      "name": "Artisan Italian Bread (6\")", "portion_size": "71g",
+      "calories": 210, "calories_from_fat": 18,
+      "total_fat_g": 2, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 380,
+      "carbohydrate_g": 39, "dietary_fiber_g": 1, "sugar_g": 3, "protein_g": 8,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "sub_hearty_multigrain", "category_id": "subway_bread",
+      "name": "Hearty Multigrain Bread (6\")", "portion_size": "71g",
+      "calories": 200, "calories_from_fat": 27,
+      "total_fat_g": 3, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 350,
+      "carbohydrate_g": 36, "dietary_fiber_g": 3, "sugar_g": 4, "protein_g": 9,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_honey_oat", "category_id": "subway_bread",
+      "name": "Honey Oat Bread (6\")", "portion_size": "75g",
+      "calories": 210, "calories_from_fat": 27,
+      "total_fat_g": 3, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 350,
+      "carbohydrate_g": 39, "dietary_fiber_g": 3, "sugar_g": 5, "protein_g": 9,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_italian_herbs_cheese", "category_id": "subway_bread",
+      "name": "Italian Herbs & Cheese Bread (6\")", "portion_size": "82g",
+      "calories": 250, "calories_from_fat": 45,
+      "total_fat_g": 5, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 580,
+      "carbohydrate_g": 42, "dietary_fiber_g": 2, "sugar_g": 3, "protein_g": 10,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_everything_bagel", "category_id": "subway_bread",
+      "name": "Everything Bagel-Seasoned Bread (6\")", "portion_size": "74g",
+      "calories": 210, "calories_from_fat": 27,
+      "total_fat_g": 3, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 710,
+      "carbohydrate_g": 38, "dietary_fiber_g": 2, "sugar_g": 3, "protein_g": 8,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_ghost_pepper", "category_id": "subway_bread",
+      "name": "Ghost Pepper Bread (6\")", "portion_size": "83g",
+      "calories": 240, "calories_from_fat": 45,
+      "total_fat_g": 5, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 710,
+      "carbohydrate_g": 41, "dietary_fiber_g": 2, "sugar_g": 3, "protein_g": 9,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_flatbread", "category_id": "subway_bread",
+      "name": "Flatbread (6\")", "portion_size": "45g",
+      "calories": 140, "calories_from_fat": 27,
+      "total_fat_g": 3, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 220,
+      "carbohydrate_g": 24, "dietary_fiber_g": 0, "sugar_g": 2, "protein_g": 4,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_wrap", "category_id": "subway_bread",
+      "name": "Wrap (Tomato Basil)", "portion_size": "90g",
+      "calories": 280, "calories_from_fat": 45,
+      "total_fat_g": 5, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 440,
+      "carbohydrate_g": 49, "dietary_fiber_g": 2, "sugar_g": 3, "protein_g": 9,
+      "is_default": false, "is_premium": false
+    },
+
+    {
+      "id": "sub_grilled_chicken", "category_id": "subway_protein",
+      "name": "Grilled Chicken", "portion_size": "71g",
+      "calories": 80, "calories_from_fat": 18,
+      "total_fat_g": 2, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 50, "sodium_mg": 210,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 16,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_rotisserie_chicken", "category_id": "subway_protein",
+      "name": "Rotisserie-Style Chicken", "portion_size": "71g",
+      "calories": 90, "calories_from_fat": 36,
+      "total_fat_g": 4, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 50, "sodium_mg": 400,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 15,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_oven_roasted_turkey", "category_id": "subway_protein",
+      "name": "Oven Roasted Turkey", "portion_size": "57g",
+      "calories": 60, "calories_from_fat": 18,
+      "total_fat_g": 2, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 25, "sodium_mg": 450,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 11,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_black_forest_ham", "category_id": "subway_protein",
+      "name": "Black Forest Ham", "portion_size": "57g",
+      "calories": 70, "calories_from_fat": 18,
+      "total_fat_g": 2, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 30, "sodium_mg": 490,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 10,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_roast_beef", "category_id": "subway_protein",
+      "name": "Roast Beef", "portion_size": "71g",
+      "calories": 80, "calories_from_fat": 18,
+      "total_fat_g": 2, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 35, "sodium_mg": 420,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 2, "protein_g": 15,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_steak", "category_id": "subway_protein",
+      "name": "Steak (no cheese)", "portion_size": "71g",
+      "calories": 110, "calories_from_fat": 45,
+      "total_fat_g": 5, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 55, "sodium_mg": 450,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 17,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_tuna", "category_id": "subway_protein",
+      "name": "Tuna (with mayo mix)", "portion_size": "74g",
+      "calories": 250, "calories_from_fat": 207,
+      "total_fat_g": 23, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 40, "sodium_mg": 310,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 12,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_meatballs", "category_id": "subway_protein",
+      "name": "Meatballs (with Marinara)", "portion_size": "139g",
+      "calories": 250, "calories_from_fat": 162,
+      "total_fat_g": 18, "saturated_fat_g": 7, "trans_fat_g": 0,
+      "cholesterol_mg": 35, "sodium_mg": 720,
+      "carbohydrate_g": 13, "dietary_fiber_g": 2, "sugar_g": 5, "protein_g": 12,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_cold_cut_combo", "category_id": "subway_protein",
+      "name": "Cold Cut Combo Meats", "portion_size": "64g",
+      "calories": 110, "calories_from_fat": 72,
+      "total_fat_g": 8, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 45, "sodium_mg": 620,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 9,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_italian_bmt_meats", "category_id": "subway_protein",
+      "name": "Italian B.M.T. Meats (Ham, Salami, Pepperoni)", "portion_size": "varies",
+      "calories": 220, "calories_from_fat": 135,
+      "total_fat_g": 15, "saturated_fat_g": 7, "trans_fat_g": 0,
+      "cholesterol_mg": 70, "sodium_mg": 1040,
+      "carbohydrate_g": 4, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 16,
+      "is_default": false, "is_premium": false,
+      "notes": "Derived: Ham(70) + Salami(70) + Pepperoni(80) = 220 cal"
+    },
+    {
+      "id": "sub_bacon", "category_id": "subway_protein",
+      "name": "Bacon (2 strips)", "portion_size": "15g",
+      "calories": 80, "calories_from_fat": 54,
+      "total_fat_g": 6, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 15, "sodium_mg": 170,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 5,
+      "is_default": false, "is_premium": true
+    },
+    {
+      "id": "sub_chicken_salad", "category_id": "subway_protein",
+      "name": "Chicken Salad", "portion_size": "149g",
+      "calories": 380, "calories_from_fat": 279,
+      "total_fat_g": 31, "saturated_fat_g": 6, "trans_fat_g": 0,
+      "cholesterol_mg": 105, "sodium_mg": 800,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 25,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_veggie_patty", "category_id": "subway_protein",
+      "name": "Veggie Patty", "portion_size": "85g",
+      "calories": 170, "calories_from_fat": 81,
+      "total_fat_g": 9, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 320,
+      "carbohydrate_g": 17, "dietary_fiber_g": 8, "sugar_g": 2, "protein_g": 6,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_sweet_onion_chicken", "category_id": "subway_protein",
+      "name": "Grilled Chicken, Sweet Onion Teriyaki Glazed", "portion_size": "85g",
+      "calories": 110, "calories_from_fat": 18,
+      "total_fat_g": 2, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 50, "sodium_mg": 350,
+      "carbohydrate_g": 9, "dietary_fiber_g": 0, "sugar_g": 8, "protein_g": 16,
+      "is_default": false, "is_premium": false
+    },
+
+    {
+      "id": "sub_american_cheese", "category_id": "subway_cheese",
+      "name": "American Cheese", "portion_size": "11g",
+      "calories": 40, "calories_from_fat": 36,
+      "total_fat_g": 4, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 210,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 2,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "sub_provolone", "category_id": "subway_cheese",
+      "name": "Provolone Cheese", "portion_size": "14g",
+      "calories": 50, "calories_from_fat": 36,
+      "total_fat_g": 4, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 125,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 4,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_pepper_jack", "category_id": "subway_cheese",
+      "name": "Pepper Jack Cheese", "portion_size": "14g",
+      "calories": 50, "calories_from_fat": 36,
+      "total_fat_g": 4, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 15, "sodium_mg": 240,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 3,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_monterey_cheddar", "category_id": "subway_cheese",
+      "name": "Monterey Cheddar, Shredded", "portion_size": "14g",
+      "calories": 50, "calories_from_fat": 45,
+      "total_fat_g": 5, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 15, "sodium_mg": 85,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 3,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_garlic_herb_spread", "category_id": "subway_cheese",
+      "name": "Garlic Herb Cheese Spread", "portion_size": "34g",
+      "calories": 80, "calories_from_fat": 63,
+      "total_fat_g": 7, "saturated_fat_g": 5, "trans_fat_g": 0,
+      "cholesterol_mg": 25, "sodium_mg": 150,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_parmesan", "category_id": "subway_cheese",
+      "name": "Parmesan Grated", "portion_size": "1g",
+      "calories": 5, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 25,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+
+    {
+      "id": "sub_lettuce", "category_id": "subway_veggies",
+      "name": "Lettuce", "portion_size": "21g",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "sub_spinach", "category_id": "subway_veggies",
+      "name": "Baby Spinach", "portion_size": "7g",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 5,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_tomatoes", "category_id": "subway_veggies",
+      "name": "Tomatoes (3 wheels)", "portion_size": "35g",
+      "calories": 5, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "sub_cucumbers", "category_id": "subway_veggies",
+      "name": "Cucumbers (3 slices)", "portion_size": "14g",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "sub_green_peppers", "category_id": "subway_veggies",
+      "name": "Green Peppers (3 strips)", "portion_size": "7g",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "sub_onions", "category_id": "subway_veggies",
+      "name": "Onions", "portion_size": "7g",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "sub_olives", "category_id": "subway_veggies",
+      "name": "Black Olives (3 rings)", "portion_size": "3g",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 25,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_pickles", "category_id": "subway_veggies",
+      "name": "Pickles (3 chips)", "portion_size": "12g",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 160,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_banana_peppers", "category_id": "subway_veggies",
+      "name": "Banana Peppers (3 rings)", "portion_size": "4g",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 65,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_jalapenos", "category_id": "subway_veggies",
+      "name": "Jalapeno Peppers (3 rings)", "portion_size": "4g",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 70,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_avocado_sliced", "category_id": "subway_veggies",
+      "name": "Avocado, Sliced", "portion_size": "28g",
+      "calories": 45, "calories_from_fat": 36,
+      "total_fat_g": 4, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 2, "dietary_fiber_g": 2, "sugar_g": 0, "protein_g": 1,
+      "is_default": false, "is_premium": true
+    },
+    {
+      "id": "sub_avocado_smashed", "category_id": "subway_veggies",
+      "name": "Avocado, Smashed", "portion_size": "35g",
+      "calories": 70, "calories_from_fat": 54,
+      "total_fat_g": 6, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 130,
+      "carbohydrate_g": 3, "dietary_fiber_g": 2, "sugar_g": 0, "protein_g": 1,
+      "is_default": false, "is_premium": true
+    },
+
+    {
+      "id": "sub_mayonnaise", "category_id": "subway_sauce",
+      "name": "Mayonnaise", "portion_size": "14g",
+      "calories": 100, "calories_from_fat": 99,
+      "total_fat_g": 11, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 65,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_mustard", "category_id": "subway_sauce",
+      "name": "Yellow Mustard", "portion_size": "14g",
+      "calories": 10, "calories_from_fat": 9,
+      "total_fat_g": 1, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 170,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_honey_mustard", "category_id": "subway_sauce",
+      "name": "Honey Mustard", "portion_size": "14g",
+      "calories": 60, "calories_from_fat": 45,
+      "total_fat_g": 5, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 125,
+      "carbohydrate_g": 3, "dietary_fiber_g": 0, "sugar_g": 3, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_sweet_onion_teriyaki", "category_id": "subway_sauce",
+      "name": "Sweet Onion Teriyaki Sauce", "portion_size": "14g",
+      "calories": 30, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 130,
+      "carbohydrate_g": 7, "dietary_fiber_g": 0, "sugar_g": 6, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_bbq_sauce", "category_id": "subway_sauce",
+      "name": "BBQ Sauce", "portion_size": "14g",
+      "calories": 25, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 115,
+      "carbohydrate_g": 6, "dietary_fiber_g": 0, "sugar_g": 5, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_buffalo_sauce", "category_id": "subway_sauce",
+      "name": "Frank's RedHot Buffalo Sauce", "portion_size": "14g",
+      "calories": 5, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 350,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_peppercorn_ranch", "category_id": "subway_sauce",
+      "name": "Peppercorn Ranch", "portion_size": "14g",
+      "calories": 80, "calories_from_fat": 72,
+      "total_fat_g": 8, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 100,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_baja_chipotle", "category_id": "subway_sauce",
+      "name": "Baja Chipotle Sauce", "portion_size": "14g",
+      "calories": 70, "calories_from_fat": 63,
+      "total_fat_g": 7, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 125,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_mvp_parmesan_vinaigrette", "category_id": "subway_sauce",
+      "name": "MVP Parmesan Vinaigrette", "portion_size": "14g",
+      "calories": 60, "calories_from_fat": 54,
+      "total_fat_g": 6, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 140,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_roasted_garlic_aioli", "category_id": "subway_sauce",
+      "name": "Roasted Garlic Aioli", "portion_size": "14g",
+      "calories": 80, "calories_from_fat": 81,
+      "total_fat_g": 9, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 150,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_sriracha", "category_id": "subway_sauce",
+      "name": "Sriracha Sauce", "portion_size": "14g",
+      "calories": 40, "calories_from_fat": 36,
+      "total_fat_g": 4, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 240,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_cheddar_cheese_sauce", "category_id": "subway_sauce",
+      "name": "Cheddar Cheese Sauce", "portion_size": "18g",
+      "calories": 30, "calories_from_fat": 27,
+      "total_fat_g": 3, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 150,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_olive_oil_blend", "category_id": "subway_sauce",
+      "name": "Olive Oil Blend", "portion_size": "5g",
+      "calories": 45, "calories_from_fat": 45,
+      "total_fat_g": 5, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_red_wine_vinegar", "category_id": "subway_sauce",
+      "name": "Red Wine Vinegar", "portion_size": "4g",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+
+    {
+      "id": "sub_salt", "category_id": "subway_seasoning",
+      "name": "Salt", "portion_size": "dash",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 160,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_pepper", "category_id": "subway_seasoning",
+      "name": "Black Pepper", "portion_size": "dash",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_oregano", "category_id": "subway_seasoning",
+      "name": "Oregano", "portion_size": "dash",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+
+    {
+      "id": "sub_chocolate_chip_cookie", "category_id": "subway_sides",
+      "name": "Chocolate Chip Cookie", "portion_size": "45g",
+      "calories": 210, "calories_from_fat": 90,
+      "total_fat_g": 10, "saturated_fat_g": 5, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 120,
+      "carbohydrate_g": 30, "dietary_fiber_g": 0, "sugar_g": 18, "protein_g": 2,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_oatmeal_raisin_cookie", "category_id": "subway_sides",
+      "name": "Oatmeal Raisin Cookie", "portion_size": "45g",
+      "calories": 200, "calories_from_fat": 72,
+      "total_fat_g": 8, "saturated_fat_g": 4, "trans_fat_g": 0,
+      "cholesterol_mg": 15, "sodium_mg": 110,
+      "carbohydrate_g": 30, "dietary_fiber_g": 1, "sugar_g": 16, "protein_g": 3,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_applesauce", "category_id": "subway_sides",
+      "name": "Applesauce", "portion_size": "90g",
+      "calories": 70, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 16, "dietary_fiber_g": 3, "sugar_g": 13, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+
+    {
+      "id": "sub_broccoli_cheddar_soup", "category_id": "subway_soup",
+      "name": "Broccoli Cheddar Soup (8 oz)", "portion_size": "227g",
+      "calories": 200, "calories_from_fat": 117,
+      "total_fat_g": 13, "saturated_fat_g": 8, "trans_fat_g": 0,
+      "cholesterol_mg": 45, "sodium_mg": 960,
+      "carbohydrate_g": 16, "dietary_fiber_g": 0, "sugar_g": 7, "protein_g": 9,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_chicken_noodle_soup", "category_id": "subway_soup",
+      "name": "Chicken Noodle Soup (8 oz)", "portion_size": "227g",
+      "calories": 70, "calories_from_fat": 27,
+      "total_fat_g": 3, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 15, "sodium_mg": 1160,
+      "carbohydrate_g": 6, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 7,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "sub_loaded_baked_potato_soup", "category_id": "subway_soup",
+      "name": "Loaded Baked Potato w/ Bacon Soup (8 oz)", "portion_size": "227g",
+      "calories": 200, "calories_from_fat": 126,
+      "total_fat_g": 14, "saturated_fat_g": 7, "trans_fat_g": 0,
+      "cholesterol_mg": 45, "sodium_mg": 910,
+      "carbohydrate_g": 17, "dietary_fiber_g": 1, "sugar_g": 4, "protein_g": 9,
+      "is_default": false, "is_premium": false
+    }
+  ],
+  "template_meals": [
+    {
+      "id": "subway_italian_bmt_footlong",
+      "name": "Italian B.M.T. Footlong",
+      "description": "Footlong Italian bread, B.M.T. meats (ham, salami, pepperoni), American cheese, lettuce, tomato, onion, mayo, oil & vinegar. A Subway classic.",
+      "meal_type": "footlong",
+      "is_swap": false,
+      "ingredients": [
+        { "id": "sub_artisan_italian", "quantity": 2 },
+        { "id": "sub_italian_bmt_meats", "quantity": 2 },
+        { "id": "sub_american_cheese", "quantity": 2 },
+        "sub_lettuce", "sub_tomatoes", "sub_onions",
+        "sub_mayonnaise", "sub_olive_oil_blend", "sub_red_wine_vinegar"
+      ],
+      "notes": "Total: ~940 cal, 54g fat, 32g protein. Footlong = double bread + double meat + double cheese."
+    },
+    {
+      "id": "subway_meatball_marinara_footlong",
+      "name": "Meatball Marinara Footlong",
+      "description": "Footlong Italian bread, meatballs with marinara, provolone cheese.",
+      "meal_type": "footlong",
+      "is_swap": false,
+      "ingredients": [
+        { "id": "sub_artisan_italian", "quantity": 2 },
+        { "id": "sub_meatballs", "quantity": 2 },
+        { "id": "sub_provolone", "quantity": 2 }
+      ],
+      "notes": "Total: ~1020 cal, 44g fat, 44g protein. Heavy on calories and saturated fat."
+    },
+    {
+      "id": "subway_turkey_sub_6inch",
+      "name": "Turkey Sub 6-inch",
+      "description": "6-inch multigrain bread, oven roasted turkey, provolone, lettuce, tomato, cucumber, onion, mustard.",
+      "meal_type": "6_inch",
+      "is_swap": false,
+      "ingredients": [
+        "sub_hearty_multigrain", "sub_oven_roasted_turkey", "sub_provolone",
+        "sub_lettuce", "sub_tomatoes", "sub_cucumbers", "sub_onions", "sub_mustard"
+      ],
+      "notes": "Total: ~325 cal, 9g fat, 24g protein. Already a solid lean choice."
+    },
+    {
+      "id": "subway_chicken_bacon_ranch",
+      "name": "Chicken Bacon Ranch Footlong",
+      "description": "Footlong Italian Herbs & Cheese, grilled chicken, bacon, monterey cheddar, lettuce, tomato, peppercorn ranch.",
+      "meal_type": "footlong",
+      "is_swap": false,
+      "ingredients": [
+        { "id": "sub_italian_herbs_cheese", "quantity": 2 },
+        { "id": "sub_grilled_chicken", "quantity": 2 },
+        { "id": "sub_bacon", "quantity": 2 },
+        { "id": "sub_monterey_cheddar", "quantity": 2 },
+        "sub_lettuce", "sub_tomatoes",
+        { "id": "sub_peppercorn_ranch", "quantity": 2 }
+      ],
+      "notes": "Total: ~1020 cal, 58g fat, 62g protein. Ranch + bacon + cheese bread makes this calorie-heavy."
+    },
+    {
+      "id": "subway_sweet_onion_chicken_teriyaki",
+      "name": "Sweet Onion Chicken Teriyaki Footlong",
+      "description": "Footlong Italian bread, sweet onion teriyaki glazed chicken, lettuce, tomato, cucumber, green pepper, onion, sweet onion sauce.",
+      "meal_type": "footlong",
+      "is_swap": false,
+      "ingredients": [
+        { "id": "sub_artisan_italian", "quantity": 2 },
+        { "id": "sub_sweet_onion_chicken", "quantity": 2 },
+        "sub_lettuce", "sub_tomatoes", "sub_cucumbers", "sub_green_peppers", "sub_onions",
+        { "id": "sub_sweet_onion_teriyaki", "quantity": 2 }
+      ],
+      "notes": "Total: ~710 cal, 10g fat, 50g protein. One of the leaner footlong options."
+    },
+
+    {
+      "id": "subway_lean_turkey_6inch",
+      "name": "Lean Turkey Power Sub",
+      "description": "6-inch multigrain, double turkey, no cheese, all veggies, mustard. Maximum protein-to-calorie ratio.",
+      "meal_type": "6_inch",
+      "is_swap": true,
+      "swap_for": "subway_italian_bmt_footlong",
+      "swap_rationale": "Swap a 940-cal footlong BMT for a 330-cal 6-inch turkey sub. Skip cheese (-40 cal), mayo (-100 cal), and go 6-inch instead of footlong. Saves ~610 cal while keeping 22g protein.",
+      "ingredients": [
+        "sub_hearty_multigrain",
+        { "id": "sub_oven_roasted_turkey", "quantity": 2 },
+        "sub_lettuce", "sub_spinach", "sub_tomatoes", "sub_cucumbers",
+        "sub_green_peppers", "sub_onions", "sub_pickles", "sub_banana_peppers",
+        "sub_mustard"
+      ],
+      "notes": "Total: ~330 cal, 7g fat, 22g protein, 37g carbs. Best calorie-to-protein ratio at Subway."
+    },
+    {
+      "id": "subway_lean_grilled_chicken_6inch",
+      "name": "Lean Grilled Chicken Sub",
+      "description": "6-inch multigrain, grilled chicken, no cheese, all veggies, mustard + vinegar. Clean protein machine.",
+      "meal_type": "6_inch",
+      "is_swap": true,
+      "swap_for": "subway_chicken_bacon_ranch",
+      "swap_rationale": "Swap a 1020-cal Chicken Bacon Ranch footlong for a 295-cal 6-inch grilled chicken sub. Drop bacon (-80), cheese (-50), ranch (-80), and go half the bread. Saves ~725 cal, keeps 25g protein.",
+      "ingredients": [
+        "sub_hearty_multigrain", "sub_grilled_chicken",
+        "sub_lettuce", "sub_spinach", "sub_tomatoes", "sub_cucumbers",
+        "sub_green_peppers", "sub_onions", "sub_jalapenos",
+        "sub_mustard", "sub_red_wine_vinegar"
+      ],
+      "notes": "Total: ~295 cal, 6g fat, 25g protein. Cleanest option on the menu."
+    },
+    {
+      "id": "subway_lean_roast_beef_6inch",
+      "name": "Lean Roast Beef Sub",
+      "description": "6-inch multigrain, roast beef, no cheese, loaded veggies, mustard. High protein deli classic without the extras.",
+      "meal_type": "6_inch",
+      "is_swap": true,
+      "swap_for": "subway_meatball_marinara_footlong",
+      "swap_rationale": "Swap a 1020-cal Meatball Marinara footlong for a 295-cal roast beef 6-inch. Meatballs have 18g fat per serving vs roast beef 2g. Saves ~725 cal with better protein quality.",
+      "ingredients": [
+        "sub_hearty_multigrain", "sub_roast_beef",
+        "sub_lettuce", "sub_spinach", "sub_tomatoes", "sub_cucumbers",
+        "sub_green_peppers", "sub_onions", "sub_pickles",
+        "sub_mustard", "sub_pepper"
+      ],
+      "notes": "Total: ~295 cal, 6g fat, 24g protein. Roast beef is one of the leanest proteins at Subway."
+    },
+    {
+      "id": "subway_lean_steak_6inch",
+      "name": "Lean Steak & Veggie Sub",
+      "description": "6-inch multigrain, steak (no cheese), all veggies, buffalo sauce. Savory and filling without the calorie bomb.",
+      "meal_type": "6_inch",
+      "is_swap": true,
+      "swap_for": "subway_sweet_onion_chicken_teriyaki",
+      "swap_rationale": "Trade a 710-cal footlong teriyaki for a 325-cal 6-inch steak sub. Steak is 110 cal for 17g protein. Buffalo sauce is 5 cal vs sweet onion 30 cal. Saves ~385 cal.",
+      "ingredients": [
+        "sub_hearty_multigrain", "sub_steak",
+        "sub_lettuce", "sub_spinach", "sub_tomatoes", "sub_cucumbers",
+        "sub_green_peppers", "sub_onions", "sub_jalapenos",
+        "sub_buffalo_sauce", "sub_pepper"
+      ],
+      "notes": "Total: ~325 cal, 8g fat, 26g protein. Buffalo sauce adds flavor for almost zero calories."
+    },
+    {
+      "id": "subway_lean_chicken_salad_bowl",
+      "name": "Grilled Chicken Salad Bowl",
+      "description": "No bread at all. Grilled chicken on a bed of all veggies with red wine vinegar. Maximum volume, minimum calories.",
+      "meal_type": "salad",
+      "is_swap": true,
+      "swap_for": "subway_chicken_bacon_ranch",
+      "swap_rationale": "Drop ALL the bread (200+ cal), cheese, and creamy sauce. A grilled chicken salad is ~130 cal for 19g protein. Add vinegar for zero-cal dressing. Saves ~890 cal vs the Chicken Bacon Ranch footlong.",
+      "ingredients": [
+        "sub_grilled_chicken",
+        "sub_lettuce", "sub_spinach", "sub_tomatoes", "sub_cucumbers",
+        "sub_green_peppers", "sub_onions", "sub_olives", "sub_banana_peppers",
+        "sub_red_wine_vinegar", "sub_pepper", "sub_oregano"
+      ],
+      "notes": "Total: ~130 cal, 3g fat, 19g protein. The ultimate low-cal option. Add double meat for 210 cal / 35g protein."
+    }
+  ]
+}

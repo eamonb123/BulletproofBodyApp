@@ -1,0 +1,410 @@
+{
+  "restaurant": {
+    "id": "kfc",
+    "name": "KFC",
+    "logo_emoji": "🍗",
+    "cuisine": "fast_food",
+    "website": "https://www.kfc.com",
+    "nutrition_source": "KFC official nutrition guide (kfc.com/full-nutrition-guide) cross-referenced with fastfoodnutrition.org and USDA data, March 2026"
+  },
+  "meal_ranges": {
+    "chicken_dinner": [700, 1350],
+    "sandwich_combo": [850, 1250],
+    "tenders_meal": [650, 1100],
+    "bowl": [590, 830]
+  },
+  "categories": [
+    { "id": "kfc_chicken_or", "name": "Original Recipe Chicken", "display_order": 1, "selection_type": "multiple", "description": "Bone-in chicken pieces (Original Recipe)" },
+    { "id": "kfc_chicken_ec", "name": "Extra Crispy Chicken", "display_order": 2, "selection_type": "multiple", "description": "Bone-in chicken pieces (Extra Crispy)" },
+    { "id": "kfc_sandwiches", "name": "Sandwiches", "display_order": 3, "selection_type": "single", "description": "Chicken sandwiches" },
+    { "id": "kfc_tenders", "name": "Tenders & Nuggets", "display_order": 4, "selection_type": "single", "description": "Chicken tenders and nuggets" },
+    { "id": "kfc_bowls", "name": "Bowls & Pot Pies", "display_order": 5, "selection_type": "single", "description": "Famous Bowls and pot pies" },
+    { "id": "kfc_sides", "name": "Sides", "display_order": 6, "selection_type": "multiple", "description": "Side dishes" },
+    { "id": "kfc_sauces", "name": "Sauces & Dressings", "display_order": 7, "selection_type": "multiple", "description": "Dipping sauces" },
+    { "id": "kfc_drinks", "name": "Drinks", "display_order": 8, "selection_type": "optional", "description": "Beverages" }
+  ],
+  "ingredients": [
+    {
+      "id": "kfc_or_breast", "category_id": "kfc_chicken_or",
+      "name": "Original Recipe Chicken Breast", "portion_size": "1 piece",
+      "calories": 390, "calories_from_fat": 189,
+      "total_fat_g": 21, "saturated_fat_g": 4, "trans_fat_g": 0,
+      "cholesterol_mg": 120, "sodium_mg": 1190,
+      "carbohydrate_g": 11, "dietary_fiber_g": 2, "sugar_g": 0, "protein_g": 39,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "kfc_or_thigh", "category_id": "kfc_chicken_or",
+      "name": "Original Recipe Chicken Thigh", "portion_size": "1 piece",
+      "calories": 280, "calories_from_fat": 171,
+      "total_fat_g": 19, "saturated_fat_g": 4.5, "trans_fat_g": 0,
+      "cholesterol_mg": 95, "sodium_mg": 790,
+      "carbohydrate_g": 8, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 19,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_or_drumstick", "category_id": "kfc_chicken_or",
+      "name": "Original Recipe Chicken Drumstick", "portion_size": "1 piece",
+      "calories": 130, "calories_from_fat": 72,
+      "total_fat_g": 8, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 55, "sodium_mg": 380,
+      "carbohydrate_g": 3, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 12,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_or_wing", "category_id": "kfc_chicken_or",
+      "name": "Original Recipe Chicken Wing", "portion_size": "1 piece",
+      "calories": 130, "calories_from_fat": 72,
+      "total_fat_g": 8, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 50, "sodium_mg": 350,
+      "carbohydrate_g": 4, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 10,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_ec_breast", "category_id": "kfc_chicken_ec",
+      "name": "Extra Crispy Chicken Breast", "portion_size": "1 piece",
+      "calories": 530, "calories_from_fat": 315,
+      "total_fat_g": 35, "saturated_fat_g": 6, "trans_fat_g": 0.5,
+      "cholesterol_mg": 105, "sodium_mg": 1170,
+      "carbohydrate_g": 18, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 35,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_ec_thigh", "category_id": "kfc_chicken_ec",
+      "name": "Extra Crispy Chicken Thigh", "portion_size": "1 piece",
+      "calories": 330, "calories_from_fat": 207,
+      "total_fat_g": 23, "saturated_fat_g": 5, "trans_fat_g": 0.5,
+      "cholesterol_mg": 85, "sodium_mg": 740,
+      "carbohydrate_g": 9, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 22,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_ec_drumstick", "category_id": "kfc_chicken_ec",
+      "name": "Extra Crispy Chicken Drumstick", "portion_size": "1 piece",
+      "calories": 190, "calories_from_fat": 117,
+      "total_fat_g": 13, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 50, "sodium_mg": 390,
+      "carbohydrate_g": 6, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 13,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_ec_wing", "category_id": "kfc_chicken_ec",
+      "name": "Extra Crispy Chicken Wing", "portion_size": "1 piece",
+      "calories": 170, "calories_from_fat": 108,
+      "total_fat_g": 12, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 45, "sodium_mg": 340,
+      "carbohydrate_g": 6, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 10,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_classic_sandwich", "category_id": "kfc_sandwiches",
+      "name": "Classic Chicken Sandwich", "portion_size": "1 sandwich",
+      "calories": 650, "calories_from_fat": 315,
+      "total_fat_g": 35, "saturated_fat_g": 6, "trans_fat_g": 0.5,
+      "cholesterol_mg": 75, "sodium_mg": 1260,
+      "carbohydrate_g": 49, "dietary_fiber_g": 2, "sugar_g": 8, "protein_g": 34,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "kfc_spicy_sandwich", "category_id": "kfc_sandwiches",
+      "name": "Spicy Chicken Sandwich", "portion_size": "1 sandwich",
+      "calories": 620, "calories_from_fat": 279,
+      "total_fat_g": 31, "saturated_fat_g": 5, "trans_fat_g": 0.5,
+      "cholesterol_mg": 70, "sodium_mg": 2140,
+      "carbohydrate_g": 49, "dietary_fiber_g": 3, "sugar_g": 7, "protein_g": 34,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_tenders_3pc", "category_id": "kfc_tenders",
+      "name": "Chicken Tenders (3 pc)", "portion_size": "3 pieces",
+      "calories": 420, "calories_from_fat": 189,
+      "total_fat_g": 21, "saturated_fat_g": 3.5, "trans_fat_g": 0,
+      "cholesterol_mg": 65, "sodium_mg": 930,
+      "carbohydrate_g": 18, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 36,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "kfc_tenders_2pc", "category_id": "kfc_tenders",
+      "name": "Chicken Tenders (2 pc)", "portion_size": "2 pieces",
+      "calories": 280, "calories_from_fat": 126,
+      "total_fat_g": 14, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 45, "sodium_mg": 620,
+      "carbohydrate_g": 12, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 24,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_nuggets_8pc", "category_id": "kfc_tenders",
+      "name": "Chicken Nuggets (8 pc)", "portion_size": "8 pieces",
+      "calories": 320, "calories_from_fat": 162,
+      "total_fat_g": 18, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 45, "sodium_mg": 1050,
+      "carbohydrate_g": 18, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 20,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_famous_bowl", "category_id": "kfc_bowls",
+      "name": "Famous Bowl", "portion_size": "1 bowl",
+      "calories": 710, "calories_from_fat": 279,
+      "total_fat_g": 31, "saturated_fat_g": 7, "trans_fat_g": 0.5,
+      "cholesterol_mg": 55, "sodium_mg": 2450,
+      "carbohydrate_g": 82, "dietary_fiber_g": 5, "sugar_g": 5, "protein_g": 26,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "kfc_pot_pie", "category_id": "kfc_bowls",
+      "name": "Chicken Pot Pie", "portion_size": "1 pie",
+      "calories": 720, "calories_from_fat": 369,
+      "total_fat_g": 41, "saturated_fat_g": 15, "trans_fat_g": 0,
+      "cholesterol_mg": 50, "sodium_mg": 1750,
+      "carbohydrate_g": 60, "dietary_fiber_g": 3, "sugar_g": 7, "protein_g": 26,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_mashed_potatoes_gravy", "category_id": "kfc_sides",
+      "name": "Mashed Potatoes with Gravy", "portion_size": "individual",
+      "calories": 130, "calories_from_fat": 40,
+      "total_fat_g": 4.5, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 520,
+      "carbohydrate_g": 19, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 3,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "kfc_coleslaw", "category_id": "kfc_sides",
+      "name": "Coleslaw", "portion_size": "individual",
+      "calories": 170, "calories_from_fat": 90,
+      "total_fat_g": 10, "saturated_fat_g": 1.5, "trans_fat_g": 0,
+      "cholesterol_mg": 5, "sodium_mg": 170,
+      "carbohydrate_g": 19, "dietary_fiber_g": 3, "sugar_g": 15, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_biscuit", "category_id": "kfc_sides",
+      "name": "Biscuit", "portion_size": "1 biscuit",
+      "calories": 180, "calories_from_fat": 72,
+      "total_fat_g": 8, "saturated_fat_g": 6, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 530,
+      "carbohydrate_g": 23, "dietary_fiber_g": 1, "sugar_g": 2, "protein_g": 4,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "kfc_corn_on_cob", "category_id": "kfc_sides",
+      "name": "Corn on the Cob", "portion_size": "1 ear",
+      "calories": 70, "calories_from_fat": 5,
+      "total_fat_g": 0.5, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 16, "dietary_fiber_g": 2, "sugar_g": 3, "protein_g": 2,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_green_beans", "category_id": "kfc_sides",
+      "name": "Green Beans", "portion_size": "individual",
+      "calories": 25, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 260,
+      "carbohydrate_g": 4, "dietary_fiber_g": 2, "sugar_g": 1, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_mac_cheese", "category_id": "kfc_sides",
+      "name": "Mac & Cheese", "portion_size": "individual",
+      "calories": 140, "calories_from_fat": 50,
+      "total_fat_g": 6, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 520,
+      "carbohydrate_g": 17, "dietary_fiber_g": 0, "sugar_g": 2, "protein_g": 5,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_secret_recipe_fries", "category_id": "kfc_sides",
+      "name": "Secret Recipe Fries", "portion_size": "individual",
+      "calories": 320, "calories_from_fat": 144,
+      "total_fat_g": 16, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 860,
+      "carbohydrate_g": 41, "dietary_fiber_g": 3, "sugar_g": 0, "protein_g": 4,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_ranch_sauce", "category_id": "kfc_sauces",
+      "name": "Creamy Ranch Dipping Sauce", "portion_size": "1 cup",
+      "calories": 130, "calories_from_fat": 126,
+      "total_fat_g": 14, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 270,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_honey_mustard", "category_id": "kfc_sauces",
+      "name": "Honey Mustard Dipping Sauce", "portion_size": "1 cup",
+      "calories": 120, "calories_from_fat": 90,
+      "total_fat_g": 10, "saturated_fat_g": 1.5, "trans_fat_g": 0,
+      "cholesterol_mg": 10, "sodium_mg": 170,
+      "carbohydrate_g": 8, "dietary_fiber_g": 0, "sugar_g": 6, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_bbq_sauce", "category_id": "kfc_sauces",
+      "name": "BBQ Dipping Sauce", "portion_size": "1 cup",
+      "calories": 40, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 310,
+      "carbohydrate_g": 10, "dietary_fiber_g": 0, "sugar_g": 7, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_honey_sauce", "category_id": "kfc_sauces",
+      "name": "Honey Sauce", "portion_size": "1 packet",
+      "calories": 30, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 8, "dietary_fiber_g": 0, "sugar_g": 8, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_diet_pepsi", "category_id": "kfc_drinks",
+      "name": "Diet Pepsi (medium)", "portion_size": "22 fl oz",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 60,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_pepsi", "category_id": "kfc_drinks",
+      "name": "Pepsi (medium)", "portion_size": "22 fl oz",
+      "calories": 250, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 50,
+      "carbohydrate_g": 69, "dietary_fiber_g": 0, "sugar_g": 69, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_sweet_tea", "category_id": "kfc_drinks",
+      "name": "Sweet Lightning (medium)", "portion_size": "22 fl oz",
+      "calories": 150, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 15,
+      "carbohydrate_g": 41, "dietary_fiber_g": 0, "sugar_g": 39, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "kfc_water", "category_id": "kfc_drinks",
+      "name": "Water", "portion_size": "1 bottle",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    }
+  ],
+  "template_meals": [
+    {
+      "id": "kfc_2pc_dinner",
+      "name": "2-Piece Chicken Dinner (Original Recipe)",
+      "description": "Breast + drumstick, mashed potatoes with gravy, coleslaw, biscuit, Pepsi",
+      "meal_type": "chicken_dinner",
+      "is_swap": false,
+      "ingredients": [
+        "kfc_or_breast", "kfc_or_drumstick",
+        "kfc_mashed_potatoes_gravy", "kfc_coleslaw",
+        "kfc_biscuit", "kfc_pepsi"
+      ]
+    },
+    {
+      "id": "kfc_sandwich_combo",
+      "name": "Classic Chicken Sandwich Combo",
+      "description": "Classic Chicken Sandwich, Secret Recipe Fries, Pepsi",
+      "meal_type": "sandwich_combo",
+      "is_swap": false,
+      "ingredients": [
+        "kfc_classic_sandwich", "kfc_secret_recipe_fries", "kfc_pepsi"
+      ]
+    },
+    {
+      "id": "kfc_tenders_meal",
+      "name": "3-Piece Tenders Meal",
+      "description": "3 tenders, Secret Recipe Fries, biscuit, ranch dipping sauce, Pepsi",
+      "meal_type": "tenders_meal",
+      "is_swap": false,
+      "ingredients": [
+        "kfc_tenders_3pc", "kfc_secret_recipe_fries",
+        "kfc_biscuit", "kfc_ranch_sauce", "kfc_pepsi"
+      ]
+    },
+    {
+      "id": "kfc_famous_bowl_meal",
+      "name": "Famous Bowl Meal",
+      "description": "Famous Bowl (mashed potatoes, corn, crispy chicken, gravy, cheese), biscuit, Pepsi",
+      "meal_type": "bowl",
+      "is_swap": false,
+      "ingredients": [
+        "kfc_famous_bowl", "kfc_biscuit", "kfc_pepsi"
+      ]
+    },
+    {
+      "id": "kfc_ec_dinner",
+      "name": "Extra Crispy 2-Piece Dinner",
+      "description": "Extra Crispy breast + thigh, fries, coleslaw, biscuit, Pepsi",
+      "meal_type": "chicken_dinner",
+      "is_swap": false,
+      "ingredients": [
+        "kfc_ec_breast", "kfc_ec_thigh",
+        "kfc_secret_recipe_fries", "kfc_coleslaw",
+        "kfc_biscuit", "kfc_pepsi"
+      ]
+    },
+    {
+      "id": "kfc_2pc_lean",
+      "name": "Lean 2-Piece Dinner",
+      "description": "OR breast + drumstick, corn on the cob, green beans - no biscuit, no coleslaw, Diet Pepsi",
+      "meal_type": "chicken_dinner",
+      "is_swap": true,
+      "swap_for": "kfc_2pc_dinner",
+      "swap_rationale": "Drop the biscuit (180 cal, 4g protein) and coleslaw (170 cal, 1g protein). Swap in corn (70 cal) and green beans (25 cal). Same chicken, 255 fewer calories with nearly identical protein. Diet Pepsi saves another 250 cal.",
+      "ingredients": [
+        "kfc_or_breast", "kfc_or_drumstick",
+        "kfc_corn_on_cob", "kfc_green_beans",
+        "kfc_diet_pepsi"
+      ]
+    },
+    {
+      "id": "kfc_sandwich_lean",
+      "name": "Lean Chicken Sandwich Swap",
+      "description": "Spicy Chicken Sandwich (no mayo), corn on the cob, Diet Pepsi - no fries",
+      "meal_type": "sandwich_combo",
+      "is_swap": true,
+      "swap_for": "kfc_sandwich_combo",
+      "swap_rationale": "Drop the fries (320 cal) and Pepsi (250 cal). Swap to corn on the cob (70 cal) and Diet Pepsi. The spicy sandwich has 30 fewer calories than classic. Total savings: ~570 cal, protein stays at 36g.",
+      "ingredients": [
+        "kfc_spicy_sandwich", "kfc_corn_on_cob",
+        "kfc_diet_pepsi"
+      ]
+    },
+    {
+      "id": "kfc_tenders_lean",
+      "name": "Lean Tenders Meal",
+      "description": "3 tenders, green beans, corn on the cob, BBQ sauce (instead of ranch), Diet Pepsi - no fries, no biscuit",
+      "meal_type": "tenders_meal",
+      "is_swap": true,
+      "swap_for": "kfc_tenders_meal",
+      "swap_rationale": "Drop fries (320 cal), biscuit (180 cal), ranch (130 cal), and Pepsi (250 cal). Add green beans (25 cal) and corn (70 cal). BBQ sauce is only 40 cal vs 130 for ranch. Saves ~765 cal, keeps 37g protein.",
+      "ingredients": [
+        "kfc_tenders_3pc", "kfc_green_beans",
+        "kfc_corn_on_cob", "kfc_bbq_sauce",
+        "kfc_diet_pepsi"
+      ]
+    },
+    {
+      "id": "kfc_ec_lean",
+      "name": "Lean Extra Crispy Swap",
+      "description": "Switch Extra Crispy breast to OR breast + OR drumstick, corn, green beans, Diet Pepsi - no fries, no biscuit, no coleslaw",
+      "meal_type": "chicken_dinner",
+      "is_swap": true,
+      "swap_for": "kfc_ec_dinner",
+      "swap_rationale": "Swap EC breast (530 cal) + EC thigh (330 cal) to OR breast (390 cal) + OR drumstick (130 cal). Drop fries, biscuit, coleslaw, Pepsi. Add corn + green beans + Diet Pepsi. Saves ~835 cal, protein goes from 57g to 53g (93% retained).",
+      "ingredients": [
+        "kfc_or_breast", "kfc_or_drumstick",
+        "kfc_corn_on_cob", "kfc_green_beans",
+        "kfc_diet_pepsi"
+      ]
+    }
+  ]
+}

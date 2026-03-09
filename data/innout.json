@@ -1,0 +1,362 @@
+{
+  "restaurant": {
+    "id": "innout",
+    "name": "In-N-Out Burger",
+    "logo_emoji": "🍔",
+    "cuisine": "fast_food",
+    "website": "https://www.in-n-out.com",
+    "nutrition_source": "in-n-out.com/menu/nutrition-info (official, verified March 2026)"
+  },
+  "categories": [
+    { "id": "innout_burgers", "name": "Burgers", "display_order": 1, "selection_type": "single", "description": "Classic menu burgers" },
+    { "id": "innout_protein_style", "name": "Protein Style (Lettuce Wrap)", "display_order": 2, "selection_type": "single", "description": "Bun replaced with lettuce" },
+    { "id": "innout_secret_menu", "name": "Secret Menu", "display_order": 3, "selection_type": "single", "description": "Not-so-secret menu items" },
+    { "id": "innout_fries", "name": "Fries", "display_order": 4, "selection_type": "single", "description": "French fries and variations" },
+    { "id": "innout_shakes", "name": "Shakes", "display_order": 5, "selection_type": "single", "description": "Real ice cream shakes" },
+    { "id": "innout_drinks", "name": "Drinks", "display_order": 6, "selection_type": "single", "description": "Fountain drinks and other beverages" }
+  ],
+  "ingredients": [
+    {
+      "id": "ino_hamburger", "category_id": "innout_burgers",
+      "name": "Hamburger w/ Onion", "portion_size": "1 burger (243g)",
+      "calories": 390, "calories_from_fat": 170,
+      "total_fat_g": 19, "saturated_fat_g": 5, "trans_fat_g": 0,
+      "cholesterol_mg": 40, "sodium_mg": 650,
+      "carbohydrate_g": 39, "dietary_fiber_g": 3, "sugar_g": 10, "protein_g": 16,
+      "is_default": false, "is_premium": false,
+      "notes": "Single patty, spread, lettuce, tomato, onion"
+    },
+    {
+      "id": "ino_cheeseburger", "category_id": "innout_burgers",
+      "name": "Cheeseburger w/ Onion", "portion_size": "1 burger (268g)",
+      "calories": 480, "calories_from_fat": 240,
+      "total_fat_g": 27, "saturated_fat_g": 10, "trans_fat_g": 0.5,
+      "cholesterol_mg": 60, "sodium_mg": 1000,
+      "carbohydrate_g": 39, "dietary_fiber_g": 3, "sugar_g": 10, "protein_g": 22,
+      "is_default": true, "is_premium": false,
+      "notes": "Single patty, American cheese, spread, lettuce, tomato, onion"
+    },
+    {
+      "id": "ino_double_double", "category_id": "innout_burgers",
+      "name": "Double-Double w/ Onion", "portion_size": "1 burger (330g)",
+      "calories": 670, "calories_from_fat": 370,
+      "total_fat_g": 41, "saturated_fat_g": 18, "trans_fat_g": 1,
+      "cholesterol_mg": 120, "sodium_mg": 1440,
+      "carbohydrate_g": 39, "dietary_fiber_g": 3, "sugar_g": 10, "protein_g": 37,
+      "is_default": false, "is_premium": false,
+      "notes": "Two patties, two slices cheese, spread, lettuce, tomato, onion"
+    },
+    {
+      "id": "ino_hamburger_mk", "category_id": "innout_burgers",
+      "name": "Hamburger (Mustard & Ketchup)", "portion_size": "1 burger (237g)",
+      "calories": 310, "calories_from_fat": 100,
+      "total_fat_g": 10, "saturated_fat_g": 4, "trans_fat_g": 0,
+      "cholesterol_mg": 35, "sodium_mg": 730,
+      "carbohydrate_g": 41, "dietary_fiber_g": 3, "sugar_g": 10, "protein_g": 16,
+      "is_default": false, "is_premium": false,
+      "notes": "No spread — mustard and ketchup instead. Saves ~80 cal."
+    },
+    {
+      "id": "ino_cheeseburger_mk", "category_id": "innout_burgers",
+      "name": "Cheeseburger (Mustard & Ketchup)", "portion_size": "1 burger (262g)",
+      "calories": 400, "calories_from_fat": 180,
+      "total_fat_g": 18, "saturated_fat_g": 9, "trans_fat_g": 0.5,
+      "cholesterol_mg": 60, "sodium_mg": 1080,
+      "carbohydrate_g": 41, "dietary_fiber_g": 3, "sugar_g": 10, "protein_g": 22,
+      "is_default": false, "is_premium": false,
+      "notes": "No spread — mustard and ketchup instead. Saves ~80 cal."
+    },
+    {
+      "id": "ino_protein_hamburger", "category_id": "innout_protein_style",
+      "name": "Protein Style Hamburger", "portion_size": "1 burger (275g)",
+      "calories": 240, "calories_from_fat": 130,
+      "total_fat_g": 17, "saturated_fat_g": 4, "trans_fat_g": 0,
+      "cholesterol_mg": 40, "sodium_mg": 370,
+      "carbohydrate_g": 11, "dietary_fiber_g": 3, "sugar_g": 7, "protein_g": 13,
+      "is_default": false, "is_premium": false,
+      "notes": "Bun replaced with hand-leafed lettuce wrap"
+    },
+    {
+      "id": "ino_protein_cheeseburger", "category_id": "innout_protein_style",
+      "name": "Protein Style Cheeseburger", "portion_size": "1 burger (300g)",
+      "calories": 330, "calories_from_fat": 200,
+      "total_fat_g": 25, "saturated_fat_g": 9, "trans_fat_g": 0.5,
+      "cholesterol_mg": 60, "sodium_mg": 720,
+      "carbohydrate_g": 11, "dietary_fiber_g": 3, "sugar_g": 7, "protein_g": 18,
+      "is_default": false, "is_premium": false,
+      "notes": "Lettuce wrap with cheese — low carb option"
+    },
+    {
+      "id": "ino_protein_double_double", "category_id": "innout_protein_style",
+      "name": "Protein Style Double-Double", "portion_size": "1 burger (362g)",
+      "calories": 520, "calories_from_fat": 330,
+      "total_fat_g": 39, "saturated_fat_g": 17, "trans_fat_g": 1,
+      "cholesterol_mg": 120, "sodium_mg": 1160,
+      "carbohydrate_g": 11, "dietary_fiber_g": 3, "sugar_g": 7, "protein_g": 33,
+      "is_default": false, "is_premium": false,
+      "notes": "Double meat, double cheese in lettuce wrap — saves 150 cal vs bun"
+    },
+    {
+      "id": "ino_animal_style_burger", "category_id": "innout_secret_menu",
+      "name": "Cheeseburger Animal Style", "portion_size": "1 burger (295g)",
+      "calories": 480, "calories_from_fat": 240,
+      "total_fat_g": 27, "saturated_fat_g": 10, "trans_fat_g": 0.5,
+      "cholesterol_mg": 60, "sodium_mg": 1000,
+      "carbohydrate_g": 39, "dietary_fiber_g": 3, "sugar_g": 10, "protein_g": 22,
+      "is_default": false, "is_premium": false,
+      "notes": "Mustard-grilled patty, extra pickles, extra spread, grilled onions"
+    },
+    {
+      "id": "ino_animal_style_dd", "category_id": "innout_secret_menu",
+      "name": "Double-Double Animal Style", "portion_size": "1 burger (357g)",
+      "calories": 770, "calories_from_fat": 450,
+      "total_fat_g": 50, "saturated_fat_g": 19, "trans_fat_g": 1,
+      "cholesterol_mg": 120, "sodium_mg": 1520,
+      "carbohydrate_g": 42, "dietary_fiber_g": 3, "sugar_g": 10, "protein_g": 37,
+      "is_default": false, "is_premium": false,
+      "notes": "Mustard-grilled patties, extra pickles, extra spread, grilled onions"
+    },
+    {
+      "id": "ino_flying_dutchman", "category_id": "innout_secret_menu",
+      "name": "Flying Dutchman", "portion_size": "1 item (125g)",
+      "calories": 330, "calories_from_fat": 230,
+      "total_fat_g": 25, "saturated_fat_g": 12, "trans_fat_g": 1,
+      "cholesterol_mg": 80, "sodium_mg": 660,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 22,
+      "is_default": false, "is_premium": false,
+      "notes": "Two patties + two slices cheese, no bun, no veggies. Zero carbs."
+    },
+    {
+      "id": "ino_3x3", "category_id": "innout_secret_menu",
+      "name": "3x3 (Triple Meat, Triple Cheese)", "portion_size": "1 burger (406g)",
+      "calories": 860, "calories_from_fat": 530,
+      "total_fat_g": 59, "saturated_fat_g": 27, "trans_fat_g": 1.5,
+      "cholesterol_mg": 180, "sodium_mg": 1780,
+      "carbohydrate_g": 39, "dietary_fiber_g": 3, "sugar_g": 10, "protein_g": 52,
+      "is_default": false, "is_premium": false,
+      "notes": "Three patties, three slices cheese — for the serious appetite"
+    },
+    {
+      "id": "ino_french_fries", "category_id": "innout_fries",
+      "name": "French Fries", "portion_size": "1 order (125g)",
+      "calories": 395, "calories_from_fat": 160,
+      "total_fat_g": 18, "saturated_fat_g": 5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 245,
+      "carbohydrate_g": 54, "dietary_fiber_g": 2, "sugar_g": 0, "protein_g": 7,
+      "is_default": true, "is_premium": false,
+      "notes": "Fresh-cut potatoes, cooked in sunflower oil"
+    },
+    {
+      "id": "ino_animal_fries", "category_id": "innout_fries",
+      "name": "Animal Style Fries", "portion_size": "1 order (280g)",
+      "calories": 750, "calories_from_fat": 380,
+      "total_fat_g": 42, "saturated_fat_g": 17, "trans_fat_g": 1,
+      "cholesterol_mg": 50, "sodium_mg": 1105,
+      "carbohydrate_g": 68, "dietary_fiber_g": 2, "sugar_g": 2, "protein_g": 19,
+      "is_default": false, "is_premium": false,
+      "notes": "Fries topped with cheese, spread, and grilled onions"
+    },
+    {
+      "id": "ino_shake_chocolate", "category_id": "innout_shakes",
+      "name": "Chocolate Shake", "portion_size": "15 fl oz",
+      "calories": 590, "calories_from_fat": 270,
+      "total_fat_g": 29, "saturated_fat_g": 19, "trans_fat_g": 1,
+      "cholesterol_mg": 110, "sodium_mg": 350,
+      "carbohydrate_g": 72, "dietary_fiber_g": 0, "sugar_g": 62, "protein_g": 9,
+      "is_default": false, "is_premium": false,
+      "notes": "Real ice cream shake"
+    },
+    {
+      "id": "ino_shake_vanilla", "category_id": "innout_shakes",
+      "name": "Vanilla Shake", "portion_size": "15 fl oz",
+      "calories": 580, "calories_from_fat": 280,
+      "total_fat_g": 31, "saturated_fat_g": 20, "trans_fat_g": 1,
+      "cholesterol_mg": 115, "sodium_mg": 350,
+      "carbohydrate_g": 67, "dietary_fiber_g": 0, "sugar_g": 57, "protein_g": 9,
+      "is_default": false, "is_premium": false,
+      "notes": "Real ice cream shake"
+    },
+    {
+      "id": "ino_shake_strawberry", "category_id": "innout_shakes",
+      "name": "Strawberry Shake", "portion_size": "15 fl oz",
+      "calories": 590, "calories_from_fat": 270,
+      "total_fat_g": 29, "saturated_fat_g": 19, "trans_fat_g": 1,
+      "cholesterol_mg": 110, "sodium_mg": 340,
+      "carbohydrate_g": 72, "dietary_fiber_g": 0, "sugar_g": 63, "protein_g": 9,
+      "is_default": false, "is_premium": false,
+      "notes": "Real ice cream shake"
+    },
+    {
+      "id": "ino_soda_medium", "category_id": "innout_drinks",
+      "name": "Soft Drink (Medium, 16 oz)", "portion_size": "16 fl oz",
+      "calories": 200, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 20,
+      "carbohydrate_g": 54, "dietary_fiber_g": 0, "sugar_g": 54, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "notes": "Coca-Cola, Dr Pepper, 7UP, etc."
+    },
+    {
+      "id": "ino_soda_large", "category_id": "innout_drinks",
+      "name": "Soft Drink (Large, 22 oz)", "portion_size": "22 fl oz",
+      "calories": 280, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 30,
+      "carbohydrate_g": 75, "dietary_fiber_g": 0, "sugar_g": 75, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "notes": "Coca-Cola, Dr Pepper, 7UP, etc."
+    },
+    {
+      "id": "ino_diet_soda", "category_id": "innout_drinks",
+      "name": "Diet Soft Drink (any size)", "portion_size": "16-22 fl oz",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 20,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "notes": "Diet Coke, unsweetened iced tea, water — zero calories"
+    },
+    {
+      "id": "ino_milk", "category_id": "innout_drinks",
+      "name": "Milk", "portion_size": "1 carton (8 oz)",
+      "calories": 180, "calories_from_fat": 80,
+      "total_fat_g": 10, "saturated_fat_g": 6, "trans_fat_g": 0,
+      "cholesterol_mg": 35, "sodium_mg": 125,
+      "carbohydrate_g": 13, "dietary_fiber_g": 0, "sugar_g": 13, "protein_g": 8,
+      "is_default": false, "is_premium": false,
+      "notes": "Whole milk"
+    },
+    {
+      "id": "ino_coffee", "category_id": "innout_drinks",
+      "name": "Coffee (Black)", "portion_size": "8 fl oz",
+      "calories": 5, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 5,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "notes": "Brewed hot coffee"
+    }
+  ],
+  "template_meals": [
+    {
+      "id": "innout_double_double_meal",
+      "name": "Double-Double Meal",
+      "description": "The classic: Double-Double, fries, and a Coke",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["ino_double_double", "ino_french_fries", "ino_soda_medium"],
+      "totals": {
+        "calories": 1265,
+        "total_fat_g": 59,
+        "protein_g": 44,
+        "carbohydrate_g": 147
+      }
+    },
+    {
+      "id": "innout_cheeseburger_meal",
+      "name": "Cheeseburger Meal",
+      "description": "Cheeseburger, fries, and a medium drink",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["ino_cheeseburger", "ino_french_fries", "ino_soda_medium"],
+      "totals": {
+        "calories": 1075,
+        "total_fat_g": 45,
+        "protein_g": 29,
+        "carbohydrate_g": 147
+      }
+    },
+    {
+      "id": "innout_animal_style_meal",
+      "name": "Animal Style Meal",
+      "description": "Double-Double Animal Style with Animal Style Fries and a shake",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["ino_animal_style_dd", "ino_animal_fries", "ino_shake_chocolate"],
+      "totals": {
+        "calories": 2110,
+        "total_fat_g": 121,
+        "protein_g": 65,
+        "carbohydrate_g": 182
+      }
+    },
+    {
+      "id": "innout_simple_burger_meal",
+      "name": "Hamburger Meal",
+      "description": "Basic hamburger, fries, and a drink",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["ino_hamburger", "ino_french_fries", "ino_soda_medium"],
+      "totals": {
+        "calories": 985,
+        "total_fat_g": 37,
+        "protein_g": 23,
+        "carbohydrate_g": 147
+      }
+    },
+    {
+      "id": "innout_lean_dd_protein_style",
+      "name": "Lean Double-Double (Protein Style + Diet Drink)",
+      "description": "Double-Double Protein Style, no fries, diet drink. All the meat and cheese, fraction of the carbs.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "innout_double_double_meal",
+      "swap_rationale": "Protein Style saves 150 cal from the bun. Skipping fries saves 395 cal. Diet drink saves 200 cal. Total saved: ~745 cal. You keep 33g protein — that's what matters.",
+      "ingredients": ["ino_protein_double_double", "ino_diet_soda"],
+      "totals": {
+        "calories": 520,
+        "total_fat_g": 39,
+        "protein_g": 33,
+        "carbohydrate_g": 11
+      }
+    },
+    {
+      "id": "innout_lean_cheeseburger_mk",
+      "name": "Lean Cheeseburger (Mustard & Ketchup + Diet Drink)",
+      "description": "Cheeseburger with mustard & ketchup instead of spread, diet drink, no fries.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "innout_cheeseburger_meal",
+      "swap_rationale": "Mustard & ketchup instead of spread saves 80 cal. No fries saves 395 cal. Diet drink saves 200 cal. Total saved: ~675 cal. Same burger, same cheese, way less hidden fat.",
+      "ingredients": ["ino_cheeseburger_mk", "ino_diet_soda"],
+      "totals": {
+        "calories": 400,
+        "total_fat_g": 18,
+        "protein_g": 22,
+        "carbohydrate_g": 41
+      }
+    },
+    {
+      "id": "innout_flying_dutchman_meal",
+      "name": "The Flying Dutchman (Zero Carb Power Meal)",
+      "description": "Flying Dutchman + diet drink. Zero carbs, pure protein and fat. The keto king.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "innout_animal_style_meal",
+      "swap_rationale": "Flying Dutchman is 330 cal with 22g protein and ZERO carbs. vs the Animal Style feast at 2,110 cal. That's 1,780 cal saved. You still get two patties and two slices of cheese.",
+      "ingredients": ["ino_flying_dutchman", "ino_diet_soda"],
+      "totals": {
+        "calories": 330,
+        "total_fat_g": 25,
+        "protein_g": 22,
+        "carbohydrate_g": 0
+      }
+    },
+    {
+      "id": "innout_lean_hamburger_protein",
+      "name": "Protein Style Hamburger + Water",
+      "description": "The lightest In-N-Out order. Protein Style hamburger with water. Under 250 calories total.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "innout_simple_burger_meal",
+      "swap_rationale": "Protein Style drops the bun (saves 150 cal). No fries saves 395 cal. Water instead of soda saves 200 cal. Total saved: ~745 cal. Still a real burger — just wrapped in lettuce.",
+      "ingredients": ["ino_protein_hamburger", "ino_diet_soda"],
+      "totals": {
+        "calories": 240,
+        "total_fat_g": 17,
+        "protein_g": 13,
+        "carbohydrate_g": 11
+      }
+    }
+  ]
+}

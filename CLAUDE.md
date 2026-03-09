@@ -37,6 +37,16 @@ npm run deploy     # Push to production
 4. Data-driven (real RMR math, not generic advice)
 5. Worst-case planning (sedentary assumption)
 
+## Session Continuity
+
+**Always read `HANDOFF.md` at the start of every session.** It contains:
+- What was built last session
+- What's NOT finished (pick up here)
+- Key architecture decisions
+- Current database schema
+
+If `HANDOFF.md` exists, read it before doing anything else.
+
 ## Origin
 
 Morning Download 2026-03-06. The "STOP MEAL PREPPING" reel (802 views) validated the message. This tool converts that attention into leads.

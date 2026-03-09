@@ -1,0 +1,473 @@
+{
+  "restaurant": {
+    "id": "moes",
+    "name": "Moe's Southwest Grill",
+    "logo_emoji": "\ud83c\udf2f",
+    "cuisine": "fast_casual",
+    "website": "https://www.moes.com",
+    "nutrition_source": "CalorieKing, FatSecret, Nutritionix, Moe's official menu (2025). Individual component macros from CalorieKing meal-components database and FatSecret verified entries."
+  },
+  "meal_ranges": {
+    "burrito": [740, 1100],
+    "bowl": [420, 870],
+    "tacos": [370, 680],
+    "salad": [350, 650],
+    "quesadilla": [680, 1050],
+    "stack": [620, 950],
+    "nachos": [780, 1200]
+  },
+  "categories": [
+    { "id": "moes_shells", "name": "Shells & Tortillas", "display_order": 1, "selection_type": "single", "description": "Base wrapper or shell" },
+    { "id": "moes_rice", "name": "Rice", "display_order": 2, "selection_type": "single", "description": "Rice choice" },
+    { "id": "moes_beans", "name": "Beans", "display_order": 3, "selection_type": "single", "description": "Bean choice" },
+    { "id": "moes_protein", "name": "Protein", "display_order": 4, "selection_type": "single", "description": "Protein choice" },
+    { "id": "moes_salsa", "name": "Salsa & Pico", "display_order": 5, "selection_type": "multiple", "description": "Salsa choices" },
+    { "id": "moes_toppings", "name": "Toppings", "display_order": 6, "selection_type": "multiple", "description": "Veggies and toppings" },
+    { "id": "moes_extras", "name": "Extras", "display_order": 7, "selection_type": "multiple", "description": "Premium extras (queso, guac, sour cream, cheese)" },
+    { "id": "moes_sides", "name": "Sides", "display_order": 8, "selection_type": "optional", "description": "Side items" }
+  ],
+  "ingredients": [
+    {
+      "id": "moe_flour_tortilla_12", "category_id": "moes_shells",
+      "name": "Flour Tortilla (12\")", "portion_size": "1 ea",
+      "calories": 310, "calories_from_fat": 72,
+      "total_fat_g": 8, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 680,
+      "carbohydrate_g": 51, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 8,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "moe_whole_grain_tortilla_12", "category_id": "moes_shells",
+      "name": "Whole Grain Tortilla (12\")", "portion_size": "1 ea",
+      "calories": 300, "calories_from_fat": 72,
+      "total_fat_g": 8, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 640,
+      "carbohydrate_g": 48, "dietary_fiber_g": 5, "sugar_g": 1, "protein_g": 9,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_flour_tortilla_10", "category_id": "moes_shells",
+      "name": "Flour Tortilla (10\")", "portion_size": "1 ea",
+      "calories": 230, "calories_from_fat": 54,
+      "total_fat_g": 6, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 500,
+      "carbohydrate_g": 38, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 6,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_soft_flour_tortilla_6", "category_id": "moes_shells",
+      "name": "Soft Flour Tortilla (6\")", "portion_size": "1 ea",
+      "calories": 120, "calories_from_fat": 27,
+      "total_fat_g": 3, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 250,
+      "carbohydrate_g": 20, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 3,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_crispy_corn_taco_shell", "category_id": "moes_shells",
+      "name": "Crispy Corn Taco Shell", "portion_size": "1 ea",
+      "calories": 70, "calories_from_fat": 27,
+      "total_fat_g": 3, "saturated_fat_g": 0.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 50,
+      "carbohydrate_g": 10, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_crispy_salad_bowl", "category_id": "moes_shells",
+      "name": "Crispy Salad Bowl", "portion_size": "1 ea",
+      "calories": 455, "calories_from_fat": 200,
+      "total_fat_g": 22, "saturated_fat_g": 4, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 460,
+      "carbohydrate_g": 58, "dietary_fiber_g": 3, "sugar_g": 1, "protein_g": 6,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_seasoned_rice", "category_id": "moes_rice",
+      "name": "Seasoned Rice", "portion_size": "1 serving",
+      "calories": 150, "calories_from_fat": 14,
+      "total_fat_g": 1.5, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 380,
+      "carbohydrate_g": 31, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 3,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "moe_cilantro_lime_rice", "category_id": "moes_rice",
+      "name": "Cilantro Lime Rice", "portion_size": "1 serving",
+      "calories": 169, "calories_from_fat": 27,
+      "total_fat_g": 3, "saturated_fat_g": 0.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 420,
+      "carbohydrate_g": 33, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 3,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_black_beans", "category_id": "moes_beans",
+      "name": "Black Beans", "portion_size": "1 serving",
+      "calories": 129, "calories_from_fat": 9,
+      "total_fat_g": 1, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 260,
+      "carbohydrate_g": 22, "dietary_fiber_g": 7, "sugar_g": 1, "protein_g": 8,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "moe_pinto_beans", "category_id": "moes_beans",
+      "name": "Pinto Beans", "portion_size": "1 serving",
+      "calories": 120, "calories_from_fat": 9,
+      "total_fat_g": 1, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 290,
+      "carbohydrate_g": 20, "dietary_fiber_g": 6, "sugar_g": 1, "protein_g": 7,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_adobo_chicken", "category_id": "moes_protein",
+      "name": "Adobo Chicken", "portion_size": "1 serving",
+      "calories": 148, "calories_from_fat": 63,
+      "total_fat_g": 7, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 80, "sodium_mg": 430,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 19,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "moe_steak", "category_id": "moes_protein",
+      "name": "Steak", "portion_size": "1 serving",
+      "calories": 140, "calories_from_fat": 63,
+      "total_fat_g": 7, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 55, "sodium_mg": 310,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 18,
+      "is_default": false, "is_premium": true
+    },
+    {
+      "id": "moe_ground_beef", "category_id": "moes_protein",
+      "name": "Ground Beef", "portion_size": "1 serving",
+      "calories": 150, "calories_from_fat": 90,
+      "total_fat_g": 10, "saturated_fat_g": 4, "trans_fat_g": 0,
+      "cholesterol_mg": 45, "sodium_mg": 260,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 14,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_pork", "category_id": "moes_protein",
+      "name": "Pork (Carnitas)", "portion_size": "1 serving",
+      "calories": 131, "calories_from_fat": 63,
+      "total_fat_g": 7, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 50, "sodium_mg": 350,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 17,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_organic_tofu", "category_id": "moes_protein",
+      "name": "Organic Tofu", "portion_size": "1 serving",
+      "calories": 108, "calories_from_fat": 54,
+      "total_fat_g": 6, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 320,
+      "carbohydrate_g": 4, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 11,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_fish", "category_id": "moes_protein",
+      "name": "Fish", "portion_size": "1 serving",
+      "calories": 160, "calories_from_fat": 72,
+      "total_fat_g": 8, "saturated_fat_g": 1.5, "trans_fat_g": 0,
+      "cholesterol_mg": 40, "sodium_mg": 380,
+      "carbohydrate_g": 8, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 14,
+      "is_default": false, "is_premium": true
+    },
+    {
+      "id": "moe_pico_de_gallo", "category_id": "moes_salsa",
+      "name": "Pico de Gallo", "portion_size": "1 serving",
+      "calories": 16, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 180,
+      "carbohydrate_g": 3, "dietary_fiber_g": 1, "sugar_g": 2, "protein_g": 1,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "moe_corn_pico", "category_id": "moes_salsa",
+      "name": "Corn Pico (Salsa)", "portion_size": "1 serving",
+      "calories": 50, "calories_from_fat": 9,
+      "total_fat_g": 1, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 150,
+      "carbohydrate_g": 10, "dietary_fiber_g": 1, "sugar_g": 2, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_salsa_verde", "category_id": "moes_salsa",
+      "name": "Salsa Verde", "portion_size": "1 serving",
+      "calories": 10, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 220,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_medium_salsa", "category_id": "moes_salsa",
+      "name": "Medium Salsa", "portion_size": "1 serving",
+      "calories": 10, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 260,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_shredded_lettuce", "category_id": "moes_toppings",
+      "name": "Shredded Lettuce", "portion_size": "1 serving",
+      "calories": 5, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 5,
+      "carbohydrate_g": 1, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_romaine_lettuce", "category_id": "moes_toppings",
+      "name": "Romaine Lettuce", "portion_size": "1 serving",
+      "calories": 10, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 5,
+      "carbohydrate_g": 2, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_tomatoes", "category_id": "moes_toppings",
+      "name": "Tomatoes", "portion_size": "1 serving",
+      "calories": 10, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 5,
+      "carbohydrate_g": 2, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_grilled_onions", "category_id": "moes_toppings",
+      "name": "Grilled Onions", "portion_size": "1 serving",
+      "calories": 25, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 10,
+      "carbohydrate_g": 6, "dietary_fiber_g": 1, "sugar_g": 3, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_grilled_peppers", "category_id": "moes_toppings",
+      "name": "Grilled Peppers", "portion_size": "1 serving",
+      "calories": 25, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 10,
+      "carbohydrate_g": 5, "dietary_fiber_g": 1, "sugar_g": 2, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_grilled_mushrooms", "category_id": "moes_toppings",
+      "name": "Grilled Mushrooms", "portion_size": "1 serving",
+      "calories": 15, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 5,
+      "carbohydrate_g": 2, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_cucumbers", "category_id": "moes_toppings",
+      "name": "Cucumbers", "portion_size": "1 serving",
+      "calories": 5, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_black_olives", "category_id": "moes_toppings",
+      "name": "Black Olives", "portion_size": "1 serving",
+      "calories": 25, "calories_from_fat": 20,
+      "total_fat_g": 2.5, "saturated_fat_g": 0.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 115,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_pickled_jalapenos", "category_id": "moes_toppings",
+      "name": "Pickled Jalapenos", "portion_size": "1 serving",
+      "calories": 5, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 190,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_bacon", "category_id": "moes_toppings",
+      "name": "Bacon", "portion_size": "1 serving",
+      "calories": 70, "calories_from_fat": 45,
+      "total_fat_g": 5, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 15, "sodium_mg": 260,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 5,
+      "is_default": false, "is_premium": true
+    },
+    {
+      "id": "moe_shredded_cheese", "category_id": "moes_extras",
+      "name": "Shredded Cheese", "portion_size": "1 serving",
+      "calories": 110, "calories_from_fat": 81,
+      "total_fat_g": 9, "saturated_fat_g": 5, "trans_fat_g": 0,
+      "cholesterol_mg": 30, "sodium_mg": 180,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 7,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_sour_cream", "category_id": "moes_extras",
+      "name": "Sour Cream", "portion_size": "1 serving",
+      "calories": 68, "calories_from_fat": 54,
+      "total_fat_g": 6, "saturated_fat_g": 3.5, "trans_fat_g": 0,
+      "cholesterol_mg": 20, "sodium_mg": 25,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_guacamole", "category_id": "moes_extras",
+      "name": "Guacamole", "portion_size": "1 serving",
+      "calories": 53, "calories_from_fat": 40,
+      "total_fat_g": 4.5, "saturated_fat_g": 0.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 95,
+      "carbohydrate_g": 3, "dietary_fiber_g": 2, "sugar_g": 0, "protein_g": 1,
+      "is_default": false, "is_premium": true
+    },
+    {
+      "id": "moe_queso", "category_id": "moes_extras",
+      "name": "Queso", "portion_size": "1 serving (2 oz)",
+      "calories": 80, "calories_from_fat": 54,
+      "total_fat_g": 6, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 20, "sodium_mg": 430,
+      "carbohydrate_g": 3, "dietary_fiber_g": 0, "sugar_g": 1, "protein_g": 3,
+      "is_default": false, "is_premium": true
+    },
+    {
+      "id": "moe_tortilla_chips", "category_id": "moes_sides",
+      "name": "Tortilla Chips", "portion_size": "1 serving",
+      "calories": 390, "calories_from_fat": 180,
+      "total_fat_g": 20, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 320,
+      "carbohydrate_g": 48, "dietary_fiber_g": 4, "sugar_g": 1, "protein_g": 5,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "moe_queso_cup", "category_id": "moes_sides",
+      "name": "Queso (Cup / Side)", "portion_size": "1 cup (8 oz)",
+      "calories": 320, "calories_from_fat": 216,
+      "total_fat_g": 24, "saturated_fat_g": 12, "trans_fat_g": 0,
+      "cholesterol_mg": 80, "sodium_mg": 1720,
+      "carbohydrate_g": 12, "dietary_fiber_g": 0, "sugar_g": 4, "protein_g": 12,
+      "is_default": false, "is_premium": true
+    }
+  ],
+  "template_meals": [
+    {
+      "id": "moes_homewrecker_burrito",
+      "name": "Homewrecker Burrito (Chicken)",
+      "description": "The signature: flour tortilla, seasoned rice, black beans, adobo chicken, pico, cheese, sour cream, guac",
+      "meal_type": "burrito",
+      "is_swap": false,
+      "ingredients": [
+        "moe_flour_tortilla_12", "moe_seasoned_rice", "moe_black_beans",
+        "moe_adobo_chicken", "moe_pico_de_gallo", "moe_shredded_cheese",
+        "moe_sour_cream", "moe_guacamole", "moe_shredded_lettuce", "moe_tomatoes"
+      ]
+    },
+    {
+      "id": "moes_joey_bag",
+      "name": "Joey Bag of Donuts (Steak)",
+      "description": "12\" flour tortilla, rice, beans, steak, cheese, sour cream, guac, pico - the loaded one",
+      "meal_type": "burrito",
+      "is_swap": false,
+      "ingredients": [
+        "moe_flour_tortilla_12", "moe_seasoned_rice", "moe_pinto_beans",
+        "moe_steak", "moe_pico_de_gallo", "moe_corn_pico",
+        "moe_shredded_cheese", "moe_sour_cream", "moe_guacamole",
+        "moe_shredded_lettuce", "moe_tomatoes"
+      ]
+    },
+    {
+      "id": "moes_stack_chicken",
+      "name": "Stack (Chicken)",
+      "description": "Two 6\" tortillas, rice, beans, chicken, queso, pico, sour cream, cheese - layered",
+      "meal_type": "stack",
+      "is_swap": false,
+      "ingredients": [
+        { "id": "moe_soft_flour_tortilla_6", "quantity": 2 },
+        "moe_seasoned_rice", "moe_black_beans", "moe_adobo_chicken",
+        "moe_queso", "moe_pico_de_gallo", "moe_sour_cream", "moe_shredded_cheese"
+      ]
+    },
+    {
+      "id": "moes_chicken_bowl_loaded",
+      "name": "Chicken Bowl (Loaded)",
+      "description": "Seasoned rice, black beans, adobo chicken, pico, cheese, sour cream, guac, lettuce",
+      "meal_type": "bowl",
+      "is_swap": false,
+      "ingredients": [
+        "moe_seasoned_rice", "moe_black_beans", "moe_adobo_chicken",
+        "moe_pico_de_gallo", "moe_shredded_cheese", "moe_sour_cream",
+        "moe_guacamole", "moe_shredded_lettuce"
+      ]
+    },
+    {
+      "id": "moes_steak_quesadilla",
+      "name": "Steak Quesadilla",
+      "description": "10\" flour tortilla, steak, shredded cheese, sour cream on the side",
+      "meal_type": "quesadilla",
+      "is_swap": false,
+      "ingredients": [
+        "moe_flour_tortilla_10", "moe_steak", "moe_shredded_cheese",
+        "moe_sour_cream", "moe_pico_de_gallo"
+      ]
+    },
+    {
+      "id": "moes_lean_chicken_bowl",
+      "name": "Lean Chicken Power Bowl",
+      "description": "Seasoned rice, black beans, adobo chicken, pico, salsa verde, grilled veggies, romaine - no cheese, no sour cream, no guac",
+      "meal_type": "bowl",
+      "is_swap": true,
+      "swap_for": "moes_homewrecker_burrito",
+      "swap_rationale": "Drop the tortilla (310 cal), cheese (110 cal), sour cream (68 cal), and guac (53 cal). That's 541 calories gone. Add grilled veggies for volume. Same Moe's flavor, way less damage.",
+      "ingredients": [
+        "moe_seasoned_rice", "moe_black_beans", "moe_adobo_chicken",
+        "moe_pico_de_gallo", "moe_salsa_verde", "moe_grilled_onions",
+        "moe_grilled_peppers", "moe_romaine_lettuce", "moe_tomatoes"
+      ]
+    },
+    {
+      "id": "moes_lean_steak_bowl",
+      "name": "Lean Steak Bowl",
+      "description": "Cilantro lime rice, pinto beans, steak, pico, corn pico, grilled onions, romaine - no extras",
+      "meal_type": "bowl",
+      "is_swap": true,
+      "swap_for": "moes_joey_bag",
+      "swap_rationale": "Joey Bag is a calorie bomb. Lose the 12\" tortilla (310 cal), cheese (110 cal), sour cream (68 cal), and guac (53 cal). Keep the steak, keep the flavor with double salsa and grilled onions.",
+      "ingredients": [
+        "moe_cilantro_lime_rice", "moe_pinto_beans", "moe_steak",
+        "moe_pico_de_gallo", "moe_corn_pico", "moe_grilled_onions",
+        "moe_romaine_lettuce"
+      ]
+    },
+    {
+      "id": "moes_lean_stack_bowl",
+      "name": "Deconstructed Stack Bowl",
+      "description": "Seasoned rice, black beans, adobo chicken, pico, salsa verde, grilled mushrooms, romaine - stack flavor without the tortilla layers",
+      "meal_type": "bowl",
+      "is_swap": true,
+      "swap_for": "moes_stack_chicken",
+      "swap_rationale": "Two 6\" tortillas (240 cal) + queso (80 cal) + sour cream (68 cal) + cheese (110 cal) = 498 cal in extras alone. A bowl with double salsa and mushrooms has the same protein for half the calories.",
+      "ingredients": [
+        "moe_seasoned_rice", "moe_black_beans", "moe_adobo_chicken",
+        "moe_pico_de_gallo", "moe_salsa_verde",
+        "moe_grilled_mushrooms", "moe_grilled_peppers", "moe_romaine_lettuce"
+      ]
+    },
+    {
+      "id": "moes_lean_chicken_salad",
+      "name": "Chicken Power Salad",
+      "description": "Romaine base, adobo chicken, black beans, pico, corn pico, grilled peppers, cucumbers - no rice, no cheese, no shell",
+      "meal_type": "salad",
+      "is_swap": true,
+      "swap_for": "moes_chicken_bowl_loaded",
+      "swap_rationale": "Swap rice for romaine base, drop cheese (110 cal), sour cream (68 cal), and guac (53 cal). The beans + chicken still deliver 27g protein. Corn pico adds sweetness without the calories.",
+      "ingredients": [
+        "moe_romaine_lettuce", "moe_adobo_chicken", "moe_black_beans",
+        "moe_pico_de_gallo", "moe_corn_pico", "moe_grilled_peppers",
+        "moe_cucumbers", "moe_pickled_jalapenos"
+      ]
+    }
+  ]
+}

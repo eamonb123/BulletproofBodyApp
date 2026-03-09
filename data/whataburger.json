@@ -1,0 +1,451 @@
+{
+  "restaurant": {
+    "id": "whataburger",
+    "name": "Whataburger",
+    "logo_emoji": "🍔",
+    "cuisine": "fast_food",
+    "website": "https://www.whataburger.com",
+    "nutrition_source": "wbimageserver.whataburger.com/Nutrition.pdf (official, verified March 2026)"
+  },
+  "categories": [
+    { "id": "whataburger_burgers", "name": "Burgers", "display_order": 1, "selection_type": "single", "description": "Classic Whataburger beef burgers" },
+    { "id": "whataburger_chicken", "name": "Chicken", "display_order": 2, "selection_type": "single", "description": "Chicken sandwiches, strips, and salads" },
+    { "id": "whataburger_breakfast", "name": "Breakfast", "display_order": 3, "selection_type": "single", "description": "Taquitos, biscuits, and breakfast sandwiches" },
+    { "id": "whataburger_sides", "name": "Sides", "display_order": 4, "selection_type": "single", "description": "Fries, onion rings, and more" },
+    { "id": "whataburger_drinks", "name": "Drinks", "display_order": 5, "selection_type": "single", "description": "Fountain drinks and beverages" }
+  ],
+  "ingredients": [
+    {
+      "id": "wb_whataburger", "category_id": "whataburger_burgers",
+      "name": "Whataburger (#1)", "portion_size": "1 burger (316g)",
+      "calories": 590, "calories_from_fat": 225,
+      "total_fat_g": 25, "saturated_fat_g": 8, "trans_fat_g": 1,
+      "cholesterol_mg": 45, "sodium_mg": 1220,
+      "carbohydrate_g": 62, "dietary_fiber_g": 4, "sugar_g": 12, "protein_g": 29,
+      "is_default": true, "is_premium": false,
+      "notes": "Single 5-inch beef patty, mustard, lettuce, tomato, pickles, onions on large toasted bun"
+    },
+    {
+      "id": "wb_double_meat", "category_id": "whataburger_burgers",
+      "name": "Double Meat Whataburger (#2)", "portion_size": "1 burger (420g)",
+      "calories": 830, "calories_from_fat": 396,
+      "total_fat_g": 44, "saturated_fat_g": 14, "trans_fat_g": 2,
+      "cholesterol_mg": 85, "sodium_mg": 1470,
+      "carbohydrate_g": 62, "dietary_fiber_g": 4, "sugar_g": 12, "protein_g": 47,
+      "is_default": false, "is_premium": false,
+      "notes": "Two 5-inch beef patties, mustard, lettuce, tomato, pickles, onions on large bun"
+    },
+    {
+      "id": "wb_triple_meat", "category_id": "whataburger_burgers",
+      "name": "Triple Meat Whataburger (#3)", "portion_size": "1 burger (524g)",
+      "calories": 1070, "calories_from_fat": 567,
+      "total_fat_g": 63, "saturated_fat_g": 21, "trans_fat_g": 3,
+      "cholesterol_mg": 130, "sodium_mg": 1720,
+      "carbohydrate_g": 62, "dietary_fiber_g": 4, "sugar_g": 12, "protein_g": 65,
+      "is_default": false, "is_premium": false,
+      "notes": "Three 5-inch beef patties — maximum protein, maximum everything"
+    },
+    {
+      "id": "wb_jalapeno_cheese", "category_id": "whataburger_burgers",
+      "name": "Jalapeño & Cheese Whataburger (#4)", "portion_size": "1 burger (340g)",
+      "calories": 680, "calories_from_fat": 288,
+      "total_fat_g": 32, "saturated_fat_g": 11, "trans_fat_g": 1,
+      "cholesterol_mg": 65, "sodium_mg": 1800,
+      "carbohydrate_g": 63, "dietary_fiber_g": 4, "sugar_g": 12, "protein_g": 34,
+      "is_default": false, "is_premium": false,
+      "notes": "Single patty with jalapeños and cheese"
+    },
+    {
+      "id": "wb_bacon_cheese", "category_id": "whataburger_burgers",
+      "name": "Bacon & Cheese Whataburger (#5)", "portion_size": "1 burger (354g)",
+      "calories": 750, "calories_from_fat": 333,
+      "total_fat_g": 37, "saturated_fat_g": 13, "trans_fat_g": 1.5,
+      "cholesterol_mg": 80, "sodium_mg": 1910,
+      "carbohydrate_g": 62, "dietary_fiber_g": 4, "sugar_g": 12, "protein_g": 39,
+      "is_default": false, "is_premium": false,
+      "notes": "Single patty with bacon and American cheese"
+    },
+    {
+      "id": "wb_avocado_bacon", "category_id": "whataburger_burgers",
+      "name": "Avocado Bacon Burger (#6)", "portion_size": "1 burger (355g)",
+      "calories": 820, "calories_from_fat": 468,
+      "total_fat_g": 52, "saturated_fat_g": 16, "trans_fat_g": 1,
+      "cholesterol_mg": 85, "sodium_mg": 1600,
+      "carbohydrate_g": 52, "dietary_fiber_g": 5, "sugar_g": 8, "protein_g": 37,
+      "is_default": false, "is_premium": true,
+      "notes": "Beef patty on Texas Toast with bacon, avocado, cheese, creamy pepper sauce"
+    },
+    {
+      "id": "wb_whataburger_jr", "category_id": "whataburger_burgers",
+      "name": "Whataburger Jr. (#7)", "portion_size": "1 burger (163g)",
+      "calories": 310, "calories_from_fat": 99,
+      "total_fat_g": 11, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 20, "sodium_mg": 750,
+      "carbohydrate_g": 37, "dietary_fiber_g": 2, "sugar_g": 6, "protein_g": 14,
+      "is_default": false, "is_premium": false,
+      "notes": "Smaller 4-inch patty — the lightest burger on the menu"
+    },
+    {
+      "id": "wb_double_meat_jr", "category_id": "whataburger_burgers",
+      "name": "Double Meat Whataburger Jr. (#8)", "portion_size": "1 burger (215g)",
+      "calories": 420, "calories_from_fat": 180,
+      "total_fat_g": 20, "saturated_fat_g": 7, "trans_fat_g": 0.5,
+      "cholesterol_mg": 40, "sodium_mg": 870,
+      "carbohydrate_g": 37, "dietary_fiber_g": 2, "sugar_g": 6, "protein_g": 24,
+      "is_default": false, "is_premium": false,
+      "notes": "Two 4-inch patties — double protein on a Jr. bun"
+    },
+    {
+      "id": "wb_patty_melt", "category_id": "whataburger_burgers",
+      "name": "Whataburger Patty Melt", "portion_size": "1 sandwich (310g)",
+      "calories": 950, "calories_from_fat": 549,
+      "total_fat_g": 61, "saturated_fat_g": 21, "trans_fat_g": 2,
+      "cholesterol_mg": 125, "sodium_mg": 1760,
+      "carbohydrate_g": 45, "dietary_fiber_g": 1, "sugar_g": 6, "protein_g": 49,
+      "is_default": false, "is_premium": true,
+      "notes": "Two beef patties, grilled onions, two slices of cheese on Texas Toast"
+    },
+    {
+      "id": "wb_grilled_chicken", "category_id": "whataburger_chicken",
+      "name": "Grilled Chicken Sandwich (#11)", "portion_size": "1 sandwich (240g)",
+      "calories": 430, "calories_from_fat": 117,
+      "total_fat_g": 13, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 85, "sodium_mg": 950,
+      "carbohydrate_g": 45, "dietary_fiber_g": 3, "sugar_g": 8, "protein_g": 32,
+      "is_default": false, "is_premium": false,
+      "notes": "Grilled chicken breast on brioche bun with lettuce, tomato, WhataSauce"
+    },
+    {
+      "id": "wb_whatachickn_strips_3pc", "category_id": "whataburger_chicken",
+      "name": "Whatachick'n Strips (3 pc) (#13)", "portion_size": "3 strips (170g)",
+      "calories": 470, "calories_from_fat": 216,
+      "total_fat_g": 24, "saturated_fat_g": 4, "trans_fat_g": 0,
+      "cholesterol_mg": 60, "sodium_mg": 1020,
+      "carbohydrate_g": 36, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 25,
+      "is_default": false, "is_premium": false,
+      "notes": "Hand-breaded chicken tenders with gravy dipping sauce"
+    },
+    {
+      "id": "wb_honey_bbq_chicken_strip", "category_id": "whataburger_chicken",
+      "name": "Honey BBQ Chicken Strip Sandwich", "portion_size": "1 sandwich (300g)",
+      "calories": 910, "calories_from_fat": 378,
+      "total_fat_g": 42, "saturated_fat_g": 8, "trans_fat_g": 0,
+      "cholesterol_mg": 55, "sodium_mg": 1940,
+      "carbohydrate_g": 87, "dietary_fiber_g": 3, "sugar_g": 22, "protein_g": 38,
+      "is_default": false, "is_premium": true,
+      "notes": "Chicken strips on Texas Toast with honey BBQ sauce, bacon, cheese, onion rings"
+    },
+    {
+      "id": "wb_garden_salad_grilled", "category_id": "whataburger_chicken",
+      "name": "Garden Salad with Grilled Chicken", "portion_size": "1 salad (345g)",
+      "calories": 290, "calories_from_fat": 108,
+      "total_fat_g": 12, "saturated_fat_g": 5, "trans_fat_g": 0,
+      "cholesterol_mg": 90, "sodium_mg": 770,
+      "carbohydrate_g": 12, "dietary_fiber_g": 3, "sugar_g": 5, "protein_g": 34,
+      "is_default": false, "is_premium": false,
+      "notes": "Mixed greens, grilled chicken, tomato, cheese, croutons — no dressing"
+    },
+    {
+      "id": "wb_taquito_bacon_egg_cheese", "category_id": "whataburger_breakfast",
+      "name": "Taquito with Bacon, Egg & Cheese", "portion_size": "1 taquito (162g)",
+      "calories": 420, "calories_from_fat": 216,
+      "total_fat_g": 24, "saturated_fat_g": 8, "trans_fat_g": 0,
+      "cholesterol_mg": 175, "sodium_mg": 910,
+      "carbohydrate_g": 28, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 19,
+      "is_default": false, "is_premium": false,
+      "notes": "Flour tortilla with bacon, scrambled eggs, American cheese"
+    },
+    {
+      "id": "wb_taquito_sausage_egg_cheese", "category_id": "whataburger_breakfast",
+      "name": "Taquito with Sausage, Egg & Cheese", "portion_size": "1 taquito (184g)",
+      "calories": 450, "calories_from_fat": 243,
+      "total_fat_g": 27, "saturated_fat_g": 10, "trans_fat_g": 0,
+      "cholesterol_mg": 185, "sodium_mg": 1010,
+      "carbohydrate_g": 28, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 19,
+      "is_default": true, "is_premium": false,
+      "notes": "Flour tortilla with sausage, scrambled eggs, American cheese"
+    },
+    {
+      "id": "wb_egg_sandwich", "category_id": "whataburger_breakfast",
+      "name": "Egg Sandwich", "portion_size": "1 sandwich (140g)",
+      "calories": 310, "calories_from_fat": 117,
+      "total_fat_g": 13, "saturated_fat_g": 4, "trans_fat_g": 0,
+      "cholesterol_mg": 170, "sodium_mg": 600,
+      "carbohydrate_g": 28, "dietary_fiber_g": 1, "sugar_g": 3, "protein_g": 20,
+      "is_default": false, "is_premium": false,
+      "notes": "Egg and cheese on a bun — simplest breakfast option"
+    },
+    {
+      "id": "wb_biscuit_sausage_egg_cheese", "category_id": "whataburger_breakfast",
+      "name": "Biscuit with Sausage, Egg & Cheese", "portion_size": "1 biscuit (230g)",
+      "calories": 690, "calories_from_fat": 450,
+      "total_fat_g": 50, "saturated_fat_g": 19, "trans_fat_g": 0.5,
+      "cholesterol_mg": 210, "sodium_mg": 1590,
+      "carbohydrate_g": 33, "dietary_fiber_g": 1, "sugar_g": 3, "protein_g": 26,
+      "is_default": false, "is_premium": false,
+      "notes": "Buttermilk biscuit with sausage patty, egg, American cheese"
+    },
+    {
+      "id": "wb_honey_butter_chicken_biscuit", "category_id": "whataburger_breakfast",
+      "name": "Honey Butter Chicken Biscuit", "portion_size": "1 biscuit (210g)",
+      "calories": 580, "calories_from_fat": 315,
+      "total_fat_g": 35, "saturated_fat_g": 12, "trans_fat_g": 0,
+      "cholesterol_mg": 35, "sodium_mg": 1260,
+      "carbohydrate_g": 50, "dietary_fiber_g": 2, "sugar_g": 13, "protein_g": 15,
+      "is_default": false, "is_premium": true,
+      "notes": "Fan favorite — crispy chicken strip on buttermilk biscuit with honey butter"
+    },
+    {
+      "id": "wb_breakfast_burger", "category_id": "whataburger_breakfast",
+      "name": "Breakfast Burger", "portion_size": "1 burger (350g)",
+      "calories": 865, "calories_from_fat": 441,
+      "total_fat_g": 49, "saturated_fat_g": 16, "trans_fat_g": 1.5,
+      "cholesterol_mg": 235, "sodium_mg": 1630,
+      "carbohydrate_g": 62, "dietary_fiber_g": 4, "sugar_g": 13, "protein_g": 42,
+      "is_default": false, "is_premium": true,
+      "notes": "Beef patty with egg, bacon, cheese, hash browns, creamy pepper on large bun"
+    },
+    {
+      "id": "wb_small_fries", "category_id": "whataburger_sides",
+      "name": "French Fries (Small)", "portion_size": "1 small (93g)",
+      "calories": 270, "calories_from_fat": 117,
+      "total_fat_g": 13, "saturated_fat_g": 2, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 340,
+      "carbohydrate_g": 35, "dietary_fiber_g": 3, "sugar_g": 0, "protein_g": 4,
+      "is_default": false, "is_premium": false,
+      "notes": "Crispy seasoned fries — smallest portion"
+    },
+    {
+      "id": "wb_medium_fries", "category_id": "whataburger_sides",
+      "name": "French Fries (Medium)", "portion_size": "1 medium (128g)",
+      "calories": 420, "calories_from_fat": 189,
+      "total_fat_g": 21, "saturated_fat_g": 3.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 530,
+      "carbohydrate_g": 52, "dietary_fiber_g": 4, "sugar_g": 0, "protein_g": 5,
+      "is_default": true, "is_premium": false,
+      "notes": "Standard meal-sized fries"
+    },
+    {
+      "id": "wb_medium_onion_rings", "category_id": "whataburger_sides",
+      "name": "Onion Rings (Medium)", "portion_size": "1 medium (113g)",
+      "calories": 300, "calories_from_fat": 153,
+      "total_fat_g": 17, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 430,
+      "carbohydrate_g": 33, "dietary_fiber_g": 4, "sugar_g": 2, "protein_g": 4,
+      "is_default": false, "is_premium": false,
+      "notes": "Hand-battered onion rings"
+    },
+    {
+      "id": "wb_apple_slices", "category_id": "whataburger_sides",
+      "name": "Apple Slices", "portion_size": "1 bag (62g)",
+      "calories": 30, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 8, "dietary_fiber_g": 1, "sugar_g": 6, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "notes": "Fresh sliced apples — lowest-calorie side at 30 cal"
+    },
+    {
+      "id": "wb_medium_soda", "category_id": "whataburger_drinks",
+      "name": "Soft Drink (Medium, 32 oz)", "portion_size": "32 fl oz",
+      "calories": 310, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 30,
+      "carbohydrate_g": 86, "dietary_fiber_g": 0, "sugar_g": 86, "protein_g": 0,
+      "is_default": true, "is_premium": false,
+      "notes": "Coca-Cola, Dr Pepper, Fanta, etc. (32 oz is the standard meal drink)"
+    },
+    {
+      "id": "wb_diet_soda", "category_id": "whataburger_drinks",
+      "name": "Diet Soft Drink (any size)", "portion_size": "32 fl oz",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 30,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "notes": "Diet Coke, Coke Zero, unsweet tea — zero calories"
+    },
+    {
+      "id": "wb_sweet_tea_medium", "category_id": "whataburger_drinks",
+      "name": "Sweet Tea (Medium, 32 oz)", "portion_size": "32 fl oz",
+      "calories": 440, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 15,
+      "carbohydrate_g": 116, "dietary_fiber_g": 0, "sugar_g": 116, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "notes": "Southern sweet tea — more sugar than a Coke"
+    },
+    {
+      "id": "wb_unsweet_tea", "category_id": "whataburger_drinks",
+      "name": "Unsweetened Tea (Medium, 32 oz)", "portion_size": "32 fl oz",
+      "calories": 10, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 15,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "notes": "Unsweetened iced tea — essentially zero-calorie"
+    },
+    {
+      "id": "wb_water", "category_id": "whataburger_drinks",
+      "name": "Water", "portion_size": "1 bottle",
+      "calories": 0, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 0,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false,
+      "notes": "Water"
+    }
+  ],
+  "template_meals": [
+    {
+      "id": "whataburger_classic_meal",
+      "name": "Whataburger Meal",
+      "description": "The classic #1 Whataburger with medium fries and a Coke",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["wb_whataburger", "wb_medium_fries", "wb_medium_soda"],
+      "totals": {
+        "calories": 1320,
+        "total_fat_g": 46,
+        "protein_g": 34,
+        "carbohydrate_g": 200
+      }
+    },
+    {
+      "id": "whataburger_patty_melt_meal",
+      "name": "Patty Melt Meal",
+      "description": "Whataburger Patty Melt with medium fries and a sweet tea",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["wb_patty_melt", "wb_medium_fries", "wb_sweet_tea_medium"],
+      "totals": {
+        "calories": 1810,
+        "total_fat_g": 82,
+        "protein_g": 54,
+        "carbohydrate_g": 213
+      }
+    },
+    {
+      "id": "whataburger_honey_bbq_meal",
+      "name": "Honey BBQ Chicken Strip Sandwich Meal",
+      "description": "Honey BBQ Chicken Strip Sandwich with onion rings and a Coke",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["wb_honey_bbq_chicken_strip", "wb_medium_onion_rings", "wb_medium_soda"],
+      "totals": {
+        "calories": 1520,
+        "total_fat_g": 59,
+        "protein_g": 42,
+        "carbohydrate_g": 206
+      }
+    },
+    {
+      "id": "whataburger_bacon_cheese_meal",
+      "name": "Bacon & Cheese Whataburger Meal",
+      "description": "#5 Bacon & Cheese Whataburger with medium fries and a Coke",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["wb_bacon_cheese", "wb_medium_fries", "wb_medium_soda"],
+      "totals": {
+        "calories": 1480,
+        "total_fat_g": 58,
+        "protein_g": 44,
+        "carbohydrate_g": 200
+      }
+    },
+    {
+      "id": "whataburger_breakfast_taquito_meal",
+      "name": "Breakfast Taquito Meal",
+      "description": "Sausage, Egg & Cheese Taquito with medium fries and a sweet tea",
+      "meal_type": "combo",
+      "is_swap": false,
+      "ingredients": ["wb_taquito_sausage_egg_cheese", "wb_medium_fries", "wb_sweet_tea_medium"],
+      "totals": {
+        "calories": 1310,
+        "total_fat_g": 48,
+        "protein_g": 24,
+        "carbohydrate_g": 196
+      }
+    },
+    {
+      "id": "whataburger_lean_jr_swap",
+      "name": "Lean Whataburger Jr. (No Fries + Diet Drink)",
+      "description": "Whataburger Jr. with apple slices and diet drink. Same burger taste, fraction of the calories.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "whataburger_classic_meal",
+      "swap_rationale": "Jr. saves 280 cal vs the full Whataburger. Apple slices instead of fries saves 390 cal. Diet drink saves 310 cal. Total saved: ~980 cal. You keep 14g protein from the burger.",
+      "ingredients": ["wb_whataburger_jr", "wb_apple_slices", "wb_diet_soda"],
+      "totals": {
+        "calories": 340,
+        "total_fat_g": 11,
+        "protein_g": 14,
+        "carbohydrate_g": 45
+      }
+    },
+    {
+      "id": "whataburger_lean_grilled_chicken_swap",
+      "name": "Lean Grilled Chicken (Small Fries + Unsweet Tea)",
+      "description": "Grilled Chicken Sandwich with small fries and unsweetened tea. High protein, real food.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "whataburger_bacon_cheese_meal",
+      "swap_rationale": "Grilled chicken saves 320 cal vs Bacon & Cheese burger. Small fries saves 150 cal vs medium. Unsweet tea saves 300 cal vs soda. Total saved: ~770 cal. You get 36g protein — nearly the same as the original 44g.",
+      "ingredients": ["wb_grilled_chicken", "wb_small_fries", "wb_unsweet_tea"],
+      "totals": {
+        "calories": 710,
+        "total_fat_g": 26,
+        "protein_g": 36,
+        "carbohydrate_g": 82
+      }
+    },
+    {
+      "id": "whataburger_lean_double_jr_swap",
+      "name": "Lean Double Meat Jr. (Apple Slices + Water)",
+      "description": "Double Meat Whataburger Jr. with apple slices and water. Two patties, 24g protein, under 500 cal.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "whataburger_patty_melt_meal",
+      "swap_rationale": "Double Meat Jr. gives you 24g protein for only 420 cal (vs Patty Melt at 950 cal). Apple slices replace fries. Water replaces sweet tea. Total saved: ~1360 cal. Protein drops from 54g to 24g but you save a massive amount of fat and sugar.",
+      "ingredients": ["wb_double_meat_jr", "wb_apple_slices", "wb_water"],
+      "totals": {
+        "calories": 450,
+        "total_fat_g": 20,
+        "protein_g": 24,
+        "carbohydrate_g": 45
+      }
+    },
+    {
+      "id": "whataburger_lean_salad_swap",
+      "name": "Lean Grilled Chicken Salad (No Fries + Diet Drink)",
+      "description": "Garden Salad with Grilled Chicken and a diet drink. Maximum protein, minimum everything else.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "whataburger_honey_bbq_meal",
+      "swap_rationale": "Grilled chicken salad has 290 cal and 34g protein — more protein per calorie than anything on the menu. Swapping out the 910-cal Honey BBQ sandwich, onion rings, and soda saves ~1230 cal. Protein goes from 42g to 34g (81% retained).",
+      "ingredients": ["wb_garden_salad_grilled", "wb_diet_soda"],
+      "totals": {
+        "calories": 290,
+        "total_fat_g": 12,
+        "protein_g": 34,
+        "carbohydrate_g": 12
+      }
+    },
+    {
+      "id": "whataburger_lean_breakfast_swap",
+      "name": "Lean Breakfast (Egg Sandwich + Water)",
+      "description": "Simple Egg Sandwich with water. Clean breakfast, 20g protein, 310 cal.",
+      "meal_type": "combo",
+      "is_swap": true,
+      "swap_for": "whataburger_breakfast_taquito_meal",
+      "swap_rationale": "Egg Sandwich saves 140 cal vs sausage taquito and has more protein (20g vs 19g). Dropping fries and sweet tea saves another 860 cal. Total saved: ~1000 cal. Protein actually goes UP from 19g (taquito alone) to 20g.",
+      "ingredients": ["wb_egg_sandwich", "wb_water"],
+      "totals": {
+        "calories": 310,
+        "total_fat_g": 13,
+        "protein_g": 20,
+        "carbohydrate_g": 28
+      }
+    }
+  ]
+}

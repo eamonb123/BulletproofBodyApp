@@ -1,0 +1,415 @@
+{
+  "restaurant": {
+    "id": "chipotle",
+    "name": "Chipotle Mexican Grill",
+    "logo_emoji": "🌯",
+    "cuisine": "Mexican",
+    "website": "https://www.chipotle.com",
+    "nutrition_source": "US-Nutrition-Facts-Paper-Menu-3-2025.pdf (Chipotle official, March 2025)"
+  },
+  "meal_ranges": {
+    "burrito": [740, 1210],
+    "bowl": [420, 910],
+    "tacos": [390, 1140],
+    "salad": [420, 910]
+  },
+  "categories": [
+    { "id": "chipotle_shells", "name": "Shells & Tortillas", "display_order": 1, "selection_type": "single", "description": "Base wrapper" },
+    { "id": "chipotle_rice", "name": "Rice", "display_order": 2, "selection_type": "single", "description": "Rice choice" },
+    { "id": "chipotle_beans", "name": "Beans", "display_order": 3, "selection_type": "single", "description": "Bean choice" },
+    { "id": "chipotle_protein", "name": "Protein", "display_order": 4, "selection_type": "single", "description": "Protein choice" },
+    { "id": "chipotle_salsa", "name": "Salsa", "display_order": 5, "selection_type": "multiple", "description": "Salsa choices" },
+    { "id": "chipotle_toppings", "name": "Toppings", "display_order": 6, "selection_type": "multiple", "description": "Additional toppings" },
+    { "id": "chipotle_extras", "name": "Extras", "display_order": 7, "selection_type": "multiple", "description": "Premium extras" },
+    { "id": "chipotle_sides", "name": "Sides", "display_order": 8, "selection_type": "optional", "description": "Side items" },
+    { "id": "chipotle_drinks", "name": "Drinks", "display_order": 9, "selection_type": "optional", "description": "Beverages" }
+  ],
+  "ingredients": [
+    {
+      "id": "chip_flour_tortilla_burrito", "category_id": "chipotle_shells",
+      "name": "Flour Tortilla (Burrito)", "portion_size": "1 ea",
+      "calories": 320, "calories_from_fat": 80,
+      "total_fat_g": 9, "saturated_fat_g": 0.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 600,
+      "carbohydrate_g": 50, "dietary_fiber_g": 3, "sugar_g": 0, "protein_g": 8,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "chip_flour_tortilla_taco", "category_id": "chipotle_shells",
+      "name": "Flour Tortilla (Taco)", "portion_size": "1 ea",
+      "calories": 80, "calories_from_fat": 25,
+      "total_fat_g": 2.5, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 160,
+      "carbohydrate_g": 13, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 2,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_crispy_corn_tortilla", "category_id": "chipotle_shells",
+      "name": "Crispy Corn Tortilla", "portion_size": "1 ea",
+      "calories": 70, "calories_from_fat": 25,
+      "total_fat_g": 3, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 10,
+      "carbohydrate_g": 10, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_brown_rice", "category_id": "chipotle_rice",
+      "name": "Cilantro-Lime Brown Rice", "portion_size": "4 oz",
+      "calories": 210, "calories_from_fat": 50,
+      "total_fat_g": 6, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 190,
+      "carbohydrate_g": 36, "dietary_fiber_g": 2, "sugar_g": 0, "protein_g": 4,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_white_rice", "category_id": "chipotle_rice",
+      "name": "Cilantro-Lime White Rice", "portion_size": "4 oz",
+      "calories": 210, "calories_from_fat": 35,
+      "total_fat_g": 4, "saturated_fat_g": 1, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 350,
+      "carbohydrate_g": 40, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 4,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "chip_black_beans", "category_id": "chipotle_beans",
+      "name": "Black Beans", "portion_size": "4 oz",
+      "calories": 130, "calories_from_fat": 15,
+      "total_fat_g": 1.5, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 210,
+      "carbohydrate_g": 22, "dietary_fiber_g": 7, "sugar_g": 2, "protein_g": 8,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "chip_pinto_beans", "category_id": "chipotle_beans",
+      "name": "Pinto Beans", "portion_size": "4 oz",
+      "calories": 130, "calories_from_fat": 15,
+      "total_fat_g": 1.5, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 210,
+      "carbohydrate_g": 21, "dietary_fiber_g": 8, "sugar_g": 1, "protein_g": 8,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_fajita_veggies", "category_id": "chipotle_toppings",
+      "name": "Fajita Veggies", "portion_size": "2 oz",
+      "calories": 20, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 150,
+      "carbohydrate_g": 5, "dietary_fiber_g": 1, "sugar_g": 2, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_chicken", "category_id": "chipotle_protein",
+      "name": "Chicken", "portion_size": "4 oz",
+      "calories": 180, "calories_from_fat": 60,
+      "total_fat_g": 7, "saturated_fat_g": 3, "trans_fat_g": 0,
+      "cholesterol_mg": 125, "sodium_mg": 310,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 32,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "chip_steak", "category_id": "chipotle_protein",
+      "name": "Steak", "portion_size": "4 oz",
+      "calories": 150, "calories_from_fat": 60,
+      "total_fat_g": 6, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 80, "sodium_mg": 330,
+      "carbohydrate_g": 1, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 21,
+      "is_default": false, "is_premium": true
+    },
+    {
+      "id": "chip_barbacoa", "category_id": "chipotle_protein",
+      "name": "Barbacoa", "portion_size": "4 oz",
+      "calories": 170, "calories_from_fat": 60,
+      "total_fat_g": 7, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 65, "sodium_mg": 530,
+      "carbohydrate_g": 2, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 24,
+      "is_default": false, "is_premium": true
+    },
+    {
+      "id": "chip_carnitas", "category_id": "chipotle_protein",
+      "name": "Carnitas", "portion_size": "4 oz",
+      "calories": 210, "calories_from_fat": 120,
+      "total_fat_g": 12, "saturated_fat_g": 7, "trans_fat_g": 0,
+      "cholesterol_mg": 65, "sodium_mg": 450,
+      "carbohydrate_g": 0, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 23,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_sofritas", "category_id": "chipotle_protein",
+      "name": "Sofritas", "portion_size": "4 oz",
+      "calories": 150, "calories_from_fat": 80,
+      "total_fat_g": 10, "saturated_fat_g": 1.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 560,
+      "carbohydrate_g": 9, "dietary_fiber_g": 3, "sugar_g": 5, "protein_g": 8,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_veggie", "category_id": "chipotle_protein",
+      "name": "Veggie (Guacamole + Beans)", "portion_size": "4 oz",
+      "calories": 230, "calories_from_fat": 170,
+      "total_fat_g": 18, "saturated_fat_g": 12, "trans_fat_g": 1,
+      "cholesterol_mg": 60, "sodium_mg": 490,
+      "carbohydrate_g": 7, "dietary_fiber_g": 0, "sugar_g": 2, "protein_g": 10,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_fresh_tomato_salsa", "category_id": "chipotle_salsa",
+      "name": "Fresh Tomato Salsa", "portion_size": "4 oz",
+      "calories": 25, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 550,
+      "carbohydrate_g": 4, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 0,
+      "is_default": true, "is_premium": false
+    },
+    {
+      "id": "chip_roasted_chili_corn", "category_id": "chipotle_salsa",
+      "name": "Roasted Chili-Corn Salsa", "portion_size": "4 oz",
+      "calories": 80, "calories_from_fat": 15,
+      "total_fat_g": 1.5, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 330,
+      "carbohydrate_g": 16, "dietary_fiber_g": 3, "sugar_g": 4, "protein_g": 3,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_tomatillo_green", "category_id": "chipotle_salsa",
+      "name": "Tomatillo-Green Chili Salsa", "portion_size": "2 fl oz",
+      "calories": 15, "calories_from_fat": 5,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 260,
+      "carbohydrate_g": 4, "dietary_fiber_g": 0, "sugar_g": 2, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_tomatillo_red", "category_id": "chipotle_salsa",
+      "name": "Tomatillo-Red Chili Salsa", "portion_size": "2 fl oz",
+      "calories": 30, "calories_from_fat": 5,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 500,
+      "carbohydrate_g": 4, "dietary_fiber_g": 1, "sugar_g": 1, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_cheese", "category_id": "chipotle_toppings",
+      "name": "Cheese", "portion_size": "1 oz",
+      "calories": 110, "calories_from_fat": 70,
+      "total_fat_g": 8, "saturated_fat_g": 5, "trans_fat_g": 0,
+      "cholesterol_mg": 30, "sodium_mg": 190,
+      "carbohydrate_g": 1, "dietary_fiber_g": 0, "sugar_g": 0, "protein_g": 6,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_sour_cream", "category_id": "chipotle_toppings",
+      "name": "Sour Cream", "portion_size": "2 oz",
+      "calories": 110, "calories_from_fat": 90,
+      "total_fat_g": 9, "saturated_fat_g": 7, "trans_fat_g": 0,
+      "cholesterol_mg": 40, "sodium_mg": 30,
+      "carbohydrate_g": 2, "dietary_fiber_g": 0, "sugar_g": 2, "protein_g": 2,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_romaine_lettuce", "category_id": "chipotle_toppings",
+      "name": "Romaine Lettuce", "portion_size": "1 oz",
+      "calories": 5, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 5,
+      "carbohydrate_g": 1, "dietary_fiber_g": 1, "sugar_g": 0, "protein_g": 0,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_supergreens", "category_id": "chipotle_toppings",
+      "name": "Supergreens Salad Mix", "portion_size": "3 oz",
+      "calories": 15, "calories_from_fat": 0,
+      "total_fat_g": 0, "saturated_fat_g": 0, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 15,
+      "carbohydrate_g": 3, "dietary_fiber_g": 2, "sugar_g": 1, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_guac_side", "category_id": "chipotle_extras",
+      "name": "Guacamole (topping/side)", "portion_size": "4 oz",
+      "calories": 230, "calories_from_fat": 190,
+      "total_fat_g": 22, "saturated_fat_g": 3.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 370,
+      "carbohydrate_g": 8, "dietary_fiber_g": 6, "sugar_g": 1, "protein_g": 2,
+      "is_default": false, "is_premium": true
+    },
+    {
+      "id": "chip_queso_blanco_side", "category_id": "chipotle_extras",
+      "name": "Queso Blanco (side)", "portion_size": "4 oz",
+      "calories": 230, "calories_from_fat": 170,
+      "total_fat_g": 18, "saturated_fat_g": 12, "trans_fat_g": 1,
+      "cholesterol_mg": 60, "sodium_mg": 490,
+      "carbohydrate_g": 7, "dietary_fiber_g": 0, "sugar_g": 2, "protein_g": 10,
+      "is_default": false, "is_premium": true
+    },
+    {
+      "id": "chip_chips_regular", "category_id": "chipotle_sides",
+      "name": "Chips (regular)", "portion_size": "4 oz",
+      "calories": 540, "calories_from_fat": 230,
+      "total_fat_g": 25, "saturated_fat_g": 3.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 390,
+      "carbohydrate_g": 73, "dietary_fiber_g": 7, "sugar_g": 1, "protein_g": 7,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_chips_large", "category_id": "chipotle_sides",
+      "name": "Chips (large)", "portion_size": "6 oz",
+      "calories": 810, "calories_from_fat": 350,
+      "total_fat_g": 38, "saturated_fat_g": 5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 590,
+      "carbohydrate_g": 110, "dietary_fiber_g": 11, "sugar_g": 2, "protein_g": 11,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_chips_guac", "category_id": "chipotle_sides",
+      "name": "Chips & Guacamole", "portion_size": "~6 oz",
+      "calories": 770, "calories_from_fat": 420,
+      "total_fat_g": 47, "saturated_fat_g": 7, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 760,
+      "carbohydrate_g": 81, "dietary_fiber_g": 13, "sugar_g": 2, "protein_g": 9,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_chips_queso", "category_id": "chipotle_sides",
+      "name": "Chips & Queso Blanco", "portion_size": "~6 oz",
+      "calories": 780, "calories_from_fat": 400,
+      "total_fat_g": 43, "saturated_fat_g": 15.5, "trans_fat_g": 1,
+      "cholesterol_mg": 60, "sodium_mg": 880,
+      "carbohydrate_g": 80, "dietary_fiber_g": 7, "sugar_g": 3, "protein_g": 17,
+      "is_default": false, "is_premium": false
+    },
+    {
+      "id": "chip_honey_vinaigrette", "category_id": "chipotle_toppings",
+      "name": "Chipotle-Honey Vinaigrette", "portion_size": "2 fl oz",
+      "calories": 220, "calories_from_fat": 140,
+      "total_fat_g": 16, "saturated_fat_g": 2.5, "trans_fat_g": 0,
+      "cholesterol_mg": 0, "sodium_mg": 450,
+      "carbohydrate_g": 18, "dietary_fiber_g": 1, "sugar_g": 2, "protein_g": 1,
+      "is_default": false, "is_premium": false
+    }
+  ],
+  "template_meals": [
+    {
+      "id": "chip_chicken_burrito",
+      "name": "Chicken Burrito",
+      "description": "The classic: flour tortilla, white rice, black beans, chicken, cheese, sour cream",
+      "meal_type": "burrito",
+      "is_swap": false,
+      "ingredients": [
+        "chip_flour_tortilla_burrito", "chip_white_rice", "chip_black_beans",
+        "chip_chicken", "chip_cheese", "chip_sour_cream", "chip_fresh_tomato_salsa"
+      ]
+    },
+    {
+      "id": "chip_chicken_bowl",
+      "name": "Chicken Bowl",
+      "description": "White rice, black beans, chicken, cheese, sour cream, salsa in a bowl",
+      "meal_type": "bowl",
+      "is_swap": false,
+      "ingredients": [
+        "chip_white_rice", "chip_black_beans", "chip_chicken",
+        "chip_cheese", "chip_sour_cream", "chip_fresh_tomato_salsa"
+      ]
+    },
+    {
+      "id": "chip_steak_burrito",
+      "name": "Steak Burrito",
+      "description": "Flour tortilla, white rice, pinto beans, steak, cheese, sour cream, corn salsa",
+      "meal_type": "burrito",
+      "is_swap": false,
+      "ingredients": [
+        "chip_flour_tortilla_burrito", "chip_white_rice", "chip_pinto_beans",
+        "chip_steak", "chip_cheese", "chip_sour_cream", "chip_roasted_chili_corn"
+      ]
+    },
+    {
+      "id": "chip_barbacoa_bowl",
+      "name": "Barbacoa Bowl",
+      "description": "White rice, black beans, barbacoa, cheese, sour cream, salsa",
+      "meal_type": "bowl",
+      "is_swap": false,
+      "ingredients": [
+        "chip_white_rice", "chip_black_beans", "chip_barbacoa",
+        "chip_cheese", "chip_sour_cream", "chip_fresh_tomato_salsa"
+      ]
+    },
+    {
+      "id": "chip_chicken_tacos",
+      "name": "Chicken Tacos (3)",
+      "description": "3 crispy corn tortillas, chicken, cheese, salsa, lettuce",
+      "meal_type": "tacos",
+      "is_swap": false,
+      "ingredients": [
+        { "id": "chip_crispy_corn_tortilla", "quantity": 3 },
+        "chip_chicken", "chip_cheese", "chip_fresh_tomato_salsa", "chip_romaine_lettuce"
+      ]
+    },
+    {
+      "id": "chip_chicken_bowl_lean",
+      "name": "Lean Chicken Bowl",
+      "description": "Brown rice, black beans, chicken, fajita veggies, salsa, lettuce - no cheese, no sour cream",
+      "meal_type": "bowl",
+      "is_swap": true,
+      "swap_for": "chip_chicken_burrito",
+      "swap_rationale": "Skip the tortilla (320 cal), cheese (110 cal), and sour cream (110 cal). Add fajita veggies for volume. Same Chipotle, ~500 fewer calories.",
+      "ingredients": [
+        "chip_brown_rice", "chip_black_beans", "chip_chicken",
+        "chip_fajita_veggies", "chip_fresh_tomato_salsa",
+        "chip_tomatillo_green", "chip_romaine_lettuce"
+      ]
+    },
+    {
+      "id": "chip_steak_bowl_lean",
+      "name": "Lean Steak Bowl",
+      "description": "Brown rice, pinto beans, steak, fajita veggies, salsa, lettuce",
+      "meal_type": "bowl",
+      "is_swap": true,
+      "swap_for": "chip_steak_burrito",
+      "swap_rationale": "Drop the tortilla and sour cream. Steak is already leaner than you think - 150 cal for 21g protein.",
+      "ingredients": [
+        "chip_brown_rice", "chip_pinto_beans", "chip_steak",
+        "chip_fajita_veggies", "chip_roasted_chili_corn", "chip_romaine_lettuce"
+      ]
+    },
+    {
+      "id": "chip_barbacoa_bowl_lean",
+      "name": "Lean Barbacoa Bowl",
+      "description": "Brown rice, black beans, barbacoa, fajita veggies, salsa, lettuce - no guac, no sour cream",
+      "meal_type": "bowl",
+      "is_swap": true,
+      "swap_for": "chip_barbacoa_bowl",
+      "swap_rationale": "Guac is 230 cal and sour cream is 110 cal. That's 340 cal of toppings. Barbacoa + salsa is already flavorful.",
+      "ingredients": [
+        "chip_brown_rice", "chip_black_beans", "chip_barbacoa",
+        "chip_fajita_veggies", "chip_fresh_tomato_salsa",
+        "chip_tomatillo_green", "chip_romaine_lettuce"
+      ]
+    },
+    {
+      "id": "chip_chicken_salad",
+      "name": "Chicken Supergreens Salad",
+      "description": "Supergreens base, chicken, fajita veggies, corn salsa, tomatillo green - no rice, no cheese",
+      "meal_type": "salad",
+      "is_swap": true,
+      "swap_for": "chip_chicken_bowl",
+      "swap_rationale": "Swap the rice base for supergreens. Keeps the protein, drops 210 cal from rice alone.",
+      "ingredients": [
+        "chip_supergreens", "chip_chicken", "chip_fajita_veggies",
+        "chip_roasted_chili_corn", "chip_tomatillo_green"
+      ]
+    },
+    {
+      "id": "chip_chicken_tacos_lean",
+      "name": "Lean Chicken Tacos (2)",
+      "description": "2 crispy corn tortillas, chicken, fajita veggies, salsa, lettuce - keep the taco vibe with fewer shell/cheese calories",
+      "meal_type": "tacos",
+      "is_swap": true,
+      "swap_for": "chip_chicken_tacos",
+      "swap_rationale": "Drop one shell and skip cheese. Add fajita veggies + green salsa for volume and flavor while keeping taco texture.",
+      "ingredients": [
+        { "id": "chip_crispy_corn_tortilla", "quantity": 2 },
+        "chip_chicken", "chip_fajita_veggies", "chip_fresh_tomato_salsa",
+        "chip_tomatillo_green", "chip_romaine_lettuce"
+      ]
+    }
+  ]
+}
