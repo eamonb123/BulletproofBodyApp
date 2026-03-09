@@ -506,7 +506,7 @@ export default function BiblePage() {
                             name={r.name}
                             className="h-full w-full transition-transform group-hover:scale-110"
                             imageClassName="h-auto w-auto"
-                            maxSize={92}
+                            maxSize={LOGO_OVERRIDES[r.id]?.size ?? 96}
                             placeholderClassName="text-lg font-semibold tracking-wide text-zinc-400"
                           />
                         </div>
