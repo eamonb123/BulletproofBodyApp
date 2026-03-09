@@ -385,48 +385,7 @@ export default function BiblePage() {
         ) : (
           <LayoutGroup>
             <AnimatePresence mode="wait">
-              {/* ─── Search Results (meal-level matches) ── */}
-              {query && searchMealResults.length > 0 && (
-                <motion.div
-                  key="search-meals"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="space-y-6"
-                >
-                  <p className="text-base font-medium uppercase tracking-wider text-zinc-400">
-                    Menu items matching &ldquo;{searchQuery}&rdquo;
-                  </p>
-                  {searchMealResults.map(({ restaurant, meals }) => (
-                    <div key={restaurant.id}>
-                      <button
-                        onClick={() => {
-                          setSearchQuery("");
-                          setSelectedId(restaurant.id);
-                        }}
-                        className="mb-3 flex items-center gap-2 text-lg text-zinc-400 transition-colors hover:text-emerald-400"
-                      >
-                        <RestaurantLogo
-                          id={restaurant.id}
-                          name={restaurant.name}
-                          className="h-6 w-6 overflow-hidden rounded-md border border-zinc-700"
-                          imageClassName="h-full w-full object-contain p-0.5"
-                          placeholderClassName="text-sm font-semibold tracking-wide text-zinc-400"
-                        />
-                        <span className="font-medium">{restaurant.name}</span>
-                        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                        </svg>
-                      </button>
-                      <div className="space-y-2">
-                        {meals.map((meal) => (
-                          <MealSearchResult key={meal.id} meal={meal} />
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </motion.div>
-              )}
+              {/* ─── Search Results (meal-level matches) ── only inside a restaurant */}
 
               {/* ─── Restaurant Grid (Browse) ──────── */}
               {!selectedId && viewMode === "browse" && (!query || filteredRestaurants.length > 0) && (
@@ -546,7 +505,6 @@ export default function BiblePage() {
               {/* ─── No results state ─────────────── */}
               {query &&
                 filteredRestaurants.length === 0 &&
-                searchMealResults.length === 0 &&
                 !selectedId && (
                   <motion.div
                     key="empty"
