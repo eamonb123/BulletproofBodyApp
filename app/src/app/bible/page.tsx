@@ -341,7 +341,7 @@ export default function BiblePage() {
         </div>
       </header>
 
-      <main className={`mx-auto px-4 pb-20 pt-4 ${viewMode === "glance" ? "max-w-6xl" : "max-w-3xl"}`}>
+      <main className={`mx-auto px-4 pb-20 pt-4 ${viewMode === "glance" ? "max-w-[95vw]" : "max-w-3xl"}`}>
         {/* Search bar */}
         <div className="sticky top-0 z-10 bg-black pb-4 pt-2">
           <div className="relative">
@@ -492,7 +492,7 @@ export default function BiblePage() {
                       Restaurants
                     </p>
                   )}
-                  <div className="grid grid-cols-5 gap-2 sm:grid-cols-6 md:grid-cols-7">
+                  <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-9 xl:grid-cols-11">
                     {filteredRestaurants.map((r) => (
                       <motion.button
                         key={r.id}
