@@ -4,11 +4,13 @@ services:
     runtime: node
     plan: free
     rootDir: app
-    buildCommand: npm install && npm run build
+    buildCommand: npm install && npm run build && cp -n ../bulletproof_body.db /data/bulletproof_body.db 2>/dev/null || true
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
+      - key: DB_PATH
+        value: /data/bulletproof_body.db
       - key: RESEND_API_KEY
         sync: false
       - key: GHL_API_KEY

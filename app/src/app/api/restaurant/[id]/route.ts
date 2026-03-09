@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import Database from "better-sqlite3";
-import path from "path";
-
-const DB_PATH = path.join(process.cwd(), "..", "bulletproof_body.db");
+import { DB_PATH } from "@/lib/db";
 
 export async function GET(
   _request: Request,

@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Database from "better-sqlite3";
-import path from "path";
+import { DB_PATH } from "@/lib/db";
 import { randomUUID } from "crypto";
-
-const DB_PATH = path.join(process.cwd(), "..", "bulletproof_body.db");
 
 function getDb() {
   return new Database(DB_PATH);

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-type FlowStep = "landing" | "frequency" | "restaurant" | "orders" | "reveal";
+type FlowStep = "landing" | "restaurant" | "reveal";
 
 interface Restaurant {
   id: string;
@@ -238,7 +238,7 @@ export default function JumperPage() {
   const [restaurantsLoading, setRestaurantsLoading] = useState(true);
   const [restaurantsError, setRestaurantsError] = useState<string | null>(null);
 
-  const [frequency, setFrequency] = useState(4);
+  const frequency = 4;
   const [selectedRestaurantId, setSelectedRestaurantId] = useState<string | null>(null);
   const [selectedPairIdx, setSelectedPairIdx] = useState(0);
   const [selectedOrderIdsByRestaurant, setSelectedOrderIdsByRestaurant] = useState<
@@ -256,7 +256,6 @@ export default function JumperPage() {
   const [syncingRemote, setSyncingRemote] = useState(false);
 
   const applyRemoteSession = useCallback((session: JumperApiSession) => {
-    setFrequency(clampFrequency(session.frequency));
     setSelectedRestaurantId(session.selectedRestaurantId);
     setSelectedOrderIdsByRestaurant(session.selectedOrderIdsByRestaurant ?? {});
   }, []);
@@ -348,7 +347,6 @@ export default function JumperPage() {
 
     requestAnimationFrame(() => {
       if (loaded) {
-        setFrequency(clampFrequency(loaded.frequency));
         setSelectedRestaurantId(loaded.selectedRestaurantId);
         setSelectedOrderIdsByRestaurant(loaded.selectedOrderIdsByRestaurant);
       }
@@ -457,7 +455,7 @@ export default function JumperPage() {
     return pairs.filter((pair) => selected.has(pair.original.id));
   }, [pairs, selectedOriginalIds]);
 
-  const revealPairs = selectedPairs.length > 0 ? selectedPairs : pairs;
+  const revealPairs = pairs;
   const activePairIdx =
     selectedPairIdx >= 0 && selectedPairIdx < revealPairs.length ? selectedPairIdx : 0;
   const selectedPair = revealPairs[activePairIdx] ?? null;
@@ -467,16 +465,17 @@ export default function JumperPage() {
   const projectedFatLoss = weeklySaved / 3500;
 
   const hasSessionDraft =
-    frequency !== 4 || selectedRestaurantId !== null || Object.keys(selectedOrderIdsByRestaurant).length > 0;
+    selectedRestaurantId !== null || Object.keys(selectedOrderIdsByRestaurant).length > 0;
 
   function pickRestaurant(restaurantId: string) {
     setSelectedRestaurantId(restaurantId);
     setSelectedPairIdx(0);
   }
 
-  function continueToOrders() {
+  function continueToRevealFromRestaurant() {
     if (!selectedRestaurantId) return;
-    setStep("orders");
+    setSelectedPairIdx(0);
+    setStep("reveal");
   }
 
   function toggleOrderSelection(originalId: string) {
@@ -576,10 +575,10 @@ export default function JumperPage() {
 
   function resumeSession() {
     if (selectedRestaurantId) {
-      setStep("orders");
+      setStep("reveal");
       return;
     }
-    setStep("frequency");
+    setStep("restaurant");
   }
 
   function useLocalOnlyMode() {
@@ -596,7 +595,7 @@ export default function JumperPage() {
       <header className="mx-auto w-full max-w-4xl py-5">
         <div className="flex items-center justify-between">
           <Link
-            href="/"
+            href="/directory"
             className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-400 hover:text-zinc-200"
           >
             Back
@@ -612,52 +611,6 @@ export default function JumperPage() {
       </header>
 
       <main className="mx-auto w-full max-w-4xl">
-        <section className="mb-4 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4">
-          <p className="text-sm font-semibold uppercase tracking-wider text-zinc-300">
-            Cross-Device Session Memory
-          </p>
-          <p className="mt-1 text-base text-zinc-300">
-            Enter client name or email once. Picks auto-save and auto-load.
-          </p>
-
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            <input
-              type="text"
-              value={profileNameInput}
-              onChange={(event) => setProfileNameInput(event.target.value)}
-              placeholder="Client name or email"
-              className="h-10 w-64 rounded-lg border border-zinc-700 bg-zinc-950 px-3 text-base text-white placeholder-zinc-500 outline-none focus:border-emerald-500"
-            />
-            <button
-              onClick={handleCreateOrLoadProfile}
-              disabled={profileLoading || !profileNameInput.trim()}
-              className="h-10 rounded-lg bg-emerald-500 px-3 text-sm font-semibold uppercase tracking-wider text-black disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400"
-            >
-              {profileLoading ? "Loading..." : "Load Or Create"}
-            </button>
-            {activeProfile && (
-              <button
-                onClick={useLocalOnlyMode}
-                className="h-10 rounded-lg border border-zinc-700 bg-zinc-900 px-3 text-sm font-semibold uppercase tracking-wider text-zinc-300"
-              >
-                Use Local Only
-              </button>
-            )}
-          </div>
-
-          {activeProfile && (
-            <p className="mt-2 text-sm text-emerald-300">
-              Synced as {activeProfile.name}
-              {syncingRemote ? " • Saving..." : " • Saved"}
-              {planRows.length > 0 ? ` • ${planRows.length} plan rows` : ""}
-            </p>
-          )}
-
-          {profileError && (
-            <p className="mt-2 text-sm text-rose-300">{profileError}</p>
-          )}
-        </section>
-
         <AnimatePresence mode="wait">
           {step === "landing" && (
             <motion.section
@@ -678,7 +631,7 @@ export default function JumperPage() {
               </p>
 
               <button
-                onClick={() => setStep("frequency")}
+                onClick={() => setStep("restaurant")}
                 className="mt-6 w-full rounded-xl bg-emerald-500 px-4 py-3 text-lg font-semibold text-black transition hover:bg-emerald-400"
               >
                 Show Me My Biggest Jumper
@@ -692,50 +645,6 @@ export default function JumperPage() {
                   Resume Last Session
                 </button>
               )}
-            </motion.section>
-          )}
-
-          {step === "frequency" && (
-            <motion.section
-              key="frequency"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="rounded-3xl border border-zinc-800 bg-zinc-900/60 p-6"
-            >
-              <h2 className="text-3xl font-bold text-white">How many takeout orders per week?</h2>
-              <p className="mt-2 text-lg text-zinc-300">This sets your projected weekly impact.</p>
-
-              <div className="mt-5 grid grid-cols-4 gap-2 sm:grid-cols-7">
-                {[1, 2, 3, 4, 5, 6, 7].map((count) => (
-                  <button
-                    key={count}
-                    onClick={() => setFrequency(count)}
-                    className={`rounded-xl border px-3 py-3 text-lg font-semibold transition ${
-                      frequency === count
-                        ? "border-emerald-400 bg-emerald-500/25 text-emerald-200"
-                        : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-zinc-500"
-                    }`}
-                  >
-                    {count}x
-                  </button>
-                ))}
-              </div>
-
-              <div className="mt-6 flex gap-2">
-                <button
-                  onClick={() => setStep("landing")}
-                  className="flex-1 rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-base font-semibold text-zinc-200"
-                >
-                  Back
-                </button>
-                <button
-                  onClick={() => setStep("restaurant")}
-                  className="flex-1 rounded-xl bg-emerald-500 px-4 py-3 text-base font-semibold text-black"
-                >
-                  Continue
-                </button>
-              </div>
             </motion.section>
           )}
 
@@ -786,109 +695,14 @@ export default function JumperPage() {
 
               <div className="mt-6 flex gap-2">
                 <button
-                  onClick={() => setStep("frequency")}
+                  onClick={() => setStep("landing")}
                   className="flex-1 rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-base font-semibold text-zinc-200"
                 >
                   Back
                 </button>
                 <button
-                  onClick={continueToOrders}
+                  onClick={continueToRevealFromRestaurant}
                   disabled={!selectedRestaurantId}
-                  className="flex-1 rounded-xl bg-emerald-500 px-4 py-3 text-base font-semibold text-black disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400"
-                >
-                  Continue To Orders
-                </button>
-              </div>
-            </motion.section>
-          )}
-
-          {step === "orders" && (
-            <motion.section
-              key="orders"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="rounded-3xl border border-zinc-800 bg-zinc-900/60 p-6"
-            >
-              <h2 className="text-3xl font-bold text-white">Pick your usual orders</h2>
-              <p className="mt-2 text-lg text-zinc-300">
-                We pre-select likely jumpers. Uncheck anything that is not you.
-              </p>
-
-              {selectedRestaurant && (
-                <p className="mt-3 text-base font-semibold text-emerald-300">{selectedRestaurant.name}</p>
-              )}
-
-              {detailLoading && <p className="mt-5 text-base text-zinc-300">Loading order options...</p>}
-
-              {!detailLoading && pairs.length === 0 && (
-                <p className="mt-5 text-base text-zinc-300">
-                  No positive jumpers found for this restaurant yet. Pick another restaurant.
-                </p>
-              )}
-
-              {!detailLoading && pairs.length > 0 && (
-                <>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    <button
-                      onClick={autoSelectTopOrders}
-                      className="rounded-xl border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm font-semibold text-zinc-200"
-                    >
-                      Auto-Select Top 3
-                    </button>
-                    <button
-                      onClick={clearOrderSelection}
-                      className="rounded-xl border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm font-semibold text-zinc-200"
-                    >
-                      Clear All
-                    </button>
-                    <p className="self-center text-sm text-zinc-300">{selectedOriginalIds.length} selected</p>
-                  </div>
-
-                  <div className="mt-4 max-h-[52vh] space-y-2 overflow-y-auto pr-1">
-                    {pairs.map((pair) => {
-                      const checked = selectedOriginalIds.includes(pair.original.id);
-                      return (
-                        <button
-                          key={`${pair.original.id}-${pair.swap.id}`}
-                          onClick={() => toggleOrderSelection(pair.original.id)}
-                          className={`w-full rounded-xl border p-3 text-left transition ${
-                            checked
-                              ? "border-emerald-500/50 bg-emerald-500/10"
-                              : "border-zinc-700 bg-zinc-950/80 hover:border-zinc-500"
-                          }`}
-                        >
-                          <div className="flex items-start justify-between gap-3">
-                            <div>
-                              <p className="text-lg font-semibold text-white">
-                                {getMealEmoji(pair.original)} {pair.original.name}
-                              </p>
-                              <p className="mt-1 text-base text-zinc-300">
-                                {mealCalories(pair.original)} cal {"->"} {mealCalories(pair.swap)} cal
-                              </p>
-                            </div>
-                            <div className="text-right">
-                              <p className="text-lg font-bold text-emerald-300">-{pair.calSaved} cal</p>
-                              <p className="text-sm text-zinc-300">per order</p>
-                            </div>
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </>
-              )}
-
-              <div className="mt-6 flex gap-2">
-                <button
-                  onClick={() => setStep("restaurant")}
-                  className="flex-1 rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-base font-semibold text-zinc-200"
-                >
-                  Back
-                </button>
-                <button
-                  onClick={continueToReveal}
-                  disabled={selectedOriginalIds.length === 0 || pairs.length === 0}
                   className="flex-1 rounded-xl bg-emerald-500 px-4 py-3 text-base font-semibold text-black disabled:cursor-not-allowed disabled:bg-zinc-700 disabled:text-zinc-400"
                 >
                   Show My Biggest Jumper
@@ -963,12 +777,12 @@ export default function JumperPage() {
                       </button>
                       <button
                         onClick={() => {
-                          setStep("orders");
+                          setStep("restaurant");
                           setSelectedPairIdx(0);
                         }}
                         className="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-base font-semibold text-zinc-200"
                       >
-                        Edit My Order Picks
+                        Try Another Restaurant
                       </button>
                     </div>
 

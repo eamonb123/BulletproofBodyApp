@@ -1,8 +1,6 @@
 import Database from "better-sqlite3";
-import path from "path";
+import { DB_PATH } from "@/lib/db";
 import { buildInstacartSearchUrl, buildWalmartSearchUrl } from "@/lib/shopLinks";
-
-const DB_PATH = path.join(process.cwd(), "..", "bulletproof_body.db");
 
 export interface SnackItemView {
   id: string;
