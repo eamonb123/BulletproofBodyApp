@@ -3,21 +3,14 @@ services:
     name: bulletproof-body-app
     runtime: node
     plan: free
-    rootDir: app
-    buildCommand: npm install && npm run build && cp -n ../bulletproof_body.db /data/bulletproof_body.db 2>/dev/null || true
-    startCommand: npm start
+    buildCommand: cd app && npm install && npm run build
+    startCommand: cd app && npm start
     envVars:
       - key: NODE_ENV
         value: production
-      - key: DB_PATH
-        value: /data/bulletproof_body.db
       - key: RESEND_API_KEY
         sync: false
       - key: GHL_API_KEY
         sync: false
       - key: GHL_LOCATION_ID
         sync: false
-    disk:
-      name: bulletproof-body-data
-      mountPath: /data
-      sizeGB: 1
