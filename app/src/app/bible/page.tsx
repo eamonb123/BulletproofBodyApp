@@ -332,7 +332,9 @@ function HeroScreen({ restaurants, onSelectRestaurant }: { restaurants: Restaura
             <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
               Lose your next 10 lbs
               <br />
-              <span className="text-emerald-400">without giving up any of these.</span>
+              <span className="text-emerald-400">without giving up</span>
+              {" "}
+              <span style={{ fontFamily: "'TT Norms Pro', 'Poppins', 'Nunito', sans-serif", fontWeight: 800, letterSpacing: "-0.02em" }}>DoorDash</span>
             </h1>
           </motion.div>
 
@@ -1485,6 +1487,12 @@ function getCleanDrinkName(name: string): string {
   return map[name] || name.replace(/^(Small|Medium|Large)\s+/i, "");
 }
 
+// TODO: UX feedback — cart auto-adds meal items (sides/drink) silently. User didn't notice
+// items were added. Make the auto-add more obvious OR don't auto-add (let user explicitly pick).
+// TODO: UX feedback — concierge page feels "nauseously busy" after clean game experience.
+// Consider a simpler bridge page or piecemeal the transition more gradually.
+// TODO: UX feedback — swap the green color to "Want this done for everything you eat?" CTA
+// on the crossroads screen. Users click whatever is green regardless of copy.
 function MealBuilderModal({
   entree,
   sides,
@@ -2230,6 +2238,8 @@ function CartSwapView({
               )}
               <p className="mt-2 text-xs uppercase tracking-wider">
                 {revealed && bestSwap ? <span className="text-emerald-400">The smarter order</span>
+                  /* TODO: UX feedback — "Swap coming soon" feels like a dead end. Consider saying
+                     "All good — your order is already optimized! Let's find another meal." */
                   : revealed ? <span className="text-yellow-400">Swap coming soon</span>
                   : <span className="text-zinc-500">Optimized Meal</span>}
               </p>
@@ -3457,6 +3467,7 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
               className="flex items-center justify-center gap-3 mb-4">
               <span className="text-xs text-zinc-500">Orders per week:</span>
               <div className="flex gap-1">
+                {/* TODO: UX feedback — add 1 and 2 to this range. User said "I'm not eating it 3x/week" */}
                 {[3, 4, 5, 6, 7].map((n) => (
                   <button key={n} onClick={() => setOrdersPerWeek(n)}
                     className={`h-8 w-8 rounded-lg text-xs font-bold transition-all ${ordersPerWeek === n ? "bg-emerald-500 text-black" : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"}`}>
