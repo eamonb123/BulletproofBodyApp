@@ -67,72 +67,72 @@ function buildEmailHtml(data: {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="margin: 0; padding: 0; background-color: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <div style="max-width: 480px; margin: 0 auto; padding: 40px 24px;">
+<body style="margin: 0; padding: 0; background-color: #ffffff; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <div style="max-width: 520px; margin: 0 auto; padding: 40px 24px;">
 
     <!-- Headline -->
-    <h1 style="font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 16px;">
+    <h1 style="font-size: 26px; font-weight: 700; line-height: 1.3; margin-bottom: 24px; color: #111;">
       That one swap just changed the math.
     </h1>
 
     <!-- The proof -->
-    <p style="font-size: 15px; color: #a1a1aa; line-height: 1.7; margin-bottom: 8px;">
-      You picked your usual order at ${restaurant}. <strong style="color: #fff;">${data.swapName || "Your meal"}</strong>.
+    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 12px;">
+      You picked your usual order at ${restaurant}. <strong style="color: #111;">${data.swapName || "Your meal"}</strong>.
     </p>
-    <p style="font-size: 15px; color: #a1a1aa; line-height: 1.7; margin-bottom: 8px;">
-      Then you saw the swap. Same restaurant. Same vibe. <strong style="color: #34d399;">${data.calSavedPerOrder} fewer calories.</strong>
+    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 12px;">
+      Then you saw the swap. Same restaurant. Same vibe. <strong style="color: #059669;">${data.calSavedPerOrder} fewer calories.</strong>
     </p>
-    <p style="font-size: 15px; color: #a1a1aa; line-height: 1.7; margin-bottom: 32px;">
-      At ${data.ordersPerWeek}x a week, that's <strong style="color: #34d399;">${data.lbsPerWeek.toFixed(1)} lbs of fat per week</strong> just from ordering smarter at one spot.
+    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 32px;">
+      At ${data.ordersPerWeek}x a week, that&rsquo;s <strong style="color: #059669;">${data.lbsPerWeek.toFixed(1)} lbs of fat per week</strong> just from ordering smarter at one spot.
     </p>
 
     <!-- Projection -->
-    <div style="background: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(16,185,129,0.02)); border: 1px solid rgba(16,185,129,0.2); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 32px;">
-      <p style="font-size: 13px; color: #71717a; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.1em;">Your timeline</p>
-      <p style="font-size: 28px; font-weight: 700; color: #34d399; margin: 0;">${data.goalWeight} lbs</p>
-      <p style="font-size: 16px; font-weight: 600; margin-top: 4px;">by ${data.targetDate}</p>
+    <div style="background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 16px; padding: 28px; text-align: center; margin-bottom: 32px;">
+      <p style="font-size: 12px; color: #6b7280; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">Your timeline</p>
+      <p style="font-size: 32px; font-weight: 700; color: #059669; margin: 0;">${data.goalWeight} lbs</p>
+      <p style="font-size: 17px; font-weight: 600; color: #111; margin: 6px 0 0 0;">by ${data.targetDate}</p>
     </div>
 
     <!-- The Gap -->
-    <div style="background: #18181b; border: 1px solid #27272a; border-radius: 16px; padding: 24px; margin-bottom: 32px;">
-      <h2 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">But here's the thing.</h2>
-      <p style="font-size: 14px; color: #a1a1aa; line-height: 1.7; margin-bottom: 16px;">
+    <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 16px; padding: 24px; margin-bottom: 32px;">
+      <h2 style="font-size: 18px; font-weight: 600; margin: 0 0 12px 0; color: #111;">But here&rsquo;s the thing.</h2>
+      <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0 0 16px 0;">
         That was one restaurant. You probably eat at 4 or 5 different places every week. Each one has the same kind of hidden calories. The sauces, the sides, the add-ons nobody thinks about.
       </p>
-      <p style="font-size: 14px; color: #a1a1aa; line-height: 1.7;">
-        If you optimized all of them? That ${data.lbsPerWeek.toFixed(1)} lbs/week becomes <strong style="color: #34d399;">${multipliedLbs} lbs/week.</strong>
+      <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0;">
+        If you optimized all of them? That ${data.lbsPerWeek.toFixed(1)} lbs/week becomes <strong style="color: #059669;">${multipliedLbs} lbs/week.</strong>
       </p>
     </div>
 
     <!-- CTA -->
     <div style="text-align: center; margin-bottom: 32px;">
-      <p style="font-size: 14px; color: #a1a1aa; margin-bottom: 16px; line-height: 1.7;">
+      <p style="font-size: 15px; color: #444; margin: 0 0 20px 0; line-height: 1.8;">
         I made a 35-minute video that breaks down exactly how we find every hidden calorie in your week and build a system around the food you already love. No meal prep. No restriction. Just math.
       </p>
-      <a href="https://bulletproofbody.ai/vsl" style="display: inline-block; background: #34d399; color: #000; font-weight: 600; font-size: 14px; padding: 14px 32px; border-radius: 12px; text-decoration: none;">
+      <a href="https://bulletproofbody.ai/vsl" style="display: inline-block; background: #059669; color: #fff; font-weight: 600; font-size: 16px; padding: 16px 36px; border-radius: 12px; text-decoration: none;">
         Watch the video
       </a>
     </div>
 
     <!-- P.S. -->
-    <div style="border-top: 1px solid #27272a; padding-top: 24px; margin-bottom: 24px;">
-      <p style="font-size: 13px; color: #71717a; line-height: 1.6;">
-        <strong style="color: #a1a1aa;">P.S.</strong> Reply to this email with your top 3 takeout spots and I'll tell you exactly where the calories are hiding.
+    <div style="border-top: 1px solid #e5e7eb; padding-top: 24px; margin-bottom: 24px;">
+      <p style="font-size: 14px; color: #666; line-height: 1.7;">
+        <strong style="color: #333;">P.S.</strong> Reply to this email with your top 3 takeout spots and I&rsquo;ll tell you exactly where the calories are hiding.
       </p>
     </div>
 
     <!-- Sign off -->
     <div style="margin-bottom: 32px;">
-      <p style="font-size: 14px; color: #a1a1aa; margin: 0;">Eamon</p>
-      <p style="font-size: 12px; color: #52525b; margin: 4px 0 0 0;">CEO, Bulletproof Body</p>
+      <p style="font-size: 15px; color: #333; margin: 0;">Eamon</p>
+      <p style="font-size: 13px; color: #888; margin: 4px 0 0 0;">CEO, Bulletproof Body</p>
     </div>
 
     <!-- Footer -->
-    <div style="padding-top: 20px; border-top: 1px solid #18181b;">
-      <p style="font-size: 11px; color: #3f3f46; text-align: center;">
+    <div style="padding-top: 20px; border-top: 1px solid #e5e7eb;">
+      <p style="font-size: 11px; color: #999; text-align: center;">
         Bulletproof Body
         <br>
-        <a href="{unsubscribe_url}" style="color: #3f3f46;">Unsubscribe</a>
+        <a href="{unsubscribe_url}" style="color: #999;">Unsubscribe</a>
       </p>
     </div>
   </div>

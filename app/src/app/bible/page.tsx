@@ -2587,7 +2587,7 @@ function RestaurantDetailView({
           <input type="text" value={mealQuery} onChange={(e) => setMealQuery(e.target.value)}
             placeholder="What do you normally order?"
             className="w-full rounded-xl border border-zinc-800 bg-zinc-900/60 py-3 pl-12 pr-10 text-base text-white placeholder-zinc-500 outline-none transition-colors focus:border-emerald-500/50"
-            autoFocus />
+            ref={(el) => { if (el && window.innerWidth >= 768) el.focus(); }} />
           {mealQuery && (
             <button onClick={() => setMealQuery("")}
               className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-zinc-500 transition-colors hover:text-zinc-300">
@@ -3152,7 +3152,7 @@ function RestaurantDetailView({
         <input type="text" value={mealQuery} onChange={(e) => setMealQuery(e.target.value)}
           placeholder="What do you normally order?"
           className="w-full rounded-xl border border-zinc-800 bg-zinc-900/60 py-3 pl-12 pr-10 text-base text-white placeholder-zinc-500 outline-none transition-colors focus:border-emerald-500/50"
-          autoFocus />
+          ref={(el) => { if (el && window.innerWidth >= 768) el.focus(); }} />
         {mealQuery && (
           <button onClick={() => setMealQuery("")}
             className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-zinc-500 transition-colors hover:text-zinc-300">
