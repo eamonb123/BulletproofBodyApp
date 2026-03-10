@@ -408,7 +408,7 @@ export default function SnackBibleLanding() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: idx * 0.01, duration: 0.3 }}
-                  onClick={() => router.push("/snack-bible")}
+                  onClick={() => router.push(`/snack-bible-demo?snack=${b.id}`)}
                   className="group relative aspect-square overflow-hidden rounded-xl border border-zinc-800 bg-white transition-all duration-200 hover:scale-105 hover:border-emerald-500/50 hover:shadow-[0_0_24px_rgba(16,185,129,0.12)]"
                 >
                   <SnackLogo brand={b} />
