@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: "https://bulletproofbody.ai/bible",
     images: [
       {
-        url: "/og-bible.png",
+        url: "https://bulletproofbody.ai/og-bible.png",
         width: 1200,
         height: 630,
         alt: "Lose Your Next 10 lbs Without Giving Up DoorDash",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "Lose Your Next 10 lbs Without Giving Up DoorDash",
     description:
       "Pick what you normally order. We'll show you exactly where the fat is hiding. Takes 60 seconds.",
-    images: ["/og-bible.png"],
+    images: ["https://bulletproofbody.ai/og-bible.png"],
   },
 };
 

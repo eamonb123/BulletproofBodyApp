@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bulletproofbody.ai"),
   title: "Bulletproof Body — Lose Fat Without Meal Prep",
   description: "See exactly how much fat you'd lose by making simple swaps to the takeout you already order. No meal prep. No cardio. Just smarter orders.",
 };

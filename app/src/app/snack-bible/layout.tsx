@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: "https://bulletproofbody.ai/snack-bible",
     images: [
       {
-        url: "/og-snack-bible.png",
+        url: "https://bulletproofbody.ai/og-snack-bible.png",
         width: 1200,
         height: 630,
         alt: "Lose Fat Without Giving Up Your Favorite Snacks",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "Lose Fat Without Giving Up Your Favorite Snacks",
     description:
       "See the swap. Same taste, no prep, already packaged. Takes 60 seconds.",
-    images: ["/og-snack-bible.png"],
+    images: ["https://bulletproofbody.ai/og-snack-bible.png"],
   },
 };
 
