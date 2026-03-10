@@ -183,6 +183,8 @@ function SnackBibleDemoInner() {
   const searchRef = useRef<HTMLInputElement>(null);
   const searchSectionRef = useRef<HTMLDivElement>(null);
   const firstCardRef = useRef<HTMLDivElement>(null);
+  const frequencyAsideRef = useRef<HTMLElement | null>(null);
+  const [tourDialogPos, setTourDialogPos] = useState<{ top: number; left: number; arrowDir: "left" | "up" } | null>(null);
 
   // ─── Data Fetching ───────────────────────────────
   useEffect(() => {
@@ -192,7 +194,7 @@ function SnackBibleDemoInner() {
         const swaps = Array.isArray(data.swaps) ? data.swaps : [];
         setAllPairs(swaps);
         const freqs: Record<string, number> = {};
-        swaps.forEach((p) => { freqs[p.id] = 5; });
+        swaps.forEach((p) => { freqs[p.id] = 7; });
         setFrequencyByPairId(freqs);
 
         // Build initial plan: tutorial snack + demo swaps
@@ -300,17 +302,42 @@ function SnackBibleDemoInner() {
     }
   }
 
+  const positionTourDialog = useCallback(() => {
+    if (frequencyAsideRef.current) {
+      const rect = frequencyAsideRef.current.getBoundingClientRect();
+      const vw = window.innerWidth;
+      // On mobile / narrow screens, position below the aside
+      if (vw < 1280) {
+        setTourDialogPos({
+          top: rect.bottom + 12 + window.scrollY,
+          left: Math.max(16, Math.min(rect.left + rect.width / 2, vw - 200)),
+          arrowDir: "up",
+        });
+      } else {
+        // On wide screens, position to the right of the aside
+        setTourDialogPos({
+          top: rect.top + window.scrollY + rect.height / 2,
+          left: rect.right + 16,
+          arrowDir: "left",
+        });
+      }
+    }
+  }, []);
+
   const handleTourNext = useCallback(() => {
     const next = tourStep + 1;
     if (next >= TOUR_STEPS.length) {
       setTourDismissed(true);
+      setTourDialogPos(null);
       return;
     }
     setTourStep(next);
     if (next === 1 && firstCardRef.current) {
       firstCardRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      // Position dialog after scroll settles
+      setTimeout(positionTourDialog, 500);
     }
-  }, [tourStep]);
+  }, [tourStep, positionTourDialog]);
 
   async function handleFeedbackSubmit() {
     const snackName = searchQuery.trim();
@@ -522,7 +549,7 @@ function SnackBibleDemoInner() {
                             <div key={pair.id} className="relative">
                               <SnackSwapRow
                                 pair={pair}
-                                frequency={frequencyByPairId[pair.id] ?? 5}
+                                frequency={frequencyByPairId[pair.id] ?? 7}
                                 onFrequencyChange={(v) => handleFrequencyChange(pair.id, v)}
                               />
                               {/* Add / Already in plan badge */}
@@ -644,10 +671,11 @@ function SnackBibleDemoInner() {
                       >
                         <SnackSwapRow
                           pair={pair}
-                          frequency={frequencyByPairId[pair.id] ?? 5}
+                          frequency={frequencyByPairId[pair.id] ?? 7}
                           onFrequencyChange={(v) => handleFrequencyChange(pair.id, v)}
                           onDismiss={() => handleDismiss(pair.id)}
                           highlighted={pair.id === snackParam}
+                          frequencyRef={index === 0 ? frequencyAsideRef : undefined}
                         />
                       </motion.div>
                     ))}
@@ -696,22 +724,64 @@ function SnackBibleDemoInner() {
             exit={{ opacity: 0 }}
             className="pointer-events-none fixed inset-0 z-50"
           >
-            <div
-              className="pointer-events-auto absolute inset-0 bg-black/40"
-              onClick={handleTourNext}
-            />
+            {/* Overlay — on step 1, cut out the frequency aside */}
+            {tourStep === 1 && frequencyAsideRef.current ? (
+              <svg className="pointer-events-auto absolute inset-0 h-full w-full" onClick={handleTourNext}>
+                <defs>
+                  <mask id="tour-mask">
+                    <rect width="100%" height="100%" fill="white" />
+                    {(() => {
+                      const r = frequencyAsideRef.current!.getBoundingClientRect();
+                      return (
+                        <rect
+                          x={r.left - 4}
+                          y={r.top - 4}
+                          width={r.width + 8}
+                          height={r.height + 8}
+                          rx={16}
+                          fill="black"
+                        />
+                      );
+                    })()}
+                  </mask>
+                </defs>
+                <rect width="100%" height="100%" fill="rgba(0,0,0,0.5)" mask="url(#tour-mask)" />
+              </svg>
+            ) : (
+              <div
+                className="pointer-events-auto absolute inset-0 bg-black/40"
+                onClick={handleTourNext}
+              />
+            )}
             <motion.div
               key={tourStep}
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className={`pointer-events-auto fixed z-50 w-[90vw] max-w-md rounded-2xl border border-emerald-500/40 bg-zinc-900 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.6)] ${
+              className="pointer-events-auto fixed z-50 w-[90vw] max-w-sm rounded-2xl border border-emerald-500/40 bg-zinc-900 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
+              style={
                 tourStep === 0
-                  ? "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                  : "bottom-8 left-1/2 -translate-x-1/2"
-              }`}
+                  ? { left: "50%", top: "50%", transform: "translate(-50%, -50%)" }
+                  : tourDialogPos
+                    ? tourDialogPos.arrowDir === "up"
+                      ? { position: "absolute", top: tourDialogPos.top, left: tourDialogPos.left, transform: "translateX(-50%)" }
+                      : { position: "absolute", top: tourDialogPos.top, left: tourDialogPos.left, transform: "translateY(-50%)" }
+                    : { left: "50%", bottom: "2rem", transform: "translateX(-50%)" }
+              }
             >
+              {/* Arrow pointing at frequency aside */}
+              {tourStep === 1 && tourDialogPos && (
+                tourDialogPos.arrowDir === "up" ? (
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2">
+                    <div className="h-0 w-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-emerald-500/40" />
+                  </div>
+                ) : (
+                  <div className="absolute -left-2 top-1/2 -translate-y-1/2">
+                    <div className="h-0 w-0 border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-emerald-500/40" />
+                  </div>
+                )
+              )}
               <div className="mb-3 flex items-center gap-2">
                 {TOUR_STEPS.map((_, i) => (
                   <div
@@ -727,7 +797,7 @@ function SnackBibleDemoInner() {
               </p>
               <div className="mt-4 flex items-center justify-between">
                 <button
-                  onClick={() => setTourDismissed(true)}
+                  onClick={() => { setTourDismissed(true); setTourDialogPos(null); }}
                   className="text-sm text-zinc-500 hover:text-zinc-300"
                 >
                   Skip tour
@@ -914,14 +984,14 @@ function CompareScreen({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="mx-auto max-w-2xl py-8"
+      className="mx-auto max-w-2xl py-4 sm:py-8"
     >
-      <div className="mb-8 text-center">
-        <p className="text-sm font-bold uppercase tracking-[0.2em] text-emerald-400">
+      <div className="mb-4 sm:mb-8 text-center">
+        <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-emerald-400">
           Snack Bible
         </p>
         {!swapRevealed ? (
-          <h1 className="mt-2 text-2xl font-bold leading-tight sm:text-3xl">
+          <h1 className="mt-1.5 text-lg font-bold leading-tight sm:text-3xl">
             Want to learn how to lose up to{" "}
             <span className="text-emerald-400">{lbsPerWeek.toFixed(1)} lb a week</span>
             {" "}simply by adjusting your current {brandName}?
@@ -931,7 +1001,7 @@ function CompareScreen({
             <motion.h1
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-2 text-2xl font-bold leading-tight sm:text-3xl"
+              className="mt-1.5 text-lg font-bold leading-tight sm:text-3xl"
             >
               We find you the lowest-calorie healthy version of all your favorite snacks
             </motion.h1>
@@ -939,7 +1009,7 @@ function CompareScreen({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="mt-2 text-base text-zinc-400"
+              className="mt-1 text-sm text-zinc-400 sm:text-base"
             >
               So you can lose fat without giving up the snacks you love.
             </motion.p>
@@ -948,16 +1018,16 @@ function CompareScreen({
       </div>
 
       {/* Two-card comparison */}
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-3 sm:gap-4 grid-cols-2">
         {/* Left: Their snack */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5"
+          className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-3 sm:p-5"
         >
-          <div className="text-center mb-4">
-            <div className="relative h-20 w-20 mx-auto overflow-hidden rounded-xl bg-white">
+          <div className="text-center mb-2 sm:mb-4">
+            <div className="relative h-14 w-14 sm:h-20 sm:w-20 mx-auto overflow-hidden rounded-xl bg-white">
               <Image
                 src={logoSrc}
                 alt={brandName}
@@ -967,14 +1037,14 @@ function CompareScreen({
                 onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
               />
             </div>
-            <p className="text-xs text-zinc-500 uppercase tracking-wider mt-2">
+            <p className="text-[10px] sm:text-xs text-zinc-500 uppercase tracking-wider mt-1.5 sm:mt-2">
               Your Favorite Snack
             </p>
           </div>
-          <p className="text-center text-lg font-semibold text-white mb-3">{brandName}</p>
-          <div className="rounded-xl bg-zinc-950/70 px-3 py-3 text-center" style={{ boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-            <p className="text-xs uppercase tracking-wider text-zinc-500">Calories</p>
-            <p className="text-4xl font-bold tabular-nums text-white">{originalCal}</p>
+          <p className="text-center text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">{brandName}</p>
+          <div className="rounded-xl bg-zinc-950/70 px-2 py-2 sm:px-3 sm:py-3 text-center" style={{ boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
+            <p className="text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500">Calories</p>
+            <p className="text-3xl sm:text-4xl font-bold tabular-nums text-white">{originalCal}</p>
           </div>
         </motion.div>
 
@@ -987,12 +1057,12 @@ function CompareScreen({
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5"
+              className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-3 sm:p-5"
             >
-              <div className="text-center mb-4">
+              <div className="text-center mb-2 sm:mb-4">
                 {/* Breathing "?" with blurred snack behind */}
                 <div className="relative inline-block">
-                  <div className="w-20 h-20 mx-auto rounded-xl overflow-hidden opacity-20 blur-sm bg-white">
+                  <div className="w-14 h-14 sm:w-20 sm:h-20 mx-auto rounded-xl overflow-hidden opacity-20 blur-sm bg-white">
                     <Image
                       src={logoSrc}
                       alt=""
@@ -1006,23 +1076,23 @@ function CompareScreen({
                     <motion.span
                       animate={{ scale: [1, 1.15, 1] }}
                       transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                      className="text-3xl font-bold text-zinc-400"
+                      className="text-2xl sm:text-3xl font-bold text-zinc-400"
                     >
                       ?
                     </motion.span>
                   </div>
                 </div>
-                <p className="text-xs text-zinc-500 uppercase tracking-wider mt-2">
+                <p className="text-[10px] sm:text-xs text-zinc-500 uppercase tracking-wider mt-1.5 sm:mt-2">
                   Optimized Snack
                 </p>
               </div>
               {/* Skeleton name */}
-              <div className="flex justify-center mb-3">
-                <div className="h-5 w-2/3 rounded bg-zinc-800" />
+              <div className="flex justify-center mb-2 sm:mb-3">
+                <div className="h-4 sm:h-5 w-2/3 rounded bg-zinc-800" />
               </div>
-              <div className="rounded-xl bg-zinc-950/70 px-3 py-3 text-center" style={{ boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-                <p className="text-xs uppercase tracking-wider text-zinc-500">Calories</p>
-                <div className="h-[40px] flex items-center justify-center">
+              <div className="rounded-xl bg-zinc-950/70 px-2 py-2 sm:px-3 sm:py-3 text-center" style={{ boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
+                <p className="text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500">Calories</p>
+                <div className="h-[36px] sm:h-[40px] flex items-center justify-center">
                   <div className="flex gap-1.5">
                     {[0, 1, 2].map((i) => (
                       <motion.div
@@ -1042,14 +1112,14 @@ function CompareScreen({
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="rounded-2xl border border-emerald-500/40 bg-emerald-500/5 p-5 shadow-[0_0_30px_rgba(16,185,129,0.08)]"
+              className="rounded-2xl border border-emerald-500/40 bg-emerald-500/5 p-3 sm:p-5 shadow-[0_0_30px_rgba(16,185,129,0.08)]"
             >
-              <div className="text-center mb-4">
+              <div className="text-center mb-2 sm:mb-4">
                 <motion.div
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative w-20 h-20 mx-auto rounded-xl overflow-hidden bg-white"
+                  className="relative w-14 h-14 sm:w-20 sm:h-20 mx-auto rounded-xl overflow-hidden bg-white"
                 >
                   <Image
                     src={logoSrc}
@@ -1060,18 +1130,18 @@ function CompareScreen({
                     onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                   />
                 </motion.div>
-                <p className="text-xs uppercase tracking-wider mt-2">
+                <p className="text-[10px] sm:text-xs uppercase tracking-wider mt-1.5 sm:mt-2">
                   <span className="text-emerald-400">Optimized Snack</span>
                 </p>
               </div>
-              <p className="text-center text-lg font-semibold text-white mb-3">Low-Cal {brandName}</p>
-              <div className="rounded-xl bg-zinc-950/70 px-3 py-3 text-center" style={{ boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-                <p className="text-xs uppercase tracking-wider text-zinc-500">Calories</p>
+              <p className="text-center text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">Low-Cal {brandName}</p>
+              <div className="rounded-xl bg-zinc-950/70 px-2 py-2 sm:px-3 sm:py-3 text-center" style={{ boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
+                <p className="text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500">Calories</p>
                 <AnimatedCalories
                   value={swapCal}
-                  className="text-4xl font-bold tabular-nums text-emerald-400"
+                  className="text-3xl sm:text-4xl font-bold tabular-nums text-emerald-400"
                 />
-                <span className="text-sm text-zinc-500 ml-1">cal</span>
+                <span className="text-xs sm:text-sm text-zinc-500 ml-1">cal</span>
               </div>
             </motion.div>
           )}
@@ -1085,24 +1155,24 @@ function CompareScreen({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mt-5 rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.06] p-5 text-center"
+            className="mt-3 sm:mt-5 rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.06] p-3 sm:p-5 text-center"
           >
-            <p className="text-3xl font-black text-emerald-300">
-              -<AnimatedCalories value={calSaved} className="text-3xl font-black text-emerald-300" /> cal
+            <p className="text-2xl sm:text-3xl font-black text-emerald-300">
+              -<AnimatedCalories value={calSaved} className="text-2xl sm:text-3xl font-black text-emerald-300" /> cal
             </p>
-            <p className="text-sm text-zinc-400">saved per swap</p>
-            <div className="mt-3 flex justify-center gap-6">
+            <p className="text-xs sm:text-sm text-zinc-400">saved per swap</p>
+            <div className="mt-2 sm:mt-3 flex justify-center gap-6">
               <div>
-                <p className="text-xl font-bold text-white">-{lbsPerWeek.toFixed(1)}</p>
-                <p className="text-xs text-zinc-500">lbs/week</p>
+                <p className="text-lg sm:text-xl font-bold text-white">-{lbsPerWeek.toFixed(1)}</p>
+                <p className="text-[10px] sm:text-xs text-zinc-500">lbs/week</p>
               </div>
               <div className="w-px bg-zinc-800" />
               <div>
-                <p className="text-xl font-bold text-white">-{lbsPerMonth.toFixed(1)}</p>
-                <p className="text-xs text-zinc-500">lbs/month</p>
+                <p className="text-lg sm:text-xl font-bold text-white">-{lbsPerMonth.toFixed(1)}</p>
+                <p className="text-[10px] sm:text-xs text-zinc-500">lbs/month</p>
               </div>
             </div>
-            <p className="mt-3 text-xs text-zinc-600">
+            <p className="mt-2 sm:mt-3 text-[10px] sm:text-xs text-zinc-600">
               Every 500 cal/day cut = 1 lb of fat per week. That&apos;s the whole game.
             </p>
           </motion.div>
@@ -1110,12 +1180,12 @@ function CompareScreen({
       </AnimatePresence>
 
       {/* Action button */}
-      <div className="mt-8 text-center">
+      <div className="mt-4 sm:mt-8 text-center">
         {!swapRevealed ? (
           <motion.button
             whileTap={{ scale: 0.97 }}
             onClick={onReveal}
-            className="w-full rounded-2xl bg-emerald-500 px-8 py-4 text-base font-bold uppercase tracking-wider text-black transition-all hover:bg-emerald-400 sm:w-auto"
+            className="w-full rounded-2xl bg-emerald-500 px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-black transition-all hover:bg-emerald-400 sm:w-auto"
           >
             Show me the swap
           </motion.button>
@@ -1126,13 +1196,13 @@ function CompareScreen({
             transition={{ delay: 0.5 }}
             whileTap={{ scale: 0.97 }}
             onClick={onContinue}
-            className="w-full rounded-2xl bg-emerald-500 px-8 py-4 text-base font-bold uppercase tracking-wider text-black transition-all hover:bg-emerald-400 sm:w-auto"
+            className="w-full rounded-2xl bg-emerald-500 px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold uppercase tracking-wider text-black transition-all hover:bg-emerald-400 sm:w-auto"
           >
             Personalize this for me
           </motion.button>
         )}
         {!swapRevealed && (
-          <p className="mt-3 text-sm text-zinc-500">
+          <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-zinc-500">
             No gym. No meal prep. Just ordering smarter.
           </p>
         )}
@@ -1603,7 +1673,7 @@ function StickyMetric({ label, value, suffix, decimals }: { label: string; value
   );
 }
 
-function SnackSwapRow({ pair, frequency, onFrequencyChange, onDismiss, highlighted }: { pair: SnackSwapPair; frequency: number; onFrequencyChange: (value: number) => void; onDismiss?: () => void; highlighted?: boolean }) {
+function SnackSwapRow({ pair, frequency, onFrequencyChange, onDismiss, highlighted, frequencyRef }: { pair: SnackSwapPair; frequency: number; onFrequencyChange: (value: number) => void; onDismiss?: () => void; highlighted?: boolean; frequencyRef?: React.RefObject<HTMLElement | null> }) {
   const calorieSavings = getCalorieSavings(pair);
   const proteinGain = getProteinGain(pair);
   const weeklyCalorieSavings = calorieSavings * frequency;
@@ -1649,7 +1719,7 @@ function SnackSwapRow({ pair, frequency, onFrequencyChange, onDismiss, highlight
         <SnackCard label="Current Snack" item={pair.original} tone="rose" />
         <SnackCard label="Smarter Swap" item={pair.swap} tone="emerald" rationale={pair.rationale} />
 
-        <aside className="rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.06] p-4">
+        <aside ref={frequencyRef ?? undefined} className="rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.06] p-4">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-300">Weekly Impact</p>
           <p className="mt-1 text-5xl font-black leading-none text-emerald-300">
             <AnimatedValue value={weeklyFatLoss} decimals={2} />
