@@ -130,15 +130,12 @@ const LOGO_EXTENSION_BY_ID: Record<string, string> = {
 };
 
 // Per-logo style overrides for grid cards.
-// size = max-height/max-width %. Default 88%. yOffset = px shift up. Default 8.
+// size = max-height/max-width %. Default 92%. yOffset = px shift up.
+// All logos are now standardized to 400x400 with 2% padding (96% fill).
 const LOGO_OVERRIDES: Record<string, { size?: number; yOffset?: number }> = {
-  chipotle: { size: 96 },
-  dunkin: { size: 96 },
-  innout: { size: 96 },
-  papajohns: { size: 96 },
-  tacobell: { yOffset: 20, size: 94 },
-  smoothieking: { yOffset: 16, size: 94 },
-  sonic: { yOffset: 14, size: 94 },
+  tacobell: { yOffset: 12 },
+  smoothieking: { yOffset: 10 },
+  sonic: { yOffset: 8 },
 };
 
 function getLogoCandidates(id: string | null | undefined): string[] {
@@ -354,7 +351,7 @@ function HeroScreen({ restaurants, onSelectRestaurant }: { restaurants: Restaura
                       name={r.name}
                       className="h-full w-full"
                       imageClassName="h-auto w-auto"
-                      maxSize={LOGO_OVERRIDES[r.id]?.size ?? 80}
+                      maxSize={LOGO_OVERRIDES[r.id]?.size ?? 92}
                       placeholderClassName="text-sm font-semibold text-zinc-400"
                     />
                   </div>
@@ -370,7 +367,7 @@ function HeroScreen({ restaurants, onSelectRestaurant }: { restaurants: Restaura
                       name={r.name}
                       className="h-full w-full"
                       imageClassName="h-auto w-auto"
-                      maxSize={LOGO_OVERRIDES[r.id]?.size ?? 80}
+                      maxSize={LOGO_OVERRIDES[r.id]?.size ?? 92}
                       placeholderClassName="text-sm font-semibold text-zinc-400"
                     />
                   </div>
@@ -494,7 +491,7 @@ function HeroScreen({ restaurants, onSelectRestaurant }: { restaurants: Restaura
                   name={r.name}
                   className="h-full w-full"
                   imageClassName="h-auto w-auto"
-                  maxSize={LOGO_OVERRIDES[r.id]?.size ?? 64}
+                  maxSize={LOGO_OVERRIDES[r.id]?.size ?? 92}
                   placeholderClassName="text-sm font-semibold text-zinc-400"
                   yOffset={LOGO_OVERRIDES[r.id]?.yOffset ?? 0}
                 />
@@ -1315,7 +1312,7 @@ function BiblePage() {
                                 name={r.name}
                                 className="h-full w-full"
                                 imageClassName="h-auto w-auto"
-                                maxSize={LOGO_OVERRIDES[r.id]?.size ?? 64}
+                                maxSize={LOGO_OVERRIDES[r.id]?.size ?? 92}
                                 placeholderClassName="text-sm font-semibold text-zinc-400"
                                 yOffset={LOGO_OVERRIDES[r.id]?.yOffset ?? 0}
                               />
