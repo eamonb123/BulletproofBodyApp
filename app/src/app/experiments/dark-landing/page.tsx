@@ -111,16 +111,16 @@ const buildSteps = [
 
 const reportGenerationDurationMs = 15000;
 const swapsMissionStatement =
-  "At Bulletproof Body, we work with entrepreneurs, executives, and ambitious professionals. Time is your scarcest resource. We do not build plans for your best days, we build for your worst. The days where you have no time for cardio, no energy for extra steps, and no interest in meal prep. If a plan works in that scenario, everything above it builds confidence.";
+  "We build for your worst days — the days where you have no time for cardio, no energy for extra steps, and no interest in meal prep. If a plan works on those days, everything above it is a bonus.";
 const swapsMissionPillars = [
-  "Keep the craving profile. We optimize your real order instead of replacing your lifestyle.",
-  "Build around worst-case days first. No cardio requirement, no meal-prep dependency.",
-  "Turn repeat decisions into weekly fat loss math you can actually sustain.",
+  "We swap your real orders — not your lifestyle.",
+  "Built for your worst days. No cardio. No meal prep.",
+  "Small changes that add up to real weight loss every week.",
 ];
 const reportGenerationSteps = [
-  { threshold: 20, label: "Calculating your weekly calorie deficit from swaps" },
-  { threshold: 55, label: "Projecting your goal-weight timeline" },
-  { threshold: 85, label: "Packaging your personalized swap report" },
+  { threshold: 20, label: "Adding up your weekly calorie savings" },
+  { threshold: 55, label: "Mapping your weight loss timeline" },
+  { threshold: 85, label: "Putting together your swap plan" },
 ];
 
 // ─── Animated Counter Component ─────────────────────────
@@ -165,6 +165,51 @@ function DarkLandingClient() {
   const [notifyRestaurants, setNotifyRestaurants] = useState<string[]>([]);
   const searchParams = useSearchParams();
   const godMode = searchParams.get("god") === "1";
+
+  // Bible deep-link: skip straight to weight input with savings pre-loaded
+  const bibleSavings = searchParams.get("savings") ? Number(searchParams.get("savings")) : null;
+  const bibleSwapName = searchParams.get("swap") || "";
+  const bibleRestaurant = searchParams.get("restaurant") || "";
+
+  // Restore session state from sessionStorage (e.g. when returning from /vsl via back button)
+  const restoredRef = useRef(false);
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem("dl_session");
+      if (saved) {
+        const s = JSON.parse(saved);
+        if (s.flow && s.completedMeals) {
+          restoredRef.current = true;
+          setFlow(s.flow);
+          setCompletedMeals(s.completedMeals);
+          if (s.currentWeight) setCurrentWeight(s.currentWeight);
+          if (s.goalWeight) setGoalWeight(s.goalWeight);
+          if (s.userEmail) setUserEmail(s.userEmail);
+        }
+        sessionStorage.removeItem("dl_session");
+      }
+    } catch { /* ignore */ }
+  }, []);
+
+  // Bible deep-link: jump to weight input and seed session with the swap data
+  const bibleInitRef = useRef(false);
+  useEffect(() => {
+    // Don't override if we just restored from sessionStorage
+    if (restoredRef.current) return;
+    if (bibleSavings && !bibleInitRef.current) {
+      bibleInitRef.current = true;
+      setFlow("weight");
+      // Pre-populate the session so crossroads has data
+      setCompletedMeals([{
+        restaurant: bibleRestaurant,
+        mealType: "",
+        orderCalories: bibleSavings, // We only know the delta
+        swapCalories: 0,
+        savings: bibleSavings,
+        swapName: bibleSwapName || "Your swap",
+      }]);
+    }
+  }, [bibleSavings, bibleSwapName, bibleRestaurant]);
 
   // Load restaurant data when selected
   useEffect(() => {
@@ -632,16 +677,18 @@ function DarkLandingClient() {
               currentWeight={currentWeight!}
               goalWeight={goalWeight!}
               calSavedPerOrder={
-                findSwap() ? Math.max(0, effectiveTotals.calories - findSwap()!.totals.calories) : 0
+                bibleSavings ?? (findSwap() ? Math.max(0, effectiveTotals.calories - findSwap()!.totals.calories) : 0)
               }
-              swapName={findSwap()?.name ?? ""}
-              sessionTotalSavings={sessionTotalSavings}
+              swapName={bibleSwapName || findSwap()?.name || ""}
+              restaurantName={bibleRestaurant || "Chipotle"}
+              sessionTotalSavings={bibleSavings ? bibleSavings * 7 : sessionTotalSavings}
               completedMeals={completedMeals}
               onEmailSubmit={(email) => {
                 setUserEmail(email);
-                saveCurrentMeal();
+                if (!bibleSavings) saveCurrentMeal();
                 setFlow("generating");
               }}
+              isBibleDeepLink={!!bibleSavings}
               onBack={() => setFlow("weight")}
             />
           )}
@@ -649,6 +696,7 @@ function DarkLandingClient() {
             <GeneratingScreen
               key="generating"
               email={userEmail}
+              restaurantName={completedMeals.length > 0 ? completedMeals[completedMeals.length - 1].restaurant : "your restaurant"}
               onContinue={() => setFlow("crossroads")}
               onBack={() => setFlow("projection")}
             />
@@ -661,14 +709,39 @@ function DarkLandingClient() {
               goalWeight={goalWeight!}
               sessionTotalSavings={sessionTotalSavings}
               sessionLbsPerWeek={sessionLbsPerWeek}
-              notifyRestaurants={notifyRestaurants}
-              onNotify={(id) => setNotifyRestaurants((prev) => [...prev, id])}
-              onBuildAnother={startNewMeal}
+              onFindNextSwap={() => {
+                sessionStorage.setItem("dl_session", JSON.stringify({
+                  flow: "crossroads",
+                  completedMeals,
+                  currentWeight,
+                  goalWeight,
+                  userEmail,
+                }));
+                window.location.href = "/bible";
+              }}
               onWatchVSL={() => {
+                sessionStorage.setItem("dl_session", JSON.stringify({
+                  flow: "crossroads",
+                  completedMeals,
+                  currentWeight,
+                  goalWeight,
+                  userEmail,
+                }));
                 window.location.href = "/vsl";
+              }}
+              onConcierge={() => {
+                sessionStorage.setItem("dl_session", JSON.stringify({
+                  flow: "crossroads",
+                  completedMeals,
+                  currentWeight,
+                  goalWeight,
+                  userEmail,
+                }));
+                window.location.href = "/concierge";
               }}
               onDone={resetAll}
               onBack={() => setFlow("projection")}
+              isBibleDeepLink={!!bibleSavings}
             />
           )}
         </AnimatePresence>
@@ -709,6 +782,13 @@ function DarkLandingClient() {
             </button>
             <button
               onClick={() => {
+                sessionStorage.setItem("dl_session", JSON.stringify({
+                  flow,
+                  completedMeals,
+                  currentWeight,
+                  goalWeight,
+                  userEmail,
+                }));
                 window.location.href = "/vsl";
               }}
               className="rounded-lg border border-emerald-500/40 bg-emerald-500/15 px-2.5 py-1.5 text-xs font-medium text-emerald-300 hover:border-emerald-400/70"
@@ -1865,19 +1945,23 @@ function ProjectionScreen({
   goalWeight,
   calSavedPerOrder,
   swapName,
+  restaurantName = "Chipotle",
   sessionTotalSavings,
   completedMeals,
   onEmailSubmit,
   onBack,
+  isBibleDeepLink,
 }: {
   currentWeight: number;
   goalWeight: number;
   calSavedPerOrder: number;
   swapName: string;
+  restaurantName?: string;
   sessionTotalSavings: number;
   completedMeals: CompletedMeal[];
   onEmailSubmit: (email: string) => void;
   onBack: () => void;
+  isBibleDeepLink?: boolean;
 }) {
   const [animationDone, setAnimationDone] = useState(false);
   const [email, setEmail] = useState("");
@@ -2004,7 +2088,7 @@ function ProjectionScreen({
           transition={{ delay: 2 }}
           className="text-sm text-zinc-500 mt-2"
         >
-          Just from changing your current order at Chipotle, {ordersPerWeek}x/week
+          Just from changing your current order at {restaurantName}, {ordersPerWeek}x/week
         </motion.p>
       </div>
 
@@ -2216,10 +2300,12 @@ function ProjectionScreen({
 
 function GeneratingScreen({
   email,
+  restaurantName,
   onContinue,
   onBack,
 }: {
   email: string | null;
+  restaurantName: string;
   onContinue: () => void;
   onBack: () => void;
 }) {
@@ -2264,7 +2350,7 @@ function GeneratingScreen({
 
       <div className="rounded-2xl border border-emerald-500/25 bg-emerald-500/5 p-5 mb-4">
         <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-2">Generating report</p>
-        <h2 className="text-xl font-bold text-white">Building your personalized swap plan</h2>
+        <h2 className="text-xl font-bold text-white">Crunching the numbers on your {restaurantName} swap</h2>
         <p className="text-sm text-zinc-400 mt-2">
           {email ? `Preparing and sending to ${email}` : "Preparing your report now"}
         </p>
@@ -2285,7 +2371,7 @@ function GeneratingScreen({
       </div>
 
       <div className="rounded-2xl border border-zinc-800 bg-zinc-900/70 p-5 mb-4">
-        <p className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-2">Swaps mission statement</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-2">Why this works</p>
         <p className="text-sm leading-relaxed text-zinc-300">{swapsMissionStatement}</p>
       </div>
 
@@ -2312,7 +2398,7 @@ function GeneratingScreen({
       </div>
 
       <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4 mb-4">
-        <p className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-2">How swap plans are built</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-2">How it works</p>
         <div className="space-y-2">
           {swapsMissionPillars.map((pillar) => (
             <p key={pillar} className="text-sm text-zinc-300 leading-relaxed">
@@ -2348,28 +2434,29 @@ function CrossroadsScreen({
   goalWeight,
   sessionTotalSavings,
   sessionLbsPerWeek,
-  notifyRestaurants,
-  onNotify,
-  onBuildAnother,
+  onFindNextSwap,
   onWatchVSL,
+  onConcierge,
   onDone,
   onBack,
+  isBibleDeepLink,
 }: {
   completedMeals: CompletedMeal[];
   currentWeight: number;
   goalWeight: number;
   sessionTotalSavings: number;
   sessionLbsPerWeek: number;
-  notifyRestaurants: string[];
-  onNotify: (restaurantId: string) => void;
-  onBuildAnother: () => void;
+  onFindNextSwap: () => void;
   onWatchVSL: () => void;
+  onConcierge: () => void;
   onDone: () => void;
   onBack: () => void;
+  isBibleDeepLink?: boolean;
 }) {
-  const [showMultiplier, setShowMultiplier] = useState(false);
-  const [showCTA, setShowCTA] = useState(false);
-  const [restaurantSearch, setRestaurantSearch] = useState("");
+  const alreadySeen = typeof window !== "undefined" && sessionStorage.getItem("crossroads_seen") === "1";
+  const [showMultiplier, setShowMultiplier] = useState(alreadySeen);
+  const [showCTA, setShowCTA] = useState(alreadySeen);
+  const skipAnim = alreadySeen;
   const weightToLose = currentWeight - goalWeight;
   const weeksToGoal = sessionLbsPerWeek > 0 ? Math.ceil(weightToLose / sessionLbsPerWeek) : 999;
   const targetDate = new Date();
@@ -2377,29 +2464,33 @@ function CrossroadsScreen({
   const targetDateStr = targetDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 
   // Multiplier: location-based. Average person orders from ~4 different restaurants.
-  // Session already tracks per-order savings × their chosen frequency.
-  // The multiplier shows: what if you had optimized swaps for ALL your spots?
   const avgRestaurants = 4;
   const multipliedLbsPerWeek = sessionLbsPerWeek * avgRestaurants;
   const multipliedCalPerWeek = sessionTotalSavings * 7 * avgRestaurants;
 
   useEffect(() => {
+    if (alreadySeen) return;
     const t1 = setTimeout(() => setShowMultiplier(true), 1500);
     const t2 = setTimeout(() => setShowCTA(true), 3000);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
+  // Mark crossroads as seen once it renders
+  useEffect(() => {
+    sessionStorage.setItem("crossroads_seen", "1");
+  }, []);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={skipAnim ? false : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: skipAnim ? 0 : 0.6 }}
       className="w-full max-w-md"
     >
       {/* Back button */}
       <motion.button
-        initial={{ opacity: 0 }}
+        initial={skipAnim ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         onClick={onBack}
         className="flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-4"
@@ -2412,14 +2503,14 @@ function CrossroadsScreen({
 
       {/* Phase 1: Completion reward */}
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
+        initial={skipAnim ? false : { scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         className="text-center mb-6"
       >
         <motion.div
-          initial={{ scale: 0 }}
+          initial={skipAnim ? false : { scale: 0 }}
           animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          transition={skipAnim ? { duration: 0 } : { type: "spring", stiffness: 400, damping: 20 }}
           className="h-14 w-14 rounded-full bg-emerald-500 flex items-center justify-center mx-auto mb-4"
         >
           <svg className="h-7 w-7 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
@@ -2432,18 +2523,20 @@ function CrossroadsScreen({
 
       {/* Completed meals recap */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={skipAnim ? false : { opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
+        transition={skipAnim ? { duration: 0 } : { delay: 0.3 }}
         className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 mb-4"
       >
         <div className="flex items-center justify-between mb-3">
           <span className="text-xs text-zinc-500 uppercase tracking-wider">Your session</span>
-          <span className="text-xs text-emerald-400 font-bold">{completedMeals.length} meal{completedMeals.length > 1 ? "s" : ""}</span>
+          <span className="text-xs text-emerald-400 font-bold">{completedMeals.length} swap{completedMeals.length !== 1 ? "s" : ""}</span>
         </div>
         {completedMeals.map((meal, i) => (
           <div key={i} className="flex items-center justify-between py-1.5">
-            <span className="text-sm text-zinc-300">{meal.swapName}</span>
+            <span className="text-sm text-zinc-300">
+              {meal.restaurant ? `${meal.restaurant} — ` : ""}{meal.swapName}
+            </span>
             <span className="text-sm font-bold text-emerald-400 tabular-nums">-{meal.savings} cal</span>
           </div>
         ))}
@@ -2461,10 +2554,10 @@ function CrossroadsScreen({
       <AnimatePresence>
         {showMultiplier && (
           <motion.div
-            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+            initial={skipAnim ? false : { opacity: 0, y: 15, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ type: "spring", stiffness: 200, damping: 25 }}
-            className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 mb-4 text-center"
+            transition={skipAnim ? { duration: 0 } : { type: "spring", stiffness: 200, damping: 25 }}
+            className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 mb-6 text-center"
           >
             <p className="text-sm text-zinc-400 mb-2">
               That was <span className="text-white font-semibold">1 restaurant</span>.
@@ -2491,124 +2584,44 @@ function CrossroadsScreen({
         )}
       </AnimatePresence>
 
-      {/* What else do you order? */}
-      <AnimatePresence>
-        {showMultiplier && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mb-4"
-          >
-            <p className="text-sm font-semibold text-center mb-3">What else do you order?</p>
-
-            {/* Search bar */}
-            <div className="relative mb-3">
-              <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <input
-                type="text"
-                value={restaurantSearch}
-                onChange={(e) => setRestaurantSearch(e.target.value)}
-                placeholder="Search restaurants..."
-                className="w-full rounded-xl border border-zinc-800 bg-zinc-900/60 pl-9 pr-4 py-2.5 text-sm text-white placeholder-zinc-600 outline-none focus:border-zinc-600 transition-colors"
-              />
-              {restaurantSearch && (
-                <button
-                  onClick={() => setRestaurantSearch("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-zinc-400"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              )}
-            </div>
-
-            {/* Restaurant grid */}
-            <div className="grid grid-cols-3 gap-2">
-              {/* Chipotle — completed (always show if matches search) */}
-              {(!restaurantSearch || "chipotle".includes(restaurantSearch.toLowerCase())) && (
-                <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-3 text-center">
-                  <div className="w-10 h-10 mx-auto rounded-lg overflow-hidden">
-                    <img src="/sprites/restaurant_chipotle_hero.png" alt="Chipotle" className="w-full h-full object-cover" />
-                  </div>
-                  <p className="text-[10px] text-emerald-400 font-medium mt-1">Chipotle</p>
-                  <p className="text-[9px] text-emerald-400/60 mt-0.5">{completedMeals.length} done</p>
-                </div>
-              )}
-
-              {/* Coming soon restaurants — filtered + alphabetical */}
-              {comingSoonRestaurants
-                .filter((r) => !restaurantSearch || r.name.toLowerCase().includes(restaurantSearch.toLowerCase()))
-                .map((r) => {
-                  const notified = notifyRestaurants.includes(r.id);
-                  return (
-                    <motion.button
-                      key={r.id}
-                      layout
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => !notified && onNotify(r.id)}
-                      className={`rounded-xl border p-3 text-center transition-all ${
-                        notified
-                          ? "border-zinc-700 bg-zinc-800/30"
-                          : "border-zinc-800 bg-zinc-900/40 hover:border-zinc-600"
-                      }`}
-                    >
-                      <div className="w-10 h-10 mx-auto rounded-lg bg-zinc-800 flex items-center justify-center">
-                        <span className="text-sm font-bold text-zinc-500">{r.initial}</span>
-                      </div>
-                      <p className="text-[10px] text-zinc-500 font-medium mt-1">{r.name}</p>
-                      {notified ? (
-                        <p className="text-[9px] text-emerald-400 mt-0.5">We&apos;ll ping you</p>
-                      ) : (
-                        <p className="text-[9px] text-zinc-600 mt-0.5">Coming soon</p>
-                      )}
-                    </motion.button>
-                  );
-                })}
-            </div>
-
-            {/* No results */}
-            {restaurantSearch && !("chipotle".includes(restaurantSearch.toLowerCase())) &&
-              comingSoonRestaurants.filter((r) => r.name.toLowerCase().includes(restaurantSearch.toLowerCase())).length === 0 && (
-              <p className="text-xs text-zinc-600 text-center mt-3">
-                No restaurants match &ldquo;{restaurantSearch}&rdquo; — we&apos;re adding new spots every week
-              </p>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Phase 3: Action buttons */}
+      {/* Phase 3: Three CTAs */}
       <AnimatePresence>
         {showCTA && (
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={skipAnim ? false : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="space-y-3"
           >
-            {/* Build another Chipotle meal */}
+            {/* CTA 1: Find next swap → bible */}
             <motion.button
               whileTap={{ scale: 0.97 }}
-              onClick={onBuildAnother}
+              onClick={onFindNextSwap}
               className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-base font-semibold text-black transition-all hover:bg-emerald-400 flex items-center justify-center gap-2"
             >
-              <span>Build another Chipotle meal</span>
+              <span>Find your next swap</span>
+              <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
             </motion.button>
 
-            {/* Watch VSL */}
+            {/* CTA 2: Coaching bridge → concierge page */}
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              onClick={onConcierge}
+              className="w-full rounded-2xl border-2 border-emerald-500/30 bg-emerald-500/5 px-6 py-4 text-sm font-medium text-emerald-400 transition-all hover:border-emerald-500/50 hover:bg-emerald-500/10 flex items-center justify-center gap-2"
+            >
+              <span>Want this done for everything you eat?</span>
+            </motion.button>
+
+            {/* CTA 3: VSL education */}
             <motion.button
               whileTap={{ scale: 0.97 }}
               onClick={onWatchVSL}
-              className="w-full rounded-2xl border-2 border-zinc-700 px-6 py-4 text-sm font-medium text-zinc-300 transition-all hover:border-zinc-500 flex items-center justify-center gap-2"
+              className="w-full rounded-2xl border border-zinc-800 px-6 py-3.5 text-sm text-zinc-400 transition-all hover:border-zinc-600 hover:text-zinc-300 flex items-center justify-center gap-2"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>See how the full plan works</span>
+              <span>See why this works</span>
             </motion.button>
 
             {/* Done */}
@@ -2616,7 +2629,7 @@ function CrossroadsScreen({
               onClick={onDone}
               className="w-full text-center text-sm text-zinc-600 hover:text-zinc-400 transition-colors py-2"
             >
-              I&apos;m done for now
+              Done for now
             </button>
           </motion.div>
         )}
