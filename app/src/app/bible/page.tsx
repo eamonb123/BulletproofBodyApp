@@ -989,22 +989,29 @@ function BiblePage() {
   const [showTutorial, setShowTutorial] = useState(false);
   const [passedGate, setPassedGate] = useState(godMode);
 
-  // ─── sessionStorage persistence (back-nav) ────────
+  // ─── sessionStorage persistence (back-nav only) ────────
+  // Only saves when user clicks an internal link (VSL/concierge).
+  // Only restores if a "navigated away" flag is present.
+  // Refresh = fresh start (hero). Back-nav = restore state.
   const STORAGE_KEY = "bible_state";
+  const NAV_FLAG = "bible_nav_away";
 
   const saveBibleState = useCallback(() => {
     try {
+      sessionStorage.setItem(NAV_FLAG, "1");
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
         flow, completedSwaps, passedGate, selectedId, showTutorial,
       }));
     } catch {}
   }, [flow, completedSwaps, passedGate, selectedId, showTutorial]);
 
-  // Restore on mount (runs once) — MUST run before auto-save
-  const [restored, setRestored] = useState(false);
+  // Restore on mount — only if user navigated away via internal link
   useEffect(() => {
-    if (godMode || restored) return;
+    if (godMode) return;
     try {
+      const wasNavAway = sessionStorage.getItem(NAV_FLAG);
+      if (!wasNavAway) return;
+      sessionStorage.removeItem(NAV_FLAG);
       const saved = sessionStorage.getItem(STORAGE_KEY);
       if (saved) {
         const s = JSON.parse(saved);
@@ -1016,18 +1023,10 @@ function BiblePage() {
           setFlow(s.flow ?? (s.passedGate ? "free" : "grid"));
         }
       }
+      sessionStorage.removeItem(STORAGE_KEY);
     } catch {}
-    setRestored(true); // Always mark restored so auto-save can start
-  }, [godMode, restored]);
-
-  // Auto-save state on every change + beforeunload (only after restore completes)
-  useEffect(() => {
-    if (!restored) return;
-    saveBibleState();
-    const handleUnload = () => saveBibleState();
-    window.addEventListener("beforeunload", handleUnload);
-    return () => window.removeEventListener("beforeunload", handleUnload);
-  }, [restored, saveBibleState]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [godMode]);
 
   const navigateAway = useCallback((url: string) => {
     saveBibleState();
