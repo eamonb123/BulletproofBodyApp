@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Lose Fat Without Giving Up Your Favorite Snacks",
+  title: "Lose Your Next 10 lbs Without Giving Up Your Favorite Snacks",
   description:
-    "See the swap. Same taste, no prep, already packaged. Takes 60 seconds.",
+    "Pick the snack you think you can't eat and still lose weight. We'll show you the swap. Takes 60 seconds.",
   openGraph: {
-    title: "Lose Fat Without Giving Up Your Favorite Snacks",
+    title: "Lose Your Next 10 lbs Without Giving Up Your Favorite Snacks",
     description:
-      "See the swap. Same taste, no prep, already packaged. Takes 60 seconds.",
+      "Pick the snack you think you can't eat and still lose weight. We'll show you the swap. Takes 60 seconds.",
     siteName: "Bulletproof Body",
     type: "website",
     url: "https://bulletproofbody.ai/snack-bible-landing",
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lose Fat Without Giving Up Your Favorite Snacks",
+    title: "Lose Your Next 10 lbs Without Giving Up Your Favorite Snacks",
     description:
-      "See the swap. Same taste, no prep, already packaged. Takes 60 seconds.",
+      "Pick the snack you think you can't eat and still lose weight. We'll show you the swap. Takes 60 seconds.",
     images: ["https://bulletproofbody.ai/og-snack-bible.png"],
   },
 };
