@@ -50,7 +50,7 @@ const faqSections = [
       },
       {
         q: "How do I get a spot?",
-        a: "Book a free 15-minute food audit. We'll look at what you actually eat, show you where the biggest calorie savings are hiding, and you'll decide if you want us to build the full system. No pressure. Even if you don't hire us, you'll leave with answers.",
+        a: "Book a free 15-minute strategy call. We'll look at what you actually eat, show you where the biggest calorie savings are hiding, and show you what your personalized food ecosystem would look like.",
       },
     ],
   },
@@ -69,17 +69,17 @@ const steps = [
   {
     num: "01",
     title: "SEE IT",
-    desc: "We look at everything you eat. Every restaurant, every snack, every grocery run. No judgment. Just data. We find exactly where the hidden calories are.",
+    desc: "We look at everything you eat. Every restaurant, every snack, every grocery run. No judgment. Just data. We find exactly where the <strong class='text-white'>hidden calories</strong> are.",
   },
   {
     num: "02",
     title: "SWAP IT",
-    desc: "Same food. Smarter version. We build side-by-side swaps that honor what you love. Same craving, fewer calories, more protein. You choose which ones you want.",
+    desc: "<strong class='text-white'>Same food. Smarter version.</strong> We build side-by-side swaps that honor what you love. Same craving, fewer calories, more protein. You choose which ones you want.",
   },
   {
     num: "03",
     title: "LIVE IT",
-    desc: "We build your personalized food ecosystem and keep it updated. New restaurant? We add it. New craving? We find a swap. The system evolves with your life.",
+    desc: "We build your personalized food ecosystem and keep it updated. New restaurant? We add it. New craving? We find a swap. <strong class='text-white'>The system evolves with your life.</strong>",
   },
 ];
 
@@ -148,7 +148,7 @@ function CtaButton({ className = "" }: { className?: string }) {
       rel="noreferrer"
       className={`inline-flex items-center justify-center rounded-full bg-emerald-400 px-8 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-emerald-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] ${className}`}
     >
-      Book Your Free Food Audit
+      Get Your Food Ecosystem
     </a>
   );
 }
@@ -185,7 +185,7 @@ function StickyNav() {
             rel="noreferrer"
             className="rounded-full bg-emerald-400 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-emerald-300"
           >
-            Book Free Audit
+            Get Your Ecosystem
           </a>
         </div>
       </div>
@@ -194,12 +194,19 @@ function StickyNav() {
 }
 
 // ─── Page ──────────────────────────────────────────────
+const FROM_ROUTES: Record<string, { href: string; label: string }> = {
+  "snack-bible": { href: "/snack-bible-demo", label: "Back to Snack Bible" },
+  "bible": { href: "/bible", label: "Back to Fast Food Bible" },
+};
+
 export default function ConciergePage() {
-  const [hasHistory, setHasHistory] = useState(false);
+  const [backRoute, setBackRoute] = useState<{ href: string; label: string } | null>(null);
   useEffect(() => {
-    // If there's a referrer from the same origin, user navigated here from another page
-    if (document.referrer && new URL(document.referrer).origin === window.location.origin) {
-      setHasHistory(true);
+    const from = new URLSearchParams(window.location.search).get("from");
+    if (from && FROM_ROUTES[from]) {
+      setBackRoute(FROM_ROUTES[from]);
+    } else if (document.referrer && new URL(document.referrer).origin === window.location.origin) {
+      setBackRoute({ href: "", label: "Back" }); // fallback to history.back()
     }
   }, []);
 
@@ -211,16 +218,28 @@ export default function ConciergePage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-5xl px-5 pb-16 pt-20 sm:px-8 sm:pt-28">
-          {hasHistory && (
-            <button
-              onClick={() => window.history.back()}
-              className="mb-6 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-zinc-200"
-            >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-              Back
-            </button>
+          {backRoute && (
+            backRoute.href ? (
+              <a
+                href={backRoute.href}
+                className="mb-6 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-zinc-200"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                {backRoute.label}
+              </a>
+            ) : (
+              <button
+                onClick={() => window.history.back()}
+                className="mb-6 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-zinc-200"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                {backRoute.label}
+              </button>
+            )
           )}
           <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
             You run your career with{" "}
@@ -229,14 +248,14 @@ export default function ConciergePage() {
             Why are you running your body on guesswork?
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400 sm:text-xl">
-            There are 15+ lbs of fat hiding in the food you already eat.
+            There are <span className="text-emerald-400 font-bold">15+ lbs of fat</span> hiding in the food you already eat.
             Not because you&apos;re eating too much. Because nobody showed you
             where the calories are hiding.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <CtaButton />
             <span className="text-sm text-zinc-500">
-              15-minute food audit. Complimentary for qualified applicants.
+              Complimentary for qualified applicants
             </span>
           </div>
         </div>
@@ -260,15 +279,15 @@ export default function ConciergePage() {
                 without ordering DoorDash.
               </p>
               <p className="mt-4 text-base leading-relaxed text-zinc-400">
-                You know more about nutrition than most people. And you&apos;re still here.
+                You <span className="text-white font-semibold">know more about nutrition than most people.</span> And you&apos;re still here.
               </p>
             </div>
             <div className="space-y-4">
               {[
-                "Ordering the same takeout you've always ordered. Not realizing it's 400 calories more than it needs to be.",
-                "Forgetting to eat until 2 PM, then inhaling whatever's fastest.",
-                "Hitting 9 PM, scrolling fitness videos, knowing more than the guy in the reel. And weighing 40 pounds more.",
-                "Starting fresh every Monday. Again.",
+                "Ordering the same takeout you've always ordered. Not realizing it's <strong class='text-white'>400 calories more</strong> than it needs to be.",
+                "Forgetting to eat until 2 PM, then <strong class='text-white'>inhaling whatever's fastest.</strong>",
+                "Hitting 9 PM, scrolling fitness videos, <strong class='text-white'>knowing more than the guy in the reel.</strong> And weighing 40 pounds more.",
+                "Starting fresh <strong class='text-white'>every Monday.</strong> Again.",
               ].map((item, i) => (
                 <div
                   key={i}
@@ -279,7 +298,7 @@ export default function ConciergePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </span>
-                  <p className="text-sm leading-relaxed text-zinc-300">{item}</p>
+                  <p className="text-sm leading-relaxed text-zinc-300" dangerouslySetInnerHTML={{ __html: item }} />
                 </div>
               ))}
               <div className="mt-6 rounded-xl border border-zinc-700 bg-zinc-900/60 p-4">
@@ -306,7 +325,10 @@ export default function ConciergePage() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-base text-zinc-400">
             We don&apos;t ask you to meal prep. We don&apos;t give you a PDF. We take
-            what you already eat and make it work for you.
+            <span className="text-white font-semibold"> what you already eat</span> and make it work for you.
+          </p>
+          <p className="mx-auto mt-4 max-w-2xl text-center text-xl font-extrabold text-white sm:text-2xl">
+            Built for your worst week. Not just your best one.
           </p>
           <div className="mt-14 grid gap-6 sm:grid-cols-3">
             {steps.map((s) => (
@@ -315,8 +337,8 @@ export default function ConciergePage() {
                 className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-6"
               >
                 <span className="text-4xl font-extrabold text-emerald-400/30">{s.num}</span>
-                <h3 className="mt-3 text-lg font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400">{s.desc}</p>
+                <h3 className="mt-3 text-xl font-extrabold tracking-tight">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-400" dangerouslySetInnerHTML={{ __html: s.desc }} />
               </div>
             ))}
           </div>
@@ -338,15 +360,19 @@ export default function ConciergePage() {
             This is not a diet consultation.
             <br />
             This is a{" "}
-            <span className="text-emerald-400">food audit.</span>
+            <span className="text-emerald-400">personalized food ecosystem.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base text-zinc-400">
-            We work with a small number of high-performing professionals. In 15 minutes,
-            we&apos;ll look at what you actually eat and show you exactly where the biggest
-            calorie savings are hiding.
+          <div className="mx-auto mt-8 max-w-md space-y-2 text-center text-base text-zinc-500">
+            <p>The work dinner.</p>
+            <p>The business trip.</p>
+            <p>The late night with nothing planned.</p>
+          </div>
+          <p className="mx-auto mt-6 max-w-xl text-center text-xl font-extrabold text-white sm:text-2xl">
+            Your worst week is what we design for.
           </p>
-          <p className="mt-3 text-sm text-zinc-500">
-            Even if you don&apos;t hire us, you&apos;ll leave with answers.
+          <p className="mx-auto mt-4 max-w-xl text-center text-sm text-zinc-500">
+            In 15 minutes, we&apos;ll show you where the calories are hiding
+            and what your personalized ecosystem would look like.
           </p>
           <div className="mt-8">
             <CtaButton />
@@ -365,35 +391,35 @@ export default function ConciergePage() {
             <span className="text-emerald-400">food ecosystem.</span>
           </h2>
           <p className="mt-4 max-w-2xl text-base text-zinc-400">
-            Not a meal plan. Not a PDF. A living system built around everything you
+            <span className="text-white font-semibold">Not a meal plan. Not a PDF.</span> A living system built around everything you
             already eat. One that evolves with your life.
           </p>
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {[
               {
                 title: "Every Restaurant",
-                desc: "Your go-to spots, mapped and optimized. Chipotle, CAVA, the Thai place on the corner. We find the swap that saves 300+ calories at each one.",
+                desc: "Your go-to spots, mapped and optimized. Chipotle, CAVA, the Thai place on the corner. We find the swap that saves <strong class='text-emerald-400'>300+ calories</strong> at each one.",
                 icon: (
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 ),
               },
               {
                 title: "Every Snack",
-                desc: "The protein bar that replaces the candy bar. The chips that cut calories in half. Same craving profile, fraction of the cost.",
+                desc: "The protein bar that replaces the candy bar. The chips that <strong class='text-white'>cut calories in half.</strong> Same craving profile, fraction of the cost.",
                 icon: (
                   <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                 ),
               },
               {
                 title: "Every Grocery Run",
-                desc: "What to buy, where to buy it, one click to order. We don't ask you to go to the store. We bring the store to your door.",
+                desc: "What to buy, where to buy it, <strong class='text-white'>one click to order.</strong> We don't ask you to go to the store. We bring the store to your door.",
                 icon: (
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
                 ),
               },
               {
                 title: "Always Evolving",
-                desc: "New restaurant? We add it. Traveling? We build a travel plan. Your life changes. The ecosystem adapts. You never start over.",
+                desc: "New restaurant? We add it. Traveling? We build a travel plan. Your life changes. The ecosystem adapts. <strong class='text-white'>You never start over.</strong>",
                 icon: (
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 ),
@@ -409,7 +435,7 @@ export default function ConciergePage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-bold">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400">{item.desc}</p>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-400" dangerouslySetInnerHTML={{ __html: item.desc }} />
               </div>
             ))}
           </div>
@@ -427,8 +453,8 @@ export default function ConciergePage() {
             <span className="text-emerald-400">move.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-center text-base text-zinc-400">
-            Our clients don&apos;t just &ldquo;feel better.&rdquo; They see measurable
-            changes while eating the food they love.
+            Our clients don&apos;t just &ldquo;feel better.&rdquo; They see <span className="text-white font-semibold">measurable
+            changes</span> while eating the food they love.
           </p>
           <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {metrics.map((m, i) => (
@@ -486,7 +512,7 @@ export default function ConciergePage() {
               <div className="relative overflow-hidden rounded-2xl border border-zinc-700/60 bg-zinc-900/40">
                 <img
                   src="/eamon-before-after.png"
-                  alt="Eamon Barkhordarian — before and after transformation"
+                  alt="Eamon Barkhordarian before and after transformation"
                   className="w-full max-h-[500px] object-cover object-top"
                 />
                 {/* Frosted card overlay */}
@@ -512,22 +538,22 @@ export default function ConciergePage() {
                 <span className="text-emerald-400">lived it.</span>
               </h2>
               <p className="mt-5 text-base leading-relaxed text-zinc-400">
-                Eamon isn&apos;t a fitness influencer. He&apos;s an entrepreneur and
-                ex-engineer who used to be athletic. Built a career, and watched the
+                Eamon isn&apos;t a fitness influencer. He&apos;s an <span className="text-white font-semibold">entrepreneur and
+                ex-engineer</span> who used to be athletic. Built a career, and watched the
                 weight creep on while ordering DoorDash every night.
               </p>
               <p className="mt-4 text-base leading-relaxed text-zinc-400">
                 He lived the exact life you&apos;re living. Desk all day, business on
-                his mind, body on the back burner. He figured out the math, lost the
-                weight without giving up the food he loved, and built the system so you
+                his mind, body on the back burner. He figured out the math, <span className="text-white font-semibold">lost the
+                weight without giving up the food he loved</span>, and built the system so you
                 don&apos;t have to figure it out yourself.
               </p>
               <div className="mt-6 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5">
                 <p className="text-sm font-medium italic text-zinc-300">
-                  &ldquo;I was the guy eating 4,000 calories a day without realizing it.
+                  &ldquo;I was the guy eating <span className="text-emerald-400 font-semibold">4,000 calories a day</span> without realizing it.
                   I was the guy who knew more about nutrition than his trainer. And
-                  weighed 40 pounds more. I built Bulletproof Body because I needed it
-                  first.&rdquo;
+                  weighed 40 pounds more. I built Bulletproof Body because <span className="text-white font-semibold">I needed it
+                  first.</span>&rdquo;
                 </p>
               </div>
             </div>
@@ -596,15 +622,14 @@ export default function ConciergePage() {
             <span className="text-emerald-400">Let us build the system.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base text-zinc-400">
-            In 15 minutes, we&apos;ll look at what you actually eat and show you where
-            the biggest calorie savings are hiding. You&apos;ll leave with a clear
-            picture. Whether you hire us or not.
+            In <span className="text-white font-semibold">15 minutes</span>, we&apos;ll show you where the calories are hiding
+            and what your personalized food ecosystem would look like.
           </p>
           <div className="mt-8">
             <CtaButton />
           </div>
           <p className="mt-4 text-sm text-zinc-500">
-            15-minute food audit. No meal plans. No judgment.
+            Complimentary for qualified applicants. No meal plans. No judgment.
           </p>
         </div>
       </section>

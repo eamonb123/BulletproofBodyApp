@@ -36,7 +36,11 @@ function toImageUrl(imagePath: string | null): string | null {
   if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
     return imagePath;
   }
-  return `/snacks/${imagePath.split("/").pop()}`;
+  // Preserve directory structure (snack-logos/, swap-logos/, snacks/)
+  if (imagePath.includes("/")) {
+    return `/${imagePath}`;
+  }
+  return `/snacks/${imagePath}`;
 }
 
 export async function GET() {

@@ -42,7 +42,7 @@ interface CompletedMeal {
   swapName: string;
 }
 
-function buildEmailHtml(data: {
+interface EmailData {
   email: string;
   currentWeight: number;
   goalWeight: number;
@@ -53,12 +53,91 @@ function buildEmailHtml(data: {
   ordersPerWeek: number;
   swapName: string;
   restaurantName: string;
+  originalCalories?: number;
+  swapCalories?: number;
   completedMeals: CompletedMeal[];
   sessionTotalSavings: number;
-}): string {
-  const restaurant = data.restaurantName || "your restaurant";
-  const avgRestaurants = 4;
-  const multipliedLbs = (data.lbsPerWeek * avgRestaurants).toFixed(1);
+  source?: string;
+}
+
+function buildEmailHtml(data: EmailData): string {
+  // Sanitize all numbers — prevent floating point decimals in emails
+  data.calSavedPerOrder = Math.round(data.calSavedPerOrder);
+  data.currentWeight = Math.round(data.currentWeight);
+  data.goalWeight = Math.round(data.goalWeight);
+  data.weeksToGoal = Math.round(data.weeksToGoal);
+  data.ordersPerWeek = Math.round(data.ordersPerWeek);
+  if (data.originalCalories) data.originalCalories = Math.round(data.originalCalories);
+  if (data.swapCalories) data.swapCalories = Math.round(data.swapCalories);
+  if (data.sessionTotalSavings) data.sessionTotalSavings = Math.round(data.sessionTotalSavings);
+
+  const source = data.source || "Fast Food Bible";
+  const isSnack = source === "Snack Bible";
+  const avgMultiplier = isSnack ? 4 : 4;
+  const multipliedLbs = (data.lbsPerWeek * avgMultiplier).toFixed(1);
+
+  // Source-specific copy
+  const originalLabel = isSnack ? data.restaurantName : data.restaurantName || "your restaurant";
+  const swapLabel = data.swapName || (isSnack ? "Your swap" : "Your meal");
+
+  // Proof section — different for snack vs restaurant
+  let proofHtml: string;
+  if (isSnack) {
+    const origCal = data.originalCalories ?? (data.calSavedPerOrder + (data.swapCalories ?? 0));
+    const swapCal = data.swapCalories ?? (origCal - data.calSavedPerOrder);
+    proofHtml = `
+    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 12px;">
+      Your usual snack: <strong style="color: #111;">${originalLabel}</strong> &mdash; ${origCal} calories.
+    </p>
+    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 12px;">
+      We swapped it for <strong style="color: #111;">${swapLabel}</strong> &mdash; ${swapCal} calories. Same craving, same satisfaction. <strong style="color: #059669;">${data.calSavedPerOrder} fewer calories.</strong>
+    </p>
+    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 32px;">
+      At ${data.ordersPerWeek}x a week, that&rsquo;s <strong style="color: #059669;">${data.lbsPerWeek.toFixed(1)} lbs of fat per week</strong> just from swapping one snack.
+    </p>`;
+  } else {
+    proofHtml = `
+    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 12px;">
+      You picked your usual order at ${originalLabel}. <strong style="color: #111;">${swapLabel}</strong>.
+    </p>
+    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 12px;">
+      Then you saw the swap. Same restaurant. Same vibe. <strong style="color: #059669;">${data.calSavedPerOrder} fewer calories.</strong>
+    </p>
+    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 32px;">
+      At ${data.ordersPerWeek}x a week, that&rsquo;s <strong style="color: #059669;">${data.lbsPerWeek.toFixed(1)} lbs of fat per week</strong> just from ordering smarter at one spot.
+    </p>`;
+  }
+
+  // Gap section — different for snack vs restaurant
+  let gapHtml: string;
+  if (isSnack) {
+    gapHtml = `
+    <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 16px; padding: 24px; margin-bottom: 32px;">
+      <h2 style="font-size: 18px; font-weight: 600; margin: 0 0 12px 0; color: #111;">But here&rsquo;s the thing.</h2>
+      <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0 0 16px 0;">
+        That was <strong style="color: #111;">one snack</strong>. You probably grab 4 or 5 different snacks every week. Each one has hidden calories that add up fast &mdash; the coatings, the fillers, the portion sizes nobody thinks about.
+      </p>
+      <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0;">
+        If you optimized all of them? That ${data.lbsPerWeek.toFixed(1)} lbs/week becomes <strong style="color: #059669; font-size: 17px;">${multipliedLbs} lbs/week.</strong>
+      </p>
+    </div>`;
+  } else {
+    gapHtml = `
+    <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 16px; padding: 24px; margin-bottom: 32px;">
+      <h2 style="font-size: 18px; font-weight: 600; margin: 0 0 12px 0; color: #111;">But here&rsquo;s the thing.</h2>
+      <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0 0 16px 0;">
+        That was one restaurant. You probably eat at 4 or 5 different places every week. Each one has the same kind of hidden calories. The sauces, the sides, the add-ons nobody thinks about.
+      </p>
+      <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0;">
+        If you optimized all of them? That ${data.lbsPerWeek.toFixed(1)} lbs/week becomes <strong style="color: #059669; font-size: 17px;">${multipliedLbs} lbs/week.</strong>
+      </p>
+    </div>`;
+  }
+
+  // P.S. — different per source
+  const psText = isSnack
+    ? "Reply to this email with your top 3 favorite snacks and I&rsquo;ll tell you exactly where the calories are hiding."
+    : "Reply to this email with your top 3 takeout spots and I&rsquo;ll tell you exactly where the calories are hiding.";
 
   return `
 <!DOCTYPE html>
@@ -76,15 +155,7 @@ function buildEmailHtml(data: {
     </h1>
 
     <!-- The proof -->
-    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 12px;">
-      You picked your usual order at ${restaurant}. <strong style="color: #111;">${data.swapName || "Your meal"}</strong>.
-    </p>
-    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 12px;">
-      Then you saw the swap. Same restaurant. Same vibe. <strong style="color: #059669;">${data.calSavedPerOrder} fewer calories.</strong>
-    </p>
-    <p style="font-size: 16px; color: #444; line-height: 1.8; margin-bottom: 32px;">
-      At ${data.ordersPerWeek}x a week, that&rsquo;s <strong style="color: #059669;">${data.lbsPerWeek.toFixed(1)} lbs of fat per week</strong> just from ordering smarter at one spot.
-    </p>
+    ${proofHtml}
 
     <!-- Projection -->
     <div style="background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 16px; padding: 28px; text-align: center; margin-bottom: 32px;">
@@ -94,15 +165,7 @@ function buildEmailHtml(data: {
     </div>
 
     <!-- The Gap -->
-    <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 16px; padding: 24px; margin-bottom: 32px;">
-      <h2 style="font-size: 18px; font-weight: 600; margin: 0 0 12px 0; color: #111;">But here&rsquo;s the thing.</h2>
-      <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0 0 16px 0;">
-        That was one restaurant. You probably eat at 4 or 5 different places every week. Each one has the same kind of hidden calories. The sauces, the sides, the add-ons nobody thinks about.
-      </p>
-      <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0;">
-        If you optimized all of them? That ${data.lbsPerWeek.toFixed(1)} lbs/week becomes <strong style="color: #059669;">${multipliedLbs} lbs/week.</strong>
-      </p>
-    </div>
+    ${gapHtml}
 
     <!-- CTA -->
     <div style="text-align: center; margin-bottom: 32px;">
@@ -117,7 +180,7 @@ function buildEmailHtml(data: {
     <!-- P.S. -->
     <div style="border-top: 1px solid #e5e7eb; padding-top: 24px; margin-bottom: 24px;">
       <p style="font-size: 14px; color: #666; line-height: 1.7;">
-        <strong style="color: #333;">P.S.</strong> Reply to this email with your top 3 takeout spots and I&rsquo;ll tell you exactly where the calories are hiding.
+        <strong style="color: #333;">P.S.</strong> ${psText}
       </p>
     </div>
 
@@ -143,6 +206,18 @@ function buildEmailHtml(data: {
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
+
+    // Sanitize numbers on intake — prevent floating point leaking anywhere
+    data.calSavedPerOrder = Math.round(Number(data.calSavedPerOrder) || 0);
+    data.currentWeight = Math.round(Number(data.currentWeight) || 0);
+    data.goalWeight = Math.round(Number(data.goalWeight) || 0);
+    data.weeksToGoal = Math.round(Number(data.weeksToGoal) || 0);
+    data.ordersPerWeek = Math.round(Number(data.ordersPerWeek) || 0);
+    data.lbsPerWeek = Number(data.lbsPerWeek) || 0;
+    if (data.originalCalories) data.originalCalories = Math.round(Number(data.originalCalories));
+    if (data.swapCalories) data.swapCalories = Math.round(Number(data.swapCalories));
+    if (data.sessionTotalSavings) data.sessionTotalSavings = Math.round(Number(data.sessionTotalSavings));
+
     const db = getDb();
 
     // Save lead
@@ -176,6 +251,14 @@ export async function POST(req: NextRequest) {
     if (resendKey) {
       try {
         const html = buildEmailHtml(data);
+        const source = data.source || "Fast Food Bible";
+        const isSnack = source === "Snack Bible";
+
+        // Subject line — different per source
+        const subject = isSnack
+          ? `You just found ${data.calSavedPerOrder} hidden calories in ${data.restaurantName || "your snack"}`
+          : `You just found ${data.calSavedPerOrder} hidden calories at ${data.restaurantName || "your restaurant"}`;
+
         const res = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
@@ -185,7 +268,7 @@ export async function POST(req: NextRequest) {
           body: JSON.stringify({
             from: "Bulletproof Body <swaps@bulletproofbody.ai>",
             to: data.email,
-            subject: `You just found ${data.calSavedPerOrder} hidden calories at ${data.restaurantName || "your restaurant"}`,
+            subject,
             html,
           }),
         });
@@ -200,6 +283,54 @@ export async function POST(req: NextRequest) {
         db2.prepare("UPDATE leads SET email_sent = 1 WHERE id = ?").run(id);
         db2.close();
       }
+
+      // Send lead notification to Eamon
+      const source = data.source || "Fast Food Bible";
+      const isSnack = source === "Snack Bible";
+      const completedMeals = data.completedMeals as CompletedMeal[] | undefined;
+      const mealsHtml = completedMeals?.length
+        ? completedMeals.map((m: CompletedMeal) =>
+            `<li>${m.restaurant}: ${m.mealType} — ${m.orderCalories} cal → ${m.swapCalories} cal (saved ${m.savings})</li>`
+          ).join("")
+        : "";
+
+      // Build notification — source-aware labels
+      const origLabel = isSnack ? "Original Snack" : "Restaurant";
+      const swapLabel = isSnack ? "Swap Snack" : "Swap";
+      const origCalStr = data.originalCalories ? ` (${data.originalCalories} cal)` : "";
+      const swapCalStr = data.swapCalories ? ` (${data.swapCalories} cal)` : "";
+
+      const notifyParts = [
+        `<h2>🔔 New Lead: ${source}</h2>`,
+        `<p><b>Source:</b> ${source}</p>`,
+        `<p><b>Email:</b> ${data.email}</p>`,
+        `<p><b>${origLabel}:</b> ${data.restaurantName || "Unknown"}${origCalStr}</p>`,
+        `<p><b>${swapLabel}:</b> ${data.swapName || "Unknown"}${swapCalStr}</p>`,
+        `<p><b>Cal Saved:</b> ${data.calSavedPerOrder} cal</p>`,
+        `<p><b>Current Weight:</b> ${data.currentWeight} lbs → <b>Goal:</b> ${data.goalWeight} lbs</p>`,
+        `<p><b>${isSnack ? "Snacks" : "Orders"}/Week:</b> ${data.ordersPerWeek}x</p>`,
+        `<p><b>Projection:</b> ${data.lbsPerWeek?.toFixed?.(1) ?? data.lbsPerWeek} lbs/week → ${data.goalWeight} lbs by ${data.targetDate} (${data.weeksToGoal} weeks)</p>`,
+      ];
+
+      if (mealsHtml) {
+        notifyParts.push(`<p><b>Completed Meals:</b></p><ul>${mealsHtml}</ul>`);
+      }
+      notifyParts.push(`<p style="color:#888;font-size:12px">${new Date().toISOString()}</p>`);
+
+      const notifySubject = isSnack
+        ? `🔔 New Lead [${source}]: ${data.email} — ${data.restaurantName || "unknown snack"} → ${data.swapName || "swap"} (${data.calSavedPerOrder} cal saved)`
+        : `🔔 New Lead [${source}]: ${data.email} — ${data.restaurantName || "unknown restaurant"} (${data.calSavedPerOrder} cal saved)`;
+
+      fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from: "Bulletproof Body <swaps@bulletproofbody.ai>",
+          to: "eamon@eamonian.com",
+          subject: notifySubject,
+          html: notifyParts.join(""),
+        }),
+      }).catch((e) => console.error("Lead notification email error:", e));
     }
 
     return NextResponse.json({

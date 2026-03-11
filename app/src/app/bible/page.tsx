@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback, Suspense } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence, LayoutGroup, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
@@ -133,7 +133,7 @@ const LOGO_EXTENSION_BY_ID: Record<string, string> = {
 // size = max-height/max-width %. Default 92%. yOffset = px shift up.
 // All logos are now standardized to 400x400 with 2% padding (96% fill).
 const LOGO_OVERRIDES: Record<string, { size?: number; yOffset?: number }> = {
-  tacobell: { yOffset: 12 },
+  tacobell: { yOffset: 0 },
   smoothieking: { yOffset: 10 },
   sonic: { yOffset: 8 },
 };
@@ -683,7 +683,7 @@ function FeedbackWidget({ context, variant = "swap" }: {
 }
 
 // ─── Restaurant Request Button (Grid-level) ──────────
-function RestaurantRequestButton({ searchQuery }: { searchQuery: string }) {
+function RestaurantRequestButton({ searchQuery, trackEvent }: { searchQuery: string; trackEvent?: (eventType: string, data?: Record<string, unknown>) => void }) {
   const [state, setState] = useState<"idle" | "open" | "sent">("idle");
   const [comment, setComment] = useState("");
   const [wantNotify, setWantNotify] = useState(false);
@@ -691,6 +691,7 @@ function RestaurantRequestButton({ searchQuery }: { searchQuery: string }) {
 
   const submit = () => {
     if (!comment.trim()) return;
+    trackEvent?.("bible_restaurant_request", { restaurant_name: comment.trim(), search_query: searchQuery });
     fetch("/api/feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -988,6 +989,41 @@ function BiblePage() {
   const [showTutorial, setShowTutorial] = useState(false);
   const [passedGate, setPassedGate] = useState(godMode);
 
+  // ─── Analytics (shared session via sessionStorage) ──────────────────────────────────
+  const sessionIdRef = useRef<string>("");
+  const capturedEmailRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    const existingSession = sessionStorage.getItem("bb_session_id");
+    if (existingSession) {
+      sessionIdRef.current = existingSession;
+    } else {
+      const newId = `fb_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+      sessionStorage.setItem("bb_session_id", newId);
+      sessionIdRef.current = newId;
+    }
+    const existingEmail = sessionStorage.getItem("bb_email");
+    if (existingEmail) capturedEmailRef.current = existingEmail;
+  }, []);
+
+  const trackEvent = useCallback((eventType: string, data?: Record<string, unknown>) => {
+    const payload = {
+      session_id: sessionIdRef.current,
+      event_type: eventType,
+      event_data: {
+        ...data,
+        email: capturedEmailRef.current || data?.email || null,
+        source: "Fast Food Bible",
+        timestamp: new Date().toISOString(),
+      },
+    };
+    fetch("/api/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch(() => {}); // fire-and-forget
+  }, []);
+
   // ─── sessionStorage persistence (back-nav only) ────────
   // Only saves when user clicks an internal link (VSL/concierge).
   // Only restores if a "navigated away" flag is present.
@@ -1029,20 +1065,23 @@ function BiblePage() {
 
   const navigateAway = useCallback((url: string) => {
     saveBibleState();
-    window.location.href = url;
+    const sep = url.includes("?") ? "&" : "?";
+    window.location.href = `${url}${sep}from=bible`;
   }, [saveBibleState]);
 
   const handleSwapComplete = useCallback((restaurant: string, swapName: string, savings: number) => {
+    trackEvent("bible_completed_swap", { restaurant, meal: swapName, calories_saved: savings, swap_number: completedSwaps.length + 1 });
     const newSwaps = [...completedSwaps, { restaurant, swapName, savings }];
     setCompletedSwaps(newSwaps);
     setSelectedId(null);
     if (newSwaps.length >= 2 && !passedGate) {
+      trackEvent("bible_gate_shown", { swap_count: newSwaps.length, total_savings: newSwaps.reduce((s, sw) => s + sw.savings, 0) });
       setFlow("gate");
     } else {
       setShowTutorial(true);
       setFlow("grid");
     }
-  }, [completedSwaps, passedGate]);
+  }, [completedSwaps, passedGate, trackEvent]);
 
   const handleHeroStart = useCallback(() => {
     setFlow("grid");
@@ -1050,9 +1089,11 @@ function BiblePage() {
   }, []);
 
   const handleRestaurantSelect = useCallback((id: string) => {
+    const r = restaurants.find((r) => r.id === id);
+    trackEvent("bible_restaurant_selected", { restaurant_id: id, restaurant_name: r?.name ?? id });
     setSelectedId(id);
     setFlow("detail");
-  }, []);
+  }, [restaurants, trackEvent]);
 
   // ─── Fetch restaurant list ─────────────────────────
   useEffect(() => {
@@ -1061,9 +1102,10 @@ function BiblePage() {
       .then((data) => {
         setRestaurants(data.restaurants);
         setLoading(false);
+        trackEvent("bible_hero_view", { restaurant_count: data.restaurants?.length ?? 0 });
       })
       .catch(() => setLoading(false));
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ─── Fetch restaurant detail on select ─────────────
   useEffect(() => {
@@ -1148,9 +1190,9 @@ function BiblePage() {
       {flow === "gate" && (
         <GateScreen
           completedSwaps={completedSwaps}
-          onContinue={() => { setPassedGate(true); setFlow("free"); }}
-          onVSL={() => { navigateAway("/vsl"); }}
-          onConcierge={() => { navigateAway("/concierge"); }}
+          onContinue={() => { trackEvent("bible_crossroads_keep_swapping", { swap_count: completedSwaps.length }); setPassedGate(true); setFlow("free"); }}
+          onVSL={() => { trackEvent("bible_crossroads_vsl", { swap_count: completedSwaps.length }); navigateAway("/vsl"); }}
+          onConcierge={() => { trackEvent("bible_crossroads_concierge", { swap_count: completedSwaps.length }); navigateAway("/concierge"); }}
         />
       )}
 
@@ -1340,7 +1382,7 @@ function BiblePage() {
                       )}
 
                       {/* Request a restaurant */}
-                      <RestaurantRequestButton searchQuery={query} />
+                      <RestaurantRequestButton searchQuery={query} trackEvent={trackEvent} />
                     </motion.div>
                   )}
 
@@ -1360,6 +1402,8 @@ function BiblePage() {
                         onBack={() => { setSelectedId(null); setFlow(passedGate ? "free" : "grid"); }}
                         onSwapComplete={handleSwapComplete}
                         onNavigateAway={navigateAway}
+                        trackEvent={trackEvent}
+                        capturedEmailRef={capturedEmailRef}
                       />
                     </motion.div>
                   )}
@@ -1488,8 +1532,6 @@ function getCleanDrinkName(name: string): string {
 // items were added. Make the auto-add more obvious OR don't auto-add (let user explicitly pick).
 // TODO: UX feedback — concierge page feels "nauseously busy" after clean game experience.
 // Consider a simpler bridge page or piecemeal the transition more gradually.
-// TODO: UX feedback — swap the green color to "Want this done for everything you eat?" CTA
-// on the crossroads screen. Users click whatever is green regardless of copy.
 function MealBuilderModal({
   entree,
   sides,
@@ -2018,6 +2060,8 @@ function CartSwapView({
   onBack,
   onSwapComplete,
   onNavigateAway,
+  trackEvent,
+  capturedEmailRef,
 }: {
   cart: CartItem[];
   restaurant: Restaurant;
@@ -2025,6 +2069,8 @@ function CartSwapView({
   onBack: () => void;
   onSwapComplete?: (restaurant: string, swapName: string, savings: number) => void;
   onNavigateAway?: (url: string) => void;
+  trackEvent?: (eventType: string, data?: Record<string, unknown>) => void;
+  capturedEmailRef?: React.MutableRefObject<string | null>;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -2393,6 +2439,8 @@ function CartSwapView({
                   swapName={cart.map((c) => c.entree.name).join(" + ")}
                   onSwapComplete={onSwapComplete}
                   onNavigateAway={onNavigateAway}
+                  trackEvent={trackEvent}
+                  capturedEmailRef={capturedEmailRef}
                 />
               )}
             </>
@@ -2411,6 +2459,8 @@ function RestaurantDetailView({
   onBack,
   onSwapComplete,
   onNavigateAway,
+  trackEvent,
+  capturedEmailRef,
 }: {
   restaurant: Restaurant;
   detail: RestaurantDetail | undefined;
@@ -2418,6 +2468,8 @@ function RestaurantDetailView({
   onBack: () => void;
   onSwapComplete?: (restaurant: string, swapName: string, savings: number) => void;
   onNavigateAway?: (url: string) => void;
+  trackEvent?: (eventType: string, data?: Record<string, unknown>) => void;
+  capturedEmailRef?: React.MutableRefObject<string | null>;
 }) {
   const [mealQuery, setMealQuery] = useState("");
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
@@ -2551,6 +2603,8 @@ function RestaurantDetailView({
           onBack={() => setShowCartSwap(false)}
           onSwapComplete={onSwapComplete}
           onNavigateAway={onNavigateAway}
+          trackEvent={trackEvent}
+          capturedEmailRef={capturedEmailRef}
         />
       );
     }
@@ -2922,7 +2976,7 @@ function RestaurantDetailView({
               </motion.div>
             ) : (
               <>
-                <SwapSavingsCard savings={savings} restaurantName={restaurant.name} swapName={bestSwap?.name} onSwapComplete={onSwapComplete} onNavigateAway={onNavigateAway} />
+                <SwapSavingsCard savings={savings} restaurantName={restaurant.name} swapName={bestSwap?.name} onSwapComplete={onSwapComplete} onNavigateAway={onNavigateAway} trackEvent={trackEvent} capturedEmailRef={capturedEmailRef} />
                 <FeedbackWidget variant="swap" context={{
                   section: "swap_comparison",
                   restaurantName: restaurant.name,
@@ -3079,7 +3133,7 @@ function RestaurantDetailView({
               </motion.div>
             ) : (
               <>
-                <SwapSavingsCard savings={autoSavings} restaurantName={restaurant.name} swapName={autoSwapItem.name} onSwapComplete={onSwapComplete} onNavigateAway={onNavigateAway} />
+                <SwapSavingsCard savings={autoSavings} restaurantName={restaurant.name} swapName={autoSwapItem.name} onSwapComplete={onSwapComplete} onNavigateAway={onNavigateAway} trackEvent={trackEvent} capturedEmailRef={capturedEmailRef} />
                 <FeedbackWidget variant="swap" context={{
                   section: "auto_swap",
                   restaurantName: restaurant.name,
@@ -3189,7 +3243,7 @@ function RestaurantDetailView({
                   const hasMealSwap = ingredientToMeal.has(item.id) && swapMap.has(ingredientToMeal.get(item.id)!.id);
                   return (
                     <motion.button key={item.id}
-                      onClick={() => { setSelectedItemId(item.id); setRevealed(false); }}
+                      onClick={() => { trackEvent?.("bible_meal_selected", { restaurant: restaurant.name, meal: item.name, calories: Math.round(item.calories) }); setSelectedItemId(item.id); setRevealed(false); }}
                       className="flex w-full items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 text-left transition-colors hover:border-zinc-600"
                       whileTap={{ scale: 0.98 }}>
                       <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-zinc-800">
@@ -3254,8 +3308,8 @@ const REPORT_STEPS = [
   { threshold: 85, label: "Putting together your swap plan" },
 ];
 
-function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, onNavigateAway }: { savings: number; restaurantName: string; swapName?: string; onSwapComplete?: (restaurant: string, swapName: string, savings: number) => void; onNavigateAway?: (url: string) => void }) {
-  const [phase, setPhase] = useState<"savings" | "weight" | "projection" | "generating" | "crossroads">("savings");
+function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, onNavigateAway, trackEvent, capturedEmailRef }: { savings: number; restaurantName: string; swapName?: string; onSwapComplete?: (restaurant: string, swapName: string, savings: number) => void; onNavigateAway?: (url: string) => void; trackEvent?: (eventType: string, data?: Record<string, unknown>) => void; capturedEmailRef?: React.MutableRefObject<string | null> }) {
+  const [phase, setPhase] = useState<"savings" | "weight" | "projection" | "generating" | "crossroads" | "bridge">("savings");
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [ordersPerWeek, setOrdersPerWeek] = useState(7);
@@ -3263,6 +3317,17 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
   const [goalWeight, setGoalWeight] = useState<number | null>(null);
   const [genProgress, setGenProgress] = useState(0);
   const [genComplete, setGenComplete] = useState(false);
+
+  // Track swap revealed on mount
+  useEffect(() => {
+    trackEvent?.("bible_swap_revealed", { restaurant: restaurantName, meal: swapName, calories_saved: savings });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Track phase transitions
+  useEffect(() => {
+    if (phase === "crossroads") trackEvent?.("bible_crossroads_shown", { restaurant: restaurantName, calories_saved: savings });
+    if (phase === "bridge") trackEvent?.("bible_bridge_shown", { restaurant: restaurantName, calories_saved: savings });
+  }, [phase]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Derived math (safe defaults for early phases)
   const cw = currentWeight ?? 200;
@@ -3325,6 +3390,7 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
               email, currentWeight: cw, goalWeight: gw,
               calSavedPerOrder: savings, lbsPerWeek: lbsPerWeekNum, weeksToGoal,
               targetDate: targetDateStr, ordersPerWeek, swapName, restaurantName,
+              source: "Fast Food Bible",
             }),
           }).catch(() => { /* best-effort */ });
         }
@@ -3337,6 +3403,9 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
 
   const handleEmailSubmit = () => {
     if (!email.includes("@")) return;
+    if (capturedEmailRef) capturedEmailRef.current = email;
+    try { sessionStorage.setItem("bb_email", email); } catch {}
+    trackEvent?.("bible_email_captured", { email, restaurant: restaurantName, calories_saved: savings });
     setGenProgress(0);
     setGenComplete(false);
     setPhase("generating");
@@ -3464,9 +3533,8 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
               className="flex items-center justify-center gap-3 mb-4">
               <span className="text-xs text-zinc-500">Orders per week:</span>
               <div className="flex gap-1">
-                {/* TODO: UX feedback — add 1 and 2 to this range. User said "I'm not eating it 3x/week" */}
-                {[3, 4, 5, 6, 7].map((n) => (
-                  <button key={n} onClick={() => setOrdersPerWeek(n)}
+                {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+                  <button key={n} onClick={() => { trackEvent?.("bible_frequency_change", { restaurant: restaurantName, old_freq: ordersPerWeek, new_freq: n }); setOrdersPerWeek(n); }}
                     className={`h-8 w-8 rounded-lg text-xs font-bold transition-all ${ordersPerWeek === n ? "bg-emerald-500 text-black" : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"}`}>
                     {n}
                   </button>
@@ -3708,21 +3776,21 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
             {/* 3 CTAs */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.5 }}
               className="space-y-3">
+              <motion.button whileTap={{ scale: 0.97 }} onClick={() => { trackEvent?.("bible_crossroads_concierge", { restaurant: restaurantName, calories_saved: savings }); setPhase("bridge"); }}
+                className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400 flex items-center justify-center gap-2">
+                <span>Want this done for everything you eat?</span>
+                <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
+              </motion.button>
+
               {onSwapComplete && (
                 <motion.button whileTap={{ scale: 0.97 }}
-                  onClick={() => onSwapComplete(restaurantName, swapName || "Swap", savings)}
-                  className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400 flex items-center justify-center gap-2">
-                  <span>Find your next swap</span>
-                  <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
+                  onClick={() => { trackEvent?.("bible_crossroads_keep_swapping", { restaurant: restaurantName, calories_saved: savings }); onSwapComplete(restaurantName, swapName || "Swap", savings); }}
+                  className="w-full rounded-2xl border-2 border-emerald-500/30 bg-emerald-500/5 px-6 py-4 text-sm font-medium text-emerald-400 transition-all hover:border-emerald-500/50 hover:bg-emerald-500/10">
+                  Find your next swap
                 </motion.button>
               )}
 
-              <motion.button whileTap={{ scale: 0.97 }} onClick={() => nav("/concierge")}
-                className="w-full rounded-2xl border-2 border-emerald-500/30 bg-emerald-500/5 px-6 py-4 text-sm font-medium text-emerald-400 transition-all hover:border-emerald-500/50 hover:bg-emerald-500/10">
-                Want this done for everything you eat?
-              </motion.button>
-
-              <motion.button whileTap={{ scale: 0.97 }} onClick={() => nav("/vsl")}
+              <motion.button whileTap={{ scale: 0.97 }} onClick={() => { trackEvent?.("bible_crossroads_vsl", { restaurant: restaurantName, calories_saved: savings }); nav("/vsl?from=bible"); }}
                 className="w-full rounded-2xl border border-zinc-800 px-6 py-3.5 text-sm text-zinc-400 transition-all hover:border-zinc-600 hover:text-zinc-300 flex items-center justify-center gap-2">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
@@ -3731,9 +3799,78 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
                 See why this works
               </motion.button>
 
-              <button onClick={() => { if (onSwapComplete) onSwapComplete(restaurantName, swapName || "Swap", savings); }}
+              <button onClick={() => { trackEvent?.("bible_crossroads_keep_swapping", { restaurant: restaurantName, calories_saved: savings }); if (onSwapComplete) onSwapComplete(restaurantName, swapName || "Swap", savings); }}
                 className="w-full text-center text-sm text-zinc-600 hover:text-zinc-400 transition-colors py-2">
                 Done for now
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {/* ── Bridge Screen ── */}
+        {phase === "bridge" && (
+          <motion.div key="bridge" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="flex flex-col items-center justify-center min-h-[70vh] text-center px-2">
+
+            {/* Layer 1: Personalized anchor — what just happened */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+              <p className="text-xs text-zinc-500 uppercase tracking-[0.25em] mb-3">Just now</p>
+              <p className="text-4xl sm:text-5xl font-extrabold text-emerald-400 tabular-nums">{savings} calories</p>
+              <p className="text-lg text-zinc-400 mt-2">
+                saved at <span className="text-white font-semibold">{restaurantName}</span>
+              </p>
+            </motion.div>
+
+            {/* Divider */}
+            <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.8, duration: 0.6 }}
+              className="w-12 h-px bg-zinc-700 my-8" />
+
+            {/* Layer 2: Small reframe — one meal */}
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }}
+              className="max-w-sm">
+              <p className="text-xl sm:text-2xl font-bold text-white leading-snug">
+                That was one meal.
+              </p>
+              <p className="text-xl sm:text-2xl text-zinc-400 mt-2 leading-snug">
+                At one restaurant.
+              </p>
+            </motion.div>
+
+            {/* Layer 3: Expand to all restaurants — still grounded */}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }}
+              className="mt-8 max-w-sm">
+              <p className="text-base text-zinc-400">
+                Now imagine we did that for <span className="text-white font-semibold">every place you order from.</span>
+              </p>
+            </motion.div>
+
+            {/* Layer 4: Vision cascade — "what if" questions that escalate */}
+            <div className="mt-10 max-w-sm space-y-5">
+              {[
+                { delay: 3.2, text: "What if every snack in your drawer was already optimized?" },
+                { delay: 4.0, text: "What if your groceries showed up every Sunday, already swapped?" },
+                { delay: 4.8, text: "What if you landed in a new city and your restaurants were already mapped?" },
+                { delay: 5.6, text: "What if all you had to do was eat, and the pounds just melted off?" },
+              ].map((item, i) => (
+                <motion.p key={i} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: item.delay, duration: 0.5 }}
+                  className={`text-sm sm:text-base leading-relaxed ${i === 3 ? "text-emerald-400 font-semibold text-base sm:text-lg mt-8" : "text-zinc-300"}`}>
+                  {item.text}
+                </motion.p>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 6.6 }}
+              className="mt-12 w-full max-w-sm space-y-3">
+              <motion.button whileTap={{ scale: 0.97 }} onClick={() => { trackEvent?.("bible_bridge_concierge", { restaurant: restaurantName, calories_saved: savings }); nav("/concierge?from=bible"); }}
+                className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400 flex items-center justify-center gap-2">
+                <span>See how it works</span>
+                <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
+              </motion.button>
+              <button onClick={() => { trackEvent?.("bible_bridge_back", { restaurant: restaurantName }); setPhase("crossroads"); }}
+                className="w-full text-center text-sm text-zinc-600 hover:text-zinc-400 transition-colors py-2">
+                Back to swaps
               </button>
             </motion.div>
           </motion.div>

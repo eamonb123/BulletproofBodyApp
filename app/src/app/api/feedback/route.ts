@@ -83,6 +83,8 @@ export async function POST(req: NextRequest) {
         data.comment ? `<p><b>Comment:</b> ${data.comment}</p>` : "",
         data.swapRationale ? `<p><b>Rationale:</b> ${data.swapRationale}</p>` : "",
         data.notifyEmail ? `<p><b>Notify when updated:</b> ${data.notifyEmail}</p>` : "",
+        data.url ? `<p><b>URL:</b> <a href="${data.url}">${data.url}</a></p>` : "",
+        data.snackId ? `<p><b>Snack ID:</b> ${data.snackId}</p>` : "",
         `<p style="color:#888;font-size:12px">Page: ${data.page || "unknown"} · ${new Date().toISOString()}</p>`,
       ].filter(Boolean).join("");
 
