@@ -2877,7 +2877,9 @@ function RestaurantDetailView({
   // Notify parent when optimized view changes (to hide header)
   useEffect(() => { onOptimizedViewChange?.(showOptimized); }, [showOptimized]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const scrollLockRef = useRef<number | null>(null);
   const toggleChecked = useCallback((id: string) => {
+    scrollLockRef.current = window.scrollY;
     setCheckedIds((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
@@ -2885,6 +2887,18 @@ function RestaurantDetailView({
       return next;
     });
   }, []);
+
+  // Restore scroll position after render caused by toggle
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (scrollLockRef.current !== null) {
+      const y = scrollLockRef.current;
+      scrollLockRef.current = null;
+      requestAnimationFrame(() => {
+        window.scrollTo(0, y);
+      });
+    }
+  });
 
   if (loading || !detail) {
     return (
@@ -3310,16 +3324,12 @@ function RestaurantDetailView({
         </div>
       </div>
 
-      {/* Instruction text */}
-      {checkedIds.size === 0 && (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="mb-4 text-center text-sm text-zinc-500"
-        >
-          Tap everything you&apos;d normally order
-        </motion.p>
-      )}
+      {/* Instruction text — always rendered to avoid layout shift */}
+      <p
+        className={`mb-4 text-center text-sm text-zinc-500 transition-opacity duration-200 ${checkedIds.size === 0 ? "opacity-100" : "opacity-0 h-0 mb-0 overflow-hidden"}`}
+      >
+        Tap everything you&apos;d normally order
+      </p>
 
       {/* Search */}
       <div className="relative mb-4">
@@ -3359,7 +3369,7 @@ function RestaurantDetailView({
                   const isChecked = checkedIds.has(item.id);
                   const hasMealSwap = ingredientToMeal.has(item.id) && swapMap.has(ingredientToMeal.get(item.id)!.id);
                   return (
-                    <motion.div key={item.id} role="button" tabIndex={0}
+                    <motion.div key={item.id} role="button" tabIndex={-1}
                       onClick={() => { trackEvent?.("bible_meal_checked", { restaurant: restaurant.name, meal: item.name, calories: Math.round(item.calories), checked: !isChecked }); toggleChecked(item.id); }}
                       className={`flex w-full items-center gap-3 rounded-xl border p-4 text-left transition-all cursor-pointer ${isChecked ? "border-emerald-500/50 bg-emerald-500/5" : "border-zinc-800 bg-zinc-900/60 hover:border-zinc-600"}`}
                       whileTap={{ scale: 0.98 }}>
@@ -3692,11 +3702,8 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
                   className="w-full rounded-2xl border border-emerald-500/25 bg-emerald-500/5 p-5 mb-6 overflow-hidden"
                 >
                   <h2 className="text-lg font-bold text-white mb-1">
-                    Crunching the numbers on your {restaurantName} swap
+                    Sending...
                   </h2>
-                  <p className="text-sm text-zinc-500 mb-3">
-                    {email ? `Sending to ${email}` : "Hang tight"}
-                  </p>
                   {!barDone ? (
                     <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
                       <motion.div

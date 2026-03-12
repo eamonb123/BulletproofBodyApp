@@ -2283,11 +2283,8 @@ function ProjectionScreen({
                 className="w-full rounded-2xl border border-emerald-500/25 bg-emerald-500/5 p-5 mb-6 overflow-hidden"
               >
                 <h2 className="text-lg font-bold text-white mb-1">
-                  Crunching the numbers on your {snackName} swap
+                  Sending...
                 </h2>
-                <p className="text-sm text-zinc-500 mb-3">
-                  {email ? `Sending to ${email}` : "Hang tight"}
-                </p>
                 {/* Bar or checkmark */}
                 {!barDone ? (
                   <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
