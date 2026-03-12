@@ -507,8 +507,20 @@ function SnackBibleDemoInner() {
     router.push("/snack-bible-landing?pick=1&stacked=1");
   }
 
+  function saveCompletedSnack() {
+    if (!snackParam || !tutorialSwapPair) return;
+    try {
+      const stored = JSON.parse(localStorage.getItem("bb_completed_snacks") || "[]");
+      const calSaved = tutorialSwapPair.original.calories - tutorialSwapPair.swap.calories;
+      if (!stored.find((s: { id: string }) => s.id === snackParam)) {
+        stored.push({ id: snackParam, name: tutorialBrand?.name ?? snackParam, calSaved });
+        localStorage.setItem("bb_completed_snacks", JSON.stringify(stored));
+      }
+    } catch {}
+  }
+
   function advanceToDashboard() {
-    // Demo flow loops back to landing — dashboard is only accessible via /snack-bible-demo?skip=dashboard
+    saveCompletedSnack();
     router.push("/snack-bible-landing?pick=1&stacked=1");
   }
 
@@ -2376,7 +2388,7 @@ function ProjectionScreen({
               <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
             </motion.button>
             <button
-              onClick={() => window.location.href = "/snack-bible-landing?pick=1&stacked=1"}
+              onClick={onContinue}
               className="w-full text-center text-sm text-zinc-600 hover:text-zinc-400 transition-colors py-2"
             >
               Keep exploring swaps

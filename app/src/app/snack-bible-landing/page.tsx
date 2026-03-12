@@ -1,9 +1,15 @@
 "use client";
 
-import { Suspense, useState, useMemo } from "react";
+import { Suspense, useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
+
+interface CompletedSnack {
+  id: string;
+  name: string;
+  calSaved: number;
+}
 
 // ─── Snack Brand Data ───────────────────────────────
 interface SnackBrand {
@@ -233,6 +239,33 @@ export default function SnackBibleLandingPage() {
   );
 }
 
+// ─── Progress Banner ──────────────────────────────
+function SnackProgressBanner({ completed }: { completed: CompletedSnack[] }) {
+  const totalCalSaved = completed.reduce((sum, s) => sum + s.calSaved, 0);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="mb-4 w-full max-w-6xl rounded-2xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3"
+    >
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm font-bold text-emerald-400">
+            {completed.length} swap{completed.length !== 1 ? "s" : ""} found
+          </p>
+          <p className="text-xs text-zinc-400">
+            {completed.map((s) => s.name).join(", ")}
+          </p>
+        </div>
+        <div className="text-right">
+          <p className="text-lg font-bold tabular-nums text-emerald-400">-{totalCalSaved} cal</p>
+          <p className="text-xs text-zinc-500">per swap</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 // ─── Stack Encouragement Tooltip ───────────────────
 function StackTooltip({ onDismiss }: { onDismiss: () => void }) {
   return (
@@ -268,7 +301,18 @@ function SnackBibleLanding() {
   const isReturning = searchParams.get("stacked") === "1";
   const [awake, setAwake] = useState(searchParams.get("pick") === "1" || isReturning);
   const [showStackTooltip, setShowStackTooltip] = useState(isReturning);
+  const [completedSnacks, setCompletedSnacks] = useState<CompletedSnack[]>([]);
   const [search, setSearch] = useState("");
+
+  // Load completed snacks from localStorage
+  useEffect(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem("bb_completed_snacks") || "[]");
+      if (stored.length > 0) setCompletedSnacks(stored);
+    } catch {}
+  }, []);
+
+  const completedIds = useMemo(() => new Set(completedSnacks.map(s => s.id)), [completedSnacks]);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
@@ -433,6 +477,11 @@ function SnackBibleLanding() {
               We&apos;ll show you how to lose weight without giving it up.
             </motion.p>
 
+            {/* Progress banner — shows completed swaps */}
+            {completedSnacks.length > 0 && (
+              <SnackProgressBanner completed={completedSnacks} />
+            )}
+
             {/* Search */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -470,9 +519,17 @@ function SnackBibleLanding() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: idx * 0.01, duration: 0.3 }}
                   onClick={() => router.push(`/snack-bible-demo?snack=${b.id}`)}
-                  className="group relative aspect-square overflow-hidden rounded-xl border border-zinc-800 bg-white transition-all duration-200 hover:scale-105 hover:border-emerald-500/50 hover:shadow-[0_0_24px_rgba(16,185,129,0.12)]"
+                  className={`group relative aspect-square overflow-hidden rounded-xl border bg-white transition-all duration-200 hover:scale-105 hover:border-emerald-500/50 hover:shadow-[0_0_24px_rgba(16,185,129,0.12)] ${completedIds.has(b.id) ? "border-emerald-500/40" : "border-zinc-800"}`}
                 >
                   <SnackLogo brand={b} />
+                  {/* Completed checkmark */}
+                  {completedIds.has(b.id) && (
+                    <div className="absolute top-1 right-1 z-10 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500">
+                      <svg className="h-3 w-3 text-black" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                    </div>
+                  )}
                   {/* Name on hover */}
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-1.5 pb-1.5 pt-5 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                     <p className="text-center text-[10px] font-semibold leading-tight text-white">{b.name}</p>
