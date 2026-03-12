@@ -1,0 +1,42 @@
+{
+  "position": 37,
+  "url": "https://www.instagram.com/p/DRxTdrJkfVG/",
+  "shortcode": "DRxTdrJkfVG",
+  "creator": "@sethgolie",
+  "views": 5964,
+  "likes": 173,
+  "duration": 23.333,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You wanna go to Jimmy John's? Yeah, man, I'll get the number four turkey tom, unwitch, extra meat, all the veggies, mustard, and a Coke Zero. Okay, but what if we went to Jersey Mike's? What would you order there? Yeah, I'd get a club sub in a bowl, extra meat, all the veggies, light dressing on the side, and a Coke Zero. Man, how do you always know what to order? Bro, do you not follow Seth G yet? Well, shit, I better follow Seth G right now.",
+  "caption": "Steal these 2 fast food swaps to stay on track\n\nJimmy John's\n#4 Turkey Tom Unwich\nDouble Meat + Mustard + Veggies + Coke Zero\n(490 calories 46g protein)\n\nJersey Mike's\nClub Sub in a Bowl (Lettuce Base)\nExtra Meat + All Veggies + Light Italian + Coke Zero\n(620 calories 50g protein)\n\nFollow @sethgolie for fast food swaps\n\n#fitover40 #macrofriendly",
+  "ocr_summary": "Jimmy John's: 1450 cal / 46g protein (original) vs 490 cal / 46g protein (swap). Jersey Mike's: 1700 cal / 70g protein (original) vs 620 cal / 50g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Jimmy John's",
+        "original_meal": "Standard #4 Turkey Tom meal (sub + chips + soda)",
+        "original_calories": 1450,
+        "original_protein": 46,
+        "swap_meal": "#4 Turkey Tom Unwich, Double Meat + Mustard + Veggies + Coke Zero",
+        "swap_calories": 490,
+        "swap_protein": 46,
+        "swap_ingredients": ["turkey", "lettuce wrap (unwich)", "mustard", "veggies", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_food"
+      },
+      {
+        "restaurant_name": "Jersey Mike's",
+        "original_meal": "Standard Club Sub meal (sub + chips + soda)",
+        "original_calories": 1700,
+        "original_protein": 70,
+        "swap_meal": "Club Sub in a Bowl (Lettuce Base), Extra Meat + All Veggies + Light Italian + Coke Zero",
+        "swap_calories": 620,
+        "swap_protein": 50,
+        "swap_ingredients": ["club sub meats", "lettuce base", "veggies", "light Italian dressing", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Two fast food sub shop swaps. Both use the strategy of ditching the bread (unwich/bowl) and swapping soda for Coke Zero to dramatically cut calories while maintaining protein."
+  }
+}

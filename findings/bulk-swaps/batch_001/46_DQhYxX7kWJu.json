@@ -1,0 +1,30 @@
+{
+  "position": 46,
+  "url": "https://www.instagram.com/p/DQhYxX7kWJu/",
+  "shortcode": "DQhYxX7kWJu",
+  "creator": "@sethgolie",
+  "views": 5822,
+  "likes": 160,
+  "duration": 16.633,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. Let's go to Shake Shack for lunch. I'm down. I'll get the double Shack Burger lettuce wrapped. No cheese or sauce. Let's do a side salad with the light vinaigrette and a Diet Coke. Oh, dang. I didn't even know you could order like that. Bro, are you not following Seth G. yet? Well, shit. I'm gonna make sure to follow Seth G. right now.",
+  "caption": "You're not FAT because you eat out, it's because how you order. Next time you hit up Shake Shack order this: Double Shack burger, lettuce wrapped, no cheese or shack sauce, side salad with light dressing, & Large Diet Coke (560 calories 44 G protein). This meal will save you over 1000 calories & keep you on track with your fitness journey. Follow @sethgolie for fast food swaps.",
+  "ocr_summary": "2280 CALORIES vs 560 CALORIES, 81G PROTEIN vs 44G PROTEIN",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Shake Shack",
+        "original_meal": "Standard Shake Shack meal (burger, fries, shake)",
+        "original_calories": 2280,
+        "original_protein": 81,
+        "swap_meal": "Double Shack Burger lettuce wrapped, no cheese or shack sauce + side salad with light vinaigrette + large Diet Coke",
+        "swap_calories": 560,
+        "swap_protein": 44,
+        "swap_ingredients": ["Double Shack Burger (lettuce wrapped)", "side salad", "light vinaigrette", "Diet Coke"],
+        "is_swap": true,
+        "category": "fast_casual"
+      }
+    ],
+    "notes": "Single swap. Saves over 1700 calories. Same skit format as other sethgolie reels."
+  }
+}

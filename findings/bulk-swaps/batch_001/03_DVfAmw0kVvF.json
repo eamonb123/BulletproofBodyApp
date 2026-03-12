@@ -1,0 +1,23 @@
+{
+  "position": 3,
+  "url": "https://www.instagram.com/p/DVfAmw0kVvF/",
+  "shortcode": "DVfAmw0kVvF",
+  "transcript": "I'm starving, you wanna go to Panda Express? Yeah, let me get a bowl with the Super Greens, grilled chicken teriyaki, and the wok fried shrimp in a diet cup. Oh. Actually no, I changed my mind. Let's get a plate with the Super Greens, the grilled chicken teriyaki, and the firecracker steak and shrimp with the diet cup. Oh shit, I didn't even know you could order like that. Where'd you learn? The MenuFit app lets you know what to order at every restaurant to stay on track with your fitness goals. Damn, I'm gonna download the MenuFit app right now.",
+  "caption": "Comment \"Fast Food\" for me FREE fast food swap cheat sheet\n\nSteal these two orders from Panda Express\n\nFit order 1:\nProtein Bowl\nSuper Greens (Side) > Teriyaki Chicken > Wok-Fired Shrimp + Diet Coke\n(660 calories 67 G protein)\n\nFit order 2:\nPlate\nSuper Greens (Side) > Teriyaki Chicken > Firecracker Steak & Shrimp > Diet Coke\n(690 calories 70 G protein)\n\nFollow @sethgolie for high protein meal swaps",
+  "ocr_text": "BIGGER PLATE 2,300 calories 70g protein 660 calories 67g protein | PANDA EXPRESS 690 calories 70g protein",
+  "visual_scenes": "Two men in black shirts hold food trays from Panda Express in front of a bookshelf. Nutritional comparison overlay shows original bigger plate at 2,300 cal vs fit bowl at 660 cal. Second swap shows plate at 690 cal 70g protein. MenuFit app displayed.",
+  "creator": "@sethgolie",
+  "views": 6669,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "parsed": {
+    "restaurant_name": "Panda Express",
+    "original_meal": "Bigger Plate with regular sides and drink",
+    "original_calories": 2300,
+    "swap_meal": "Protein Bowl: Super Greens, Teriyaki Chicken, Wok-Fired Shrimp + Diet Coke",
+    "swap_calories": 660,
+    "swap_ingredients": ["super greens", "grilled chicken teriyaki", "wok-fired shrimp", "diet coke"],
+    "is_swap": true,
+    "category": "bowl",
+    "notes": "Two Panda Express swaps: Bowl (660 cal 67g protein) and Plate with Super Greens, Teriyaki Chicken, Firecracker Steak & Shrimp, Diet Coke (690 cal 70g protein)."
+  }
+}

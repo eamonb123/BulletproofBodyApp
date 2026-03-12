@@ -1,0 +1,42 @@
+{
+  "position": 26,
+  "url": "https://www.instagram.com/p/DTTstsLkWSd/",
+  "shortcode": "DTTstsLkWSd",
+  "creator": "@sethgolie",
+  "views": 14146,
+  "likes": 485,
+  "duration": 32.233,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You wanna go to Chipotle? Yeah, I'll just get the chicken burrito bowl with pinto beans, cilantro lime rice, fresh salsa, romaine lettuce, no cheese, no guac, no sour cream, and a Coke Zero. Okay. Or you know what? Actually, maybe I'll get the soft taco trio with no cheese, no guac, no sour cream, lettuce, and the salsa, and a Coke Zero. Oh, wow. Damn, I had no clue that you could even order like that. Where did you learn this? The MenUFit app is gonna tell you what to order at every restaurant so you stay on track with your fitness goals. Damn, I'm gonna download the MenUFit app right now.",
+  "caption": "With the @menufit.app you will ALWAYS know what to order at every restaurant 🙌🏼\n\nNext time you go to Chipotle steal these two orders 👇🏼\n\nFit order 1:\nClassic Chicken Burrito Bowl → Chicken → Cilantro-Lime White Rice, Pinto Beans, Fresh Tomato Salsa, Romaine Lettuce → No cheese, no sour cream, no guac + Coke Zero \n(550 Cal 44 G Protein)\n\nFit order 2:\nLight Chicken Soft Taco Trio (No Cheese)\nThree Soft Flour Tacos → Chicken → Black Beans, Fresh Tomato Salsa, Romaine Lettuce →, no sour cream, no guac + Coke Zero \n(580 calories 46 G protein)\n\nSend this to all your friends!\n\nSave for later ✅\n\nFollow @sethgolie for fast food swaps 🙌🏼\n\nHigh protein meals\nFast food swaps\nRestaurant swaps\nEating Out tips \nMacro friendly meals\nFit over 40 man\n\n#macrofriendly #fitover40",
+  "ocr_summary": "Chipotle: 2,060 cal / 49g protein (original) vs 550 cal / 44g protein (swap 1 - burrito bowl) and 580 cal / 46g protein (swap 2 - soft taco trio).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chipotle",
+        "original_meal": "Standard Chipotle order",
+        "original_calories": 2060,
+        "original_protein": 49,
+        "swap_meal": "Classic Chicken Burrito Bowl: Chicken + Cilantro-Lime White Rice + Pinto Beans + Fresh Tomato Salsa + Romaine Lettuce (no cheese, no sour cream, no guac) + Coke Zero",
+        "swap_calories": 550,
+        "swap_protein": 44,
+        "swap_ingredients": ["Chicken", "Cilantro-Lime White Rice", "Pinto Beans", "Fresh Tomato Salsa", "Romaine Lettuce", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_casual"
+      },
+      {
+        "restaurant_name": "Chipotle",
+        "original_meal": "Standard Chipotle order",
+        "original_calories": 2060,
+        "original_protein": 49,
+        "swap_meal": "Light Chicken Soft Taco Trio (No Cheese): Three Soft Flour Tacos + Chicken + Black Beans + Fresh Tomato Salsa + Romaine Lettuce (no sour cream, no guac) + Coke Zero",
+        "swap_calories": 580,
+        "swap_protein": 46,
+        "swap_ingredients": ["Soft Flour Tacos (3)", "Chicken", "Black Beans", "Fresh Tomato Salsa", "Romaine Lettuce", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_casual"
+      }
+    ],
+    "notes": "Two Chipotle swap options in one reel. Skit format. Also promotes MenuFit app."
+  }
+}

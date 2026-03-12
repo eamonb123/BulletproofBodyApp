@@ -1,0 +1,54 @@
+{
+  "position": 10,
+  "url": "https://www.instagram.com/p/DUjp_r1EcGs/",
+  "shortcode": "DUjp_r1EcGs",
+  "creator": "@sethgolie",
+  "views": 5729,
+  "likes": 220,
+  "duration": 31.4,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I'm starving. You wanna go to Subway? Y'all get a number six turkey, double the meat, no cheese, all the veggies, mustard, and a Diet Coke. Okay, but what if we went to Panda Express instead? Y'all get the bowl with the super greens, double chicken teriyaki, and a Diet Coke. Actually, you know what? I'm actually feeling In-N-Out Burger. What would you get from there? Yeah, let me get the double double protein style and a diet coke. Man, how do you always know what to order at every restaurant? So the MenuFit app is actually gonna give you the best order at every restaurant to make sure you stay on track with your fitness goals. Man, I'm gonna download the MenuFit app right now.",
+  "caption": "Comment \"Fast Food\" for my FREE fast food swap cheat sheet. Steal these 3 fast food swaps: Subway #6 Turkey + double the meat + all the veggies + mustard + Diet Coke (420 calories 38 G protein). Panda Express Bowl with super greens + double chicken teriyaki + Diet Coke (620 calories 66 G protein). In-N-Out Burger Double double protein style + Diet Coke (580 calories 44 G protein).",
+  "ocr_summary": "Subway: 1,540 cal/40g protein (original) vs 420 cal/38g protein (swap). Panda Express: 1,760 cal/62g protein (original) vs 620 cal/66g protein (swap). In-N-Out: 2,040 cal/70g protein (original) vs 580 cal/44g protein (swap)",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Subway",
+        "original_meal": "Typical Subway order",
+        "original_calories": 1540,
+        "original_protein": 40,
+        "swap_meal": "#6 Turkey + double meat + no cheese + all veggies + mustard + Diet Coke",
+        "swap_calories": 420,
+        "swap_protein": 38,
+        "swap_ingredients": ["#6 Turkey sub", "double meat", "all veggies", "mustard", "Diet Coke"],
+        "is_swap": true,
+        "category": "sandwich"
+      },
+      {
+        "restaurant_name": "Panda Express",
+        "original_meal": "Typical Panda Express order",
+        "original_calories": 1760,
+        "original_protein": 62,
+        "swap_meal": "Bowl with Super Greens + Double Chicken Teriyaki + Diet Coke",
+        "swap_calories": 620,
+        "swap_protein": 66,
+        "swap_ingredients": ["Super Greens (base)", "Double Chicken Teriyaki", "Diet Coke"],
+        "is_swap": true,
+        "category": "bowl"
+      },
+      {
+        "restaurant_name": "In-N-Out Burger",
+        "original_meal": "Typical In-N-Out order",
+        "original_calories": 2040,
+        "original_protein": 70,
+        "swap_meal": "Double Double Protein Style + Diet Coke",
+        "swap_calories": 580,
+        "swap_protein": 44,
+        "swap_ingredients": ["Double Double (protein style/lettuce wrap)", "Diet Coke"],
+        "is_swap": true,
+        "category": "burger"
+      }
+    ],
+    "notes": "Three-restaurant reel covering Subway, Panda Express, and In-N-Out. Also promotes MenuFit app. All save 1000+ calories."
+  }
+}

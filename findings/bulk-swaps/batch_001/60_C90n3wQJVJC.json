@@ -1,0 +1,30 @@
+{
+  "position": 60,
+  "url": "https://www.instagram.com/p/C90n3wQJVJC/",
+  "shortcode": "C90n3wQJVJC",
+  "creator": "@j.newtrition",
+  "views": 120945,
+  "likes": 4474,
+  "duration": 68.3,
+  "extracted_at": "2026-03-11T12:05:00Z",
+  "transcript": "That leaves us with 41 grams of protein and 580 calories for this entire thing. I'm a weight loss dietician. This is my go-to order for Buffalo Wild Wings. I've gotten a lot of questions about why I haven't always included all of the macros besides protein, because there's no good research to show that any specific macro ratio is best for fat loss. It really still comes down to total calories and protein. So this is my favorite order for Buffalo Wild Wings. It's a three count naked tenders. Actually, they gave me four this time. And then I get celery and carrots on the side. And I get a side of fries with buffalo seasoning on them. And you get a dipping sauce to go with this. So I always get buffalo ranch and you can also do spicy garlic because it is the lowest in calories. And then for the celery, I get the blue cheese dressing with it. So all I'm going to do is just take everything and put it into one big pile in the middle. I personally like to break up the chicken. We'll take all of our veggies, go ahead and dump that. What we're going to do is we're just going to eat half. So we'll just pour roughly half. Then we'll pour the blue cheese dressing over all of it. And then add the buffalo ranch sauce over the top of that. I like to shake this whenever possible, but if you're at the restaurant, you just mix it up as best as you can, because if you've got all of the sauces mixed around on everything, then you'll get enough flavor for everything that you're eating without all of the calories. On apple tea.",
+  "caption": "Best order for Buffalo Wild Wings to stay on track with macros and goals. Macros for entire meal: 580 cals & 41.5g P / 48g C / 25.5g F. Per item: 3 count naked tenders 160 cals & 37g P / 0g C / 1g F. Buffalo ranch 90 cals. Side of carrots & celery & 1/2 bleu cheese 115 cals. 1/2 fries w/ Buffalo dry rub 215 cals.",
+  "ocr_summary": "41g Protein & 580 Calories displayed as hook text overlay",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Buffalo Wild Wings",
+        "original_meal": null,
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "3 Count Naked Tenders + Carrots & Celery + 1/2 Fries w/ Buffalo Dry Rub + Buffalo Ranch + 1/2 Blue Cheese",
+        "swap_calories": 580,
+        "swap_protein": 41,
+        "swap_ingredients": ["naked chicken tenders", "carrots", "celery", "fries", "buffalo dry rub seasoning", "buffalo ranch sauce", "blue cheese dressing"],
+        "is_swap": false,
+        "category": "macro_friendly_order"
+      }
+    ],
+    "notes": "Single macro-friendly order recommendation for Buffalo Wild Wings. NOT a swap format - this is a 'what to order' video by a weight loss dietician. Talking head format showing the full meal assembly. Detailed macro breakdown: 580 cal, 41.5g P, 48g C, 25.5g F. Per-item breakdown provided in caption."
+  }
+}

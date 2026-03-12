@@ -1,0 +1,23 @@
+{
+  "position": 2,
+  "url": "https://www.instagram.com/p/DVjh1WfkfKc/",
+  "shortcode": "DVjh1WfkfKc",
+  "transcript": "Bro, I'm starving. You wanna go to Raising Cane's? Yeah, bro, I'm just gonna get five naked strips, all a cart with the hot Louisiana sauce and a Coke Zero. Okay. What if we went to Popeye's? Yeah, I'll just get that chicken and sausage jambalaya bowl with a side of a blackened chicken breast and a Coke Zero. Damn, how do you always know what to order? Bro, the MenuFit app is gonna let you know what to order at every restaurant so you stay on track with your fitness goals. Shit, I'm gonna download the MenuFit app right now.",
+  "caption": "@menufit.app Comment \"Menu\" & I'll send you the link! That way you can eat out, and stay fit\n\nSteal these two orders\n\nRaising canes:\n5 Naked strips + hot Louisiana sauce + Coke Zero\n650 calories 65 G protein\n\nPopeyes:\nChicken and sausage jambalaya bowl + side blackened chicken breast + Coke Zero\n600 calories 45 G protein\n\nFollow @sethgolie for fast food swaps",
+  "ocr_text": "Cane's 1,950 calories 65g protein 650 calories 65g protein | POPeYes 1,550 calories 70g protein 600 calories 45g protein",
+  "visual_scenes": "Two men in black shirts stand on either side of a bookshelf, each holding food from Raising Canes with calorie comparison. Scene transitions to Popeyes food items with updated nutritional values. MenuFit app shown on phone.",
+  "creator": "@sethgolie",
+  "views": 3704,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "parsed": {
+    "restaurant_name": "Raising Cane's",
+    "original_meal": "Regular Cane's combo meal with fries, toast, coleslaw, drink",
+    "original_calories": 1950,
+    "swap_meal": "5 Naked strips + hot Louisiana sauce + Coke Zero",
+    "swap_calories": 650,
+    "swap_ingredients": ["5 naked chicken strips", "hot louisiana sauce", "coke zero"],
+    "is_swap": true,
+    "category": "chicken strips",
+    "notes": "Also includes Popeyes swap: Chicken and sausage jambalaya bowl + side blackened chicken breast + Coke Zero = 600 cal 45g protein. Two restaurants in one reel."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "position": 32,
+  "url": "https://www.instagram.com/p/DSxwIGjkQdT/",
+  "shortcode": "DSxwIGjkQdT",
+  "transcript": "Bro, I'm starving. You wanna go to Texas Roadhouse for dinner? Yeah, bro, I'll get the eight ounce sirloin with steamed broccoli, a side salad with light ranch, and a Coke Zero. Okay, that's awesome. But what if we went to Olive Garden instead? Yeah, I'd get the grilled chicken margarita with steamed broccoli, no potatoes, a light salad dressing, and a Diet Coke. Nice. And then what if we went to Applebee's? What would you order there? I'm gonna get the grilled chicken breast with the green beans, the broccoli, and a Coke Zero. Bro, how do you know how to order everything at every restaurant? Bro, do you not follow Seth G. yet? I'm gonna make sure to follow Seth G. right now.",
+  "caption": "Comment \u201cFASTFOOD\u201d for my FREE fast food cheat sheet\n\nTexas Roadhouse: 8 oz sirloin + steamed broccoli + side salad with light ranch on the side + Coke Zero (670 calories 70 G protein)\n\nOlive Garden: Grilled chicken margarita + steamed broccoli (no potatoes) + salad with light dressing on the side + Diet Coke (590 calories 52 G protein)\n\nApplebee's: Grilled chicken breast + green beans + broccoli + Diet Coke (490 calories 50 G protein)",
+  "ocr_text": "TEXAS ROADHOUSE 1950 CALORIES 65 G PROTEIN 670 CALORIES 60 G PROTEIN | Olive Garden 1800 CALORIES 65 G PROTEIN 590 CALORIES 52 G PROTEIN | Applebee's 1750 CALORIES 60 G PROTEIN 490 CALORIES 50 G PROTEIN",
+  "visual_scenes": "Two men in studio comparing sit-down restaurant meals. Scene 1: Texas Roadhouse with sirloin and broccoli. Scene 2: Olive Garden with grilled chicken margarita. Scene 3: Applebee's with grilled chicken breast. Profile card CTA at end.",
+  "creator": "@sethgolie",
+  "views": 50058,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "parsed": {
+    "restaurant_name": "Texas Roadhouse / Olive Garden / Applebee's",
+    "original_meal": "Standard Texas Roadhouse meal (1950 cal), standard Olive Garden meal (1800 cal), standard Applebee's meal (1750 cal)",
+    "original_calories": null,
+    "swap_meal": "Texas Roadhouse: 8oz Sirloin Steamed Broccoli Side Salad Light Ranch Coke Zero (670 cal 70g protein) | Olive Garden: Grilled Chicken Margarita Steamed Broccoli No Potatoes Light Dressing Diet Coke (590 cal 52g protein) | Applebee's: Grilled Chicken Breast Green Beans Broccoli Diet Coke (490 cal 50g protein)",
+    "swap_calories": null,
+    "swap_ingredients": ["sirloin", "steamed broccoli", "side salad", "light ranch", "coke zero", "grilled chicken margarita", "light dressing", "diet coke", "grilled chicken breast", "green beans"],
+    "is_swap": true,
+    "category": "multi-restaurant",
+    "notes": "3 sit-down restaurant swaps. Each saves 1000+ calories. Texas Roadhouse is primary featured (670 cal, 70g protein)."
+  }
+}

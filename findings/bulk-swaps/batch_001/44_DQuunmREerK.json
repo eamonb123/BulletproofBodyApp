@@ -1,0 +1,30 @@
+{
+  "position": 44,
+  "url": "https://www.instagram.com/p/DQuunmREerK/",
+  "shortcode": "DQuunmREerK",
+  "creator": "@sethgolie",
+  "views": 8999,
+  "likes": 247,
+  "duration": 17.3,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, you want to go to Burger King for lunch today? Yeah, man, I'm down. I'll just get the Whopper Junior lettuce wrapped with an extra patty. Let's do no cheese, no mayo. We'll get a side garden salad with the light dressing and a Diet Coke. Dang, where'd you learn to eat like that? You must not be following Seth G. I'm gonna make sure to follow Seth G right now.",
+  "caption": "You're not FAT because you eat fast food, it's because how you order. Next time you go to Burger King order this: Whopper Junior lettuce wrapped, extra patty, no cheese or mayo, side garden salad with light dressing & a Diet Coke (520 calories 32 G protein). This meal will save you over 1000 calories & keep you on track with your fitness journey. Follow @sethgolie for fast food swaps.",
+  "ocr_summary": "2200 CALORIES vs 550 CALORIES, 65G PROTEIN vs 32G PROTEIN",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Burger King",
+        "original_meal": "Standard Burger King meal (Whopper combo with fries and soda)",
+        "original_calories": 2200,
+        "original_protein": 65,
+        "swap_meal": "Whopper Junior lettuce wrapped, extra patty, no cheese, no mayo + side garden salad with light dressing + Diet Coke",
+        "swap_calories": 550,
+        "swap_protein": 32,
+        "swap_ingredients": ["Whopper Junior (lettuce wrapped)", "extra beef patty", "garden salad", "light dressing", "Diet Coke"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Single swap. Caption says 520 cal but OCR shows 550 cal - using OCR number. Saves over 1000 calories. Same skit format as other sethgolie reels."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "position": 27,
+  "url": "https://www.instagram.com/p/DTRXHlqESHS/",
+  "shortcode": "DTRXHlqESHS",
+  "transcript": "Bro, let's hit In-N-Out for lunch today. I'm down. I'll get the Double Double Protein Style with an extra hamburger patty, no fries, and a Coke Zero. Oh man, and you're losing weight eating like that? Yeah, making food swaps like this has helped me lose over 20 pounds. Dude, that's awesome. Who taught you that? My coach, Seth G. He taught me everything he knows about fat loss. I'm gonna make sure to follow Seth G right now.",
+  "caption": "Comment \u201cFASTFOOD\u201d for 25 fast food swaps cheat sheet \ud83d\udd25\n\nThis will help you stay on track with your fitness goals \ud83d\udcaa\ud83c\udffc\n\nNext time you hit In-N-Out Burger order this \ud83d\udc47\ud83c\udffc\n\nDouble-Double Protein Style (lettuce wrapped) with an extra patty & Large Diet Coke \n(680 calories 53 G protein)\n\nThis helps to save over 1000 calories \ud83d\udc40 \n& stay on track with your fitness journey \n\nFollow @sethgolie for fast food swaps \ud83d\ude4c\ud83c\udffc",
+  "ocr_text": "IN-N-OUT BURGER 2060 CALORIES 61 G PROTEIN / 680 CALORIES 53 G PROTEIN",
+  "visual_scenes": "Two men stand in front of an In-N-Out Burger sign holding drinks and displaying contrasting meals with nutritional information overlaid. Polished edit with jump cuts.",
+  "creator": "@sethgolie",
+  "views": 12989,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "parsed": {
+    "restaurant_name": "In-N-Out Burger",
+    "original_meal": "Regular In-N-Out order (Double-Double with fries and regular Coke)",
+    "original_calories": 2060,
+    "swap_meal": "Double-Double Protein Style (lettuce wrapped) with extra patty, no fries + Diet Coke",
+    "swap_calories": 680,
+    "swap_ingredients": ["double-double patties", "extra patty", "lettuce wrap", "Diet Coke"],
+    "is_swap": true,
+    "category": "burger",
+    "notes": "Protein style = lettuce wrapped. Saves over 1000 calories."
+  }
+}

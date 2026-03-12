@@ -1,0 +1,30 @@
+{
+  "position": 74,
+  "url": "https://www.instagram.com/p/DEdXfHnzztg/",
+  "shortcode": "DEdXfHnzztg",
+  "creator": "@ilanamuhlsteinrd",
+  "views": 170637,
+  "likes": 4745,
+  "duration": 18.266,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I pride myself with the ability to find healthy food wherever I go. I'm a dietician, I lost 100 pounds, and did you know that you can go to Jimmy John's, which is a great sandwich shop, and you can get any of their sandwiches wrapped in lettuce? Their tuna is so wildly underrated, so I get the tuna lovers in a lettuce wrap, on which, heaven. Always hits a spot.",
+  "caption": "High Protein Snack on the Go. If I'm really hungry, I'll order 2 or just pair it with a fruit bowl for a perfect lunch when I'm out running errands. Follow for more weight loss and nutrition tips. I have an accountability group set up for January where you can win money to stay focused on your goal and have me as your coach. Comment WIN to secure your spot now. You're going to rock this! #food #healthyfood #jimmyjohns #lowcarb #tuna #tunasalad #tunasandwich #healthyweightlossjourney #weightlossjourney #dietitian #nutrition #nutritiontips #fastfoodreview #healthylifestyle",
+  "ocr_summary": "No calorie/protein numbers shown on screen. Text overlays are captions of speech only: 'I pride myself with the ability to find healthy food wherever I go', 'I'm a dietitian I lost 100 pounds', 'you can get any of their sandwiches wrapped in lettuce', 'their tuna is so wildly underrated', 'tuna lovers in a lettuce wrap', 'unwich heaven', 'always hits the spot'.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Jimmy John's",
+        "original_meal": "Any Jimmy John's sandwich (on bread)",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Tuna Lovers Unwich (lettuce wrap instead of bread)",
+        "swap_calories": null,
+        "swap_protein": null,
+        "swap_ingredients": ["tuna salad", "lettuce wrap"],
+        "is_swap": true,
+        "category": "fast_food_lettuce_wrap_swap"
+      }
+    ],
+    "notes": "This is a bread-to-lettuce-wrap swap at Jimmy John's. Creator is a registered dietitian who lost 100 lbs. No specific calorie or protein numbers given - this is more of a 'hack' recommendation than a quantified swap. The 'unwich' is Jimmy John's term for their lettuce-wrapped sandwiches. She specifically recommends the Tuna Lovers variety. Caption mentions pairing with fruit bowl for a full lunch."
+  }
+}

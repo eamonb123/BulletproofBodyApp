@@ -1,0 +1,66 @@
+{
+  "position": 6,
+  "url": "https://www.instagram.com/p/DVB_-tXkXRH/",
+  "shortcode": "DVB_-tXkXRH",
+  "creator": "@sethgolie",
+  "views": 10071,
+  "likes": 329,
+  "duration": 29.303,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Well, let's go to Starbucks on our way to work. Yeah, man, I'll get the turkey bacon egg white sandwich with the egg white bites and then a grande americano with the sugar-free vanilla syrup and a splash of almond milk. Okay, cool. But actually, what if we went to Dunkin' instead? What would you order there? Yeah, I'll get the turkey sausage wake-up wrap with the egg white bites and then let's do a cold brew with sugar-free vanilla and a splash of almond milk. Dang, man, how do you always know what to order? Bro, are you not following Seth G. yet? Well, damn, I better make sure to follow Seth G. right now.",
+  "caption": "Comment \"Fast Food\" for my FREE fast food swaps cheat sheet. Steal these top 3 breakfast fast food swaps. Starbucks: Grande Cold Brew (splash almond milk) + Turkey Bacon Cheddar & Egg White Sandwich + Egg White Bites (add-on for more protein) 570 calories | 43g protein. Chick-fil-a: Egg White Grill Greek Yogurt Parfait (no granola) Unsweet Tea / Black Coffee 480 calories | 42g protein. McDonald's: Egg McMuffin (no cheese) 2x Scrambled Eggs Black Coffee / Zero Sugar Drink 420 calories | 33g protein. Follow @sethgolie for fast food swaps.",
+  "ocr_summary": "Starbucks: 1330 cal / 35g protein (original) vs 410 cal / 34g protein (swap shown on screen). Dunkin: 1150 cal / 30g protein (original) vs 380 cal / 24g protein (swap). Caption lists different numbers (570/43g, 480/42g, 420/33g) for Starbucks/CFA/McDonalds respectively.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Starbucks",
+        "original_meal": "Typical Starbucks breakfast order",
+        "original_calories": 1330,
+        "original_protein": 35,
+        "swap_meal": "Turkey Bacon Cheddar & Egg White Sandwich + Egg White Bites + Grande Cold Brew (splash almond milk, sugar-free vanilla)",
+        "swap_calories": 570,
+        "swap_protein": 43,
+        "swap_ingredients": ["turkey bacon cheddar egg white sandwich", "egg white bites", "grande cold brew", "almond milk splash", "sugar-free vanilla syrup"],
+        "is_swap": true,
+        "category": "breakfast sandwich"
+      },
+      {
+        "restaurant_name": "Dunkin'",
+        "original_meal": "Typical Dunkin' breakfast order",
+        "original_calories": 1150,
+        "original_protein": 30,
+        "swap_meal": "Turkey Sausage Wake-Up Wrap + Egg White Bites + Cold Brew (sugar-free vanilla, splash almond milk)",
+        "swap_calories": 380,
+        "swap_protein": 24,
+        "swap_ingredients": ["turkey sausage wake-up wrap", "egg white bites", "cold brew", "sugar-free vanilla", "almond milk splash"],
+        "is_swap": true,
+        "category": "breakfast wrap"
+      },
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Typical Chick-fil-A breakfast order",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Egg White Grill + Greek Yogurt Parfait (no granola) + Unsweet Tea or Black Coffee",
+        "swap_calories": 480,
+        "swap_protein": 42,
+        "swap_ingredients": ["egg white grill sandwich", "greek yogurt parfait (no granola)", "unsweet tea or black coffee"],
+        "is_swap": true,
+        "category": "breakfast sandwich"
+      },
+      {
+        "restaurant_name": "McDonald's",
+        "original_meal": "Typical McDonald's breakfast order",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Egg McMuffin (no cheese) + 2x Scrambled Eggs + Black Coffee or Zero Sugar Drink",
+        "swap_calories": 420,
+        "swap_protein": 33,
+        "swap_ingredients": ["egg McMuffin (no cheese)", "2x scrambled eggs", "black coffee or zero sugar drink"],
+        "is_swap": true,
+        "category": "breakfast sandwich"
+      }
+    ],
+    "notes": "Breakfast-focused reel covering 4 restaurants. Video shows Starbucks and Dunkin' visually with skit format. Caption adds Chick-fil-A and McDonald's swaps (not shown in video). OCR calorie numbers differ from caption - OCR shows lower swap calories (410/380) vs caption (570/480). Caption numbers are likely more accurate as they include all items."
+  }
+}

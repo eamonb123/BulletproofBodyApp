@@ -1,0 +1,42 @@
+{
+  "position": 20,
+  "url": "https://www.instagram.com/p/DTtZgoQkWBo/",
+  "shortcode": "DTtZgoQkWBo",
+  "creator": "@sethgolie",
+  "views": 10798,
+  "likes": 294,
+  "duration": 22.866,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I'm starving. You want to go to Burger King? Yeah, let's get a Whopper Junior lettuce wrap, a side salad with the light ranch, and an extra patty for some extra protein, and a Diet Coke. Okay, cool. What if we went to Five Guys instead? Yeah, I'll just get the hamburger lettuce wrap and a Coke Zero. Ah, that's awesome. How do you always know what to order? Bro, the MenuFit app's going to let you know what to order at every restaurant so you can stay on track with your fitness goals. Damn, I'm going to download the MenuFit app right now.",
+  "caption": "Download the @menufit.app to eat out & stay FIT\n\nSteal these two orders\n\nBurger King fit order:\nWhopper Junior, lettuce wrapped, extra patty. Side salad, light ranch + Diet Coke\n(520 calories 32 G protein)\n\nFive Guys fit order:\nHamburger lettuce wrapped + all the veggies + mustard + Coke Zero\n(470 calories 33 G protein)\n\nSend this to all your FIT friends\n\nFollow @sethgolie for high protein meals",
+  "ocr_summary": "Burger King: 2300 cal / 80g protein (original) vs 520 cal / 32g protein (swap). Five Guys: 2000 cal / 60-65g protein (original) vs 470 cal / 33g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Burger King",
+        "original_meal": "Typical Burger King meal (Whopper combo with fries and soda)",
+        "original_calories": 2300,
+        "original_protein": 80,
+        "swap_meal": "Whopper Junior lettuce wrapped + extra patty + side salad with light ranch + Diet Coke",
+        "swap_calories": 520,
+        "swap_protein": 32,
+        "swap_ingredients": ["Whopper Junior", "lettuce wrap", "extra patty", "side salad", "light ranch", "Diet Coke"],
+        "is_swap": true,
+        "category": "fast_food"
+      },
+      {
+        "restaurant_name": "Five Guys",
+        "original_meal": "Typical Five Guys burger meal with fries and soda",
+        "original_calories": 2000,
+        "original_protein": 63,
+        "swap_meal": "Hamburger lettuce wrapped + all veggies + mustard + Coke Zero",
+        "swap_calories": 470,
+        "swap_protein": 33,
+        "swap_ingredients": ["hamburger patty", "lettuce wrap", "all veggies", "mustard", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Two fast food burger swaps. Burger King saves 1780 cal, Five Guys saves 1530 cal. Both use lettuce wrap strategy to eliminate bun calories. Also promotes MenuFit app."
+  }
+}

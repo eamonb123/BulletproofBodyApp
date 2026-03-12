@@ -1,0 +1,30 @@
+{
+  "position": 63,
+  "url": "https://www.instagram.com/p/C8p9amfJWyY/",
+  "shortcode": "C8p9amfJWyY",
+  "creator": "@j.newtrition",
+  "views": 711485,
+  "likes": 25452,
+  "duration": 79.133,
+  "extracted_at": "2026-03-11T12:20:00Z",
+  "transcript": "",
+  "caption": "Fast food menu hack for Jersey Mike's. Full macros: 450 cals & 45g P / 11g C / 26.5g F. #easylunchforwork #fastfoodsecrets #proteinmealideas",
+  "ocr_summary": "No OCR data available - video frames not extracted. Macros from caption: 450 cals, 45g P, 11g C, 26.5g F.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Jersey Mike's",
+        "original_meal": null,
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Menu hack order (details in video - transcript unavailable)",
+        "swap_calories": 450,
+        "swap_protein": 45,
+        "swap_ingredients": [],
+        "is_swap": false,
+        "category": "macro_friendly_order"
+      }
+    ],
+    "notes": "Video extraction incomplete - no transcript or frames captured. Caption provides macros: 450 cal, 45g P, 11g C, 26.5g F for Jersey Mike's. Same creator as position 60 (@j.newtrition). This is their highest-performing reel in this batch (711K views, 25K likes). Would need manual review to get full order details."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "position": 2,
+  "url": "https://www.instagram.com/p/DS_xjxYk63p/",
+  "shortcode": "DS_xjxYk63p",
+  "creator": "@alexgamblecoach",
+  "views": 302036,
+  "likes": 12318,
+  "duration": "0:54",
+  "transcript": "This is exactly what to order from KFC if you're trying to lose body fat. Now, most PTs will say only home-cooked meals when the goal is fat loss. and for sure. I do agree, but what happens after? You see, in order to lose body fat and keep it off, you just need to learn how to make smart choices on an ongoing basis. And I drop fast food videos every single week, so drop as a follow because next Friday, we're going to Zambreros. Now I'll be honest, most items at KFC are rammed with calories. And I'm not saying it's a good idea to be smashing KFC every single week when the goal is fallous, it's obviously not. But sometimes if you're on the go, or you're just craving a little Kentucky Fried Chicken, you can get a Zinger Crunch Ball for 383 calories with 24 grams of protein. That's pretty damn good for kfc or you can also get the equivalent to a protein bar in terms of macros which is a zinger fillet piece for 209 calories with 21 grams of protein now if we just slap that on there we have a high protein meal with 45 grams of protein for about 592 calories could be worse for kfc",
+  "caption": "How To Get 45g of Protein From KFC & Stay In Your Calorie Deficit\n\nStay tuned for Zambrero's next Friday",
+  "ocr_summary": "THIS IS EXACTLY WHAT TO ORDER FROM KFC TRYING TO LOSE BODY FAT; NOW MOST PTS WILL SAY ONLY EAT HOME COOKED MEALS WHEN THE GOAL IS FAT LOSS; EVERY SINGLE WEEK; MOST ITEMS RAMMED WITH CALORIES; FRIED CHICKEN; OF PROTEIN; TO A PROTEIN BAR; 209 CALORIES; A HIGH PROTEIN; FOR ABOUT; COULD BE WORSE",
+  "visual_scenes": "Man in car holding KFC bucket, talking head style. Shows KFC food items, demonstrates the combo meal. Bold centered text overlays throughout with key phrases.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "KFC",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Zinger Crunch Bowl + Zinger Fillet Piece",
+        "swap_calories": 592,
+        "swap_protein": 45,
+        "swap_ingredients": ["Zinger Crunch Bowl (383 cal, 24g protein)", "Zinger Fillet Piece (209 cal, 21g protein)"],
+        "is_swap": false,
+        "swap_method": "Combo two items: Zinger Crunch Bowl + Zinger Fillet Piece for a high protein meal",
+        "category": "chicken"
+      }
+    ]
+  }
+}

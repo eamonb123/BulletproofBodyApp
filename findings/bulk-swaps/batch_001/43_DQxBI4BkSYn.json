@@ -1,0 +1,30 @@
+{
+  "position": 43,
+  "url": "https://www.instagram.com/p/DQxBI4BkSYn/",
+  "shortcode": "DQxBI4BkSYn",
+  "creator": "@sethgolie",
+  "views": 7709,
+  "likes": 277,
+  "duration": 21.333,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You want to go to Chili's? Yeah, man. I'll just get the margarita grilled chicken, no rice, double the broccoli, and a Diet Coke. Oh, damn, man. Ordering like that's what's been helping you lose weight? Yep. Ordering like this will save me well over 1,000 calories and keep me on track for my fitness goals. That's awesome. Where did you learn that? My coach, Seth G., he dialed in everything when it comes to fat loss for me. I'm going to make sure to follow Seth G. right now.",
+  "caption": "You're not fat because you eat out, you're fat because what you order. Next time you go to Chili's order this: Margarita Grilled Chicken - no rice, double broccoli & Diet Coke (490 calories 42 G protein). This meal will keep you in track with your fitness journey and save you over 1000 calories. Follow @sethgolie for restaurant swaps.",
+  "ocr_summary": "2900 CALORIES vs 490 CALORIES, 50G PROTEIN vs 42G PROTEIN",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chili's",
+        "original_meal": "Standard Chili's meal",
+        "original_calories": 2900,
+        "original_protein": 50,
+        "swap_meal": "Margarita Grilled Chicken, no rice, double broccoli + Diet Coke",
+        "swap_calories": 490,
+        "swap_protein": 42,
+        "swap_ingredients": ["margarita grilled chicken", "broccoli (double)", "Diet Coke"],
+        "is_swap": true,
+        "category": "casual_dining"
+      }
+    ],
+    "notes": "Single swap. Saves over 1000 calories. Same skit format as position 42, same creator @sethgolie."
+  }
+}

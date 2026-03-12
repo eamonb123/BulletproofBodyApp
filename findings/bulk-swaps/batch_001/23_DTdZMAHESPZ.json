@@ -1,0 +1,23 @@
+{
+  "position": 23,
+  "url": "https://www.instagram.com/p/DTdZMAHESPZ/",
+  "shortcode": "DTdZMAHESPZ",
+  "transcript": "Bro, I'm starving. You wanna go to Wendy's? Yeah, bro, I'll get a spicy chicken sandwich, a small chili, and a Diet Coke. Okay, what if we went to Taco Bell, though? Yeah, I'll go ahead and get the chicken cantina bowl, extra chicken, black beans, all the veggies, and a Baja Blast Zero. Shit, how do you always know what to order? Bro, the MenuFit app's gonna tell you what to order at every restaurant so you stay on track with your fitness goals. Man, I'm gonna download the MenuFit app right now.",
+  "caption": "Download the @menufit.app to stay FIT & eat out \ud83d\ude4c\ud83c\udffc\n\nSteal these two orders \ud83d\udc47\ud83c\udffc\n\nWendy\u2019s fit order:\nSpicy Crispy Chicken Sandwich +\nSmall Chili + Diet Coke ~$5.75\n590 Calories - 30 G Protein\n\nTaco Bell fit order:\nCantina Chicken Bowl Black Beans \u2192 extra chicken + Baja Blast zero \n540 Calories - 48 G protein \n\nSend this to your FIT friends \ud83d\udcaa\ud83c\udffc\n\nFollow @sethgolie for high protein meals \ud83d\udd25\n\n#fitover40 #macrofriendly",
+  "ocr_text": "Wendy's, TWEAKED, Coca-Cola Diet, 2,050 calories, 90g protein, 590 calories, 30g protein, TACO BELL, Coca-Cola, BAJA BLAST, 1,850 calories, 45g protein, CANTINA CHICKEN BOWL, 540 calories, 48g protein, MenuFit, Download",
+  "visual_scenes": "Two men in black shirts stand in front of a Wendy's logo and bookshelf, displaying fast food meals with calorie and protein information overlaid. Transitions to Taco Bell comparison with Cantina Chicken Bowl. Ends with MenuFit app download CTA.",
+  "creator": "@sethgolie",
+  "views": 12030,
+  "extracted_at": "2026-03-11T12:00:00Z",
+  "parsed": {
+    "restaurant_name": "Wendy's / Taco Bell",
+    "original_meal": "Standard Wendy's meal (2,050 cal) / Standard Taco Bell meal (1,850 cal)",
+    "original_calories": 2050,
+    "swap_meal": "Wendy's: Spicy Crispy Chicken Sandwich + Small Chili + Diet Coke / Taco Bell: Cantina Chicken Bowl Black Beans + extra chicken + Baja Blast Zero",
+    "swap_calories": 590,
+    "swap_ingredients": ["Spicy Crispy Chicken Sandwich", "Small Chili", "Diet Coke", "Cantina Chicken Bowl", "Black Beans", "extra chicken", "Baja Blast Zero"],
+    "is_swap": true,
+    "category": "bowl/sandwich",
+    "notes": "Two restaurants in one reel. Wendy's: 590 cal / 30g protein (~$5.75). Taco Bell: 540 cal / 48g protein. MenuFit app promotion."
+  }
+}

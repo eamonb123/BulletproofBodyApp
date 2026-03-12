@@ -1,0 +1,30 @@
+{
+  "position": 5,
+  "url": "https://www.instagram.com/p/DVPCYVlkTiv/",
+  "shortcode": "DVPCYVlkTiv",
+  "creator": "@sethgolie",
+  "views": 13695,
+  "likes": 446,
+  "duration": 20.7,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I just started a six week mini cut and I'm going to eat fast food two to three times per week while staying in a calorie deficit to show you all that it's possible. How do I know what to eat? Simple. The menu fit app will tell you the best thing to order at every restaurant. Yes, these lettuce wrap burgers are messy, but they're delicious. You know, I got to have my Coke zero follow along for the journey to learn how to eat fast food and stay fit. Let's fucking get it, baby.",
+  "caption": "Staying in a caloric deficit while eating fast food? The @menufit.app will make that easy. This is volume 1 of a series I'll be doing so follow @sethgolie to learn all the fast food swaps. In-N-Out burger order: Double double protein style (lettuce wrapped) I don't like Diet Coke so drank a Coke Zero at home. 450 calories 30 G protein.",
+  "ocr_summary": "In-N-Out Burger: Double Double Protein style (lettuce wrapped) 450 cal / 30g protein. MenuFit app shows 460kcal / 30g protein / 12g carbs / 32g fat.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "In-N-Out Burger",
+        "original_meal": "Regular Double Double with bun",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Double Double Protein Style (lettuce wrapped) + Coke Zero",
+        "swap_calories": 450,
+        "swap_protein": 30,
+        "swap_ingredients": ["double double burger patties", "cheese", "lettuce wrap (no bun)", "onion", "tomato", "spread", "Coke Zero"],
+        "is_swap": true,
+        "category": "burger"
+      }
+    ],
+    "notes": "Single swap only (Vol. 1 of a series). Different format from other reels - vlog/raw iPhone style instead of skit. No original calorie comparison shown on screen. MenuFit app promotion. Part of a 6-week mini cut series."
+  }
+}

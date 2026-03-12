@@ -1,0 +1,30 @@
+{
+  "position": 47,
+  "url": "https://www.instagram.com/p/DPmn6t2EYuC/",
+  "shortcode": "DPmn6t2EYuC",
+  "creator": "@sethgolie",
+  "views": 7891,
+  "likes": 240,
+  "duration": 15.833,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, let's hit Buffalo Wild Wings for the game tonight. I'm down. I will get the five-piece chicken tenders naked, and then I will get a side salad, no croutons, light vinaigrette, and a Diet Coke. Oh, damn. I didn't even know you could order like that. You must not be following Seth G. yet. Shit. I better follow Seth G. right now.",
+  "caption": "You're not FAT because you eat out, you're fat because what you order. Going to Buffalo Wild Wings for the game? Order this to stay on track. Naked Tenders (5 count) + Side Salad (no croutons, light vinaigrette) + Diet Coke (380 calories 65 G protein). Save this for later. Follow for fast food swaps. #macrofriendly #fitover40",
+  "ocr_summary": "Original: 10 COUNT - 2040 CALORIES, 60G PROTEIN. Swap: 380 CALORIES, 65G PROTEIN.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Buffalo Wild Wings",
+        "original_meal": "10 Count Chicken Tenders (regular/breaded)",
+        "original_calories": 2040,
+        "original_protein": 60,
+        "swap_meal": "Naked Tenders (5 count) + Side Salad (no croutons, light vinaigrette) + Diet Coke",
+        "swap_calories": 380,
+        "swap_protein": 65,
+        "swap_ingredients": ["naked chicken tenders (5 count)", "side salad", "vinaigrette (light)", "Diet Coke"],
+        "is_swap": true,
+        "category": "fast_casual"
+      }
+    ],
+    "notes": "Single swap. Compares typical BWW 10-count tenders order (2040 cal) vs a lighter 5-count naked tenders + salad combo (380 cal). Massive calorie reduction while maintaining protein."
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "position": 71,
+  "url": "https://www.instagram.com/p/DP1ItdXDYaj/",
+  "shortcode": "DP1ItdXDYaj",
+  "creator": "@fasteatsss",
+  "views": 984,
+  "likes": 39,
+  "duration": 48,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "And this whole thing is 44 grams of protein and only 500 calories. I'm a weight loss dietician and this is my go-to Raising Cane's order. Every restaurant has a secret menu and for Raising Cane's, it's the naked birds. If you've never heard of it, they're chicken tenders without all of the breading and extra calories, which is perfect for a calorie deficit. And honestly, these are good enough to eat without anything extra. The chicken comes out perfect, fresh, and there's nothing different about the taste, even without the breading. So I usually get three naked tenders and I get a diet Coke, of course. What I like to do is just make this into an open face chicken sandwich and I'll use all of the cane sauce for this drizzle it straight over the top. Just like that. And this whole thing is 45 grams of protein and only 500 calories. Spilling this stuff everywhere.",
+  "caption": "Raising Cane\u2019s Healthy Fast Food Order To Meet Your Goals\n\n@j.newtrition\n\nBreaking Down A Raising Cane\u2019s Order That Keeps Protein High, Cuts Calories, And Fits Perfectly Into Your Nutrition Goals.",
+  "ocr_summary": "Raising Cane's Order, 44g Protein & 505 Calories",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Raising Cane's",
+        "original_meal": "Regular chicken tenders (breaded)",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "3 Naked Birds (unbreaded chicken tenders) + Texas Toast (open face sandwich) + Cane's Sauce + Diet Coke",
+        "swap_calories": 505,
+        "swap_protein": 44,
+        "swap_ingredients": ["3 Naked Birds (unbreaded chicken tenders)", "Texas Toast (1 slice, open face)", "Cane's Sauce", "Diet Coke"],
+        "is_swap": true,
+        "category": "fast_food_secret_menu"
+      }
+    ],
+    "notes": "The key swap is ordering 'Naked Birds' - Raising Cane's secret menu item where chicken tenders come without breading, significantly reducing calories while keeping protein high. Creator @j.newtrition (reposted by @fasteatsss) makes an open-face sandwich with the tenders on Texas Toast with Cane's sauce. Total: 505 cal, 44g protein."
+  }
+}

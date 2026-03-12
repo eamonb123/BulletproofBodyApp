@@ -1,0 +1,30 @@
+{
+  "position": 8,
+  "url": "https://www.instagram.com/p/DU1jELzESWA/",
+  "shortcode": "DU1jELzESWA",
+  "creator": "@sethgolie",
+  "views": 6035,
+  "likes": 203,
+  "duration": 13.236,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You wanna go to Taco Bell for lunch today? I'm down, I'll get the four-piece chicken strip, a crunchy taco, and a Baja Blast Zero. Dang, how'd you know to order that? Bro, you don't follow Seth G. yet? Damn, I'm gonna make sure to follow Seth G. right now.",
+  "caption": "Comment \"FASTFOOD\" for my FREE cheat sheet of fast food swaps. If your in a tough spot, and your only option is Taco Bell, order this: 4 piece chicken strips + crunchy taco + Baja Blast Zero (640 calories 39 G protein). This will save you over 1,000 calories & help you stay on track with your fitness journey.",
+  "ocr_summary": "1940 calories / 58g protein (original), 640 calories / 39g protein (swap)",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Taco Bell",
+        "original_meal": "Typical Taco Bell order",
+        "original_calories": 1940,
+        "original_protein": 58,
+        "swap_meal": "4-piece Chicken Strips + Crunchy Taco + Baja Blast Zero",
+        "swap_calories": 640,
+        "swap_protein": 39,
+        "swap_ingredients": ["4-piece Chicken Strips", "Crunchy Taco", "Baja Blast Zero"],
+        "is_swap": true,
+        "category": "combo"
+      }
+    ],
+    "notes": "Single swap at Taco Bell. Saves over 1,300 calories from typical order."
+  }
+}

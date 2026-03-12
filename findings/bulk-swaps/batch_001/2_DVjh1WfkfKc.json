@@ -1,0 +1,42 @@
+{
+  "position": 2,
+  "url": "https://www.instagram.com/p/DVjh1WfkfKc/",
+  "shortcode": "DVjh1WfkfKc",
+  "creator": "@sethgolie",
+  "views": 3704,
+  "likes": 140,
+  "duration": 22.833,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You wanna go to Raising Cane's? Yeah, bro, I'm just gonna get five naked strips, all a cart with the hot Louisiana sauce and a Coke Zero. Okay. What if we went to Popeye's? Yeah, I'll just get that chicken and sausage jambalaya bowl with a side of a blackened chicken breast and a Coke Zero. Damn, how do you always know what to order? Bro, the MenuFit app is gonna let you know what to order at every restaurant so you stay on track with your fitness goals. Shit, I'm gonna download the MenuFit app right now.",
+  "caption": "@menufit.app Comment \"Menu\" & I'll send you the link! That way you can eat out, and stay fit. Steal these two orders. Raising canes: 5 Naked strips + hot Louisiana sauce + Coke Zero 650 calories 65 G protein. Popeyes: Chicken and sausage jambalaya bowl + side blackened chicken breast + Coke Zero 600 calories 45 G protein. Follow @sethgolie for fast food swaps.",
+  "ocr_summary": "Cane's: 1,950 cal / 65g protein (original) vs 650 cal / 65g protein (swap). Popeyes: 1,550 cal / 70g protein (original) vs 600 cal / 45g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Raising Cane's",
+        "original_meal": "Regular Cane's combo meal",
+        "original_calories": 1950,
+        "original_protein": 65,
+        "swap_meal": "5 Naked strips + hot Louisiana sauce + Coke Zero",
+        "swap_calories": 650,
+        "swap_protein": 65,
+        "swap_ingredients": ["5 naked chicken strips", "hot Louisiana sauce", "Coke Zero"],
+        "is_swap": true,
+        "category": "chicken strips"
+      },
+      {
+        "restaurant_name": "Popeyes",
+        "original_meal": "Regular Popeyes combo meal",
+        "original_calories": 1550,
+        "original_protein": 70,
+        "swap_meal": "Chicken and sausage jambalaya bowl + side blackened chicken breast + Coke Zero",
+        "swap_calories": 600,
+        "swap_protein": 45,
+        "swap_ingredients": ["chicken and sausage jambalaya bowl", "blackened chicken breast side", "Coke Zero"],
+        "is_swap": true,
+        "category": "bowl"
+      }
+    ],
+    "notes": "MenuFit app promotion. Two-restaurant format comparing typical order vs smart order. Skit format with two guys."
+  }
+}

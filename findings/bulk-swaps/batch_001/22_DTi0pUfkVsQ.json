@@ -1,0 +1,23 @@
+{
+  "position": 22,
+  "url": "https://www.instagram.com/p/DTi0pUfkVsQ/",
+  "shortcode": "DTi0pUfkVsQ",
+  "transcript": "",
+  "caption": "Eat out and stay FIT with the @menufit.app \ud83d\ude4c\ud83c\udffc\n\nSteal these two orders next time you\u2019re on the go \ud83d\udc47\ud83c\udffc\n\nRaising Canes fit order:\n5 naked chicken strips + Hot Louisiana sauce + Coke Zero \n(650 calories 65 G protein)\n\nPopeyes fit order:\nSignature Bone-In Chicken (Mild) Breast (1 pc) \u2192 Chicken & Sausage Jambalaya (Individual bowl) \u2192 Unsweetened Iced Tea\n(600 calories 45 G protein)\n\nSend this to all your FIT friends \ud83d\ude4c\ud83c\udffc\n\nFollow @sethgolie for fast food swaps \ud83d\udd25\n\n#macrofriendly #fitover40",
+  "ocr_text": "Canes CHICKEN FINGERS, Coca-Cola zero, 1,950 calories, 65g protein, 650 calories, 65g protein, POPeYes, UNSWEETENED ICED TEA, 1,550 calories, 70g protein, 600 calories, 45g protein, MenuFit app, Download",
+  "visual_scenes": "Two men stand in front of a bookshelf holding Raising Cane's meals with nutritional information displayed below comparing calorie and protein content. Transitions to Popeyes comparison with updated stats. Ends with MenuFit app screen recording showing restaurant options.",
+  "creator": "@sethgolie",
+  "views": 12317,
+  "extracted_at": "2026-03-11T12:00:00Z",
+  "parsed": {
+    "restaurant_name": "Raising Canes / Popeyes",
+    "original_meal": "Standard Raising Canes meal (1,950 cal) / Standard Popeyes meal (1,550 cal)",
+    "original_calories": 1950,
+    "swap_meal": "Raising Canes: 5 naked chicken strips + Hot Louisiana sauce + Coke Zero / Popeyes: Signature Bone-In Chicken Breast + Chicken & Sausage Jambalaya + Unsweetened Iced Tea",
+    "swap_calories": 650,
+    "swap_ingredients": ["naked chicken strips", "Hot Louisiana sauce", "Coke Zero", "Bone-In Chicken Breast", "Chicken & Sausage Jambalaya", "Unsweetened Iced Tea"],
+    "is_swap": true,
+    "category": "chicken",
+    "notes": "Two restaurants in one reel. Raising Canes: 650 cal / 65g protein. Popeyes: 600 cal / 45g protein. Whisper transcript empty (audio extraction failed). MenuFit app promotion."
+  }
+}

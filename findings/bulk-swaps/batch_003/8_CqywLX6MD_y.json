@@ -1,0 +1,33 @@
+{
+  "position": 8,
+  "url": "https://www.instagram.com/p/CqywLX6MD_y/",
+  "shortcode": "CqywLX6MD_y",
+  "creator": "@trainermikeyy",
+  "views": 48340,
+  "likes": 2163,
+  "duration": "0:30",
+  "transcript": "You're at Sonic right now. I'm going to show you how to make a meal under 600 calories with almost 40 grams of protein. Follow me. A chicken slinger sandwich. No mayo, ketchup, lettuce, tomato, onions, jalapeno soup. On the sides, crispy tenders. Three. Diet Dr. Pepper. Just got the meal, you guys. The chicken slinger is 300 calories. With the toppings, it's 335 calories. Three-piece chicken tenders are 260 calories. Diet Dr. Pepper, zero calories. Total of 595 calories. 36 grams of protein. Enjoy, you guys.",
+  "caption": "Sonic Drive-In Meal Under 600CALORIES!! #sonicdrivein #lowcalorie #diet",
+  "ocr_summary": "Man at Sonic Drive-In orders and breaks down a meal. Shows topping calories (tomato 5, ketchup 15, jalapeno 5, lettuce 5, onions 5). Totals: sandwich 335 cal, tenders 260 cal, Diet Dr Pepper 0 cal = 595 calories.",
+  "visual_scenes": "Man outside Sonic, then at drive-thru ordering, then in car showing food with calorie breakdowns overlaid.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Sonic Drive-In",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Chicken Slinger Sandwich (no mayo, ketchup, lettuce, tomato, onions, jalapenos) + 3pc Crispy Tenders + Diet Dr. Pepper",
+        "swap_calories": 595,
+        "swap_protein": 36,
+        "swap_ingredients": [
+          {"item": "Chicken Slinger Sandwich (no mayo)", "calories": 300},
+          {"item": "Toppings (ketchup, lettuce, tomato, onions, jalapenos)", "calories": 35},
+          {"item": "3pc Crispy Tenders", "calories": 260},
+          {"item": "Diet Dr. Pepper", "calories": 0}
+        ],
+        "is_swap": false,
+        "category": "combo meal"
+      }
+    ]
+  }
+}

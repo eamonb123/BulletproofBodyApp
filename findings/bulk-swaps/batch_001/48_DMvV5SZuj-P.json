@@ -1,0 +1,30 @@
+{
+  "position": 48,
+  "url": "https://www.instagram.com/p/DMvV5SZuj-P/",
+  "shortcode": "DMvV5SZuj-P",
+  "creator": "@sethgolie",
+  "views": 2442,
+  "likes": 89,
+  "duration": 32.7,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Yo, I'm hitting Wendy's. Give me that Baconator meal with a large Coke, large fry. Let's throw in a six piece nuggets and don't forget the ranch. Yeah man, I'm down for Wendy's. I'm gonna go ahead and get the grilled chicken wrap. I'm gonna get a small side of chili and then a small side salad with light ranch and then a large Diet Coke. Oh man, that actually sounds bomb. A lot healthier too. Yeah, I've actually been able to lose 20 pounds while still going out to eat and eating foods that I love. Wait, what? How'd you do that? My coach, Seth G., he makes fat loss simpler. Man, I got 20 pounds to lose myself. I'm gonna make sure to follow Seth G. right now.",
+  "caption": "Try this order from Wendy's if you are crunched for time but still want to stay on track? Grilled chicken wrap, small chili, side salad with light ranch and a large Diet Coke - 730 calories and 42 G protein. This will save you over 1,000+ calories from a typical order and still give you 42 G protein. I'm not saying to eat out like this all the time but when in a time crunch this can help you stay on track with your fitness journey. Save for later. Send to a friend. Follow for daily fitness and nutrition tips. #macros #nutritiontips #fitover40 #fitover30",
+  "ocr_summary": "Original: 2140 CALORIES, 78G PROTEIN. Swap: 730 CALORIES, 42G PROTEIN.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Wendy's",
+        "original_meal": "Baconator meal (large Coke, large fry, 6-piece nuggets, ranch)",
+        "original_calories": 2140,
+        "original_protein": 78,
+        "swap_meal": "Grilled Chicken Wrap + Small Chili + Side Salad (light ranch) + Large Diet Coke",
+        "swap_calories": 730,
+        "swap_protein": 42,
+        "swap_ingredients": ["grilled chicken wrap", "small chili", "side salad", "light ranch", "large Diet Coke"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Single swap. Compares typical Wendy's Baconator combo meal (2140 cal) vs a lighter grilled chicken wrap + chili + salad combo (730 cal). Saves 1400+ calories. Same creator format as Position 47 — two guys skit with split-screen calorie comparison."
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "position": 7,
+  "url": "https://www.instagram.com/p/CZXAWBJJJSG/",
+  "shortcode": "CZXAWBJJJSG",
+  "creator": "@liveleantv",
+  "views": 1713,
+  "likes": 48,
+  "duration": "0:30",
+  "transcript": "Fancy like Applebee's on a day and night Got that Bourbon Street state with the Oreo shake Get some whipped cream on the top two Two straws, one check, girl, I got you Bougie like Natty in the styrofoam Squeaky squeakin' in the truck, bail it all the way home Alabama jammer, she my Dixieland delight That's how we do, how we do Fancy like",
+  "caption": "Comparing 5 High Calorie Vs. Low Calorie Options at Restaurants\n.\nCoach @bradgouthro breaks it all down from IHOP, Chili's, Applebee's in 5 categories: Eggs, Sandwiches, Fish, Sides, Beef.",
+  "ocr_summary": "Slideshow format comparing BEST (low calorie) vs WORST (high calorie) options across IHOP, Chili's, and Applebee's in 5 categories. Each slide shows nutrition info.",
+  "visual_scenes": "Intro with man in gym holding food items, then infographic cards alternating between green BEST and red WORST options with food photos and nutrition breakdowns on dark backgrounds.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "IHOP",
+        "original_meal": "Classic Skillet w/ Chicken Country Fried Steak Sausage & Gravy",
+        "original_calories": 2510,
+        "swap_meal": "Simple & Fit 2 Egg Breakfast",
+        "swap_calories": 360,
+        "swap_protein": 26,
+        "swap_ingredients": ["2 eggs", "simple & fit sides"],
+        "is_swap": true,
+        "category": "eggs/breakfast"
+      },
+      {
+        "restaurant_name": "Chili's",
+        "original_meal": "Bacon Ranch Beef Quesadilla",
+        "original_calories": 1880,
+        "swap_meal": "Chicken Quesadilla",
+        "swap_calories": 700,
+        "swap_protein": 33,
+        "swap_ingredients": ["chicken quesadilla"],
+        "is_swap": true,
+        "category": "sandwich"
+      },
+      {
+        "restaurant_name": "Applebee's",
+        "original_meal": "New England Fish & Chips",
+        "original_calories": 1690,
+        "swap_meal": "Blackened Tilapia",
+        "swap_calories": 470,
+        "swap_protein": 34,
+        "swap_ingredients": ["blackened tilapia"],
+        "is_swap": true,
+        "category": "fish"
+      },
+      {
+        "restaurant_name": "Chili's",
+        "original_meal": "Texas Cheese Fries (Full Order)",
+        "original_calories": 1760,
+        "swap_meal": "House Salad",
+        "swap_calories": 150,
+        "swap_protein": 7,
+        "swap_ingredients": ["house salad"],
+        "is_swap": true,
+        "category": "sides"
+      },
+      {
+        "restaurant_name": "Chili's",
+        "original_meal": "Big Mouth Bites",
+        "original_calories": 1820,
+        "swap_meal": "Big Mouth Burger Bite (Lunch Menu)",
+        "swap_calories": 820,
+        "swap_protein": 33,
+        "swap_ingredients": ["burger bite"],
+        "is_swap": true,
+        "category": "beef"
+      }
+    ]
+  }
+}

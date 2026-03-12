@@ -1,0 +1,90 @@
+{
+  "position": 58,
+  "url": "https://www.instagram.com/p/BkSvAIdn2Nv/",
+  "shortcode": "BkSvAIdn2Nv",
+  "creator": "@flxrxnutrition",
+  "views": 0,
+  "likes": 591,
+  "duration": 0,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "",
+  "caption": "BOOKMARK THIS POST FOR LATER\n-\nFREE IIFYM CRASH COURSE IN OUR IG STORY HIGHLIGHT\n-\nBURGER KING LOW CALORIE MENU ITEMS!!\n-\nFind yourself in a pinch once or twice a week and need a quick Breakfast, Lunch, or Dinner???\n-\nHere are some low cal (high protein) Options from @burgerking\n-\nAnd before we get a whirlwind of comments from those who are emotionally attached to certain food restrictions, PLEASE REALIZE that this infograph was put together to give people perspective on calories (which matter first and foremost).\n-\nThere are always better choices, maybe not PERFECT choices...but better ones. Consistency over perfection.\n-\n#musclebuilding #ifitfitsyourmacros #IIFYM",
+  "ocr_summary": "Burger King low calorie menu items (all without mayo): Grilled Chicken 360cal/36P, Whopper 500cal/28P, Big Fish 340cal/15P, Original Chicken 450cal/28P, Crispy Chicken 460cal/23P, Morning Star Veggie 310cal/21P",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Burger King",
+        "original_meal": "Grilled Chicken Sandwich (with mayo)",
+        "original_calories": null,
+        "original_protein": 36,
+        "swap_meal": "Grilled Chicken Sandwich w/o Mayo",
+        "swap_calories": 360,
+        "swap_protein": 36,
+        "swap_ingredients": ["grilled chicken", "bun", "no mayo"],
+        "is_swap": true,
+        "category": "no_mayo_swap"
+      },
+      {
+        "restaurant_name": "Burger King",
+        "original_meal": "Whopper (with mayo)",
+        "original_calories": null,
+        "original_protein": 28,
+        "swap_meal": "Whopper w/o Mayo",
+        "swap_calories": 500,
+        "swap_protein": 28,
+        "swap_ingredients": ["beef patty", "bun", "lettuce", "tomato", "onion", "pickle", "no mayo"],
+        "is_swap": true,
+        "category": "no_mayo_swap"
+      },
+      {
+        "restaurant_name": "Burger King",
+        "original_meal": "Big Fish (with mayo)",
+        "original_calories": null,
+        "original_protein": 15,
+        "swap_meal": "Big Fish w/o Mayo",
+        "swap_calories": 340,
+        "swap_protein": 15,
+        "swap_ingredients": ["fish fillet", "bun", "no mayo"],
+        "is_swap": true,
+        "category": "no_mayo_swap"
+      },
+      {
+        "restaurant_name": "Burger King",
+        "original_meal": "Original Chicken (with mayo)",
+        "original_calories": null,
+        "original_protein": 28,
+        "swap_meal": "Original Chicken w/o Mayo",
+        "swap_calories": 450,
+        "swap_protein": 28,
+        "swap_ingredients": ["chicken patty", "bun", "lettuce", "no mayo"],
+        "is_swap": true,
+        "category": "no_mayo_swap"
+      },
+      {
+        "restaurant_name": "Burger King",
+        "original_meal": "Crispy Chicken (with mayo)",
+        "original_calories": null,
+        "original_protein": 23,
+        "swap_meal": "Crispy Chicken w/o Mayo",
+        "swap_calories": 460,
+        "swap_protein": 23,
+        "swap_ingredients": ["crispy chicken", "bun", "no mayo"],
+        "is_swap": true,
+        "category": "no_mayo_swap"
+      },
+      {
+        "restaurant_name": "Burger King",
+        "original_meal": "Morning Star Veggie (with mayo)",
+        "original_calories": null,
+        "original_protein": 21,
+        "swap_meal": "Morning Star Veggie w/o Mayo",
+        "swap_calories": 310,
+        "swap_protein": 21,
+        "swap_ingredients": ["veggie patty", "bun", "no mayo"],
+        "is_swap": true,
+        "category": "no_mayo_swap"
+      }
+    ],
+    "notes": "Single image infographic from @iifymacademy (posted by @flxrxnutrition). All 6 items are Burger King sandwiches ordered WITHOUT mayo to reduce calories. The key swap principle is simply removing mayo. Best protein ratio: Grilled Chicken w/o Mayo at 360cal/36g protein (10:1 ratio). Older post (2018) with 591 likes."
+  }
+}

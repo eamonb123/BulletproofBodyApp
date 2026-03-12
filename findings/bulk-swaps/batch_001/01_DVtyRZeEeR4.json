@@ -1,0 +1,23 @@
+{
+  "position": 1,
+  "url": "https://www.instagram.com/p/DVtyRZeEeR4/",
+  "shortcode": "DVtyRZeEeR4",
+  "transcript": "Chipotle? Y'all just get the burrito bowl, double steak, light on the rice, all the veggies, and a Coke Zero. Alright, how about Subway? Y'all just get the six-inch club on the multigrain wheat, all the veggies, light mayo, mustard, and a Diet Coke. Bro, how do you always know what to order? Bro, the MenuFit app tells me what to order. Comment menu, and I'll send you a link right now. Man, send me the link right now.",
+  "caption": "@menufit.app Comment \"Menu\" & I'll send you the link so you can Eat Out, and stay Fit\n\nSteal these two fast food swaps\n\nChipotle Fit order:\nBurrito Bowl > Double Steak > Light Brown Rice > Fajita Veggies > Fresh Tomato Salsa > Tomatillo-Green Chili Salsa > Romaine Lettuce > Diet Coke\n525 calories 46 G protein\n\nSubway fit order:\n6-inch Subway Club (Hearty Multigrain bread, turkey, ham, roast beef, provolone, lettuce, tomatoes, red onions, light mayo) > Diet Pepsi\n460 calories 29 G protein\n\nFollow @sethgolie for fast food swaps",
+  "ocr_text": "CHIPOTLE 1,900 calories 63g protein 525 calories 46g protein | SUBWAY 1,540 calories 54g protein 460 calories 29g protein | Comment \"Menu\" I'll send you the link",
+  "visual_scenes": "Two men stand side-by-side holding Chipotle meals, displaying calorie and protein information on a split-screen comparison. Scene transitions to Subway with updated calorie/protein metrics. MenuFit app shown on phone screen. CTA: Comment 'Menu' for link.",
+  "creator": "@sethgolie",
+  "views": 3291,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "parsed": {
+    "restaurant_name": "Chipotle",
+    "original_meal": "Burrito bowl with queso, guac, regular toppings + Coke",
+    "original_calories": 1900,
+    "swap_meal": "Burrito Bowl, Double Steak, Light Brown Rice, Fajita Veggies, Fresh Tomato Salsa, Tomatillo-Green Chili Salsa, Romaine Lettuce, Diet Coke",
+    "swap_calories": 525,
+    "swap_ingredients": ["double steak", "light brown rice", "fajita veggies", "fresh tomato salsa", "tomatillo-green chili salsa", "romaine lettuce", "diet coke"],
+    "is_swap": true,
+    "category": "bowl",
+    "notes": "Also includes a Subway swap: 6-inch Subway Club on multigrain wheat, all veggies, light mayo, mustard, Diet Pepsi = 460 cal 29g protein. Two restaurants in one reel."
+  }
+}

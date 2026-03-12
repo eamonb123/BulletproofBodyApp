@@ -1,0 +1,39 @@
+{
+  "position": 14,
+  "url": "https://www.instagram.com/p/DVY4i_1EYZ6/",
+  "shortcode": "DVY4i_1EYZ6",
+  "creator": "@coach_westfit",
+  "views": 793,
+  "likes": -1,
+  "duration": "0:45",
+  "transcript": "How to lose weight eating ice cream at Dairy Queen. Fantastic. Can I get a small strawberry sundae and a small vanilla cone? Thank you. You can consume an entire day's worth of calories at DQ. So please don't be out here ordering an 1800 calorie blizzard. If you need to stop at fast food on occasion and get your sugar fixed, you should probably shoot me a follow. This is the ice cream you should order if you're on a weight loss journey. Now to make sure you stay in your calorie deficit, you're going to order a small strawberry sundae for 240 calories or a small vanilla cone for only 230 calories. Portion control and reverse dieting is the best way to turn your fitness journey into a lifestyle that still allows you to treat your on occasion.",
+  "caption": "How To Lose Weight Eating Ice cream At Dairy Queen! You can easily consume an entire days worth of calories at DQ. So please don't be out here ordering a fuckin 1800 calorie blizzard. If you need to stop at fast food and get your sugar fix you should probably shoot me a follow. This is the ice cream you should order if you're on a weight loss journey. To make sure you stay in a calorie deficit you're gonna wanna order a small strawberry sundae for 240 calories or a small vanilla cone for only 230 calories. Portion control & Reverse dieting is the best way to turn your fitness journey into a lifestyle that still allows you to treat yourself on occasion.",
+  "ocr_summary": "HOW TO LOSE WEIGHT EATING ICE CREAM AT DAIRY QUEEN, STRAWBERRY SUNDAE, VANILLA CONE, PORTION CONTROL, 230 CALORIES",
+  "visual_scenes": "Man outside DQ Grill & Chill location, then indoor studio with ice cream products on table. Talking head throughout with bold text overlays.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Dairy Queen",
+        "original_meal": "Blizzard",
+        "original_calories": 1800,
+        "swap_meal": "Small Strawberry Sundae",
+        "swap_calories": 240,
+        "swap_protein": null,
+        "swap_ingredients": ["small strawberry sundae"],
+        "is_swap": true,
+        "category": "dessert"
+      },
+      {
+        "restaurant_name": "Dairy Queen",
+        "original_meal": "Blizzard",
+        "original_calories": 1800,
+        "swap_meal": "Small Vanilla Cone",
+        "swap_calories": 230,
+        "swap_protein": null,
+        "swap_ingredients": ["small vanilla cone"],
+        "is_swap": true,
+        "category": "dessert"
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "position": 72,
+  "url": "https://www.instagram.com/p/C9QnyfcpA6j/",
+  "shortcode": "C9QnyfcpA6j",
+  "creator": "@j.newtrition",
+  "views": 56600,
+  "likes": 2439,
+  "duration": 33,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I mean, you can't go wrong eating a double cheeseburger and still hitting your goals. I'm a weight loss dietician and this is my go-to order for In-N-Out. This is going to be the easiest freaking fast food order you'll ever do because In-N-Out doesn't really have a lot of options anyways. All you're going to do is ask for a double-double protein style with a tomato bun and a lettuce bun. The reason for this is because now we get even more veggies, we get more food volume, and at least a little bit of nutrition with what we're eating. Then on top of that, I get a Diet Coke along with it and that is the complete order. And that leaves us with a burger that's 30 grams of protein for 450 calories. On Apple Tea.",
+  "caption": "Best In-N-Out Burger order\n\nMacros: 30g P / 12g C / 32g F\n\n#healthyburger #fastfoodsecrets #easylunch",
+  "ocr_summary": "In N Out Order, 30g Protein & 450 Calories. Double Double protein style visible on screen.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "In-N-Out",
+        "original_meal": "Double-Double (standard with bun)",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Double-Double Protein Style (lettuce wrap) with tomato + Diet Coke",
+        "swap_calories": 450,
+        "swap_protein": 30,
+        "swap_ingredients": ["Double-Double burger patties (2)", "American cheese (2 slices)", "Lettuce wrap (protein style)", "Tomato", "Onion", "Spread", "Diet Coke"],
+        "is_swap": true,
+        "category": "fast_food_customization"
+      }
+    ],
+    "notes": "Simple swap: order Double-Double 'protein style' (lettuce wrap instead of bun) to cut carbs/calories. Creator emphasizes adding tomato for more veggie volume. Full macros from caption: 30g P / 12g C / 32g F = 450 cal. This is a well-known In-N-Out secret menu hack. Diet Coke as zero-cal drink pairing."
+  }
+}

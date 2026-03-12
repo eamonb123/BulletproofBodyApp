@@ -1,0 +1,30 @@
+{
+  "position": 56,
+  "url": "https://www.instagram.com/p/DG31a1PvrXG/",
+  "shortcode": "DG31a1PvrXG",
+  "creator": "@smaller_sam.pcos",
+  "views": 283943,
+  "likes": 13888,
+  "duration": 102,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I've lost 255 pounds eating in a calorie deficit. This is my Arby's order. It's only 540 calories with 36 grams of protein. I got a double beef and cheddar add red onions, no red sauce, no bun. This is only 290 calories with 33 grams of protein. And I'm not going to Arby's without getting the fries. A small fry is 250 calories. Time for the magic. Cut up your beef and onions like that. Now add your beef to your fries. BRB. Oh my gosh, so windy. Okay. We're making loaded curly fries. You don't have to do this. It's good on its own, but I love horsey sauce, so I'm gonna add half a horsey sauce and half of an Arby's sauce. And a Diet Coke for the haters. That's not a Diet Coke. Loaded curly fries. I love Arby's because when I was little, if we got to go with my dad on road trips, he would take us to Arby's. His favorite thing was the Jamocha milkshake and a double beef and cheddar with horsey sauce. He would love this one. Where should we go next? I forgot that's a regular.",
+  "caption": "Arby's (540 cals + 36g protein) Here's how to order:\n-Double beef & cheddar with NO bun NO red sauce ADD red onion (the cheese sauce is included on this)\n-Small curly fry\n- 1/2 horsey sauce + 1/2 red sauce\n**this is 45 cals not included unless you want it**\n#fastfood #arbys #curly #fry #cheese #caloriedeficit #protein #pcos #healthy #balance #lifestyle #menu #hack #order #nostalgia #real #mom #beforeandafter #weightloss #weightlossjourney #pcosweightloss",
+  "ocr_summary": "Arby's 540 cals + 36g protein. Double beef & cheddar no bun = 290cal/33g protein. Small curly fry = 250cal.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Arby's",
+        "original_meal": "Double Beef & Cheddar (standard with bun and red sauce)",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Double Beef & Cheddar NO bun, NO red sauce, ADD red onion + Small Curly Fry (loaded curly fries style)",
+        "swap_calories": 540,
+        "swap_protein": 36,
+        "swap_ingredients": ["double beef", "cheddar cheese sauce", "red onion", "small curly fries", "half horsey sauce (optional +22cal)", "half Arby's sauce (optional +23cal)"],
+        "is_swap": true,
+        "category": "bunless_swap"
+      }
+    ],
+    "notes": "Single swap post. Key hack: remove bun from Double Beef & Cheddar (saves significant calories), remove red sauce, keep cheese sauce, add red onion. Then cut up the beef and put it on top of the curly fries to make 'loaded curly fries'. Sauces on side are optional +45cal total. Creator has lost 255 lbs. 283K views, strong performer."
+  }
+}

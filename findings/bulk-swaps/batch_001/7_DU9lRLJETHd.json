@@ -1,0 +1,42 @@
+{
+  "position": 7,
+  "url": "https://www.instagram.com/p/DU9lRLJETHd/",
+  "shortcode": "DU9lRLJETHd",
+  "creator": "@sethgolie",
+  "views": 18940,
+  "likes": 830,
+  "duration": 24.766,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You want to go to Chick-fil-A? Yeah, bro, I'll just go ahead and get the Cobb salad with the 12 grilled nuggets added on top. Let's do the light dressing and a Coke Zero. Okay, but what if I don't want to eat a salad? Yeah, I got you. Let's get the chicken deluxe sandwich and then a 12 count grilled nugget with the buffalo sauce and a Coke Zero. Dang, that sounds good. Where'd you learn how to order like that? Bro, the MenuFit app's going to let you know what to order at every restaurant to stay on track with your fitness school. Well, shit, I better download the MenuFit app right now.",
+  "caption": "Comment \"Fast Food\" and I'll send you my Fast Food swap cheat sheet. Steal these two orders from Chick-fil-a. Fit order 1: Cobb Salad w/ 12 Grilled Nuggets + buffalo sauce > Fruit Cup (Small) > Coke Zero. 580 Calories - 42 G protein. Fit order 2: Chick-fil-A Grilled Deluxe Sandwich > 12-ct Grilled Nuggets > Buffalo sauce + Coke Zero. 690 Calories - 70 G protein.",
+  "ocr_summary": "2,000 calories / 70g protein (original implied), 580 calories / 42g protein (swap 1), 690 calories / 70g protein (swap 2)",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Typical Chick-fil-A order",
+        "original_calories": 2000,
+        "original_protein": 70,
+        "swap_meal": "Cobb Salad w/ 12 Grilled Nuggets + light dressing + Fruit Cup (Small) + Coke Zero",
+        "swap_calories": 580,
+        "swap_protein": 42,
+        "swap_ingredients": ["Cobb Salad", "12 Grilled Nuggets", "buffalo sauce", "Fruit Cup (Small)", "Coke Zero"],
+        "is_swap": true,
+        "category": "salad"
+      },
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Typical Chick-fil-A order",
+        "original_calories": 2000,
+        "original_protein": 70,
+        "swap_meal": "Grilled Deluxe Sandwich + 12-ct Grilled Nuggets + Buffalo sauce + Coke Zero",
+        "swap_calories": 690,
+        "swap_protein": 70,
+        "swap_ingredients": ["Grilled Deluxe Sandwich", "12-ct Grilled Nuggets", "Buffalo sauce", "Coke Zero"],
+        "is_swap": true,
+        "category": "sandwich"
+      }
+    ],
+    "notes": "Two fit orders at Chick-fil-A compared to a typical 2000 cal order. Also promotes MenuFit app at end."
+  }
+}

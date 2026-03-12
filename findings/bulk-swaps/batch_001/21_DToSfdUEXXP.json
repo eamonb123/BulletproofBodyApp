@@ -1,0 +1,42 @@
+{
+  "position": 21,
+  "url": "https://www.instagram.com/p/DToSfdUEXXP/",
+  "shortcode": "DToSfdUEXXP",
+  "creator": "@sethgolie",
+  "views": 17227,
+  "likes": 669,
+  "duration": 24.766,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You want to go to Chick-fil-A? Yeah, bro, I'll just go ahead and get the Cobb salad with the 12 grilled nuggets added on top. Let's do the light dressing and a Coke Zero. Okay, but what if I don't want to eat a salad? Yeah, I got you. Let's get the chicken deluxe sandwich and then a 12 count grilled nugget with the buffalo sauce and a Coke Zero. Dang, that sounds good. Where'd you learn how to order like that? Bro, the MenuFit app's going to let you know what to order at every restaurant to stay on track with your fitness school. Well, shit, I better download the MenuFit app right now.",
+  "caption": "You can EAT OUT & stay FIT with the @menufit.app\n\nSteal these two orders from Chick-fil-a\n\nFit order 1:\nCobb Salad w/ 12 Grilled Nuggets + buffalo sauce > Fruit Cup (Small) > Coke Zero\n580 Calories - 42 G protein\n\nFit order 2:\nChick-fil-A Grilled Deluxe Sandwich > 12-ct Grilled Nuggets > Buffalo sauce + Coke Zero\n690 Calories - 70 G protein\n\nSend this to your FIT friends\n\nFollow @sethgolie for high protein meals",
+  "ocr_summary": "Chick-fil-A: 2000 cal / 70g protein (original) vs 580 cal / 42g protein (swap 1) and 690 cal / 70g protein (swap 2).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Typical Chick-fil-A meal (fried chicken sandwich combo with fries and soda)",
+        "original_calories": 2000,
+        "original_protein": 70,
+        "swap_meal": "Cobb Salad with 12 Grilled Nuggets + buffalo sauce + Fruit Cup (Small) + Coke Zero",
+        "swap_calories": 580,
+        "swap_protein": 42,
+        "swap_ingredients": ["Cobb Salad", "12 grilled nuggets", "buffalo sauce", "fruit cup small", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_food"
+      },
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Typical Chick-fil-A meal (fried chicken sandwich combo with fries and soda)",
+        "original_calories": 2000,
+        "original_protein": 70,
+        "swap_meal": "Chick-fil-A Grilled Deluxe Sandwich + 12-ct Grilled Nuggets + Buffalo sauce + Coke Zero",
+        "swap_calories": 690,
+        "swap_protein": 70,
+        "swap_ingredients": ["Grilled Deluxe Sandwich", "12 grilled nuggets", "buffalo sauce", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Two Chick-fil-A swap options - one salad-based (580 cal) and one sandwich-based (690 cal). The sandwich option maintains the same 70g protein as the original but saves 1310 cal. Salad option saves 1420 cal. Both use grilled instead of fried. Also promotes MenuFit app."
+  }
+}

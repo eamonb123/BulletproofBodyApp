@@ -1,0 +1,23 @@
+{
+  "position": 28,
+  "url": "https://www.instagram.com/p/DTOfK6DEazU/",
+  "shortcode": "DTOfK6DEazU",
+  "transcript": "I'm on a diet, let's go to Subway for lunch. Yeah, let me get a six inch turkey on wheat, double meat, no cheese, all the veggies, mustard, and a large Coke Zero. Wait, and you actually are losing weight eating like that? Yeah, I'm actually down 20 pounds and I still eat out occasionally. Nice, who taught you how to do that? My coach Seth G taught me everything he knows about fat loss. I'm gonna make sure to follow Seth G right now.",
+  "caption": "Comment \u201cFASTFOOD\u201d for my fast food cheat sheet \ud83d\ude4c\ud83c\udffc\n\nTry this order from Subway \ud83d\udc47\ud83c\udffc\n\n6-inch turkey on wheat, double meat, no cheese, all the veggies, mustard, and a Diet Coke \n(400 calories 39 G protein)\n\nThis meal will save you over 1000 calories \ud83d\udc40 & keep you on track with your fitness journey \n\nSend this to a friend that needs help \ud83d\ude4c\ud83c\udffc\n\nFollow @sethgolie for fast food swaps \ud83d\udd25",
+  "ocr_text": "SUBWAY 1580 CALORIES 45 G PROTEIN / 400 CALORIES 39 G PROTEIN",
+  "visual_scenes": "Two shirtless men stand in front of a Subway logo holding plates with sandwiches and drinks, displaying calorie and protein information. Polished edit.",
+  "creator": "@sethgolie",
+  "views": 14110,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "parsed": {
+    "restaurant_name": "Subway",
+    "original_meal": "Regular Subway order (footlong with cheese, mayo, regular Coke)",
+    "original_calories": 1580,
+    "swap_meal": "6-inch turkey on wheat, double meat, no cheese, all veggies, mustard + Diet Coke",
+    "swap_calories": 400,
+    "swap_ingredients": ["turkey", "wheat bread", "double meat", "all veggies", "mustard", "Diet Coke"],
+    "is_swap": true,
+    "category": "sandwich",
+    "notes": "Saves over 1000 calories. Key swaps: 6-inch instead of footlong, no cheese, mustard instead of mayo."
+  }
+}

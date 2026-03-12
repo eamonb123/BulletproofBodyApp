@@ -1,0 +1,42 @@
+{
+  "position": 29,
+  "url": "https://www.instagram.com/p/DTLjfdhka4H/",
+  "shortcode": "DTLjfdhka4H",
+  "creator": "@sethgolie",
+  "views": 24491,
+  "likes": 1156,
+  "duration": 22.477,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "We're craving chicken, let's hit up Raising Cane's. Yeah man, I'll get the four tenders naked and then we'll get coleslaw, no toast, no fries and a Coke Zero. Okay, but what if we went to Popeyes, what would you order there? Yeah, I'd get the three blackened chicken tenders with the green beans and a Coke Zero. Dude, how do you always know what to order to stay on track with your fitness journey? Bro, you're not following Seth G yet? Shit, I better follow Seth G right now.",
+  "caption": "Comment FASTFOOD for my fast food swap cheat sheet. Steal these two orders from Raising Canes & Popeyes. Raising Cane's order: 4 strips NAKED + coleslaw (no fries no toast) + Louisiana hot sauce + Coke Zero (395 calories 53 G protein). Popeyes order: 3 Blackened tenders + green beans + Coke Zero (430 calories 38 G protein). Both these orders will save you well over 1000 calories. Follow @sethgolie for fast food swaps.",
+  "ocr_summary": "Raising Cane's: Original 1430 cal/54g protein, Swap 395 cal/53g protein. Popeyes: Original 1290 cal/34g protein, Swap 430 cal/38g protein.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Raising Cane's",
+        "original_meal": "Standard Raising Cane's combo (fried chicken fingers with fries, toast, and regular Coke)",
+        "original_calories": 1430,
+        "original_protein": 54,
+        "swap_meal": "4 strips NAKED + coleslaw, no fries, no toast, Louisiana hot sauce, Coke Zero",
+        "swap_calories": 395,
+        "swap_protein": 53,
+        "swap_ingredients": ["4 chicken strips (naked/unbreaded)", "coleslaw", "Louisiana hot sauce", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_food"
+      },
+      {
+        "restaurant_name": "Popeyes",
+        "original_meal": "Standard Popeyes combo (fried chicken with fries and regular Coke)",
+        "original_calories": 1290,
+        "original_protein": 34,
+        "swap_meal": "3 Blackened chicken tenders + green beans + Coke Zero",
+        "swap_calories": 430,
+        "swap_protein": 38,
+        "swap_ingredients": ["3 blackened chicken tenders", "green beans", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Two swaps in one reel. Raising Cane's saves ~1035 cal. Popeyes saves ~860 cal. Both maintain solid protein."
+  }
+}

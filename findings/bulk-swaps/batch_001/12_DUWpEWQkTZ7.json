@@ -1,0 +1,23 @@
+{
+  "position": 12,
+  "url": "https://www.instagram.com/p/DUWpEWQkTZ7/",
+  "shortcode": "DUWpEWQkTZ7",
+  "transcript": "I'm starving, you want to go to McDonald's? Yeah man, I'll just get two McDoubles, no cheese, no sauce. We'll go ahead and get apple slices and Diet Coke. Okay, but what if we went to Wendy's instead? Yeah man, Wendy's I'll go ahead and get the chicken wrap and then we'll get a side salad with light dressing and a Diet Coke. Actually, I'm kind of craving Taco Bell. Taco Bell, let's go ahead and do the Power Bowl with the chicken, no rice, no sour cream. Extra Chicken, Baja Blast Zero. And how do you always know what to order at every restaurant? The MenuFit app is gonna give you the best order at every restaurant to hit your fitness goals. Hey, I'm gonna download the MenuFit app right now.",
+  "caption": "Comment \"FASTFOOD\" for my FREE fast food swap cheat sheet\n\nSteal these 3 Fast Food Swaps\n\nMcDonald's\nTwo McDoubles no cheese no sauce + apple slices + Diet Coke\n(540 calories 48 G protein)\n\nWendy's\nChicken wrap + side salad + light dressing + Diet Coke\n(430 calories 38 G protein)\n\nTaco Bell\nPower bowl double chicken - no rice no sour cream + Baja Blast Zero\n(760 calories 52 G protein)",
+  "ocr_text": "McDonald's | 1,340 calories 34g protein | 540 calories 48g protein | Wendy's | 1,540 calories 59g protein | 440 calories 38g protein | Taco Bell | 1,820 calories 39g protein | 760 calories 52g protein | MenuFit app screens",
+  "visual_scenes": "Two men in athletic wear hold fast food meals with nutritional information displayed. Three restaurant segments: McDonald's, Wendy's, Taco Bell. Studio setting with bookshelf backdrop. Ends with MenuFit app demo.",
+  "creator": "@sethgolie",
+  "views": 14893,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "parsed": {
+    "restaurant_name": "McDonald's",
+    "original_meal": "Regular McDonald's combo (1,340 cal)",
+    "original_calories": 1340,
+    "swap_meal": "Two McDoubles no cheese no sauce + apple slices + Diet Coke",
+    "swap_calories": 540,
+    "swap_ingredients": ["McDouble (x2, no cheese, no sauce)", "Apple Slices", "Diet Coke"],
+    "is_swap": true,
+    "category": "burger",
+    "notes": "Multi-restaurant reel. Also includes Wendy's (chicken wrap + side salad, 430cal/38g) and Taco Bell (Power Bowl double chicken no rice no sour cream, 760cal/52g). MenuFit app promotion."
+  }
+}

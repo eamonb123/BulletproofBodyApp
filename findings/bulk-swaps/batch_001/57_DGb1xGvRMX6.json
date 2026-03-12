@@ -1,0 +1,30 @@
+{
+  "position": 57,
+  "url": "https://www.instagram.com/p/DGb1xGvRMX6/",
+  "shortcode": "DGb1xGvRMX6",
+  "creator": "@trainermikeyy",
+  "views": 8540,
+  "likes": 427,
+  "duration": 43,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "If you're at an Arby's, I'm gonna show you how to make a meal under 600 calories with over 40 grams of protein. Please do the double roast beef sandwich. Lettuce, onions. Leaf lettuce or shrimp lettuce? The leaf lettuce. I'm just gonna do the sandwich. You're coming with cheese first? No, it's just plain, but then we. I'll add the Swiss cheese too. Just got the meal, you guys. I paid for the roast beef sandwich and the fountain drink. $11.80 here at Arby's. Double roast beef sandwich is 510 calories, 38 grams of protein. I added cheese. calories with three grams of protein. Lettuce, onions for more food volume, about five to ten calories. We're gonna chew sauce. Arby's sauce is about 15 calories minimal. All for a total of 575 calories, 41 grams of protein. Enjoy, Gus.",
+  "caption": "Arby's Meal On a Diet\n#arbys #diet #lowcalorie #reels #explore",
+  "ocr_summary": "Arby's Low Calorie High Protein Meal. Under 600 calories, Over 40g protein. Double Roast Beef Sandwich 510cal/38g protein. Added Swiss cheese (+3g protein). Lettuce/onions 5-10cal. Arby's sauce 15cal. Total: 575cal/41g protein. Nutrition label shows 27g fat, 43g carbs.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Arby's",
+        "original_meal": "Double Roast Beef Sandwich (standard)",
+        "original_calories": 510,
+        "original_protein": 38,
+        "swap_meal": "Double Roast Beef Sandwich + Swiss cheese + leaf lettuce + onions + Arby's sauce",
+        "swap_calories": 575,
+        "swap_protein": 41,
+        "swap_ingredients": ["double roast beef", "Swiss cheese", "leaf lettuce", "onions", "Arby's sauce (15cal)"],
+        "is_swap": true,
+        "category": "high_protein_order"
+      }
+    ],
+    "notes": "Single Arby's order. Not a traditional swap (no before/after comparison) but a 'how to order' guide. Orders just the sandwich (no fries), adds Swiss cheese for +3g protein, lettuce and onions for volume (5-10cal), Arby's sauce for 15cal. Total meal with fountain drink $11.80. Lower engagement (8.5K views) compared to other Arby's content."
+  }
+}

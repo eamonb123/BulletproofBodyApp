@@ -1,0 +1,30 @@
+{
+  "position": 62,
+  "url": "https://www.instagram.com/p/DPulGtZjZ_J/",
+  "shortcode": "DPulGtZjZ_J",
+  "creator": "@fasteatsss",
+  "views": 1640,
+  "likes": 66,
+  "duration": 66.633,
+  "extracted_at": "2026-03-11T12:15:00Z",
+  "transcript": "So now we have a 560 calorie meal with 44 grams of protein that's impossible not to finish. I've been gatekeeping the best one for way too long. I'm a weight loss dietician and this is the best order from Popeyes. If the words dietician and fast food don't blow your mind already, then this menu hack will. See, every restaurant has a secret menu and the blackened chicken is no longer a secret at Popeyes. And did you know that breading and frying chicken more than doubles the calories and leaving it off means there's just no flavor at all? But the seasoning and taste of Popeyes chicken is just out of this world. So the move for this is to get a five piece blackened chicken combo with coleslaw, sweet heat sauce, and a diet coke to drink. So the first thing that we're going to do here is cut the chicken strips into pieces. Then we're going to take our coleslaw and just dump it on top. Then we'll pour the sweet heat over the top. You can cut out 70 calories if you just want to use one of these instead of two. So now we have a 560 calorie meal with 44 grams of protein. And the best part about all of this is that it requires no work and no dish washing. Bone apple tea. Now you have yet another option for fast food. This is by far my favorite one.",
+  "caption": "Popeyes Healthy Order Hack You Need. A Simple Popeyes Order Swap To Cut Calories, Reduce Fat, And Keep Protein High Without Losing Flavor. Credit: @j.newtrition",
+  "ocr_summary": "Hook: 44g Protein & 560 Calories. Popeyes branding visible throughout.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Popeyes",
+        "original_meal": "Regular fried chicken (breaded doubles the calories)",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "5 Pc Blackened Chicken Combo + Coleslaw + Sweet Heat Sauce + Diet Coke",
+        "swap_calories": 560,
+        "swap_protein": 44,
+        "swap_ingredients": ["blackened chicken tenders", "coleslaw", "sweet heat sauce", "diet coke"],
+        "is_swap": true,
+        "category": "fast_food_swap"
+      }
+    ],
+    "notes": "This IS a swap - explicitly compares blackened (unbreaded) vs fried chicken, noting breading/frying doubles calories. Original content by @j.newtrition, reposted by @fasteatsss. Key hack: blackened chicken at Popeyes is a 'secret menu' item with much fewer calories than fried. Assembly: cut chicken into pieces, dump coleslaw on top, pour sweet heat sauce over. Can save 70 cal by using only 1 sauce packet instead of 2."
+  }
+}

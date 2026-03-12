@@ -1,0 +1,30 @@
+{
+  "position": 42,
+  "url": "https://www.instagram.com/p/DRAtutnkUom/",
+  "shortcode": "DRAtutnkUom",
+  "creator": "@sethgolie",
+  "views": 13429,
+  "likes": 620,
+  "duration": 32.466,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You down for Chick-fil-A? Yeah man, let's do it. I'll grab the grilled chicken sandwich meal, fruit cup instead of fries, light ranch, large diet lemonade, and then I'll throw in eight grilled nuggets with a side of the buffalo sauce because it's low calorie and that's extra protein. Oh, I would have never ordered like that. That actually kind of sounds good. Yeah, man, I've been able to lose 20 pounds while still eating out and eating foods I love. Wait, what? How? My coach Seth G taught me how to do all these food swaps. Man, I got 20 pounds to lose myself. I'm going to make sure to follow Seth G right now.",
+  "caption": "You're not FAT because you eat fast food, it's because how you order. Next time you go to Chick-fil-a order this: Grilled chicken sandwich + fruit cup instead of fries + grilled nuggets with buffalo sauce + Diet Lemonade (700 calories 55 G protein). This will save over 1,000 and help you stay on track with your fitness journey. Save this for later. Follow @sethgolie for fast food swaps.",
+  "ocr_summary": "1790 CALORIES vs 700 CALORIES, 62G PROTEIN vs 55G PROTEIN",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Standard Chick-fil-A meal (chicken sandwich, fries, lemonade)",
+        "original_calories": 1790,
+        "original_protein": 62,
+        "swap_meal": "Grilled chicken sandwich + fruit cup (instead of fries) + 8 grilled nuggets with buffalo sauce + diet lemonade",
+        "swap_calories": 700,
+        "swap_protein": 55,
+        "swap_ingredients": ["grilled chicken sandwich", "fruit cup", "light ranch", "grilled nuggets", "buffalo sauce", "diet lemonade"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Single swap. Saves over 1000 calories. Skit format with two guys acting out the ordering scenario."
+  }
+}

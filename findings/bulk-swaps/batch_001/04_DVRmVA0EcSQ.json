@@ -1,0 +1,23 @@
+{
+  "position": 4,
+  "url": "https://www.instagram.com/p/DVRmVA0EcSQ/",
+  "shortcode": "DVRmVA0EcSQ",
+  "transcript": "I'm starving, you wanna go to Chick-fil-A? Yeah, I'll get the 12-piece grilled nugget, a side mac and cheese, and then ask for a large bowl so I can mix it together, and then put buffalo sauce on top, and get a Coke Zero. Okay, that's pretty awesome, but what if we went there for breakfast? Yeah, I'll get the egg white grill with the extra grilled filet, a fruit cup, and a diet lemonade. Man, that's awesome, where did you even learn all that? Bro, are you not following Seth G yet? I'm gonna make sure to follow Seth G right now.",
+  "caption": "Comment \"FASTFOOD\" for my FREE fast food cheat sheet\n\nSteal these two Chick-fil-a orders to stay on track\n\nLunch order:\n12 piece Grilled Nuggets + side Mac'n Cheese + buffalo sauce (mix together in bowl) + Coke Zero\n(495 calories 49 G protein)\n\nBreakfast order:\nEgg white grill + extra grilled filet + medium fruit cup + Diet Lemonade\n(520 calories 66 G protein)\n\nThese will both help you save over 1000 calories & stay on track with your fitness journey!\n\nFollow @sethgolie for fast food swaps",
+  "ocr_text": "Chick-fil-A 1830 CALORIES 62 G PROTEIN 495 CALORIES 49 G PROTEIN | 2 Chicken Biscuits 1490 CALORIES 41 G PROTEIN 520 CALORIES 56 G PROTEIN",
+  "visual_scenes": "Two men stand in front of Chick-fil-A branded wall with food trays showing calorie/protein comparison. Lunch swap: 1830 cal vs 495 cal. Breakfast swap: 1490 cal vs 520 cal. CTA shows Seth Golie's IG profile.",
+  "creator": "@sethgolie",
+  "views": 21717,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "parsed": {
+    "restaurant_name": "Chick-fil-A",
+    "original_meal": "Regular Chick-fil-A lunch combo",
+    "original_calories": 1830,
+    "swap_meal": "12 piece Grilled Nuggets + side Mac'n Cheese + buffalo sauce (mixed in bowl) + Coke Zero",
+    "swap_calories": 495,
+    "swap_ingredients": ["12 piece grilled nuggets", "side mac and cheese", "buffalo sauce", "coke zero"],
+    "is_swap": true,
+    "category": "nuggets",
+    "notes": "Also includes breakfast swap: Egg white grill + extra grilled filet + medium fruit cup + Diet Lemonade = 520 cal 66g protein (vs 1490 cal original). Top performer with 21.7K views."
+  }
+}

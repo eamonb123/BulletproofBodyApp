@@ -1,0 +1,30 @@
+{
+  "position": 73,
+  "url": "https://www.instagram.com/p/DBCK5n0yWiu/",
+  "shortcode": "DBCK5n0yWiu",
+  "creator": "@higherupwellness",
+  "views": 119611,
+  "likes": 12123,
+  "duration": 68.166,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "All right, here's a Chick-fil-A order that's high in protein and relatively low calorie. I was born in Georgia, so Chick-fil-A's a regular for me. Normally, I just get whatever I want, but this week I'm really dialed in, so it's a little bit different. Still tastes good, though. 12 grilled nuggets, no sauce because I'm a hard-o, and I hate having a good time and enjoying myself. Just kidding. I just think they taste fine without sauce, particularly the grilled ones. Grilled chicken cool wrap. This is kind of a hack on their menu. And avocado lime ranch. I will not sacrifice a fatty dressing with a wrap. I just am not doing it. I'm not doing the Italian. Use it conservatively. It'll be fine. And of course, a DC to wash it down. Nothing hits like a fountain Diet Coke. It says on MyFitnessPal the Grilled Chicken Cool Wraps 42 G's of protein. I don't know about that, so let's just call it 35 plus 38 for the 12 grilled nuggets. This meal clocks around 550 calories and 60 grams of protein. Be aware of your fatty dressings. This has 300 calories, so I'm probably going to use half of it. Call it 650, 700 calories. Next time I come here, you best believe I'm getting the damn chicken sandwich with bacon and American cheese, though, and fries. And chicken tender. Tenders over nuggets at Chick-fil-A any day. Isn't easy, but it is simple. Don't overcomplicate it. This is so niche. Anybody else ever feel like when they order the chicken cool wrap from Chick-fil-A, there's never any chicken at the back of the wrap in the tortilla. I literally just put a grilled nugget I'm just holding right there to eat with it. Anyway, bye.",
+  "caption": "Eating fast food isn't an excuse to eat like an absolute knuckle head. Here's a high protein Chick Fil a order.",
+  "ocr_summary": "High Protein CFA Order (on-screen title). No calorie/protein overlay numbers visible - all nutrition info spoken only: ~550-700 cal, ~60g protein for full meal.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Regular Chick-fil-A order (chicken sandwich with bacon, American cheese, fries, tenders)",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "12 Grilled Nuggets + Grilled Chicken Cool Wrap + Avocado Lime Ranch (half) + Diet Coke",
+        "swap_calories": 700,
+        "swap_protein": 60,
+        "swap_ingredients": ["12 grilled nuggets", "grilled chicken cool wrap", "avocado lime ranch dressing (half)", "Diet Coke"],
+        "is_swap": true,
+        "category": "fast_food_high_protein_order"
+      }
+    ],
+    "notes": "This is a 'high protein order' format rather than a direct A-to-B swap. Creator shows what he orders when dialing in vs his normal order. Nuggets protein: 38g, wrap protein: ~35g. Dressing adds 150 cal (half of 300 cal packet). No original calorie count given for comparison."
+  }
+}

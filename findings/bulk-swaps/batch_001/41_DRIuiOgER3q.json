@@ -1,0 +1,25 @@
+{
+  "position": 41,
+  "url": "https://www.instagram.com/p/DRIuiOgER3q/",
+  "shortcode": "DRIuiOgER3q",
+  "transcript": null,
+  "caption": null,
+  "ocr_text": null,
+  "visual_scenes": null,
+  "creator": null,
+  "views": null,
+  "extracted_at": null,
+  "extraction_status": "failed",
+  "extraction_error": "'FunctionTool' object is not callable — ideate_extract_metadata_batch internal error",
+  "parsed": {
+    "restaurant_name": null,
+    "original_meal": null,
+    "original_calories": null,
+    "swap_meal": null,
+    "swap_calories": null,
+    "swap_ingredients": [],
+    "is_swap": null,
+    "category": null,
+    "notes": "Extraction failed — batch tool error. Needs manual re-extraction."
+  }
+}

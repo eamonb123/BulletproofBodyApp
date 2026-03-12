@@ -1,0 +1,30 @@
+{
+  "position": 51,
+  "url": "https://www.instagram.com/p/DVVBoR6jmP3/",
+  "shortcode": "DVVBoR6jmP3",
+  "creator": "@kp_trains",
+  "views": null,
+  "likes": null,
+  "duration": null,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "",
+  "caption": "",
+  "ocr_summary": "KFC 6 Piece Combo: 1128 cal / 85g protein (original) vs Kentucky Grilled Chicken Breast: 210 cal / 38g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "KFC",
+        "original_meal": "6 Piece Combo",
+        "original_calories": 1128,
+        "original_protein": 85,
+        "swap_meal": "Kentucky Grilled Chicken Breast",
+        "swap_calories": 210,
+        "swap_protein": 38,
+        "swap_ingredients": ["Kentucky grilled chicken breast"],
+        "is_swap": true,
+        "category": "fast food"
+      }
+    ],
+    "notes": "Previously extracted in competitor_reels (ID: 23). Re-extraction failed due to Apify timeout. Core idea from existing record: side-by-side fast food menu swaps proving you can eat at the same restaurant and cut 50-75% of calories while keeping protein high. May contain additional swaps not captured in the hook text — only KFC swap was in the existing record."
+  }
+}

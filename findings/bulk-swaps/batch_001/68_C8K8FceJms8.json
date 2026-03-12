@@ -1,0 +1,30 @@
+{
+  "position": 68,
+  "url": "https://www.instagram.com/p/C8K8FceJms8/",
+  "shortcode": "C8K8FceJms8",
+  "creator": "@j.newtrition",
+  "views": 141785,
+  "likes": 7303,
+  "duration": 73,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Then we're left with this giant bowl of food and with sauce, it's 46 grams of protein and 565 calories. I'm a weight loss dietician and this is my go-to order for Chipotle. One of the most difficult things about weight loss is simply just always being hungry because as fat cells shrink, they produce less of a hormone called leptin, which means we just get more and more hungry as a result. And one of the best ways to solve for this is to focus on eating ample protein and food volume. which is exactly what we're going to do with this meal. So for my go-to order at Chipotle, I get the burrito bowl with chicken and double cheese to keep the protein high and help me feel full. And I skipped the rice and beans with this. No, I'm not going to add the beans back in. And then I like to get double fajita veggies, pico and lettuce to help with the food volume so I can eat more food for very little calories. And the best part about this entire meal is the honey Chipotle vinaigrette. And it is pretty high calories, so we're only going to drizzle on half of this. As always, we're going to shake it like it's your birthday. Then we're left with a giant bowl and with sauce, it's 46 grams of protein and 565 calories. Bone apple tea. You could do double chicken with the entire portion of vinaigrette and then just split it in half when you get home. But honestly, with this much food, I'm not going to be hungry for the rest of the day. So please add this to your list of fast food friendly places. I know Chipotle has been slacking, but they definitely did not with this one. You can never go wrong with double cheese.",
+  "caption": "My go to Chipotle menu hack for high protein and food volume",
+  "ocr_summary": "Chipotle Order: 46g Protein & 565 Calories",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chipotle",
+        "original_meal": "Standard burrito bowl (implied)",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Burrito Bowl with chicken, double cheese, no rice, no beans, double fajita veggies, pico, lettuce, half honey chipotle vinaigrette",
+        "swap_calories": 565,
+        "swap_protein": 46,
+        "swap_ingredients": ["chicken", "double cheese", "double fajita veggies", "pico de gallo", "lettuce", "half honey chipotle vinaigrette"],
+        "is_swap": true,
+        "category": "fast_casual"
+      }
+    ],
+    "notes": "Single Chipotle menu hack by @j.newtrition (same creator as position 67). Focus on high protein + food volume for satiety. Key insight: skip rice and beans to cut calories, double up on veggies for volume. Use only half the vinaigrette. Good engagement (142K views, 7.3K likes). Pro tip mentioned: could do double chicken + full vinaigrette and split into two meals."
+  }
+}

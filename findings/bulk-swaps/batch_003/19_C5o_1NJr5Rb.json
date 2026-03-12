@@ -1,0 +1,34 @@
+{
+  "position": 19,
+  "url": "https://www.instagram.com/p/C5o_1NJr5Rb/",
+  "shortcode": "C5o_1NJr5Rb",
+  "creator": "@trainermikeyy",
+  "views": 49971,
+  "likes": 2505,
+  "duration": "0:31",
+  "transcript": "If you're at an Outback Steakhouse right now, you guys, I'm going to show you how to make a meal under 500 calories with 53 grams of protein. Please do the sirloin. Yeah, the 60 or 11 ounce. 8 ounce sirloin. And what's besides? Do you have asparagus? Yep. Two of those, please. Just got the meal, you guys. 8 ounce sirloin, 400 calories, two sides of asparagus, 40 calories each. A1 sauce. We're going to go white. Diet Coke on the side, zero calories. Comes with bread, but we're skipping out on it. For a total of 495 calories, 53 grams of protein. Enjoy, guys.",
+  "caption": "Outback Steakhouse Under 500calories🥩\n#steak #outbacksteakhouse #lowcalorie #diet",
+  "ocr_summary": "OUTBACK STEAKHOUSE | 500 calories | 53 grams Protein | 8oz Sirloin | 2 sides of asparagus | A1 sauce | Diet Coke | Comes with bread & butter (skipped) | Total: Calories 495, Total Fat 26g, Protein 53g",
+  "visual_scenes": "Man at Outback Steakhouse exterior talking to camera, then inside at table ordering. Shows plated 8oz sirloin with two sides of asparagus. Shows nutrition facts screen and receipt.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Outback Steakhouse",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "8oz Sirloin with 2 sides of asparagus, A1 sauce, Diet Coke (skip bread)",
+        "swap_calories": 495,
+        "swap_protein": 53,
+        "swap_ingredients": [
+          {"item": "8oz Sirloin", "calories": 400},
+          {"item": "Asparagus (side 1)", "calories": 40},
+          {"item": "Asparagus (side 2)", "calories": 40},
+          {"item": "A1 Sauce", "calories": 15},
+          {"item": "Diet Coke", "calories": 0}
+        ],
+        "is_swap": false,
+        "category": "steak"
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "position": 66,
+  "url": "https://www.instagram.com/p/DPyh2bfjZJS/",
+  "shortcode": "DPyh2bfjZJS",
+  "creator": "@fasteatsss",
+  "views": 1021,
+  "likes": 32,
+  "duration": 62.466,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "This is a Wendy's menu hack that you won't find anywhere else. I'm a weight loss dietician. This is my go-to order for Wendy's. Wendy's has a lot of great stuff on the menu, but not so great if you're watching your calories because the highest protein options are also the highest in calories. And that means that you're left with eating salads, but salads are boring as hell. Usually chicken on the menu is your best bet, but Wendy's doesn't offer grilled chicken unless it's on a salad or in their wrap. I personally don't like wraps. So here's what I get. So I'll order a chicken wrap without the ranch, the lettuce and the cheese. So it's just straight grilled chicken inside of here. Then I'll order a plain potato. People forget the potatoes are loaded with micronutrients and fiber. And then I'll order a small chili to go with the potato. All I'm going to do is take the grilled chicken out of this wrap and we're going to put it on top of our potato. Just like that. Then we're going to take our chili and pour it over the top of that. And that leaves us with the chicken and chili baked potato. That's 46 grams of protein and 610 calories. If you have an extra 70 calories to spare, you can get shredded cheese for an extra four grams of protein on the side. But honestly, this doesn't need it. Bone apple tea. You cannot beat the macros on this with any other meal on the menu.",
+  "caption": "Wendy's Go-To Order Hack To Cut Calories And Boost Protein. Credit: @j.newtrition. A Simple Wendy's Meal Swap That Keeps Flavor While Lowering Calories And Increasing Protein.",
+  "ocr_summary": "Wendy's Order: 46g Protein & 610 Calories",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Wendys",
+        "original_meal": "Standard high-calorie menu options (implied)",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Chicken Wrap (no ranch, no lettuce, no cheese - just grilled chicken) + Plain Baked Potato + Small Chili - assembled as Chicken Chili Baked Potato",
+        "swap_calories": 610,
+        "swap_protein": 46,
+        "swap_ingredients": ["grilled chicken (from wrap)", "plain baked potato", "small chili"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Single Wendy's menu hack by @fasteatsss (repost from @j.newtrition). Creative hack: order chicken wrap stripped down + plain potato + small chili, then reassemble into a chili chicken baked potato. Optional: add shredded cheese for +70 cal/+4g protein. Low view count (1021). This is more of a 'how to order' hack than a traditional side-by-side swap."
+  }
+}

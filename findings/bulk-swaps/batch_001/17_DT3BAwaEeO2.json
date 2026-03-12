@@ -1,0 +1,42 @@
+{
+  "position": 17,
+  "url": "https://www.instagram.com/p/DT3BAwaEeO2/",
+  "shortcode": "DT3BAwaEeO2",
+  "creator": "@sethgolie",
+  "views": 9279,
+  "likes": 401,
+  "duration": 29.303,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Well, let's go to Starbucks on our way to work. Yeah, man, I'll get the turkey bacon egg white sandwich with the egg white bites and then a grande americano with the sugar-free vanilla syrup and a splash of almond milk. Okay, cool. But actually, what if we went to Dunkin' instead? What would you order there? Yeah, I'll get the turkey sausage wake-up wrap with the egg white bites and then let's do a cold brew with sugar-free vanilla and a splash of almond milk. Dang, man, how do you always know what to order? Bro, are you not following Seth G. yet? Well, damn, I better make sure to follow Seth G. right now.",
+  "caption": "Comment \"FASTFOOD\" for my FREE fast food swap cheat sheet\n\nSteal these 2 orders from Starbucks & Dunkin' Donuts to stay on track with your fitness journey\n\nStarbucks:\nTurkey bacon egg white sandwich + egg white bites + Grande Americano with sugar free vanilla and splash of almond milk\n(410 calories 34 G protein)\n\nDunkin' Donuts:\nTurkey sausage wake-up wrap + egg white bites + cold brew with sugar free vanilla and splash of almond milk\n(380 calories 34 G protein)\n\nBoth these orders will save you over 1000 calories and keep you on track",
+  "ocr_summary": "Starbucks: 1330 cal / 35g protein (original) vs 410 cal / 34g protein (swap). Dunkin Donuts: 1150 cal / 30g protein (original) vs 380 cal / 24g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Starbucks",
+        "original_meal": "Typical Starbucks coffee order (implied high-calorie drink + pastry)",
+        "original_calories": 1330,
+        "original_protein": 35,
+        "swap_meal": "Turkey bacon egg white sandwich + egg white bites + Grande Americano with sugar free vanilla and splash of almond milk",
+        "swap_calories": 410,
+        "swap_protein": 34,
+        "swap_ingredients": ["turkey bacon egg white sandwich", "egg white bites", "Grande Americano", "sugar free vanilla syrup", "almond milk"],
+        "is_swap": true,
+        "category": "coffee_shop"
+      },
+      {
+        "restaurant_name": "Dunkin' Donuts",
+        "original_meal": "Typical Dunkin order (implied high-calorie drink + donut/pastry)",
+        "original_calories": 1150,
+        "original_protein": 30,
+        "swap_meal": "Turkey sausage wake-up wrap + egg white bites + cold brew with sugar free vanilla and splash of almond milk",
+        "swap_calories": 380,
+        "swap_protein": 24,
+        "swap_ingredients": ["turkey sausage wake-up wrap", "egg white bites", "cold brew", "sugar free vanilla syrup", "almond milk"],
+        "is_swap": true,
+        "category": "coffee_shop"
+      }
+    ],
+    "notes": "Two coffee shop breakfast swaps in one reel. Both show dramatic calorie savings (920 cal and 770 cal respectively). Caption says 34g protein for Dunkin swap but OCR shows 24g - caption likely more accurate."
+  }
+}

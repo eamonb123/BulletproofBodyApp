@@ -1,0 +1,30 @@
+{
+  "position": 38,
+  "url": "https://www.instagram.com/p/DRfL5r5D2SP/",
+  "shortcode": "DRfL5r5D2SP",
+  "creator": "@sethgolie",
+  "views": 3680,
+  "likes": 91,
+  "duration": 29.2,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Hey bro, you wanna go to Cafe Rio for lunch? Yeah man, I'm down. I'll just get the grilled chicken to the stada. We'll do no tortilla, no rice, extra lettuce, pico, light cheese, double the chicken, and then we'll do the cilantro lime vinaigrette on the side and the Coke Zero. Oh damn, and you're losing weight eating like that? Yeah man, I've actually been able to lose 20 pounds making food swaps like this. Wow, that's awesome. Where did you learn all this? My coach, Seth G. He taught me everything he knows about fat loss. Well, I'm gonna make sure to follow Seth G right now. I got plenty of weight to lose myself.",
+  "caption": "Fast food swaps for when your in a hurry\n\nOrder this from Cafe Rio:\n\nGrilled chicken tostada, no tortilla or rice, double the meat and lettuce, pico, cilantro lime vinaigrette on the side & Diet Coke\n(490 calories 61 G protein)\n\nThis will save you over 1000 calories and help you stay on track with your fitness journey\n\nSave this for later\n\nFollow @sethgolie for fast food swaps\n\n#macrofriendly #fitover40",
+  "ocr_summary": "Cafe Rio: 1620 cal / 46g protein (original) vs 490 cal / 61g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Cafe Rio",
+        "original_meal": "Standard Cafe Rio meal (tostada with tortilla, rice, full toppings, soda)",
+        "original_calories": 1620,
+        "original_protein": 46,
+        "swap_meal": "Grilled Chicken Tostada, no tortilla, no rice, double meat, extra lettuce, pico, light cheese, cilantro lime vinaigrette on side, Coke Zero",
+        "swap_calories": 490,
+        "swap_protein": 61,
+        "swap_ingredients": ["grilled chicken (double)", "lettuce", "pico", "light cheese", "cilantro lime vinaigrette (on side)", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Single restaurant swap from Cafe Rio. Strategy: remove tortilla and rice, double the protein, use dressing on the side, swap soda for diet. Saves over 1100 calories while increasing protein by 15g."
+  }
+}

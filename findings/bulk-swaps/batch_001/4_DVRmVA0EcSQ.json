@@ -1,0 +1,42 @@
+{
+  "position": 4,
+  "url": "https://www.instagram.com/p/DVRmVA0EcSQ/",
+  "shortcode": "DVRmVA0EcSQ",
+  "creator": "@sethgolie",
+  "views": 21744,
+  "likes": 1049,
+  "duration": 25.1,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I'm starving, you wanna go to Chick-fil-A? Yeah, I'll get the 12-piece grilled nugget, a side mac and cheese, and then ask for a large bowl so I can mix it together, and then put buffalo sauce on top, and get a Coke Zero. Okay, that's pretty awesome, but what if we went there for breakfast? Yeah, I'll get the egg white grill with the extra grilled filet, a fruit cup, and a diet lemonade. Man, that's awesome, where did you even learn all that? Bro, are you not following Seth G yet? I'm gonna make sure to follow Seth G right now.",
+  "caption": "Comment \"FASTFOOD\" for my FREE fast food cheat sheet. Steal these two Chick-fil-a orders to stay on track. Lunch order: 12 piece Grilled Nuggets + side Mac'n Cheese + buffalo sauce (mix together in bowl) + Coke Zero (495 calories 49 G protein). Breakfast order: Egg white grill + extra grilled filet + medium fruit cup + Diet Lemonade (520 calories 66 G protein). Follow @sethgolie for fast food swaps.",
+  "ocr_summary": "Lunch: 1830 cal / 62g protein (original) vs 495 cal / 49g protein (swap). Breakfast: 1490 cal / 41g protein (original) vs 520 cal / 56g protein (swap). Caption says 66g protein for breakfast but OCR shows 56g.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Typical Chick-fil-A lunch combo",
+        "original_calories": 1830,
+        "original_protein": 62,
+        "swap_meal": "12-piece Grilled Nuggets + side Mac'n Cheese + buffalo sauce (mixed in bowl) + Coke Zero",
+        "swap_calories": 495,
+        "swap_protein": 49,
+        "swap_ingredients": ["12-piece grilled nuggets", "side mac and cheese", "buffalo sauce", "Coke Zero"],
+        "is_swap": true,
+        "category": "bowl"
+      },
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "2 Chicken Biscuits + Hash Brown (typical breakfast)",
+        "original_calories": 1490,
+        "original_protein": 41,
+        "swap_meal": "Egg White Grill + extra grilled filet + medium fruit cup + Diet Lemonade",
+        "swap_calories": 520,
+        "swap_protein": 66,
+        "swap_ingredients": ["egg white grill sandwich", "extra grilled filet", "medium fruit cup", "Diet Lemonade"],
+        "is_swap": true,
+        "category": "sandwich"
+      }
+    ],
+    "notes": "Highest performing reel in this batch (21.7K views, 1049 likes). Chick-fil-A is extremely popular swap topic. Two swaps: lunch + breakfast. Skit format. CTA is follow @sethgolie profile."
+  }
+}

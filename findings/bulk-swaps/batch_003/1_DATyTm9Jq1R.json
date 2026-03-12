@@ -1,0 +1,30 @@
+{
+  "position": 1,
+  "url": "https://www.instagram.com/p/DATyTm9Jq1R/",
+  "shortcode": "DATyTm9Jq1R",
+  "creator": "@j.newtrition",
+  "views": 136388,
+  "likes": 6282,
+  "duration": "1:21",
+  "transcript": "Let's make this KFC order twice as healthy and twice as lean. I'm a weight loss dietician and this is how I make the most of my meals when the only option on the menu is fried foods. I mean, listen, everyone has found themselves in a situation where the only option is something fried. Whether it's for a work-related event, you're traveling by car, or you simply just don't have a lot of healthy options around you. Most people don't know that the USDA has a nutrient database that lists both the macronutrients and the micronutrients for many different foods, including fast food and fried chicken. So here's the thing, when you take a regular chicken breast and fry it, similar to the naked birds at Raising Cane's, the calorie content goes up by about 45%. So that means that the chicken is directly absorbing some of the oil from the frying process. And when you take a chicken breast and bread it and fry it, the calories are more than double. And the protein is almost half of that, which means that the calories really quadrupled in the process. But what if you simply remove the breading after frying? Does it really make that big of a difference? Surprisingly, the USDA has done research on this specific scenario. As it turns out, removing the breading off of a piece of fried chicken will reduce the calories by about 200%. That means the calories go back to a grilled piece of chicken which is wild since frying unbreaded chicken still increases the calories so that means it's healthier to buy it breaded and fried and then remove the breading to reduce the calories by half so that means this kfc meal goes from 800 calories down to 460 calories bon apple tea so use this hack the next time that you're out with limited options on the menu",
+  "caption": "KFC Menu Hack for Fried Foods\n\nMacros for entire meal:\n460 cals & 34g P / 42g C / 16g F\n\n#fastfoodsecrets #kfcchickentenders #foodhacks",
+  "ocr_summary": "KFC Order - 34g Protein & 460 Calories; J.NEWTRITION & FITNESS ONLINE COACHING branding throughout; Kentucky Fried Chicken signage visible; USDA nutrient database shown on screen",
+  "visual_scenes": "Man in car holding KFC meal, talking head selfie style throughout. Shows KFC signage, eats fried chicken demonstrating the breading removal hack, shows nutritional data sheet.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "KFC",
+        "original_meal": "Breaded Fried Chicken Meal",
+        "original_calories": 800,
+        "swap_meal": "Breaded Fried Chicken with Breading Removed",
+        "swap_calories": 460,
+        "swap_protein": 34,
+        "swap_ingredients": ["fried chicken breast (breading removed)"],
+        "swap_macros": "460 cals / 34g P / 42g C / 16g F",
+        "is_swap": true,
+        "swap_method": "Remove breading from fried chicken - USDA research shows this reduces calories by ~50%, back to grilled chicken calorie levels",
+        "category": "chicken"
+      }
+    ]
+  }
+}

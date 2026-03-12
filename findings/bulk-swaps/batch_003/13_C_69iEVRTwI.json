@@ -1,0 +1,39 @@
+{
+  "position": 13,
+  "url": "https://www.instagram.com/p/C_69iEVRTwI/",
+  "shortcode": "C_69iEVRTwI",
+  "creator": "@trizzlemanfitness",
+  "views": 74937,
+  "likes": 5194,
+  "duration": "0:53",
+  "transcript": "If you're obsessed with desserts and you're sick and tired of all these protein ice cream recipes, these are the best orders from Dairy Queen if you're on a weight loss journey. Sweets aren't the reason why you can't consistently lose weight. Your all or nothing approach is. You eating the 1700 calorie Blizzard from Dairy Queen, probably not gonna be the best for your diet. But you eating this 210 calorie ice cream and 240 calorie ice cream is not gonna be as bad for your diet. Portion control is the beauty of flexible dieting. With flexible dieting, 10 to 20% of your daily calories can come from more fun foods like this. You can order this small strawberry sundae and still take your kids to get ice cream. Or you can order this confetti cake dipped cone for 210 calories. Push the blizzard aside and order these the next time you come to Dairy Queen. Now make sure you save this video and check out my page.",
+  "caption": "These are the best Dairy Queen orders if you are on a weight loss journey. The peanut butter cookie dough blizzard is almost 1700 calories. Don't blame ice cream for the reason why you can't lose weight. It's not the ice cream's fault, it's your portion control. You can absolutely eat a Confetti dipped cone for 210 calories or a strawberry sundae for 240 calories and still lose weight. Ice cream isn't the issue, how much ice cream you eat is. Ditch the all or nothing approach if you want to have freedom with your eating and still see results.",
+  "ocr_summary": "Best Dairy Queen Desserts For Weight Loss, BLIZZARD, Chicken Strip BASKET visible as DQ menu items in background",
+  "visual_scenes": "Man in kitchen holding Blizzard cup and dessert products. Close-ups of confetti dipped cone with sprinkles and strawberry sundae. Talking head with DQ menu posters in background.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Dairy Queen",
+        "original_meal": "Peanut Butter Cookie Dough Blizzard",
+        "original_calories": 1700,
+        "swap_meal": "Confetti Cake Dipped Cone",
+        "swap_calories": 210,
+        "swap_protein": null,
+        "swap_ingredients": ["confetti cake dipped cone"],
+        "is_swap": true,
+        "category": "dessert"
+      },
+      {
+        "restaurant_name": "Dairy Queen",
+        "original_meal": "Peanut Butter Cookie Dough Blizzard",
+        "original_calories": 1700,
+        "swap_meal": "Small Strawberry Sundae",
+        "swap_calories": 240,
+        "swap_protein": null,
+        "swap_ingredients": ["small strawberry sundae"],
+        "is_swap": true,
+        "category": "dessert"
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "position": 67,
+  "url": "https://www.instagram.com/p/C-Td09dJnln/",
+  "shortcode": "C-Td09dJnln",
+  "creator": "@j.newtrition",
+  "views": 128564,
+  "likes": 5545,
+  "duration": 48.766,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "It's the ultimate fast food menu hack from Jersey Mike's. I'm a weight loss dietitian and this is one of the best fast food orders for calorie deficit. I've got a lot of questions about why I say carbs are fuel for the body but then I don't include them in my orders. And it's really pretty simple. It's because it's the fastest and easiest way to lower the calories for fast food. And a lot of people don't realize that Jersey Mike's offers that on the menu. And it's one of my favorite menu hacks. And it's called a sub in a tub. You can do it with both hot and cold subs. So one of my favorite orders is a number 26 bacon ranch chicken cheesesteak with all the veggies and add in grilled portobello mushrooms. And I always go with a diet soda along with it because I'm likely to drink more, which will help fill me up without adding up more calories. So this entire meal is 44 grams of protein and 590 calories. Or an apple tea. The only thing you have left to do is just try not to eat it too fast.",
+  "caption": "Go to fast food menu hack for Jersey Mike's. Macros for entire order: 590 cals & 44g P / 14g C / 41g F",
+  "ocr_summary": "Jersey Mike's Order: 44g Protein & 590 Calories",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Jersey Mikes",
+        "original_meal": "Standard sub sandwich (implied)",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "#26 Bacon Ranch Chicken Cheesesteak - Sub in a Tub (no bread), all veggies, add grilled portobello mushrooms + Diet Soda",
+        "swap_calories": 590,
+        "swap_protein": 44,
+        "swap_ingredients": ["bacon", "ranch", "chicken cheesesteak", "veggies", "grilled portobello mushrooms", "diet soda"],
+        "is_swap": true,
+        "category": "fast_casual"
+      }
+    ],
+    "notes": "Single Jersey Mike's menu hack by @j.newtrition (original creator - position 66 was a repost of his content). Key hack: 'Sub in a Tub' removes the bread to cut carbs/calories. Good engagement (128K views, 5.5K likes). This is a 'how to order' hack rather than a traditional side-by-side swap. Full macros: 590 cal / 44g P / 14g C / 41g F."
+  }
+}

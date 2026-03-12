@@ -345,7 +345,7 @@ function HeroScreen({ restaurants, onSelectRestaurant }: { restaurants: Restaura
             <div className="marquee-row mb-3">
               <div className="marquee-track marquee-left">
                 {[...row1, ...row1].map((r, i) => (
-                  <div key={`r1-${r.id}-${i}`} className="mx-1.5 h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border border-zinc-800 sm:h-20 sm:w-20">
+                  <button key={`r1-${r.id}-${i}`} onClick={() => onSelectRestaurant(r.id)} className="mx-1.5 h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border border-zinc-800 transition-all hover:border-emerald-500/50 hover:scale-105 sm:h-20 sm:w-20">
                     <RestaurantLogo
                       id={r.id}
                       name={r.name}
@@ -354,14 +354,14 @@ function HeroScreen({ restaurants, onSelectRestaurant }: { restaurants: Restaura
                       maxSize={LOGO_OVERRIDES[r.id]?.size ?? 92}
                       placeholderClassName="text-sm font-semibold text-zinc-400"
                     />
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
             <div className="marquee-row">
               <div className="marquee-track marquee-right">
                 {[...row2, ...row2].map((r, i) => (
-                  <div key={`r2-${r.id}-${i}`} className="mx-1.5 h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border border-zinc-800 sm:h-20 sm:w-20">
+                  <button key={`r2-${r.id}-${i}`} onClick={() => onSelectRestaurant(r.id)} className="mx-1.5 h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border border-zinc-800 transition-all hover:border-emerald-500/50 hover:scale-105 sm:h-20 sm:w-20">
                     <RestaurantLogo
                       id={r.id}
                       name={r.name}
@@ -370,7 +370,7 @@ function HeroScreen({ restaurants, onSelectRestaurant }: { restaurants: Restaura
                       maxSize={LOGO_OVERRIDES[r.id]?.size ?? 92}
                       placeholderClassName="text-sm font-semibold text-zinc-400"
                     />
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -978,6 +978,7 @@ function BiblePage() {
 
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [isOptimizedView, setIsOptimizedView] = useState(false);
   const [restaurantData, setRestaurantData] = useState<Record<string, RestaurantDetail>>({});
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
@@ -1238,8 +1239,8 @@ function BiblePage() {
       {/* ─── Grid + Detail flow ───────────────────────── */}
       {(flow === "grid" || flow === "detail" || flow === "free") && (
         <>
-          {/* Header */}
-          <header className="border-b border-zinc-800 bg-black/90 backdrop-blur-md">
+          {/* Header — hidden when showing optimized swap view */}
+          <header className={`border-b border-zinc-800 bg-black/90 backdrop-blur-md transition-all duration-300 ${isOptimizedView ? "hidden" : ""}`}>
             <div className="mx-auto max-w-6xl px-5 pt-4 pb-1">
               <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-zinc-500">Bulletproof Body</p>
             </div>
@@ -1399,11 +1400,12 @@ function BiblePage() {
                         restaurant={restaurants.find((r) => r.id === selectedId)!}
                         detail={restaurantData[selectedId]}
                         loading={loadingDetail}
-                        onBack={() => { setSelectedId(null); setFlow(passedGate ? "free" : "grid"); }}
+                        onBack={() => { setSelectedId(null); setIsOptimizedView(false); setFlow(passedGate ? "free" : "grid"); }}
                         onSwapComplete={handleSwapComplete}
                         onNavigateAway={navigateAway}
                         trackEvent={trackEvent}
                         capturedEmailRef={capturedEmailRef}
+                        onOptimizedViewChange={setIsOptimizedView}
                       />
                     </motion.div>
                   )}
@@ -2451,6 +2453,388 @@ function CartSwapView({
   );
 }
 
+// ─── Bible Swap Reveal (dark-landing style) ──────────
+function BibleSwapReveal({
+  restaurant,
+  checkedItems,
+  optimizedItems,
+  checkedTotalCal,
+  optimizedTotalCal,
+  totalSavings,
+  weeklyLbs,
+  onBack,
+  onSwapComplete,
+  onNavigateAway,
+  onPersonalize,
+  trackEvent,
+  capturedEmailRef,
+  getItemEmoji,
+  templateSwap,
+}: {
+  restaurant: Restaurant;
+  checkedItems: MenuItem[];
+  optimizedItems: { original: MenuItem; swap: { name: string; calories: number; protein_g: number; source: "auto" | "eamon" } | null; savings: number }[];
+  checkedTotalCal: number;
+  optimizedTotalCal: number;
+  totalSavings: number;
+  weeklyLbs: string;
+  onBack: () => void;
+  onSwapComplete?: (restaurant: string, swapName: string, savings: number) => void;
+  onNavigateAway?: (url: string) => void;
+  onPersonalize?: () => void;
+  trackEvent?: (eventType: string, data?: Record<string, unknown>) => void;
+  capturedEmailRef?: React.MutableRefObject<string | null>;
+  getItemEmoji: (name: string) => string;
+  templateSwap?: { name: string; source: string; ingredients: MealIngredient[]; totalCal: number; totalProtein: number };
+}) {
+  const [revealed, setRevealed] = useState(false);
+
+  // No savings? Show "already smart" screen directly
+  if (totalSavings <= 0) {
+    return (
+      <div className="mx-auto max-w-lg pb-32">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <button onClick={onBack} className="flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-6">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back
+          </button>
+          <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6 text-center">
+            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20">
+              <svg className="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p className="text-lg font-bold text-white">You already order smart</p>
+            <p className="mt-1 text-sm text-zinc-400">Your picks are already some of the best options at {restaurant.name}.</p>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-lg pb-32">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.6 }}
+      >
+        {/* Back button — if revealed, go back to pre-reveal; if pre-reveal, go back to menu */}
+        <button onClick={() => revealed ? setRevealed(false) : onBack()} className="flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-6">
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back
+        </button>
+
+        {/* Pre-reveal headline */}
+        {!revealed && (
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-6">
+            <h2 className="text-2xl font-bold leading-tight text-white">
+              Want to learn how to lose{" "}
+              <span className="text-emerald-400">{weeklyLbs} lb a week</span>{" "}
+              simply by adjusting your current order at {restaurant.name}?
+            </h2>
+          </motion.div>
+        )}
+
+        {/* Post-reveal headline — the money line IS the headline */}
+        {revealed && (
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, type: "spring" }} className="text-center mb-6">
+            <h2 className="text-3xl font-bold leading-tight text-white">
+              Same {restaurant.name} experience.{" "}
+              <span className="text-emerald-400">{Math.round((totalSavings / checkedTotalCal) * 100)}% fewer calories.</span>
+            </h2>
+          </motion.div>
+        )}
+
+        {/* Side-by-side cards */}
+        <div className="grid grid-cols-2 gap-3 mb-6">
+          {/* LEFT: Your order */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className={`rounded-2xl border p-5 transition-all duration-700 ${
+              revealed ? "border-red-500/30 bg-red-500/5" : "border-zinc-800 bg-zinc-900/60"
+            }`}
+          >
+            <div className="text-center mb-4">
+              <span className="text-3xl">{getItemEmoji(checkedItems[0]?.name || "")}</span>
+              <p className="text-xs text-zinc-500 uppercase tracking-wider mt-2">Your Order</p>
+            </div>
+            <div className="text-center mb-4">
+              <AnimatedCalories
+                value={checkedTotalCal}
+                className={`text-3xl font-bold tabular-nums transition-colors duration-700 ${revealed ? "text-red-400" : "text-white"}`}
+              />
+              <span className="text-sm text-zinc-500 ml-1">cal</span>
+            </div>
+            {/* Ingredient list — sorted by calories, highest first */}
+            <div className="space-y-1.5">
+              {[...checkedItems].sort((a, b) => b.calories - a.calories).slice(0, 6).map((item, i) => (
+                <div
+                  key={`orig-${item.id}-${i}`}
+                  className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
+                  style={{ background: "rgba(39, 39, 42, 0.5)", boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}
+                >
+                  <span className="text-zinc-400 truncate mr-2">{item.name}</span>
+                  <span className="text-zinc-500 tabular-nums flex-shrink-0 font-medium">{Math.round(item.calories)}</span>
+                </div>
+              ))}
+              {checkedItems.length > 6 && (
+                <p className="text-xs text-zinc-700 pl-1">+{checkedItems.length - 6} more</p>
+              )}
+            </div>
+            {/* Fat/carb callout after reveal */}
+            {revealed && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mt-3 rounded-lg bg-red-500/10 px-3 py-2">
+                <p className="text-[11px] text-red-400/80">
+                  {checkedTotalCal > 600 ? `${checkedTotalCal} calories hiding in this order` : `More than you need in one sitting`}
+                </p>
+              </motion.div>
+            )}
+          </motion.div>
+
+          {/* RIGHT: Mystery / Swap reveal */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className={`rounded-2xl border p-5 transition-all duration-700 ${
+              revealed
+                ? "border-emerald-500/40 bg-emerald-500/5 shadow-[0_0_30px_rgba(16,185,129,0.08)]"
+                : "border-zinc-800 bg-zinc-900/60"
+            }`}
+          >
+            <div className="text-center mb-4">
+              {revealed ? (
+                <motion.span
+                  initial={{ scale: 0, rotate: -20 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="text-3xl inline-block"
+                >
+                  {getItemEmoji(checkedItems[0]?.name || "")}
+                </motion.span>
+              ) : (
+                <div className="relative inline-block">
+                  <span className="text-3xl opacity-20">{getItemEmoji(checkedItems[0]?.name || "")}</span>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.span animate={{ scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 2 }} className="text-2xl">
+                      ?
+                    </motion.span>
+                  </div>
+                </div>
+              )}
+              <p className="text-xs uppercase tracking-wider mt-2">
+                {revealed ? (
+                  templateSwap?.source === "eamon"
+                    ? <span className="text-emerald-400 font-bold">Eamon&apos;s Pick</span>
+                    : <span className="text-emerald-400">The smarter order</span>
+                ) : (
+                  <span className="text-zinc-500">Optimized Meal</span>
+                )}
+              </p>
+            </div>
+
+            <div className="text-center mb-4">
+              {revealed ? (
+                <>
+                  <AnimatedCalories value={optimizedTotalCal} className="text-3xl font-bold tabular-nums text-emerald-400" />
+                  <span className="text-sm text-zinc-500 ml-1">cal</span>
+                </>
+              ) : (
+                <div className="h-[36px] flex items-center justify-center">
+                  <div className="flex gap-1">
+                    {[0, 1, 2].map((i) => (
+                      <motion.div
+                        key={i}
+                        animate={{ opacity: [0.3, 1, 0.3] }}
+                        transition={{ repeat: Infinity, duration: 1.5, delay: i * 0.2 }}
+                        className="h-2 w-2 rounded-full bg-emerald-500/50"
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Ingredient slots — skeleton pre-reveal, mirrored order post-reveal */}
+            <div className="space-y-1.5">
+              {revealed ? (
+                templateSwap ? (
+                  <>
+                    {/* TEMPLATE SWAP MODE: Show removed items (red) + swap ingredients (green) */}
+                    {/* Red: items from user's order that are NOT in the swap */}
+                    {[...optimizedItems].filter((o) => (o as any)._templateRemoved).sort((a, b) => b.original.calories - a.original.calories).slice(0, 4).map((o, i) => (
+                      <div
+                        key={`rm-${o.original.id}-${i}`}
+                        className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
+                        style={{ background: "rgba(239, 68, 68, 0.08)", boxShadow: "0 0 12px 2px rgba(239,68,68,0.06), inset 0 1px 0 rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.15)" }}
+                      >
+                        <span className="flex items-center gap-1.5 truncate mr-2 text-red-400 line-through">
+                          <span className="w-4 h-4 rounded bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                            <span className="text-red-400 font-bold text-[9px] leading-none">&times;</span>
+                          </span>
+                          {o.original.name}
+                        </span>
+                        <span className="text-red-400 tabular-nums flex-shrink-0 font-semibold">&minus;{Math.round(o.original.calories)}</span>
+                      </div>
+                    ))}
+                    {/* Neutral: kept items (in both user's order and swap) */}
+                    {[...optimizedItems].filter((o) => !(o as any)._templateRemoved && !o.swap).sort((a, b) => b.original.calories - a.original.calories).slice(0, 3).map((o, i) => (
+                      <div
+                        key={`kept-${o.original.id}-${i}`}
+                        className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
+                        style={{ background: "rgba(39, 39, 42, 0.5)", boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}
+                      >
+                        <span className="text-zinc-400 truncate mr-2">{o.original.name}</span>
+                        <span className="text-zinc-500 tabular-nums flex-shrink-0 font-medium">{Math.round(o.original.calories)}</span>
+                      </div>
+                    ))}
+                    {/* Green: the swap's actual ingredients */}
+                    {templateSwap.ingredients.sort((a, b) => b.calories * b.quantity - a.calories * a.quantity).slice(0, 4).map((ing, i) => {
+                      // Skip ingredients that are already shown as "kept"
+                      const isKept = optimizedItems.some((o) => !(o as any)._templateRemoved && !o.swap && o.original.id === ing.id);
+                      if (isKept) return null;
+                      return (
+                        <div
+                          key={`add-${ing.id}-${i}`}
+                          className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
+                          style={{ background: "rgba(16, 185, 129, 0.06)", boxShadow: "0 0 12px 2px rgba(16,185,129,0.04), inset 0 1px 0 rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.15)" }}
+                        >
+                          <span className="text-emerald-400 truncate mr-2">{ing.name}</span>
+                          <span className="text-emerald-400 tabular-nums flex-shrink-0 font-semibold">{Math.round(ing.calories * ing.quantity)}</span>
+                        </div>
+                      );
+                    })}
+                    {/* Eamon's Pick badge */}
+                    {templateSwap.source === "eamon" && (
+                      <div className="flex items-center justify-center gap-1.5 mt-2 py-1.5">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400/80">Eamon&apos;s Pick</span>
+                        <span className="text-emerald-400/60">✓</span>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {/* AUTO SWAP MODE: Per-item same-category swaps */}
+                    {[...optimizedItems].sort((a, b) => b.original.calories - a.original.calories).slice(0, 6).map((o, i) => (
+                      o.swap !== null ? (
+                        <div
+                          key={`row-${o.original.id}-${i}`}
+                          className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
+                          style={{ background: "rgba(239, 68, 68, 0.08)", boxShadow: "0 0 12px 2px rgba(239,68,68,0.06), inset 0 1px 0 rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.15)" }}
+                        >
+                          <span className="flex items-center gap-1.5 truncate mr-2 text-red-400 line-through">
+                            <span className="w-4 h-4 rounded bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                              <span className="text-red-400 font-bold text-[9px] leading-none">&times;</span>
+                            </span>
+                            {o.original.name}
+                          </span>
+                          <span className="text-red-400 tabular-nums flex-shrink-0 font-semibold">&minus;{Math.round(o.original.calories)}</span>
+                        </div>
+                      ) : (
+                        <div
+                          key={`row-${o.original.id}-${i}`}
+                          className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
+                          style={{ background: "rgba(39, 39, 42, 0.5)", boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}
+                        >
+                          <span className="text-zinc-400 truncate mr-2">{o.original.name}</span>
+                          <span className="text-zinc-500 tabular-nums flex-shrink-0 font-medium">{Math.round(o.original.calories)}</span>
+                        </div>
+                      )
+                    ))}
+                    {/* Green added items (the per-item swaps) */}
+                    {optimizedItems.filter((o) => o.swap !== null).map((o, i) => (
+                      <div
+                        key={`added-${o.original.id}-${i}`}
+                        className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
+                        style={{ background: "rgba(16, 185, 129, 0.06)", boxShadow: "0 0 12px 2px rgba(16,185,129,0.04), inset 0 1px 0 rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.15)" }}
+                      >
+                        <span className="text-emerald-400 truncate mr-2">{o.swap!.name}</span>
+                        <span className="text-emerald-400 tabular-nums flex-shrink-0 font-semibold">{o.swap!.calories}</span>
+                      </div>
+                    ))}
+                  </>
+                )
+              ) : (
+                <>
+                  {[...optimizedItems].sort((a, b) => b.original.calories - a.original.calories).slice(0, 6).map((o, i) => (
+                    <div
+                      key={`skeleton-${o.original.id}-${i}`}
+                      className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
+                      style={{ background: "rgba(39, 39, 42, 0.3)" }}
+                    >
+                      <div className="h-3 rounded bg-zinc-800/50 w-full" />
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
+
+            {/* Pre-reveal teaser bars */}
+            {!revealed && (
+              <div className="mt-4 space-y-2">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="h-3 rounded bg-zinc-800/50" style={{ width: `${90 - i * 15}%` }} />
+                ))}
+              </div>
+            )}
+          </motion.div>
+        </div>
+
+        {/* Reveal button or post-reveal results */}
+        <AnimatePresence mode="wait">
+          {!revealed ? (
+            <motion.div key="pre-reveal" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
+              <motion.button
+                whileTap={{ scale: 0.97 }}
+                onClick={() => {
+                  trackEvent?.("bible_swap_revealed", { restaurant: restaurant.name, items: checkedItems.length, savings: totalSavings });
+                  setRevealed(true);
+                }}
+                className="w-full rounded-2xl bg-emerald-500 px-8 py-4 text-base font-semibold text-black transition-all hover:bg-emerald-400 flex items-center justify-center gap-3"
+              >
+                <span>Show me the swap</span>
+                <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+                  &rarr;
+                </motion.span>
+              </motion.button>
+            </motion.div>
+          ) : (
+            <motion.div key="post-reveal" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+              {/* Clean CTA — "Personalize this for my goals" */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="text-center"
+              >
+                <motion.button
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => {
+                    trackEvent?.("bible_personalize_clicked", { restaurant: restaurant.name, savings: totalSavings });
+                    onPersonalize?.();
+                  }}
+                  className="w-full rounded-full bg-white px-8 py-4 text-base font-semibold text-black transition-all hover:bg-zinc-100"
+                >
+                  Personalize this for my goals
+                </motion.button>
+                <p className="text-sm text-zinc-500 mt-3">Takes 30 seconds.</p>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </div>
+  );
+}
+
 // ─── Restaurant Detail View ──────────────────────────
 function RestaurantDetailView({
   restaurant,
@@ -2461,6 +2845,7 @@ function RestaurantDetailView({
   onNavigateAway,
   trackEvent,
   capturedEmailRef,
+  onOptimizedViewChange,
 }: {
   restaurant: Restaurant;
   detail: RestaurantDetail | undefined;
@@ -2470,46 +2855,24 @@ function RestaurantDetailView({
   onNavigateAway?: (url: string) => void;
   trackEvent?: (eventType: string, data?: Record<string, unknown>) => void;
   capturedEmailRef?: React.MutableRefObject<string | null>;
+  onOptimizedViewChange?: (showing: boolean) => void;
 }) {
   const [mealQuery, setMealQuery] = useState("");
-  const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
-  const [revealed, setRevealed] = useState(false);
+  // Multi-select state
+  const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set());
+  const [showOptimized, setShowOptimized] = useState(false);
+  const [showPersonalize, setShowPersonalize] = useState(false);
 
-  // Cart builder state (McDonald's and similar)
-  const isCartBuilder = CART_BUILDER_RESTAURANTS.has(restaurant.id);
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const [builderEntree, setBuilderEntree] = useState<MenuItem | null>(null);
-  const [showCartSwap, setShowCartSwap] = useState(false);
-  const [editingCartItem, setEditingCartItem] = useState<CartItem | null>(null);
+  // Notify parent when optimized view changes (to hide header)
+  useEffect(() => { onOptimizedViewChange?.(showOptimized); }, [showOptimized]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const addToCart = useCallback((item: CartItem) => {
-    setCart((prev) => {
-      // If editing, replace the item
-      const idx = prev.findIndex((ci) => ci.id === item.id);
-      if (idx >= 0) {
-        const next = [...prev];
-        next[idx] = item;
-        return next;
-      }
-      return [...prev, item];
+  const toggleChecked = useCallback((id: string) => {
+    setCheckedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
     });
-    setBuilderEntree(null);
-    setEditingCartItem(null);
-  }, []);
-
-  const removeFromCart = useCallback((itemId: string) => {
-    setCart((prev) => prev.filter((ci) => ci.id !== itemId));
-  }, []);
-
-  const editCartItem = useCallback((item: CartItem) => {
-    setEditingCartItem(item);
-    // Use the entree MenuItem directly from the cart item
-    setBuilderEntree(item.entree);
-  }, []);
-
-  const clearCart = useCallback(() => {
-    setCart([]);
-    setShowCartSwap(false);
   }, []);
 
   if (loading || !detail) {
@@ -2543,11 +2906,10 @@ function RestaurantDetailView({
     }
   }
 
-  // Map: ingredient_id → template meal original that contains it as the "main" item
+  // Map: ingredient_id → template meal original that contains it
   const ingredientToMeal = new Map<string, Meal>();
   for (const meal of originals) {
     for (const ing of meal.ingredients) {
-      // The first non-drink, non-sauce, non-side ingredient is the "main"
       const isMainItem = !ing.name?.toLowerCase().includes("fries") &&
         !ing.name?.toLowerCase().includes("coke") &&
         !ing.name?.toLowerCase().includes("sprite") &&
@@ -2563,6 +2925,292 @@ function RestaurantDetailView({
     }
   }
 
+  // ─── Checked items + optimization logic ─────
+  const checkedItems = menuItems.filter((i) => checkedIds.has(i.id));
+  const checkedTotalCal = checkedItems.reduce((sum, i) => sum + Math.round(i.calories), 0);
+
+  // Minimum calorie savings to recommend a swap (avoid noise like 10 cal diffs)
+  const MIN_SAVINGS = 30;
+
+  // ─── TIER 0: Template meal matching (Eamon's Picks + LLM swaps) ─────
+  // Try to match user's selection against curated template meal originals.
+  // If a template original's ingredients overlap the user's selection, use the template swap.
+  type OptItem = { original: MenuItem; swap: { name: string; calories: number; protein_g: number; source: "auto" | "eamon" } | null; savings: number };
+
+  let optimizedItems: OptItem[];
+  let templateMatchUsed = false;
+
+  // Find best matching template meal original
+  const checkedIngIds = new Set(checkedItems.map((i) => i.id));
+  let bestMatch: { original: Meal; swap: Meal; overlap: number; matchedIds: Set<string> } | null = null;
+
+  for (const orig of originals) {
+    // Get the ingredient IDs in this template original
+    const origIngIds = new Set(orig.ingredients.map((ing) => (ing as MealIngredient).id));
+    // How many of the user's checked items appear in this template?
+    const matched = new Set<string>();
+    for (const id of checkedIngIds) {
+      if (origIngIds.has(id)) matched.add(id);
+    }
+    // Overlap = what fraction of the template's ingredients did the user select?
+    const overlap = origIngIds.size > 0 ? matched.size / origIngIds.size : 0;
+
+    // Get swaps for this original (prefer eamon source)
+    const swaps = swapMap.get(orig.id) || [];
+    if (swaps.length === 0) continue;
+
+    // Only consider if user matched at least 50% of the template's ingredients
+    if (overlap < 0.5) continue;
+
+    // Pick the best swap: prefer eamon-approved, then lowest calories
+    const sortedSwaps = [...swaps].sort((a, b) => {
+      if (a.source === "eamon" && b.source !== "eamon") return -1;
+      if (b.source === "eamon" && a.source !== "eamon") return 1;
+      return a.totals.calories - b.totals.calories;
+    });
+    const swap = sortedSwaps[0];
+
+    // Is this a better match than what we have?
+    const swapCal = swap.totals.calories;
+    const origCal = checkedTotalCal;
+    const savings = origCal - swapCal;
+    if (savings < MIN_SAVINGS) continue; // swap must actually save calories
+
+    if (!bestMatch || overlap > bestMatch.overlap || (overlap === bestMatch.overlap && swap.source === "eamon")) {
+      bestMatch = { original: orig, swap, overlap, matchedIds: matched };
+    }
+  }
+
+  if (bestMatch) {
+    // Use the template swap! Build optimizedItems from the swap's ingredients.
+    const swap = bestMatch.swap;
+    const swapIngredients = swap.ingredients;
+    const matchedOrigIds = bestMatch.matchedIds;
+
+    // For each checked item: if it was part of the matched template, mark it as swapped out.
+    // Items NOT in the template match stay as-is (kept items).
+    const swappedOutItems = checkedItems.filter((i) => matchedOrigIds.has(i.id));
+    const keptItems = checkedItems.filter((i) => !matchedOrigIds.has(i.id));
+
+    // Build the optimized list:
+    // 1. Swapped-out items show as removed (red strikethrough)
+    // 2. Kept items show as-is
+    // 3. Swap ingredients show as added (green)
+    optimizedItems = [
+      // Swapped-out originals (these get crossed out on the right card)
+      ...swappedOutItems.map((item) => ({
+        original: item,
+        swap: null as OptItem["swap"], // null swap = crossed out
+        savings: Math.round(item.calories),
+        _removed: true,
+      })),
+      // Kept items (no change)
+      ...keptItems.map((item) => ({
+        original: item,
+        swap: null as OptItem["swap"],
+        savings: 0,
+      })),
+    ];
+
+    // We need a different render approach for template swaps.
+    // Instead of per-item swap, we do a WHOLE MEAL swap.
+    // Store the template swap info for the reveal screen.
+    templateMatchUsed = true;
+
+    // Re-build optimizedItems as: each original item either stays or gets swapped,
+    // and we append the swap ingredients as new items.
+    // The reveal screen needs: original items + which are removed + new swap ingredients.
+    // Let's use a simpler model that works with the existing UI:
+    // - Items that exist in BOTH original and swap → kept (no change)
+    // - Items in original but NOT in swap → removed (red)
+    // - Items in swap but NOT in original → added (green)
+
+    const swapIngIds = new Set(swapIngredients.map((si) => (si as MealIngredient).id));
+    const checkedIngMap = new Map(checkedItems.map((i) => [i.id, i]));
+
+    optimizedItems = checkedItems.map((item) => {
+      if (swapIngIds.has(item.id)) {
+        // This ingredient is in both original and swap — keep it
+        return { original: item, swap: null, savings: 0 };
+      } else {
+        // This ingredient is removed in the swap
+        // Find a swap ingredient to pair it with (for the red→green visual)
+        return {
+          original: item,
+          swap: { name: "(removed)", calories: 0, protein_g: 0, source: (swap.source === "eamon" ? "eamon" : "auto") as ("auto" | "eamon") },
+          savings: Math.round(item.calories),
+          _templateRemoved: true,
+        };
+      }
+    });
+
+    // Tag the template swap data onto the items for the reveal screen
+    (optimizedItems as any)._templateSwap = {
+      name: swap.name,
+      source: swap.source,
+      ingredients: swapIngredients,
+      totalCal: swap.totals.calories,
+      totalProtein: swap.totals.protein,
+    };
+  } else {
+    // ─── FALLBACK: Per-item same-category swap (Tier 2) ─────
+    optimizedItems = checkedItems.map((item) => {
+      const noSwap: OptItem = { original: item, swap: null, savings: 0 };
+
+      const sameCat = menuItems.filter(
+        (i) => i.category_id === item.category_id && i.id !== item.id && i.calories < item.calories && i.calories > 0
+          && !checkedIds.has(i.id)
+      );
+      if (sameCat.length > 0) {
+        const sorted = [...sameCat].sort((a, b) => a.calories - b.calories || b.protein_g - a.protein_g);
+        const pick = sorted[0];
+        const savings = Math.round(item.calories) - Math.round(pick.calories);
+        if (savings >= MIN_SAVINGS) {
+          return {
+            original: item,
+            swap: { name: pick.name, calories: Math.round(pick.calories), protein_g: Math.round(pick.protein_g), source: "auto" as ("auto" | "eamon") },
+            savings,
+          };
+        }
+      }
+      return noSwap;
+    });
+  }
+
+  // Calculate optimized total — if template match, use the swap's known total + any kept non-template items
+  const templateSwap = (optimizedItems as any)?._templateSwap as { name: string; source: string; ingredients: MealIngredient[]; totalCal: number; totalProtein: number } | undefined;
+  const optimizedTotalCal = templateSwap
+    ? Math.round(templateSwap.totalCal) + optimizedItems.filter((o) => !o.swap && !(o as any)._templateRemoved).reduce((sum, o) => sum + Math.round(o.original.calories), 0)
+    : optimizedItems.reduce((sum, o) => sum + (o.swap ? o.swap.calories : Math.round(o.original.calories)), 0);
+  const totalSavings = checkedTotalCal - optimizedTotalCal;
+
+  // ─── OPTIMIZED MEAL VIEW (dark-landing style reveal) ─────
+  const weeklyLbs = totalSavings > 0 ? ((totalSavings * 7) / 3500).toFixed(1) : "0";
+  // Only show swap reveal if we have a template match — auto-fallback produces garbage
+  const hasValidSwap = !!templateSwap && totalSavings >= 100;
+
+  // Collect available template swaps for this restaurant (for suggestions)
+  const availableTemplateSwaps = originals
+    .filter((orig) => (swapMap.get(orig.id) || []).length > 0)
+    .map((orig) => {
+      const swaps = swapMap.get(orig.id) || [];
+      const best = [...swaps].sort((a, b) => {
+        if (a.source === "eamon" && b.source !== "eamon") return -1;
+        if (b.source === "eamon" && a.source !== "eamon") return 1;
+        return a.totals.calories - b.totals.calories;
+      })[0];
+      return { original: orig, swap: best, savings: orig.totals.calories - best.totals.calories };
+    })
+    .filter((s) => s.savings >= 100)
+    .sort((a, b) => b.savings - a.savings);
+
+  if (showOptimized && checkedItems.length > 0) {
+    // If "Personalize this for my goals" was clicked, show SwapSavingsCard (weight form flow)
+    if (showPersonalize && hasValidSwap) {
+      return (
+        <SwapSavingsCard
+          savings={totalSavings}
+          restaurantName={restaurant.name}
+          swapName={`${checkedItems.length} item${checkedItems.length > 1 ? "s" : ""} optimized`}
+          onSwapComplete={onSwapComplete}
+          onNavigateAway={onNavigateAway}
+          trackEvent={trackEvent}
+          capturedEmailRef={capturedEmailRef}
+          startAtWeight
+          onBackFromWeight={() => setShowPersonalize(false)}
+        />
+      );
+    }
+
+    // No template match — show "no curated swap" screen with suggestions
+    if (!hasValidSwap) {
+      return (
+        <div className="mx-auto max-w-lg pb-10">
+          <BackButton onClick={() => setShowOptimized(false)} />
+
+          <div className="text-center mt-8 mb-8">
+            <div className="h-16 w-16 rounded-full bg-zinc-800 flex items-center justify-center mx-auto mb-4">
+              <span className="text-3xl">🤔</span>
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-2">
+              We don&apos;t have a curated swap for that combo yet
+            </h2>
+            <p className="text-sm text-zinc-400 max-w-sm mx-auto">
+              We only show swaps we&apos;ve personally verified — real meals, not just lower numbers.
+            </p>
+          </div>
+
+          {availableTemplateSwaps.length > 0 && (
+            <div className="mb-8">
+              <p className="text-xs text-zinc-500 uppercase tracking-wider mb-4 text-center">
+                Try one of these instead
+              </p>
+              <div className="space-y-3">
+                {availableTemplateSwaps.slice(0, 3).map((s) => (
+                  <motion.button
+                    key={s.original.id}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      // Select the original meal's ingredients
+                      const origIngIds = new Set(s.original.ingredients.map((ing: MealIngredient) => ing.id));
+                      setCheckedIds(origIngIds);
+                      setShowOptimized(false);
+                      // Brief delay then re-show optimized
+                      setTimeout(() => setShowOptimized(true), 100);
+                    }}
+                    className="flex w-full items-center justify-between rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 text-left transition-all hover:border-emerald-500/30"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <p className="font-semibold text-white">{s.original.name}</p>
+                      <p className="text-sm text-zinc-400">
+                        {Math.round(s.original.totals.calories)} cal → {Math.round(s.swap.totals.calories)} cal
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0 ml-3 text-right">
+                      <span className="text-emerald-400 font-bold">-{Math.round(s.savings)} cal</span>
+                      {s.swap.source === "eamon" && (
+                        <p className="text-[10px] text-amber-400 font-semibold mt-0.5">EAMON&apos;S PICK</p>
+                      )}
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <motion.button
+            whileTap={{ scale: 0.97 }}
+            onClick={() => setShowOptimized(false)}
+            className="w-full rounded-2xl border border-zinc-700 px-6 py-4 text-sm text-zinc-300 transition-all hover:border-zinc-500"
+          >
+            Go back and pick different items
+          </motion.button>
+        </div>
+      );
+    }
+
+    return (
+      <BibleSwapReveal
+        restaurant={restaurant}
+        checkedItems={checkedItems}
+        optimizedItems={optimizedItems}
+        checkedTotalCal={checkedTotalCal}
+        optimizedTotalCal={optimizedTotalCal}
+        totalSavings={totalSavings}
+        weeklyLbs={weeklyLbs}
+        onBack={() => setShowOptimized(false)}
+        onSwapComplete={onSwapComplete}
+        onNavigateAway={onNavigateAway}
+        onPersonalize={() => setShowPersonalize(true)}
+        trackEvent={trackEvent}
+        capturedEmailRef={capturedEmailRef}
+        getItemEmoji={getItemEmoji}
+        templateSwap={templateSwap}
+      />
+    );
+  }
+
+  // ─── MENU VIEW (multi-select with checkmarks) ─────
   const mq = mealQuery.toLowerCase().trim();
   const filteredItems = mq
     ? menuItems.filter((item) => item.name.toLowerCase().includes(mq))
@@ -2580,617 +3228,10 @@ function RestaurantDetailView({
     groupedItems.set(catId, existing);
   }
 
-  // ─── Cart Builder Flow (McDonald's and similar) ─────
-  if (isCartBuilder) {
-    const allIngredients = detail.ingredients || [];
-    const entreeItems = allIngredients.filter((i) => ENTREE_CATEGORIES.has(i.category_id));
-    const sideItems = allIngredients.filter((i) => SIDE_CATEGORIES.has(i.category_id));
-    const drinkItems = allIngredients.filter((i) => DRINK_CATEGORIES.has(i.category_id));
-    const sauceItems = allIngredients.filter((i) => SAUCE_CATEGORIES.has(i.category_id));
-
-    // All entree categories for display
-    const entreeCats = (detail.categories || []).filter((c) => ENTREE_CATEGORIES.has(c.id));
-
-    const comboDefaults = COMBO_DEFAULTS[restaurant.id] || {};
-
-    // Cart swap view
-    if (showCartSwap && cart.length > 0) {
-      return (
-        <CartSwapView
-          cart={cart}
-          restaurant={restaurant}
-          detail={detail}
-          onBack={() => setShowCartSwap(false)}
-          onSwapComplete={onSwapComplete}
-          onNavigateAway={onNavigateAway}
-          trackEvent={trackEvent}
-          capturedEmailRef={capturedEmailRef}
-        />
-      );
-    }
-
-    // Filter entrees by search
-    const eq = mealQuery.toLowerCase().trim();
-    const filteredEntrees = eq
-      ? entreeItems.filter((item) => item.name.toLowerCase().includes(eq))
-      : entreeItems;
-
-    // Group entrees by category
-    const entreeGroups = new Map<string, MenuItem[]>();
-    for (const item of filteredEntrees) {
-      const catId = item.category_id || "other";
-      const existing = entreeGroups.get(catId) || [];
-      existing.push(item);
-      entreeGroups.set(catId, existing);
-    }
-
-    return (
-      <div className="mx-auto max-w-lg pb-24">
-        <BackButton onClick={onBack} />
-
-        {/* Compact restaurant header */}
-        <div className="mb-4 flex items-center gap-3">
-          <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl border border-zinc-700">
-            <RestaurantLogo id={restaurant.id} name={restaurant.name} className="h-full w-full"
-              imageClassName="h-full w-full object-contain p-1" placeholderClassName="text-lg font-semibold tracking-wide text-zinc-400" />
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold text-white">{restaurant.name}</h2>
-            <p className="text-sm text-zinc-400">Build your order, see the swap</p>
-          </div>
-        </div>
-
-        {/* Search */}
-        <div className="relative mb-4">
-          <svg className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-          </svg>
-          <input type="text" value={mealQuery} onChange={(e) => setMealQuery(e.target.value)}
-            placeholder="What do you normally order?"
-            className="w-full rounded-xl border border-zinc-800 bg-zinc-900/60 py-3 pl-12 pr-10 text-base text-white placeholder-zinc-500 outline-none transition-colors focus:border-emerald-500/50"
-            ref={(el) => { if (el && window.innerWidth >= 768) el.focus(); }} />
-          {mealQuery && (
-            <button onClick={() => setMealQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-zinc-500 transition-colors hover:text-zinc-300">
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-              </svg>
-            </button>
-          )}
-        </div>
-
-        {/* Entree items grouped by category */}
-        {Array.from(entreeGroups.entries())
-          .sort((a, b) => {
-            const catA = entreeCats.find((c) => c.id === a[0]);
-            const catB = entreeCats.find((c) => c.id === b[0]);
-            return (catA?.display_order ?? 99) - (catB?.display_order ?? 99);
-          })
-          .map(([catId, items]) => {
-            const cat = entreeCats.find((c) => c.id === catId);
-            return (
-              <div key={catId} className="mb-4">
-                {!eq && cat && (
-                  <p className="mb-2 text-sm font-medium uppercase tracking-wider text-zinc-500">{cat.name}</p>
-                )}
-                <div className="space-y-2">
-                  {items.map((item) => {
-                    const hasMealSwap = ingredientToMeal.has(item.id) && swapMap.has(ingredientToMeal.get(item.id)!.id);
-                    return (
-                      <motion.button key={item.id}
-                        onClick={() => setBuilderEntree(item)}
-                        className="flex w-full items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 text-left transition-colors hover:border-zinc-600"
-                        whileTap={{ scale: 0.98 }}>
-                        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-zinc-800">
-                          <span className="text-xl leading-none">{getItemEmoji(item.name)}</span>
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="truncate text-base font-semibold text-white">{item.name}</p>
-                          <p className="text-sm text-zinc-400">
-                            {Math.round(item.calories)} cal &middot; {Math.round(item.protein_g)}g P &middot; {Math.round(item.total_fat_g)}g F &middot; {Math.round(item.carbohydrate_g)}g C
-                          </p>
-                        </div>
-                        {hasMealSwap && (
-                          <span className="flex-shrink-0 rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-400">SWAP</span>
-                        )}
-                        <svg className="h-5 w-5 flex-shrink-0 text-zinc-600" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-                      </motion.button>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-
-        {eq && filteredEntrees.length === 0 && (
-          <div className="py-12 text-center">
-            <p className="text-zinc-500">No items match &ldquo;{mealQuery}&rdquo;</p>
-            <p className="mt-1 text-sm text-zinc-600">Try a different name</p>
-          </div>
-        )}
-
-        {/* Meal Builder Modal */}
-        <AnimatePresence>
-          {builderEntree && (
-            <MealBuilderModal
-              entree={builderEntree}
-              sides={sideItems}
-              drinks={drinkItems}
-              sauces={sauceItems}
-              comboDefault={comboDefaults[builderEntree.category_id] || { side: "mcd_fries_med", drink: "mcd_coke_med", sauces: [] }}
-              onAddToOrder={addToCart}
-              onClose={() => { setBuilderEntree(null); setEditingCartItem(null); }}
-              editingItem={editingCartItem}
-            />
-          )}
-        </AnimatePresence>
-
-        {/* Cart Bar */}
-        <AnimatePresence>
-          {cart.length > 0 && !builderEntree && (
-            <CartBar
-              items={cart}
-              onShowSwap={() => setShowCartSwap(true)}
-              onClear={clearCart}
-              onEditItem={editCartItem}
-              onRemoveItem={removeFromCart}
-            />
-          )}
-        </AnimatePresence>
-      </div>
-    );
-  }
-
-  // ─── Standard flow (non-cart-builder restaurants) ──
-  const selectedItem = menuItems.find((i) => i.id === selectedItemId);
-  const linkedMeal = selectedItem ? ingredientToMeal.get(selectedItem.id) : undefined;
-  const bestSwap = linkedMeal ? (swapMap.get(linkedMeal.id) || [])[0] : undefined;
-
-  // ─── Auto-swap fallback: find lowest-cal item in same category ──
-  const autoSwapItem = useMemo(() => {
-    if (bestSwap || !selectedItem) return undefined;
-    const sameCat = menuItems.filter(
-      (i) =>
-        i.category_id === selectedItem.category_id &&
-        i.id !== selectedItem.id &&
-        i.calories < selectedItem.calories &&
-        i.calories > 0
-    );
-    if (sameCat.length === 0) {
-      // Fall back to any lower-cal item across the whole menu
-      const anyLower = menuItems.filter(
-        (i) =>
-          i.id !== selectedItem.id &&
-          i.calories < selectedItem.calories &&
-          i.calories > 0 &&
-          i.protein_g >= 5 // must have some protein
-      );
-      if (anyLower.length === 0) return undefined;
-      // Pick the one with best protein-to-calorie ratio
-      anyLower.sort((a, b) => (b.protein_g / b.calories) - (a.protein_g / a.calories));
-      return anyLower[0];
-    }
-    // Pick lowest calories, break ties by highest protein
-    sameCat.sort((a, b) => a.calories - b.calories || b.protein_g - a.protein_g);
-    return sameCat[0];
-  }, [bestSwap, selectedItem, menuItems]);
-
-  // ─── Swap comparison view ─────────────────────────
-  if (selectedItem) {
-    const originalCal = linkedMeal
-      ? Math.round(linkedMeal.totals.calories)
-      : Math.round(selectedItem.calories);
-    const swapCal = bestSwap ? Math.round(bestSwap.totals.calories) : (autoSwapItem ? Math.round(autoSwapItem.calories) : 0);
-    const savings = bestSwap ? originalCal - swapCal : (autoSwapItem ? Math.round(selectedItem.calories) - Math.round(autoSwapItem.calories) : 0);
-
-    // If there's a linked template meal with a swap, show the full comparison
-    if (linkedMeal && bestSwap) {
-      return (
-        <div className="mx-auto max-w-lg">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <button
-            onClick={() => { setSelectedItemId(null); setRevealed(false); }}
-            className="mb-4 flex items-center gap-1.5 text-lg text-zinc-300 transition-colors hover:text-white"
-          >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-            </svg>
-            {restaurant.name} Menu
-          </button>
-
-          {!revealed && (
-            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-6 text-center">
-              <h2 className="text-2xl font-bold leading-tight text-white">
-                Want to learn how to lose{" "}
-                <span className="text-emerald-400">{((savings * 7) / 3500).toFixed(1)} lb a week</span>{" "}
-                simply by adjusting your current order at {restaurant.name}?
-              </h2>
-            </motion.div>
-          )}
-
-          {/* Side-by-side comparison */}
-          <div className="mb-6 grid grid-cols-2 gap-3">
-            {/* LEFT: Your order */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}
-              className={`rounded-2xl border p-5 transition-all duration-700 ${revealed ? "border-red-500/30 bg-red-500/5" : "border-zinc-800 bg-zinc-900/60"}`}
-            >
-              <div className="mb-4 text-center">
-                {linkedMeal.sprite_url ? (
-                  <div className="mx-auto h-20 w-20 overflow-hidden rounded-xl">
-                    <img src={linkedMeal.sprite_url} alt={linkedMeal.name} className="h-full w-full object-cover" />
-                  </div>
-                ) : (
-                  <span className="text-4xl">{getMealEmoji(linkedMeal)}</span>
-                )}
-                <p className="mt-2 text-xs uppercase tracking-wider text-zinc-500">Your order</p>
-              </div>
-              <div className="mb-4 text-center">
-                <AnimatedCalories value={originalCal}
-                  className={`text-3xl font-bold tabular-nums transition-colors duration-700 ${revealed ? "text-red-400" : "text-white"}`}
-                />
-                <span className="ml-1 text-sm text-zinc-500">cal</span>
-              </div>
-              <div className="space-y-1.5">
-                {linkedMeal.ingredients.slice(0, 6).map((ing, i) => (
-                  <div key={`${ing.id}-${i}`} className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
-                    style={{ background: "rgba(39, 39, 42, 0.5)", boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-                    <span className="mr-2 truncate text-zinc-400">{ing.name}</span>
-                    <span className="flex-shrink-0 font-medium tabular-nums text-zinc-500">{Math.round(ing.calories * ing.quantity)}</span>
-                  </div>
-                ))}
-              </div>
-              {revealed && (
-                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mt-3 rounded-lg bg-red-500/10 px-3 py-2">
-                  <p className="text-[11px] text-red-400/80">
-                    {linkedMeal.totals.fat > 30 ? `${Math.round(linkedMeal.totals.fat)}g of fat hiding in plain sight` : `${Math.round(linkedMeal.totals.carbs)}g carbs — more than you think`}
-                  </p>
-                </motion.div>
-              )}
-            </motion.div>
-
-            {/* RIGHT: Swap reveal */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-              className={`rounded-2xl border p-5 transition-all duration-700 ${revealed ? "border-emerald-500/40 bg-emerald-500/5 shadow-[0_0_30px_rgba(16,185,129,0.08)]" : "border-zinc-800 bg-zinc-900/60"}`}
-            >
-              <div className="mb-4 text-center">
-                {revealed ? (
-                  bestSwap.sprite_url ? (
-                    <motion.div initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="relative mx-auto h-20 w-20 overflow-hidden rounded-xl">
-                      <img src={bestSwap.sprite_url} alt={bestSwap.name} className="h-full w-full object-cover" />
-                    </motion.div>
-                  ) : (
-                    <motion.span initial={{ scale: 0, rotate: -20 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="inline-block text-4xl">
-                      {getMealEmoji(bestSwap)}
-                    </motion.span>
-                  )
-                ) : (
-                  <div className="relative flex h-20 w-20 mx-auto items-center justify-center">
-                    <div className="absolute inset-0 rounded-xl bg-emerald-500/10 blur-xl" />
-                    <motion.span
-                      animate={{ scale: [1, 1.15, 1], opacity: [0.7, 1, 0.7] }}
-                      transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-                      className="relative text-4xl font-bold text-white/80"
-                    >
-                      ?
-                    </motion.span>
-                  </div>
-                )}
-                <p className="mt-2 text-xs uppercase tracking-wider">
-                  {revealed ? <span className="text-emerald-400">The smarter order</span> : <span className="text-zinc-500">Optimized Meal</span>}
-                </p>
-              </div>
-              <div className="mb-4 text-center">
-                {revealed ? (
-                  <><AnimatedCalories value={swapCal} className="text-3xl font-bold tabular-nums text-emerald-400" /><span className="ml-1 text-sm text-zinc-500">cal</span></>
-                ) : (
-                  <div className="flex h-[36px] items-center justify-center">
-                    <div className="flex gap-1">
-                      {[0, 1, 2].map((i) => (
-                        <motion.div key={i} animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5, delay: i * 0.2 }} className="h-2 w-2 rounded-full bg-emerald-500/50" />
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-              {revealed ? (
-                <>
-                  {/* Removed items from original */}
-                  <div className="space-y-1.5">
-                    {linkedMeal.ingredients.filter((ing) => !bestSwap.ingredients.some((si) => si.name === ing.name)).map((ing, i) => (
-                      <div key={`rm-${ing.id}-${i}`} className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
-                        style={{ background: "rgba(239, 68, 68, 0.08)", border: "1px solid rgba(239,68,68,0.15)" }}>
-                        <span className="mr-2 flex items-center gap-1.5 truncate text-red-400 line-through">
-                          <span className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded bg-red-500/20">
-                            <span className="text-[9px] font-bold leading-none text-red-400">✕</span>
-                          </span>
-                          {ing.name}
-                        </span>
-                        <span className="flex-shrink-0 font-semibold tabular-nums text-red-400">−{Math.round(ing.calories * ing.quantity)}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* New swap items (the actual replacement meal) */}
-                  <div className="mt-2 space-y-1.5">
-                    {bestSwap.ingredients.map((ing, i) => {
-                      const isNew = !linkedMeal.ingredients.some((oi) => oi.name === ing.name);
-                      return (
-                        <div key={`add-${ing.id}-${i}`} className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
-                          style={isNew
-                            ? { background: "rgba(16, 185, 129, 0.08)", border: "1px solid rgba(16,185,129,0.15)" }
-                            : { background: "rgba(39, 39, 42, 0.5)", boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-                          <span className={`mr-2 flex items-center gap-1.5 truncate ${isNew ? "text-emerald-400" : "text-zinc-400"}`}>
-                            {isNew && (
-                              <span className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded bg-emerald-500/20">
-                                <span className="text-[9px] font-bold leading-none text-emerald-400">+</span>
-                              </span>
-                            )}
-                            {ing.name}
-                          </span>
-                          <span className={`flex-shrink-0 font-medium tabular-nums ${isNew ? "text-emerald-400" : "text-zinc-500"}`}>
-                            {Math.round(ing.calories * ing.quantity)}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {bestSwap.swap_rationale && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="mt-3">
-                      <p className="text-[11px] italic leading-relaxed text-zinc-500">{bestSwap.swap_rationale}</p>
-                    </motion.div>
-                  )}
-                </>
-              ) : (
-                <div className="space-y-1.5">
-                  {linkedMeal.ingredients.slice(0, 6).map((_, i) => (
-                    <div key={i} className="flex items-center justify-between rounded-lg px-2.5 py-2"
-                      style={{ background: "rgba(39, 39, 42, 0.3)" }}>
-                      <div className="h-3 rounded bg-zinc-700/50" style={{ width: `${70 - i * 8}%` }} />
-                      <div className="h-3 w-8 rounded bg-zinc-700/50" />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </motion.div>
-          </div>
-
-          {/* Reveal / Results */}
-          <AnimatePresence mode="wait">
-            {!revealed ? (
-              <motion.div key="pre-reveal" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
-                <motion.button whileTap={{ scale: 0.97 }} onClick={() => setRevealed(true)}
-                  className="flex w-full items-center justify-center gap-3 rounded-2xl bg-emerald-500 px-8 py-4 text-base font-semibold text-black transition-all hover:bg-emerald-400">
-                  <span>Show me the swap</span>
-                  <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
-                </motion.button>
-              </motion.div>
-            ) : (
-              <>
-                <SwapSavingsCard savings={savings} restaurantName={restaurant.name} swapName={bestSwap?.name} onSwapComplete={onSwapComplete} onNavigateAway={onNavigateAway} trackEvent={trackEvent} capturedEmailRef={capturedEmailRef} />
-                <FeedbackWidget variant="swap" context={{
-                  section: "swap_comparison",
-                  restaurantName: restaurant.name,
-                  originalMeal: linkedMeal.name,
-                  originalCalories: linkedMeal.totals.calories,
-                  swapMeal: bestSwap.name,
-                  swapCalories: bestSwap.totals.calories,
-                  savings,
-                  swapIngredients: bestSwap.ingredients.map((i) => ({ name: i.name, cal: Math.round(i.calories * i.quantity) })),
-                  originalIngredients: linkedMeal.ingredients.map((i) => ({ name: i.name, cal: Math.round(i.calories * i.quantity) })),
-                  swapRationale: bestSwap.swap_rationale,
-                }} />
-              </>
-            )}
-          </AnimatePresence>
-        </motion.div>
-        </div>
-      );
-    }
-
-    // Auto-swap fallback — same side-by-side layout as curated swaps
-    if (autoSwapItem) {
-      const autoSavings = Math.round(selectedItem.calories) - Math.round(autoSwapItem.calories);
-      const autoWeeklyLbs = ((autoSavings * 7) / 3500).toFixed(1);
-      return (
-        <div className="mx-auto max-w-lg">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-          <button onClick={() => { setSelectedItemId(null); setRevealed(false); }}
-            className="mb-4 flex items-center gap-1.5 text-lg text-zinc-300 transition-colors hover:text-white">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-            </svg>
-            {restaurant.name} Menu
-          </button>
-
-          {!revealed && (
-            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-6 text-center">
-              <h2 className="text-2xl font-bold leading-tight text-white">
-                Want to learn how to lose{" "}
-                <span className="text-emerald-400">{autoWeeklyLbs} lb a week</span>{" "}
-                simply by adjusting your current order at {restaurant.name}?
-              </h2>
-            </motion.div>
-          )}
-
-          {/* Side-by-side comparison — same as curated */}
-          <div className="mb-6 grid grid-cols-2 gap-3">
-            {/* LEFT: Your order */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}
-              className={`rounded-2xl border p-5 transition-all duration-700 ${revealed ? "border-red-500/30 bg-red-500/5" : "border-zinc-800 bg-zinc-900/60"}`}
-            >
-              <div className="mb-4 text-center">
-                <span className="text-4xl">{getItemEmoji(selectedItem.name)}</span>
-                <p className="mt-2 text-xs uppercase tracking-wider text-zinc-500">Your order</p>
-              </div>
-              <div className="mb-4 text-center">
-                <AnimatedCalories value={Math.round(selectedItem.calories)}
-                  className={`text-3xl font-bold tabular-nums transition-colors duration-700 ${revealed ? "text-red-400" : "text-white"}`}
-                />
-                <span className="ml-1 text-sm text-zinc-500">cal</span>
-              </div>
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
-                  style={{ background: "rgba(39, 39, 42, 0.5)", boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-                  <span className="mr-2 truncate text-zinc-400">{selectedItem.name}</span>
-                  <span className="flex-shrink-0 font-medium tabular-nums text-zinc-500">{Math.round(selectedItem.calories)}</span>
-                </div>
-              </div>
-              {revealed && (
-                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mt-3 rounded-lg bg-red-500/10 px-3 py-2">
-                  <p className="text-[11px] text-red-400/80">
-                    {Math.round(selectedItem.total_fat_g) > 20 ? `${Math.round(selectedItem.total_fat_g)}g of fat hiding in plain sight` : `${Math.round(selectedItem.carbohydrate_g)}g carbs — more than you think`}
-                  </p>
-                </motion.div>
-              )}
-            </motion.div>
-
-            {/* RIGHT: Swap reveal */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-              className={`rounded-2xl border p-5 transition-all duration-700 ${revealed ? "border-emerald-500/40 bg-emerald-500/5 shadow-[0_0_30px_rgba(16,185,129,0.08)]" : "border-zinc-800 bg-zinc-900/60"}`}
-            >
-              <div className="mb-4 text-center">
-                {revealed ? (
-                  <motion.span initial={{ scale: 0, rotate: -20 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="inline-block text-4xl">
-                    {getItemEmoji(autoSwapItem.name)}
-                  </motion.span>
-                ) : (
-                  <div className="relative flex h-20 w-20 mx-auto items-center justify-center">
-                    <div className="absolute inset-0 rounded-xl bg-emerald-500/10 blur-xl" />
-                    <motion.span
-                      animate={{ scale: [1, 1.15, 1], opacity: [0.7, 1, 0.7] }}
-                      transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-                      className="relative text-4xl font-bold text-white/80"
-                    >
-                      ?
-                    </motion.span>
-                  </div>
-                )}
-                <p className="mt-2 text-xs uppercase tracking-wider">
-                  {revealed ? <span className="text-emerald-400">The smarter order</span> : <span className="text-zinc-500">Optimized Meal</span>}
-                </p>
-              </div>
-              <div className="mb-4 text-center">
-                {revealed ? (
-                  <><AnimatedCalories value={Math.round(autoSwapItem.calories)} className="text-3xl font-bold tabular-nums text-emerald-400" /><span className="ml-1 text-sm text-zinc-500">cal</span></>
-                ) : (
-                  <div className="flex h-[36px] items-center justify-center">
-                    <div className="flex gap-1">
-                      {[0, 1, 2].map((i) => (
-                        <motion.div key={i} animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5, delay: i * 0.2 }} className="h-2 w-2 rounded-full bg-emerald-500/50" />
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-              {revealed ? (
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
-                    style={{ background: "rgba(16, 185, 129, 0.08)", border: "1px solid rgba(16,185,129,0.15)" }}>
-                    <span className="mr-2 flex items-center gap-1.5 truncate text-emerald-400">
-                      <span className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded bg-emerald-500/20">
-                        <span className="text-[9px] font-bold leading-none text-emerald-400">+</span>
-                      </span>
-                      {autoSwapItem.name}
-                    </span>
-                    <span className="flex-shrink-0 font-medium tabular-nums text-emerald-400">{Math.round(autoSwapItem.calories)}</span>
-                  </div>
-                </div>
-              ) : (
-                <div className="space-y-1.5">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="flex items-center justify-between rounded-lg px-2.5 py-2"
-                      style={{ background: "rgba(39, 39, 42, 0.3)" }}>
-                      <div className="h-3 rounded bg-zinc-700/50" style={{ width: `${70 - i * 8}%` }} />
-                      <div className="h-3 w-8 rounded bg-zinc-700/50" />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </motion.div>
-          </div>
-
-          {/* Reveal / Results */}
-          <AnimatePresence mode="wait">
-            {!revealed ? (
-              <motion.div key="pre-reveal" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
-                <motion.button whileTap={{ scale: 0.97 }} onClick={() => setRevealed(true)}
-                  className="flex w-full items-center justify-center gap-3 rounded-2xl bg-emerald-500 px-8 py-4 text-base font-semibold text-black transition-all hover:bg-emerald-400">
-                  <span>Show me the swap</span>
-                  <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
-                </motion.button>
-              </motion.div>
-            ) : (
-              <>
-                <SwapSavingsCard savings={autoSavings} restaurantName={restaurant.name} swapName={autoSwapItem.name} onSwapComplete={onSwapComplete} onNavigateAway={onNavigateAway} trackEvent={trackEvent} capturedEmailRef={capturedEmailRef} />
-                <FeedbackWidget variant="swap" context={{
-                  section: "auto_swap",
-                  restaurantName: restaurant.name,
-                  originalMeal: autoSwapItem.name,
-                  originalCalories: autoSwapItem.calories,
-                  swapMeal: autoSwapItem.name,
-                  swapCalories: autoSwapItem.calories - autoSavings,
-                  savings: autoSavings,
-                }} />
-              </>
-            )}
-          </AnimatePresence>
-        </motion.div>
-        </div>
-      );
-    }
-
-    // Truly no swap possible (item is already the lowest cal on the menu)
-    return (
-      <div className="mx-auto max-w-lg">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-        <button onClick={() => { setSelectedItemId(null); setRevealed(false); }}
-          className="mb-4 flex items-center gap-1.5 text-lg text-zinc-300 transition-colors hover:text-white">
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-          </svg>
-          {restaurant.name} Menu
-        </button>
-
-        <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6 text-center">
-          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20">
-            <svg className="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h3 className="text-xl font-bold text-white">{selectedItem.name}</h3>
-          <div className="mt-2 flex justify-center gap-4 text-sm text-zinc-400">
-            <span className="font-medium text-emerald-400">{Math.round(selectedItem.calories)} cal</span>
-            <span>{Math.round(selectedItem.protein_g)}g P</span>
-          </div>
-          <p className="mt-4 text-sm font-medium text-emerald-400">
-            This is already one of the best options here.
-          </p>
-          <p className="mt-1 text-xs text-zinc-500">
-            Great pick. No swap needed.
-          </p>
-        </div>
-      </motion.div>
-      </div>
-    );
-  }
-
-  // ─── Menu search view (no item selected) ──────────
   const totalItems = menuItems.length;
 
   return (
-    <div className="mx-auto max-w-lg">
+    <div className="mx-auto max-w-lg pb-28">
       <BackButton onClick={onBack} />
 
       {/* Compact restaurant header */}
@@ -3205,13 +3246,24 @@ function RestaurantDetailView({
         </div>
       </div>
 
+      {/* Instruction text */}
+      {checkedIds.size === 0 && (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="mb-4 text-center text-sm text-zinc-500"
+        >
+          Tap everything you&apos;d normally order
+        </motion.p>
+      )}
+
       {/* Search */}
       <div className="relative mb-4">
         <svg className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
         </svg>
         <input type="text" value={mealQuery} onChange={(e) => setMealQuery(e.target.value)}
-          placeholder="What do you normally order?"
+          placeholder="Search the menu..."
           className="w-full rounded-xl border border-zinc-800 bg-zinc-900/60 py-3 pl-12 pr-10 text-base text-white placeholder-zinc-500 outline-none transition-colors focus:border-emerald-500/50"
           ref={(el) => { if (el && window.innerWidth >= 768) el.focus(); }} />
         {mealQuery && (
@@ -3224,7 +3276,7 @@ function RestaurantDetailView({
         )}
       </div>
 
-      {/* Items grouped by category */}
+      {/* Items grouped by category — with checkmarks */}
       {Array.from(groupedItems.entries())
         .sort((a, b) => {
           const catA = categoryMap.get(a[0]);
@@ -3240,12 +3292,21 @@ function RestaurantDetailView({
               )}
               <div className="space-y-2">
                 {items.map((item) => {
+                  const isChecked = checkedIds.has(item.id);
                   const hasMealSwap = ingredientToMeal.has(item.id) && swapMap.has(ingredientToMeal.get(item.id)!.id);
                   return (
                     <motion.button key={item.id}
-                      onClick={() => { trackEvent?.("bible_meal_selected", { restaurant: restaurant.name, meal: item.name, calories: Math.round(item.calories) }); setSelectedItemId(item.id); setRevealed(false); }}
-                      className="flex w-full items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 text-left transition-colors hover:border-zinc-600"
+                      onClick={() => { trackEvent?.("bible_meal_checked", { restaurant: restaurant.name, meal: item.name, calories: Math.round(item.calories), checked: !isChecked }); toggleChecked(item.id); }}
+                      className={`flex w-full items-center gap-3 rounded-xl border p-4 text-left transition-all ${isChecked ? "border-emerald-500/50 bg-emerald-500/5" : "border-zinc-800 bg-zinc-900/60 hover:border-zinc-600"}`}
                       whileTap={{ scale: 0.98 }}>
+                      {/* Checkmark circle */}
+                      <div className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border-2 transition-all ${isChecked ? "border-emerald-500 bg-emerald-500" : "border-zinc-600"}`}>
+                        {isChecked && (
+                          <motion.svg initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 400, damping: 15 }} className="h-4 w-4 text-black" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </motion.svg>
+                        )}
+                      </div>
                       <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-zinc-800">
                         <span className="text-xl leading-none">{getItemEmoji(item.name)}</span>
                       </div>
@@ -3258,9 +3319,6 @@ function RestaurantDetailView({
                       {hasMealSwap && (
                         <span className="flex-shrink-0 rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-400">SWAP</span>
                       )}
-                      <svg className="h-4 w-4 flex-shrink-0 text-zinc-600" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                      </svg>
                     </motion.button>
                   );
                 })}
@@ -3275,48 +3333,64 @@ function RestaurantDetailView({
           <p className="mt-1 text-sm text-zinc-600">Try a different name</p>
         </div>
       )}
+
+      {/* Sticky bottom bar — big animated calorie hero + "Done — see what this costs you" */}
+      <AnimatePresence>
+        {checkedIds.size > 0 && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="fixed bottom-0 left-0 right-0 z-50 border-t border-zinc-800 bg-black/95 backdrop-blur-lg px-4 pb-6 pt-4 safe-area-bottom"
+          >
+            <div className="mx-auto max-w-lg">
+              {/* Big calorie hero number */}
+              <div className="text-center mb-3">
+                <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-0.5">Your meal</p>
+                <div className="flex items-baseline justify-center gap-1">
+                  <AnimatedCalories value={checkedTotalCal} className="text-5xl font-bold tabular-nums text-white" />
+                  <span className="text-base text-zinc-500">cal</span>
+                </div>
+              </div>
+              <motion.button
+                whileTap={{ scale: 0.97 }}
+                onClick={() => { trackEvent?.("bible_optimize_clicked", { restaurant: restaurant.name, items: checkedIds.size, total_cal: checkedTotalCal }); setShowOptimized(true); }}
+                className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400"
+              >
+                Done &mdash; see what this costs you
+              </motion.button>
+              <button
+                onClick={() => { setCheckedIds(new Set()); }}
+                className="mt-2 w-full text-center text-xs text-zinc-600 hover:text-zinc-400 transition-colors py-1"
+              >
+                Clear selection
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
-// ─── Post-Swap Flow (savings → weight → projection → generating → crossroads) ─────────────
-const REPORT_DURATION_MS = 10500;
-const GENERATING_BLOCKS = [
-  {
-    threshold: 10,
-    label: "Why diets failed you",
-    copy: "They asked you to eat less. We just showed you how to order smarter.",
-  },
-  {
-    threshold: 40,
-    label: "What just happened",
-    copy: "Same restaurant. Same craving. Fewer calories. No willpower required.",
-  },
-  {
-    threshold: 70,
-    label: "How it works",
-    bullets: [
-      "We swap your real orders, not your lifestyle.",
-      "Built for your worst days. No cardio. No meal prep.",
-      "Small changes that add up to real weight loss every week.",
-    ],
-  },
-];
-const REPORT_STEPS = [
-  { threshold: 20, label: "Adding up your weekly calorie savings" },
-  { threshold: 55, label: "Mapping your weight loss timeline" },
-  { threshold: 85, label: "Putting together your swap plan" },
-];
 
-function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, onNavigateAway, trackEvent, capturedEmailRef }: { savings: number; restaurantName: string; swapName?: string; onSwapComplete?: (restaurant: string, swapName: string, savings: number) => void; onNavigateAway?: (url: string) => void; trackEvent?: (eventType: string, data?: Record<string, unknown>) => void; capturedEmailRef?: React.MutableRefObject<string | null> }) {
-  const [phase, setPhase] = useState<"savings" | "weight" | "projection" | "generating" | "crossroads" | "bridge">("savings");
+// ─── Post-Swap Flow (savings → weight → projection → generating) ─────────────
+const PROGRESS_FILL_MS = 1200;       // bar fills in 1.2s
+const CHECKMARK_PAUSE_MS = 600;      // checkmark visible before sliding up
+const BRIDGE_STAGGER_MS = 1800;      // 1.8s between each bridge line
+
+function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, onNavigateAway, trackEvent, capturedEmailRef, startAtWeight, onBackFromWeight }: { savings: number; restaurantName: string; swapName?: string; onSwapComplete?: (restaurant: string, swapName: string, savings: number) => void; onNavigateAway?: (url: string) => void; trackEvent?: (eventType: string, data?: Record<string, unknown>) => void; capturedEmailRef?: React.MutableRefObject<string | null>; startAtWeight?: boolean; onBackFromWeight?: () => void }) {
+  const [phase, setPhase] = useState<"savings" | "weight" | "projection" | "generating">(startAtWeight ? "weight" : "savings");
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [ordersPerWeek, setOrdersPerWeek] = useState(7);
   const [currentWeight, setCurrentWeight] = useState<number | null>(null);
   const [goalWeight, setGoalWeight] = useState<number | null>(null);
-  const [genProgress, setGenProgress] = useState(0);
-  const [genComplete, setGenComplete] = useState(false);
+  // Generating phase: bar → checkmark → slide up → bridge lines
+  const [barDone, setBarDone] = useState(false);
+  const [cardGone, setCardGone] = useState(false);
+  const [bridgeStep, setBridgeStep] = useState(0);
 
   // Track swap revealed on mount
   useEffect(() => {
@@ -3325,8 +3399,7 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
 
   // Track phase transitions
   useEffect(() => {
-    if (phase === "crossroads") trackEvent?.("bible_crossroads_shown", { restaurant: restaurantName, calories_saved: savings });
-    if (phase === "bridge") trackEvent?.("bible_bridge_shown", { restaurant: restaurantName, calories_saved: savings });
+    if (phase === "generating") trackEvent?.("bible_generating_shown", { restaurant: restaurantName, calories_saved: savings });
   }, [phase]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Derived math (safe defaults for early phases)
@@ -3355,11 +3428,6 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
     return `${i === 0 ? "M" : "L"}${x},${y}`;
   }).join(" ");
 
-  // Multiplier math for crossroads
-  const avgRestaurants = 4;
-  const multipliedCalPerWeek = calSavedPerWeek * avgRestaurants;
-  const multipliedLbsPerWeek = (lbsPerWeekNum * avgRestaurants).toFixed(1);
-
   // Weight form validation
   const canContinueWeight = currentWeight !== null && goalWeight !== null && currentWeight > goalWeight && (currentWeight - goalWeight) <= 150 && currentWeight >= 1 && goalWeight >= 1;
 
@@ -3368,36 +3436,34 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
     setter(stripped === "" ? null : parseInt(stripped, 10));
   };
 
-  // Generating screen progress + send email at 100%
+  // Generating phase: bar fills → checkmark → card slides up → bridge lines stagger in
   useEffect(() => {
     if (phase !== "generating") return;
-    const startedAt = Date.now();
-    let emailFired = false;
-    const timer = window.setInterval(() => {
-      const elapsed = Date.now() - startedAt;
-      const pct = Math.min(100, Math.round((elapsed / REPORT_DURATION_MS) * 100));
-      setGenProgress(pct);
-      if (pct >= 100) {
-        window.clearInterval(timer);
-        setGenComplete(true);
-        // Send email when progress bar completes
-        if (!emailFired && email.includes("@")) {
-          emailFired = true;
-          fetch("/api/send-swap-plan", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email, currentWeight: cw, goalWeight: gw,
-              calSavedPerOrder: savings, lbsPerWeek: lbsPerWeekNum, weeksToGoal,
-              targetDate: targetDateStr, ordersPerWeek, swapName, restaurantName,
-              source: "Fast Food Bible",
-            }),
-          }).catch(() => { /* best-effort */ });
-        }
-      }
-    }, 120);
-    return () => window.clearInterval(timer);
-  }, [phase, email, cw, gw, savings, lbsPerWeekNum, weeksToGoal, targetDateStr, ordersPerWeek, swapName, restaurantName]);
+    // Fire email immediately when generating starts
+    if (email.includes("@")) {
+      fetch("/api/send-swap-plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email, currentWeight: cw, goalWeight: gw,
+          calSavedPerOrder: savings, lbsPerWeek: lbsPerWeekNum, weeksToGoal,
+          targetDate: targetDateStr, ordersPerWeek, swapName, restaurantName,
+          source: "Fast Food Bible",
+        }),
+      }).catch(() => { /* best-effort */ });
+    }
+    // Step 1: bar fills
+    const t1 = setTimeout(() => setBarDone(true), PROGRESS_FILL_MS);
+    // Step 2: card slides up and disappears (after checkmark pause)
+    const t2 = setTimeout(() => setCardGone(true), PROGRESS_FILL_MS + CHECKMARK_PAUSE_MS + 400);
+    // Step 3: bridge lines stagger in
+    const bridgeStart = PROGRESS_FILL_MS + CHECKMARK_PAUSE_MS + 900;
+    const timers: ReturnType<typeof setTimeout>[] = [t1, t2];
+    for (let i = 1; i <= 5; i++) {
+      timers.push(setTimeout(() => setBridgeStep(i), bridgeStart + (i - 1) * BRIDGE_STAGGER_MS));
+    }
+    return () => timers.forEach(clearTimeout);
+  }, [phase]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (savings <= 0) return null;
 
@@ -3406,8 +3472,9 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
     if (capturedEmailRef) capturedEmailRef.current = email;
     try { sessionStorage.setItem("bb_email", email); } catch {}
     trackEvent?.("bible_email_captured", { email, restaurant: restaurantName, calories_saved: savings });
-    setGenProgress(0);
-    setGenComplete(false);
+    setBarDone(false);
+    setCardGone(false);
+    setBridgeStep(0);
     setPhase("generating");
   };
 
@@ -3429,7 +3496,7 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
               <motion.div key="weight" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                <button onClick={() => setPhase("savings")}
+                <button onClick={() => onBackFromWeight ? onBackFromWeight() : setPhase("savings")}
                   className="flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-6">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -3490,17 +3557,17 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
               Back
             </button>
 
-            {/* Headline */}
+            {/* Headline — biggest element on screen */}
             <div className="text-center mb-6">
               <motion.h2 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.5 }}
-                className="text-2xl font-bold text-white">
-                You&apos;ll hit your goal weight of{" "}
+                className="text-3xl sm:text-4xl font-extrabold leading-tight text-white">
+                You&apos;ll hit{" "}
                 <span className="text-emerald-400">{gw} lbs</span> by{" "}
                 <span className="text-emerald-400">{targetDateStr}</span>
               </motion.h2>
               <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}
-                className="text-sm text-zinc-500 mt-2">
-                Just from changing your current order at {restaurantName}, {ordersPerWeek}x/week
+                className="mt-2 text-sm text-zinc-400">
+                Without giving up your love for <span className="text-emerald-400">{restaurantName}</span>.
               </motion.p>
             </div>
 
@@ -3528,39 +3595,6 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
               </svg>
             </motion.div>
 
-            {/* Frequency toggle */}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }}
-              className="flex items-center justify-center gap-3 mb-4">
-              <span className="text-xs text-zinc-500">Orders per week:</span>
-              <div className="flex gap-1">
-                {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-                  <button key={n} onClick={() => { trackEvent?.("bible_frequency_change", { restaurant: restaurantName, old_freq: ordersPerWeek, new_freq: n }); setOrdersPerWeek(n); }}
-                    className={`h-8 w-8 rounded-lg text-xs font-bold transition-all ${ordersPerWeek === n ? "bg-emerald-500 text-black" : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"}`}>
-                    {n}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Stats row */}
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.2 }}
-              className="flex justify-center gap-6 mb-8 text-center">
-              <div>
-                <p className="text-lg font-bold text-white">{weeksToGoal}</p>
-                <p className="text-xs text-zinc-500">weeks</p>
-              </div>
-              <div className="w-px bg-zinc-800" />
-              <div>
-                <p className="text-lg font-bold text-white">{lbsPerWeek}</p>
-                <p className="text-xs text-zinc-500">lbs/week</p>
-              </div>
-              <div className="w-px bg-zinc-800" />
-              <div>
-                <p className="text-lg font-bold text-emerald-400">{weightToLose}</p>
-                <p className="text-xs text-zinc-500">lbs total</p>
-              </div>
-            </motion.div>
-
             {/* Email capture */}
             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.5 }}>
               <p className="text-center text-sm text-zinc-400 mb-4">
@@ -3580,299 +3614,131 @@ function SwapSavingsCard({ savings, restaurantName, swapName, onSwapComplete, on
           </motion.div>
         )}
 
-        {/* ─── Phase 4: Generating report ─── */}
+        {/* ─── Phase 4: Generating — fast bar → checkmark → bridge to concierge ─── */}
         {phase === "generating" && (
-          <motion.div key="generating" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
+          <motion.div key="generating" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}
+            className="flex flex-col items-center justify-center min-h-[70vh] text-center px-2">
 
-            {/* Report card with progress + checklist */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="rounded-2xl border border-emerald-500/25 bg-emerald-500/5 p-6 mb-5"
-            >
-              {!genComplete ? (
-                <>
-                  <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-2">Building your plan</p>
-                  <h2 className="text-xl font-bold text-white mb-1">Crunching the numbers on your {restaurantName} swap</h2>
-                  <p className="text-sm text-zinc-500 mb-5">
-                    {email ? `We'll send this to ${email}` : "Hang tight"}
+            {/* Progress card — fills → checkmark → slides up */}
+            <AnimatePresence>
+              {!cardGone && (
+                <motion.div
+                  exit={{ opacity: 0, y: -40, height: 0, marginBottom: 0, padding: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="w-full rounded-2xl border border-emerald-500/25 bg-emerald-500/5 p-5 mb-6 overflow-hidden"
+                >
+                  <h2 className="text-lg font-bold text-white mb-1">
+                    Crunching the numbers on your {restaurantName} swap
+                  </h2>
+                  <p className="text-sm text-zinc-500 mb-3">
+                    {email ? `Sending to ${email}` : "Hang tight"}
                   </p>
-
-                  {/* Progress bar */}
-                  <div className="mb-5">
+                  {!barDone ? (
                     <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
                       <motion.div
                         className="h-full rounded-full bg-emerald-500"
-                        animate={{ width: `${genProgress}%` }}
-                        transition={{ type: "spring", stiffness: 80, damping: 20 }}
+                        initial={{ width: "0%" }}
+                        animate={{ width: "100%" }}
+                        transition={{ duration: PROGRESS_FILL_MS / 1000, ease: "easeOut" }}
                       />
                     </div>
-                  </div>
-
-                  {/* Checklist steps */}
-                  <div className="space-y-3">
-                    {REPORT_STEPS.map((step) => {
-                      const done = genProgress >= step.threshold;
-                      return (
-                        <motion.div
-                          key={step.label}
-                          initial={{ opacity: 0.4 }}
-                          animate={{ opacity: done ? 1 : 0.4 }}
-                          className="flex items-center gap-3"
-                        >
-                          {done ? (
-                            <motion.div
-                              initial={{ scale: 0 }}
-                              animate={{ scale: 1 }}
-                              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                              className="h-5 w-5 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0"
-                            >
-                              <svg className="h-3 w-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                              </svg>
-                            </motion.div>
-                          ) : (
-                            <div className="h-5 w-5 rounded-full border border-zinc-700 flex-shrink-0" />
-                          )}
-                          <span className={`text-sm ${done ? "text-zinc-200" : "text-zinc-600"} transition-colors`}>
-                            {step.label}
-                          </span>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                </>
-              ) : (
-                /* Plan ready state */
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                  className="text-center py-2"
-                >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                    className="h-12 w-12 rounded-full bg-emerald-500 flex items-center justify-center mx-auto mb-4"
-                  >
-                    <svg className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </motion.div>
-                  <h2 className="text-2xl font-bold text-emerald-400 mb-2">Your plan is ready</h2>
-                  <p className="text-sm text-zinc-500 mb-5">
-                    {email ? `Also sent to ${email}` : "See your personalized results"}
-                  </p>
-                  <motion.button
-                    whileTap={{ scale: 0.97 }}
-                    onClick={() => setPhase("crossroads")}
-                    className="w-full rounded-2xl bg-emerald-500 px-8 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400"
-                  >
-                    See My Swap Plan
-                  </motion.button>
-                </motion.div>
-              )}
-            </motion.div>
-
-            {/* Content blocks — all visible from start, content fades in at staggered thresholds */}
-            {GENERATING_BLOCKS.map((block) => {
-              const active = genProgress >= block.threshold;
-              return (
-                <motion.div
-                  key={block.label}
-                  initial={{ opacity: 0.15 }}
-                  animate={{ opacity: active ? 1 : 0.15 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 mb-4"
-                >
-                  <p className={`text-[11px] uppercase tracking-[0.2em] mb-3 transition-colors duration-500 ${active ? "text-zinc-400" : "text-zinc-700"}`}>{block.label}</p>
-                  {"bullets" in block && block.bullets ? (
-                    <div className="space-y-2">
-                      {block.bullets.map((line) => (
-                        <p key={line} className={`text-base leading-relaxed transition-colors duration-500 ${active ? "text-zinc-200" : "text-zinc-800"}`}>{line}</p>
-                      ))}
-                    </div>
                   ) : (
-                    <p className={`text-lg leading-snug transition-colors duration-500 ${active ? "text-zinc-200" : "text-zinc-800"}`}>{"copy" in block ? block.copy : ""}</p>
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="flex justify-center"
+                    >
+                      <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </div>
+                    </motion.div>
                   )}
                 </motion.div>
-              );
-            })}
-
-          </motion.div>
-        )}
-
-        {/* ─── Phase 5: Crossroads ─── */}
-        {phase === "crossroads" && (
-          <motion.div key="crossroads" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-            <button onClick={() => setPhase("projection")}
-              className="flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-4">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-              Back to results
-            </button>
-
-            {/* Completion */}
-            <div className="text-center mb-6">
-              <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                className="h-14 w-14 rounded-full bg-emerald-500 flex items-center justify-center mx-auto mb-4">
-                <svg className="h-7 w-7 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </motion.div>
-              <h2 className="text-xl font-bold text-white">Your swap plan is on its way</h2>
-              <p className="text-sm text-zinc-500 mt-1">Check your inbox</p>
-            </div>
-
-            {/* Session recap */}
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-              className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 mb-4">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs text-zinc-500 uppercase tracking-wider">Your session</span>
-                <span className="text-xs text-emerald-400 font-bold">1 swap</span>
-              </div>
-              <div className="flex items-center justify-between py-1.5">
-                <span className="text-sm text-zinc-300">{restaurantName} — {swapName || "Lean Swap"}</span>
-                <span className="text-sm font-bold text-emerald-400 tabular-nums">-{savings} cal</span>
-              </div>
-              <div className="border-t border-zinc-800 mt-2 pt-2 flex items-center justify-between">
-                <span className="text-sm font-semibold text-white">Total saved per order</span>
-                <span className="text-lg font-bold text-emerald-400 tabular-nums">{savings} cal</span>
-              </div>
-              <div className="flex items-center justify-between mt-1">
-                <span className="text-xs text-zinc-500">That&apos;s {lbsPerWeek} lbs/week</span>
-                <span className="text-xs text-zinc-500">Goal by {targetDateStr}</span>
-              </div>
-            </motion.div>
-
-            {/* Multiplier */}
-            <motion.div initial={{ opacity: 0, y: 15, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 0.8, type: "spring", stiffness: 200, damping: 25 }}
-              className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 mb-6 text-center">
-              <p className="text-sm text-zinc-400 mb-2">
-                That was <span className="text-white font-semibold">1 restaurant</span>.
-              </p>
-              <p className="text-sm text-zinc-400 mb-4">
-                Most people order from <span className="text-white font-semibold">4 different spots</span> every week.
-              </p>
-              <p className="text-xs text-zinc-500 uppercase tracking-wider mb-2">If you optimized all of them...</p>
-              <div className="flex justify-center gap-6">
-                <div>
-                  <p className="text-2xl font-bold text-emerald-400 tabular-nums">{multipliedCalPerWeek.toLocaleString()}</p>
-                  <p className="text-xs text-zinc-500">cal/week</p>
-                </div>
-                <div className="w-px bg-zinc-800" />
-                <div>
-                  <p className="text-2xl font-bold text-emerald-400">{multipliedLbsPerWeek}</p>
-                  <p className="text-xs text-zinc-500">lbs/week</p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* 3 CTAs */}
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.5 }}
-              className="space-y-3">
-              <motion.button whileTap={{ scale: 0.97 }} onClick={() => { trackEvent?.("bible_crossroads_concierge", { restaurant: restaurantName, calories_saved: savings }); setPhase("bridge"); }}
-                className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400 flex items-center justify-center gap-2">
-                <span>Want this done for everything you eat?</span>
-                <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
-              </motion.button>
-
-              {onSwapComplete && (
-                <motion.button whileTap={{ scale: 0.97 }}
-                  onClick={() => { trackEvent?.("bible_crossroads_keep_swapping", { restaurant: restaurantName, calories_saved: savings }); onSwapComplete(restaurantName, swapName || "Swap", savings); }}
-                  className="w-full rounded-2xl border-2 border-emerald-500/30 bg-emerald-500/5 px-6 py-4 text-sm font-medium text-emerald-400 transition-all hover:border-emerald-500/50 hover:bg-emerald-500/10">
-                  Find your next swap
-                </motion.button>
               )}
+            </AnimatePresence>
 
-              <motion.button whileTap={{ scale: 0.97 }} onClick={() => { trackEvent?.("bible_crossroads_vsl", { restaurant: restaurantName, calories_saved: savings }); nav("/vsl?from=bible"); }}
-                className="w-full rounded-2xl border border-zinc-800 px-6 py-3.5 text-sm text-zinc-400 transition-all hover:border-zinc-600 hover:text-zinc-300 flex items-center justify-center gap-2">
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                See why this works
-              </motion.button>
+            {/* Bridge content — staggers in with pauses */}
 
-              <button onClick={() => { trackEvent?.("bible_crossroads_keep_swapping", { restaurant: restaurantName, calories_saved: savings }); if (onSwapComplete) onSwapComplete(restaurantName, swapName || "Swap", savings); }}
-                className="w-full text-center text-sm text-zinc-600 hover:text-zinc-400 transition-colors py-2">
-                Done for now
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-
-        {/* ── Bridge Screen ── */}
-        {phase === "bridge" && (
-          <motion.div key="bridge" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="flex flex-col items-center justify-center min-h-[70vh] text-center px-2">
-
-            {/* Layer 1: Personalized anchor — what just happened */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+            {/* Line 1: Personalized anchor */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: bridgeStep >= 1 ? 1 : 0, y: bridgeStep >= 1 ? 0 : 20 }}
+              transition={{ duration: 0.5 }}
+            >
               <p className="text-xs text-zinc-500 uppercase tracking-[0.25em] mb-3">Just now</p>
-              <p className="text-4xl sm:text-5xl font-extrabold text-emerald-400 tabular-nums">{savings} calories</p>
+              <p className="text-4xl sm:text-5xl font-extrabold text-emerald-400 tabular-nums">
+                {lbsPerWeek} lbs
+              </p>
               <p className="text-lg text-zinc-400 mt-2">
-                saved at <span className="text-white font-semibold">{restaurantName}</span>
+                of fat per week from{" "}
+                <span className="text-white font-semibold">1 restaurant swap</span>
               </p>
             </motion.div>
 
-            {/* Divider */}
-            <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.8, duration: 0.6 }}
-              className="w-12 h-px bg-zinc-700 my-8" />
-
-            {/* Layer 2: Small reframe — one meal */}
-            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }}
-              className="max-w-sm">
+            {/* Line 2: Bridge reframe */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: bridgeStep >= 2 ? 1 : 0, y: bridgeStep >= 2 ? 0 : 15 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-sm mt-8"
+            >
               <p className="text-xl sm:text-2xl font-bold text-white leading-snug">
                 That was one meal.
               </p>
               <p className="text-xl sm:text-2xl text-zinc-400 mt-2 leading-snug">
-                At one restaurant.
+                You probably order from 3 or 4 spots a week.
               </p>
             </motion.div>
 
-            {/* Layer 3: Expand to all restaurants — still grounded */}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }}
-              className="mt-8 max-w-sm">
-              <p className="text-base text-zinc-400">
-                Now imagine we did that for <span className="text-white font-semibold">every place you order from.</span>
-              </p>
-            </motion.div>
+            {/* Line 3: Scale expand */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: bridgeStep >= 3 ? 1 : 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-base text-zinc-400 mt-8 max-w-sm"
+            >
+              Now imagine we did that for{" "}
+              <span className="text-white font-semibold">every restaurant, every snack, every grocery run.</span>
+            </motion.p>
 
-            {/* Layer 4: Vision cascade — "what if" questions that escalate */}
-            <div className="mt-10 max-w-sm space-y-5">
-              {[
-                { delay: 3.2, text: "What if every snack in your drawer was already optimized?" },
-                { delay: 4.0, text: "What if your groceries showed up every Sunday, already swapped?" },
-                { delay: 4.8, text: "What if you landed in a new city and your restaurants were already mapped?" },
-                { delay: 5.6, text: "What if all you had to do was eat, and the pounds just melted off?" },
-              ].map((item, i) => (
-                <motion.p key={i} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: item.delay, duration: 0.5 }}
-                  className={`text-sm sm:text-base leading-relaxed ${i === 3 ? "text-emerald-400 font-semibold text-base sm:text-lg mt-8" : "text-zinc-300"}`}>
-                  {item.text}
-                </motion.p>
-              ))}
-            </div>
+            {/* Line 4: Killer line */}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: bridgeStep >= 4 ? 1 : 0, y: bridgeStep >= 4 ? 0 : 12 }}
+              transition={{ duration: 0.5 }}
+              className="text-base sm:text-lg text-emerald-400 font-semibold leading-relaxed mt-8 max-w-sm"
+            >
+              What if all you had to do was eat — and the weight just came off?
+            </motion.p>
 
-            {/* CTA */}
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 6.6 }}
-              className="mt-12 w-full max-w-sm space-y-3">
-              <motion.button whileTap={{ scale: 0.97 }} onClick={() => { trackEvent?.("bible_bridge_concierge", { restaurant: restaurantName, calories_saved: savings }); nav("/concierge?from=bible"); }}
-                className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400 flex items-center justify-center gap-2">
+            {/* Line 5: CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: bridgeStep >= 5 ? 1 : 0, y: bridgeStep >= 5 ? 0 : 10 }}
+              transition={{ duration: 0.4 }}
+              className="mt-10 w-full max-w-sm space-y-3"
+            >
+              <motion.button
+                whileTap={{ scale: 0.97 }}
+                onClick={() => { trackEvent?.("bible_bridge_concierge", { restaurant: restaurantName, calories_saved: savings }); nav("/concierge?from=bible"); }}
+                className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400 flex items-center justify-center gap-2"
+              >
                 <span>See how it works</span>
                 <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
               </motion.button>
-              <button onClick={() => { trackEvent?.("bible_bridge_back", { restaurant: restaurantName }); setPhase("crossroads"); }}
-                className="w-full text-center text-sm text-zinc-600 hover:text-zinc-400 transition-colors py-2">
-                Back to swaps
-              </button>
+              {onSwapComplete && (
+                <button
+                  onClick={() => { trackEvent?.("bible_bridge_keep_swapping", { restaurant: restaurantName, calories_saved: savings }); onSwapComplete(restaurantName, swapName || "Swap", savings); }}
+                  className="w-full text-center text-sm text-zinc-600 hover:text-zinc-400 transition-colors py-2"
+                >
+                  Keep exploring swaps
+                </button>
+              )}
             </motion.div>
+
           </motion.div>
         )}
       </AnimatePresence>

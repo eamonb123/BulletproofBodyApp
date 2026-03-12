@@ -1,0 +1,54 @@
+{
+  "position": 11,
+  "url": "https://www.instagram.com/p/DUd4fxpkQUW/",
+  "shortcode": "DUd4fxpkQUW",
+  "creator": "@sethgolie",
+  "views": 7178,
+  "likes": 361,
+  "duration": 33.8,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving, you wanna go to Chick-fil-A? Yeah, let me get the grilled chicken cool wrap with the light Italian dressing. Let's add a five-piece grilled nugget with the buffalo sauce and a Coke Zero. Okay, that sounds good, but I kinda want a sandwich. Yeah, a sandwich, let's just get the grilled chicken sandwich with a side of fruit cup and then a Coke Zero. Oh, nice. Well, what if we went there for breakfast? Yeah, breakfast, let's go ahead and get the egg white grill with a Greek yogurt parfait, no granola, and a black coffee. Man, that's awesome. How do you always know what to order? The MenuFit app is gonna give you the best order at every restaurant to help you stay on track with your fitness goals. Well, I'm gonna download the Menufit app right now.",
+  "caption": "Comment \"FASTFOOD\" for my FREE fast food cheat sheet. Steal these 3 Chick-Fil-A order swaps: Grilled Chicken Cool Wrap + 5ct Grilled Nuggets + Buffalo sauce + Light Italian Dressing + Coke Zero = 680 calories | 59g protein. Grilled Chicken Sandwich + Fruit Cup + Unsweet Iced Tea = 530 calories | 32g protein. Egg White Grill + Greek Yogurt Parfait (no granola) + Black Coffee = 480 calories | 42g protein.",
+  "ocr_summary": "Swap 1: 1,210 cal/46g protein (original) vs 680 cal/59g protein (swap). Swap 2: 1,240 cal/35g protein (original) vs 530 cal/32g protein (swap). Swap 3: 1,030 cal/29g protein (original) vs 480 cal/42g protein (swap)",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Typical Chick-fil-A lunch order",
+        "original_calories": 1210,
+        "original_protein": 46,
+        "swap_meal": "Grilled Chicken Cool Wrap + 5ct Grilled Nuggets + Buffalo sauce + Light Italian Dressing + Coke Zero",
+        "swap_calories": 680,
+        "swap_protein": 59,
+        "swap_ingredients": ["Grilled Chicken Cool Wrap", "5ct Grilled Nuggets", "Buffalo sauce", "Light Italian Dressing", "Coke Zero"],
+        "is_swap": true,
+        "category": "wrap"
+      },
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Typical Chick-fil-A sandwich order",
+        "original_calories": 1240,
+        "original_protein": 35,
+        "swap_meal": "Grilled Chicken Sandwich + Fruit Cup + Unsweet Iced Tea",
+        "swap_calories": 530,
+        "swap_protein": 32,
+        "swap_ingredients": ["Grilled Chicken Sandwich", "Fruit Cup", "Unsweet Iced Tea"],
+        "is_swap": true,
+        "category": "sandwich"
+      },
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Typical Chick-fil-A breakfast order",
+        "original_calories": 1030,
+        "original_protein": 29,
+        "swap_meal": "Egg White Grill + Greek Yogurt Parfait (no granola) + Black Coffee",
+        "swap_calories": 480,
+        "swap_protein": 42,
+        "swap_ingredients": ["Egg White Grill", "Greek Yogurt Parfait (no granola)", "Black Coffee"],
+        "is_swap": true,
+        "category": "breakfast"
+      }
+    ],
+    "notes": "Three Chick-fil-A swaps covering lunch (wrap), lunch (sandwich), and breakfast. All same restaurant, different dayparts. Also promotes MenuFit app."
+  }
+}

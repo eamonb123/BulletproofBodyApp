@@ -1,0 +1,42 @@
+{
+  "position": 18,
+  "url": "https://www.instagram.com/p/DT1OsA0EVyE/",
+  "shortcode": "DT1OsA0EVyE",
+  "creator": "@sethgolie",
+  "views": 26095,
+  "likes": 1027,
+  "duration": 28.7,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I'm starving. You want to go to Texas Roadhouse? Y'all get the eight ounce sirloin with a side salad with light ranch and steamed broccoli and a Coke Zero. Oh, shit. I didn't know you could order like that. What if we went to Olive Garden instead, though? Y'all get the grilled chicken margarita. We'll do salad with the light dressing, steamed broccoli, and a Diet Coke. Wow, that's awesome. How did you even know how to order that? The MenuFit app's going to tell you what to eat at every restaurant so you guys can stay fit and continue eating out. Shit, I'm going to download the MenuFit app right now.",
+  "caption": "Now you can eat OUT & stay FIT with the @menufit.app\n\nSteal these two orders on your next date night\n\nTexas Roadhouse: Fit order\n8 oz sirloin + steamed broccoli + side salad with light ranch on the side + Coke Zero\n(670 calories 70 G protein)\nOptional add 1 roll for 80 calories\n\nOlive Garden: Fit order\nGrilled chicken margarita + steamed broccoli (no potatoes) + salad with light dressing on the side + Diet Coke\n(590 calories 52 G protein)\n\nSend this to all your FIT friends\n\nFollow @sethgolie for high protein meal swaps",
+  "ocr_summary": "Texas Roadhouse: 2500 cal / 115g protein (original) vs 670 cal / 70g protein (swap). Olive Garden: 2300 cal / 75g protein (original) vs 590 cal / 52g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Texas Roadhouse",
+        "original_meal": "Typical Texas Roadhouse dinner order",
+        "original_calories": 2500,
+        "original_protein": 115,
+        "swap_meal": "8 oz sirloin + steamed broccoli + side salad with light ranch on the side + Coke Zero",
+        "swap_calories": 670,
+        "swap_protein": 70,
+        "swap_ingredients": ["8 oz sirloin", "steamed broccoli", "side salad", "light ranch", "Coke Zero"],
+        "is_swap": true,
+        "category": "sit_down_restaurant"
+      },
+      {
+        "restaurant_name": "Olive Garden",
+        "original_meal": "Typical Olive Garden dinner order",
+        "original_calories": 2300,
+        "original_protein": 75,
+        "swap_meal": "Grilled chicken margarita + steamed broccoli (no potatoes) + salad with light dressing on the side + Diet Coke",
+        "swap_calories": 590,
+        "swap_protein": 52,
+        "swap_ingredients": ["grilled chicken margarita", "steamed broccoli", "salad", "light dressing", "Diet Coke"],
+        "is_swap": true,
+        "category": "sit_down_restaurant"
+      }
+    ],
+    "notes": "Two sit-down restaurant date night swaps. Texas Roadhouse saves 1830 cal, Olive Garden saves 1710 cal. Also promotes MenuFit app. Optional roll add-on mentioned (80 cal)."
+  }
+}

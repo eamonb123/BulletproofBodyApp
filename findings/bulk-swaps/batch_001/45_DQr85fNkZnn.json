@@ -1,0 +1,30 @@
+{
+  "position": 45,
+  "url": "https://www.instagram.com/p/DQr85fNkZnn/",
+  "shortcode": "DQr85fNkZnn",
+  "creator": "@sethgolie",
+  "views": 7220,
+  "likes": 182,
+  "duration": 15.633,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, let's go to the Cheesecake Factory. Yeah man, I'll get the Skinnylicious Grilled Salmon with Steamed Broccoli, a Side House Salad, no Croutons, light dressing, and a Coke Zero. Man, I would've never thought to order that. Dude, you aren't following Seth G. yet? I'm gonna follow Seth G. right now.",
+  "caption": "You're not fat because you eat out, you're fat because how you order. Order this at The Cheesecake Factory: SkinnyLicious Grilled Salmon + Steamed Broccoli + Side House Salad - No Croutons, Light Vinaigrette + Diet Coke (790 calories 50 G protein). This order will save you well over 1000 calories and keep you on track with your fitness journey. Follow @sethgolie for restaurant swaps.",
+  "ocr_summary": "4010 CALORIES vs 790 CALORIES, 94G PROTEIN vs 50G PROTEIN",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "The Cheesecake Factory",
+        "original_meal": "Standard Cheesecake Factory meal",
+        "original_calories": 4010,
+        "original_protein": 94,
+        "swap_meal": "SkinnyLicious Grilled Salmon + Steamed Broccoli + Side House Salad (no croutons, light vinaigrette) + Coke Zero",
+        "swap_calories": 790,
+        "swap_protein": 50,
+        "swap_ingredients": ["SkinnyLicious Grilled Salmon", "steamed broccoli", "house salad", "light vinaigrette", "Coke Zero"],
+        "is_swap": true,
+        "category": "casual_dining"
+      }
+    ],
+    "notes": "Single swap. Saves over 3200 calories. Same skit format as other sethgolie reels. The Cheesecake Factory is known for extremely high calorie meals."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "position": 34,
+  "url": "https://www.instagram.com/p/DSakbkUEeSZ/",
+  "shortcode": "DSakbkUEeSZ",
+  "transcript": "Hey bro, you wanna go to Carl's Jr. for lunch? Yeah man, I'm down. I'll just get the charbroiled chicken club, no bacon or sauce. Let's go ahead and do a side salad with the light balsamic and a Diet Coke. Dang, where did you learn to order like that? You must not be following Seth G. I'm gonna make sure to follow Seth G right now.",
+  "caption": "Comment \u201cFASTFOOD\u201d for my fast food swaps cheat sheet\n\nCarl's Jr order this: Charbroil chicken club, no bacon or sauce, side salad with light balsamic & a Diet Coke (440 calories 33 G protein)\n\nThis order will save you well over 1000 cal and keep you on track on your fitness journey",
+  "ocr_text": "Carls Jr 2310 CALORIES 69 G PROTEIN 440 CALORIES 33 G PROTEIN",
+  "visual_scenes": "Two men in studio with Carl's Jr branding. Comparing standard order (2310 cal) vs swap (440 cal). Animated poses and gestures. Profile card CTA at end.",
+  "creator": "@sethgolie",
+  "views": 6041,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "parsed": {
+    "restaurant_name": "Carl's Jr.",
+    "original_meal": "Standard Carl's Jr. combo meal",
+    "original_calories": 2310,
+    "swap_meal": "Charbroiled Chicken Club no bacon no sauce, side salad with light balsamic, Diet Coke",
+    "swap_calories": 440,
+    "swap_ingredients": ["charbroiled chicken club", "side salad", "light balsamic", "diet coke"],
+    "is_swap": true,
+    "category": "sandwich",
+    "notes": "Single restaurant swap. Saves 1870 calories. 440 cal, 33g protein."
+  }
+}

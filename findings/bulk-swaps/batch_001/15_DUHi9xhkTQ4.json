@@ -1,0 +1,30 @@
+{
+  "position": 15,
+  "url": "https://www.instagram.com/p/DUHi9xhkTQ4/",
+  "shortcode": "DUHi9xhkTQ4",
+  "creator": "@sethgolie",
+  "views": 8151,
+  "likes": 263,
+  "duration": 19.389,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You wanna go to Popeyes for lunch? Yeah, man, I'll get the five-piece blackened chicken tenders and then some green beans and a Coke Zero. Oh, wow, I would have never thought to order like that. Yeah, I've actually lost 20 pounds making food swaps like this. Damn, that's awesome. I got 20 pounds to lose myself. Where'd you learn that? My coach, Seth G, taught me everything he knows about fat loss. I'm gonna make sure to follow Seth G right now.",
+  "caption": "Comment FASTFOOD for my FREE fast food swap cheat sheet. Next time you're at Popeyes order this: 5 blackened chicken tenders + green beans + Coke Zero (338 calories 45G protein). This order saves you well over 1000 calories and keeps you on track with your fitness journey. Follow @sethgolie for fast food swaps.",
+  "ocr_summary": "Popeyes: 1570 cal / 53g protein -> 338 cal / 45g protein",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Popeyes",
+        "original_meal": "Standard Popeyes meal (fried chicken, biscuit, fries, regular drink)",
+        "original_calories": 1570,
+        "original_protein": 53,
+        "swap_meal": "5 blackened chicken tenders + green beans + Coke Zero",
+        "swap_calories": 338,
+        "swap_protein": 45,
+        "swap_ingredients": ["5 blackened chicken tenders", "green beans", "Coke Zero"],
+        "is_swap": true,
+        "category": "chicken"
+      }
+    ],
+    "notes": "Single restaurant swap (Popeyes only). Same skit format and same creator as positions 12-14. Caption says 338 cal but transcript says 5-piece (caption says 5 as well)."
+  }
+}

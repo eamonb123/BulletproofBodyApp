@@ -1712,19 +1712,20 @@ function CompareScreen({
         Back
       </button>
 
-      {/* Title */}
+      {/* Title — pre-reveal: hook question. Post-reveal: money line */}
       <div className="mb-4 sm:mb-8 text-center">
         {!swapRevealed ? (
-          <h1 className="text-lg font-bold leading-tight sm:text-3xl">
-            Lose fat without giving up your favorite guilty pleasures.
+          <h1 className="text-xl font-bold leading-tight sm:text-3xl text-white">
+            What if you could lose fat without giving up <span className="text-emerald-400">{brandName}?</span>
           </h1>
         ) : (
           <motion.h1
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-lg font-bold leading-tight sm:text-3xl"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring" }}
+            className="text-xl font-bold leading-tight sm:text-3xl text-white"
           >
-            Lose fat without giving up your favorite guilty pleasures.
+            Same taste. <span className="text-emerald-400">{pctFewer}% fewer calories.</span>
           </motion.h1>
         )}
       </div>
@@ -1852,15 +1853,6 @@ function CompareScreen({
             transition={{ delay: 0.3 }}
             className="text-center"
           >
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="mt-5 sm:mt-8 text-xl sm:text-3xl font-extrabold text-white"
-            >
-              Same taste. <span className="text-emerald-400">{pctFewer}% fewer calories.</span>
-            </motion.p>
-
             <motion.button
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}

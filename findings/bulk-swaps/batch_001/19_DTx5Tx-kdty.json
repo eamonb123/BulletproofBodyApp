@@ -1,0 +1,42 @@
+{
+  "position": 19,
+  "url": "https://www.instagram.com/p/DTx5Tx-kdty/",
+  "shortcode": "DTx5Tx-kdty",
+  "creator": "@sethgolie",
+  "views": 7424,
+  "likes": 239,
+  "duration": 23.933,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I'm starving. You wanna go to Jersey Mike's? Yeah bro, I'll just get the club sub in a bowl, extra meat, all the veggies, and a Coke Zero. Okay, cool. What if we went to Jimmy John's instead though? Yeah, let me get the number four turkey unwich, extra meat, all the veggies, mustard, and a Coke Zero. Bro, how do you always know what to order? The MenuFit app's gonna let you know what to order at every restaurant so you can stay fit and eat out. Shit, I'm gonna download the MenuFit app right now.",
+  "caption": "With the @menufit.app you can stay FIT & still eat out\n\nSteal these two orders to stay on track\n\nJersey Mike's\nClub Sub in a Bowl (Lettuce Base)\nExtra Meat\nAll Veggies\nLight Italian or Vinegar/Oil\nCoke Zero\n(620 calories 50g protein)\n\nJimmy John's\n#4 Turkey Tom Unwich\nDouble Meat\nMustard, Veggies\nCoke Zero\n(490 calories 46g protein)",
+  "ocr_summary": "Jersey Mike's: 1700 cal / 70g protein (original) vs 620 cal / 50g protein (swap). Jimmy John's: 1450 cal / 46g protein (original) vs 490 cal / 46g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Jersey Mike's",
+        "original_meal": "Typical Jersey Mike's sub order with chips",
+        "original_calories": 1700,
+        "original_protein": 70,
+        "swap_meal": "Club Sub in a Bowl (Lettuce Base) + extra meat + all veggies + light Italian or vinegar/oil + Coke Zero",
+        "swap_calories": 620,
+        "swap_protein": 50,
+        "swap_ingredients": ["club sub in a bowl", "lettuce base", "extra meat", "all veggies", "light Italian dressing", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_casual"
+      },
+      {
+        "restaurant_name": "Jimmy John's",
+        "original_meal": "Typical Jimmy John's sandwich order with chips",
+        "original_calories": 1450,
+        "original_protein": 46,
+        "swap_meal": "#4 Turkey Tom Unwich + double meat + mustard + veggies + Coke Zero",
+        "swap_calories": 490,
+        "swap_protein": 46,
+        "swap_ingredients": ["Turkey Tom Unwich", "double meat", "mustard", "veggies", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_casual"
+      }
+    ],
+    "notes": "Two sub/sandwich shop swaps. Jersey Mike's saves 1080 cal, Jimmy John's saves 960 cal. Both use lettuce wrap/bowl strategy to cut bread calories. Jimmy John's swap maintains same 46g protein as original. Also promotes MenuFit app."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "position": 54,
+  "url": "https://www.instagram.com/p/C126ZgwMAkH/",
+  "shortcode": "C126ZgwMAkH",
+  "creator": "@cheatdaydesign",
+  "views": 0,
+  "likes": -1,
+  "duration": 0,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "",
+  "caption": "Swipe through for the entire @subway menu!\n\nI wanted to create graphics highlighting high protein and low calorie options, since those are two of the main reasons people get Subway.\n\nBut when ya swipe, you'll also find all the sandwiches, wraps, and bread/sauce options.\n\nIt wasn't until making these guides that I learned that bowls and salads are almost exactly the same, except the amount of meat and veggies is swapped. In other words, bowls give you more meat/protein, salads give you more veggies and fewer calories.\n\nThe more you know\n-\n#subwaysandwich #healthyfastfood #macrofriendly #trackingmacros",
+  "ocr_summary": "Full Subway menu nutrition breakdown across 6 slides: high protein options under 700cal, low calorie options under 350cal, classic sandwiches, Subway Series, wraps, and customizations (breads/sauces). Key standouts: Grilled Chicken Bowl 200cal/35g protein, Grilled Chicken Wrap 470cal/42g protein, Steak & Cheese Bowl 380cal/42g protein.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Subway",
+        "original_meal": "Italian B.M.T. Footlong",
+        "original_calories": 800,
+        "original_protein": 38,
+        "swap_meal": "Grilled Chicken Bowl",
+        "swap_calories": 200,
+        "swap_protein": 35,
+        "swap_ingredients": ["grilled chicken", "bowl vegetables"],
+        "is_swap": false,
+        "category": "menu_guide"
+      },
+      {
+        "restaurant_name": "Subway",
+        "original_meal": "Meatball Marinara Footlong",
+        "original_calories": 880,
+        "original_protein": 40,
+        "swap_meal": "Grilled Chicken Wrap",
+        "swap_calories": 470,
+        "swap_protein": 42,
+        "swap_ingredients": ["grilled chicken", "wrap", "vegetables"],
+        "is_swap": false,
+        "category": "menu_guide"
+      }
+    ],
+    "notes": "NOT a swap post - comprehensive Subway full menu nutrition guide carousel (6 slides). Shows all items organized by: highest protein under 700cal, lowest calorie under 350cal, classic sandwiches, Subway Series, wraps, and customizations. Implicit swap logic: choose bowls over salads for double protein. No explicit before/after swap comparisons."
+  }
+}

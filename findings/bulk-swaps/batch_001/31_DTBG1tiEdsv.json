@@ -1,0 +1,54 @@
+{
+  "position": 31,
+  "url": "https://www.instagram.com/p/DTBG1tiEdsv/",
+  "shortcode": "DTBG1tiEdsv",
+  "creator": "@sethgolie",
+  "views": 168863,
+  "likes": 7603,
+  "duration": 36.64,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I'm starving, you wanna go to Chipotle? Yeah, I'll get the bowl, double chicken, no rice, no beans or cheese. Let's do extra fajita veggies and extra lettuce and a Diet Coke. Okay, cool, but how about Panda Express instead? Yeah, I'll get the bowl with the super greens and double grilled chicken teriyaki and a Coke Zero. What if we went to Raising Cane's though? I'll get four naked strips and then the coleslaw, a Coke Zero and a hot Louisiana sauce. Man, how do you know to order at every restaurant? Bro, are you not following Seth G yet? I'm gonna make sure to follow Seth G right now.",
+  "caption": "Comment FASTFOOD for my fast food swap cheat sheet. Steal these 3 fast food orders to stay on track with your fitness journey. Chipotle: Bowl with No Rice, Extra Chicken, Fajita Veggies, Fresh Tomato Salsa, Light Cheese, Lettuce & Coke Zero (390 calories 66 G protein). Panda Express: Bowl with super greens + double chicken teriyaki + Diet Coke (690 calories 69 G protein). Raising Canes: 4 NAKED strips + coleslaw + Coke Zero + Hot Louisiana sauce (520 calories 55 G protein). Follow @sethgolie for fast food swaps.",
+  "ocr_summary": "Chipotle: Original 1690 cal/43g protein, Swap 390 cal/66g protein. Panda Express: Original 1730 cal/53g protein, Swap 690 cal/69g protein. Raising Cane's: Original 1600 cal/52g protein, Swap 520 cal/55g protein.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chipotle",
+        "original_meal": "Standard Chipotle bowl (with rice, beans, cheese, sour cream, regular Coke)",
+        "original_calories": 1690,
+        "original_protein": 43,
+        "swap_meal": "Bowl with no rice, extra chicken, fajita veggies, fresh tomato salsa, light cheese, lettuce, Coke Zero",
+        "swap_calories": 390,
+        "swap_protein": 66,
+        "swap_ingredients": ["double chicken", "fajita veggies", "fresh tomato salsa", "light cheese", "lettuce", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_casual"
+      },
+      {
+        "restaurant_name": "Panda Express",
+        "original_meal": "Standard Panda Express bowl (with fried rice/chow mein and regular Coke)",
+        "original_calories": 1730,
+        "original_protein": 53,
+        "swap_meal": "Bowl with super greens + double chicken teriyaki + Diet Coke",
+        "swap_calories": 690,
+        "swap_protein": 69,
+        "swap_ingredients": ["super greens", "double grilled chicken teriyaki", "Diet Coke"],
+        "is_swap": true,
+        "category": "fast_casual"
+      },
+      {
+        "restaurant_name": "Raising Cane's",
+        "original_meal": "Standard Raising Cane's combo (fried chicken fingers with fries, toast, regular Coke)",
+        "original_calories": 1600,
+        "original_protein": 52,
+        "swap_meal": "4 NAKED strips + coleslaw + Coke Zero + Hot Louisiana sauce",
+        "swap_calories": 520,
+        "swap_protein": 55,
+        "swap_ingredients": ["4 naked chicken strips", "coleslaw", "Coke Zero", "hot Louisiana sauce"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Three swaps in one reel. Top performer with 168K views. Chipotle swap is best ratio: saves 1300 cal while GAINING 23g protein (43->66g). All three swaps maintain or increase protein while cutting 1000+ calories."
+  }
+}

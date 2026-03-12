@@ -1,0 +1,42 @@
+{
+  "position": 24,
+  "url": "https://www.instagram.com/p/DTYsGuPkT7w/",
+  "shortcode": "DTYsGuPkT7w",
+  "creator": "@sethgolie",
+  "views": 14463,
+  "likes": 505,
+  "duration": 24.4,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I'm starving, you wanna go to Panda Express? Yeah, let me get a bowl with the super greens, grilled chicken teriyaki, and the wok fried shrimp in a diet coat. Oh. Actually, no, I changed my mind. Let's get a plate with the super greens, the grilled chicken teriyaki, and the firecracker steak and shrimp with the diet coat. Wow. Shit, I didn't even know you could order like that. Where'd you learn? The MenuFit app lets you know what to order at every restaurant to stay on track with your fitness goals. Damn, I'm gonna download the MenuFit app right now.",
+  "caption": "Not sure what to order? The @menufit.app has your back 🙌🏼\n\nNow you can stay FIT while eating out 🔥\n\nSteal these two orders from Panda Express 🐼 \n\nFit order 1:\nProtein Bowl\nSuper Greens (Side) → Teriyaki Chicken →\nWok-Fired Shrimp + Diet Coke\n(660 calories 67 G protein)\n\nFit order 2:\nPlate\nSuper Greens (Side) → Teriyaki Chicken →\nFirecracker Steak & Shrimp → Diet Coke \n(690 calories 70 G protein)\n\nSend this to all your FIT FRIENDS 💪🏼\n\nSave for later ✔️\n\nFollow @sethgolie for high protein meal swaps 🙌🏼\n\nFast food swaps \nRestaurant swaps\nEating out tips\nMacro friendly meals\nHigh protein meals\nMen's Health & Fitness \n\n#fitover40 #macrofriendly",
+  "ocr_summary": "Panda Express Bigger Plate: 2,300 cal / 70g protein (original) vs 660 cal / 67g protein (swap 1) and 690 cal / 70g protein (swap 2).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Panda Express",
+        "original_meal": "Bigger Plate (standard)",
+        "original_calories": 2300,
+        "original_protein": 70,
+        "swap_meal": "Protein Bowl: Super Greens (Side) + Teriyaki Chicken + Wok-Fired Shrimp + Diet Coke",
+        "swap_calories": 660,
+        "swap_protein": 67,
+        "swap_ingredients": ["Super Greens (Side)", "Teriyaki Chicken", "Wok-Fired Shrimp", "Diet Coke"],
+        "is_swap": true,
+        "category": "fast_food"
+      },
+      {
+        "restaurant_name": "Panda Express",
+        "original_meal": "Bigger Plate (standard)",
+        "original_calories": 2300,
+        "original_protein": 70,
+        "swap_meal": "Plate: Super Greens (Side) + Teriyaki Chicken + Firecracker Steak & Shrimp + Diet Coke",
+        "swap_calories": 690,
+        "swap_protein": 70,
+        "swap_ingredients": ["Super Greens (Side)", "Teriyaki Chicken", "Firecracker Steak & Shrimp", "Diet Coke"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Single-restaurant reel with two Panda Express swap options. Skit format. Also promotes MenuFit app."
+  }
+}

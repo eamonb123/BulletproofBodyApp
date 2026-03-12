@@ -1,0 +1,42 @@
+{
+  "position": 16,
+  "url": "https://www.instagram.com/p/DUBiHvYkfzV/",
+  "shortcode": "DUBiHvYkfzV",
+  "creator": "@sethgolie",
+  "views": 23663,
+  "likes": 1095,
+  "duration": 25.1,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I'm starving, you wanna go to Chick-fil-A? Yeah, I'll get the 12-piece grilled nugget, a side mac and cheese, and then ask for a large bowl so I can mix it together and then put buffalo sauce on top and get a Coke Zero. Okay, that's pretty awesome, but what if we went there for breakfast? Yeah, I'll get the egg white grill with the extra grilled sole, a fruit cup, and a diet lemonade. Man, that's awesome. Where did you even learn all that? Bro, are you not following Seth G yet? I'm gonna make sure to follow Seth G right now.",
+  "caption": "Comment FASTFOOD for my FREE fast food cheat sheet. Steal these two Chick-fil-a orders to stay on track. Lunch order: 12 piece Grilled Nuggets + side Mac'n Cheese + buffalo sauce (mix together in bowl) + Coke Zero (495 calories 49G protein). Breakfast order: Egg white grill + extra grilled filet + medium fruit cup + Diet Lemonade (520 calories 66G protein). These will both help you save over 1000 calories & stay on track with your fitness journey!",
+  "ocr_summary": "Chick-fil-A Lunch: 1830 cal / 62g protein -> 495 cal / 49g protein; Chick-fil-A Breakfast: 1490 cal / 41g protein -> 520 cal / 56g protein (caption says 66g)",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Standard Chick-fil-A lunch meal",
+        "original_calories": 1830,
+        "original_protein": 62,
+        "swap_meal": "12 piece Grilled Nuggets + side Mac'n Cheese + buffalo sauce (mixed in bowl) + Coke Zero",
+        "swap_calories": 495,
+        "swap_protein": 49,
+        "swap_ingredients": ["12 piece grilled nuggets", "side mac and cheese", "buffalo sauce", "Coke Zero"],
+        "is_swap": true,
+        "category": "chicken"
+      },
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Standard Chick-fil-A breakfast (2 chicken biscuits, hash browns, etc.)",
+        "original_calories": 1490,
+        "original_protein": 41,
+        "swap_meal": "Egg white grill + extra grilled filet + medium fruit cup + Diet Lemonade",
+        "swap_calories": 520,
+        "swap_protein": 66,
+        "swap_ingredients": ["egg white grill", "extra grilled filet", "medium fruit cup", "Diet Lemonade"],
+        "is_swap": true,
+        "category": "breakfast"
+      }
+    ],
+    "notes": "Two Chick-fil-A swaps in one reel (lunch + breakfast). OCR shows 56g protein for breakfast swap but caption says 66g -- caption is likely more accurate. Same creator as positions 12-15."
+  }
+}

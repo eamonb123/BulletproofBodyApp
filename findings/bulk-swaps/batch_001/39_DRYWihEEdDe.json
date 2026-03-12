@@ -1,0 +1,30 @@
+{
+  "position": 39,
+  "url": "https://www.instagram.com/p/DRYWihEEdDe/",
+  "shortcode": "DRYWihEEdDe",
+  "creator": "@sethgolie",
+  "views": 7080,
+  "likes": 216,
+  "duration": 18,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You wanna go to Zaxby's for lunch? Yeah, I'm down. I'll just get the grilled chicken sandwich lettuce wrap, then we'll add an extra grilled chicken breast. Let's do a side salad with the light balsamic vinaigrette and a Coke Zero. Oh, damn. I would have never even thought to order like that. Bro, are you not following Seth G. yet? Well, shit, I better follow Seth G. right now.",
+  "caption": "You're not FAT because you eat fast food, it's because how you order\n\nNext time you go to Zaxbys order this:\n\nGrilled chicken sandwich (lettuce wrapped) + extra grilled fillet + side salad with light balsamic vinaigrette + Coke Zero\n(610 calories 66 G protein)\n\nThis will help you save over 1000 calories and keep you on track with your fitness journey\n\nSave for later\n\nFollow @sethgolie for fast food swaps\n\n#macrofriendly #fitover40",
+  "ocr_summary": "Zaxby's: 1870 cal / 72g protein (original) vs 610 cal / 66g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Zaxby's",
+        "original_meal": "Standard Zaxby's meal (fried chicken sandwich + fries + soda)",
+        "original_calories": 1870,
+        "original_protein": 72,
+        "swap_meal": "Grilled chicken sandwich (lettuce wrapped) + extra grilled fillet + side salad with light balsamic vinaigrette + Coke Zero",
+        "swap_calories": 610,
+        "swap_protein": 66,
+        "swap_ingredients": ["grilled chicken sandwich", "lettuce wrap", "extra grilled chicken fillet", "side salad", "light balsamic vinaigrette", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Single Zaxby's swap. Strategy: grilled instead of fried, lettuce wrap instead of bun, side salad instead of fries, diet drink. Saves 1260 calories with only 6g less protein."
+  }
+}

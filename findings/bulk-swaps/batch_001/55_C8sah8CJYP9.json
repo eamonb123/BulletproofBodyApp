@@ -1,0 +1,54 @@
+{
+  "position": 55,
+  "url": "https://www.instagram.com/p/C8sah8CJYP9/",
+  "shortcode": "C8sah8CJYP9",
+  "creator": "@j.newtrition",
+  "views": 94742,
+  "likes": 4584,
+  "duration": 90,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "And the first one is 42 grams of protein and 560 calories. And the second option is 42 grams of protein and only 520 calories, including the sauce. And the third one is 42 grams of protein and 490 calories. I'm a weight loss dietician and these are my go-to orders for Subway. Yes, there are three. You're gonna wanna see all of them because there's something for everyone. The one thing that I always do when I'm looking at menus and trying to find something is I look for the calorie to protein ratio. I wanna get as close to a 10 to one as I can. So let's start with the lowest ratio, the buffalo chicken wrap. And even though it's the lowest, it's still better than most other fast food options because it has 560 calories and 42 grams of protein. This typically comes with Frank's red hot sauce and a little bit of ranch already on it. So I just ordered that as is and then I add on whatever veggies I feel like having. And I also ask for more buffalo sauce on the side because it's only five calories for this entire thing. And the second option is the steak protein bowl with American cheese and then add on Baja Chipotle sauce on the side. And the sauce is 140 calories in total, so you could either do half or you could just take it out altogether. Doing all of that gives us a solid meal with 42 grams of protein and only 520 calories with the sauce included. The third option and the absolute best ratio is the six inch sweet onion chicken teriyaki on multi-grain bread. I also add on extra chicken for this and I ask for teriyaki sauce on the side the side for dipping because it goes further and it's only 30 calories for the container. Now the trick for this is we're only going to do half of the bread and make it an open faced sandwich. So with sauce, this comes out to 42 grams of protein and 490 calories.",
+  "caption": "My go-to Subway fast food hack for staying on track\n\nNo food was wasted in the making of this video\n\nMacros for each (in order as shown):\n560 calories & 42g P / 56g C / 19g F\n520 calories & 42g P / 14g C / 33g F\n490 calories & 42g P / 44g C / 14g F\n\n#fastfoodrestaurants #subwayorder #healthylunch",
+  "ocr_summary": "#1: 42g Protein & 560 Calories (Buffalo Chicken Wrap), #2: 42g Protein & 520 Calories (Steak Protein Bowl), #3: 42g Protein & 490 Calories (6-inch Sweet Onion Chicken Teriyaki open-faced)",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Subway",
+        "original_meal": "Buffalo Chicken Wrap (standard order)",
+        "original_calories": 560,
+        "original_protein": 42,
+        "swap_meal": "Buffalo Chicken Wrap with extra buffalo sauce on side (5cal), veggies added",
+        "swap_calories": 560,
+        "swap_protein": 42,
+        "swap_ingredients": ["buffalo chicken wrap", "Frank's red hot sauce", "ranch", "veggies", "extra buffalo sauce on side"],
+        "is_swap": true,
+        "category": "high_protein_order"
+      },
+      {
+        "restaurant_name": "Subway",
+        "original_meal": "Steak Bowl (standard)",
+        "original_calories": 520,
+        "original_protein": 42,
+        "swap_meal": "Steak Protein Bowl with American cheese, Baja Chipotle sauce on side",
+        "swap_calories": 520,
+        "swap_protein": 42,
+        "swap_ingredients": ["steak", "American cheese", "Baja Chipotle sauce on side (140cal total, use half)"],
+        "is_swap": true,
+        "category": "high_protein_order"
+      },
+      {
+        "restaurant_name": "Subway",
+        "original_meal": "6-inch Sweet Onion Chicken Teriyaki (standard)",
+        "original_calories": 490,
+        "original_protein": 42,
+        "swap_meal": "6-inch Sweet Onion Chicken Teriyaki on multigrain, extra chicken, open-faced (half bread removed), teriyaki sauce on side",
+        "swap_calories": 490,
+        "swap_protein": 42,
+        "swap_ingredients": ["chicken teriyaki", "multigrain bread (half)", "extra chicken", "teriyaki sauce on side (30cal)"],
+        "is_swap": true,
+        "category": "high_protein_order"
+      }
+    ],
+    "notes": "Dietician-style reel. 3 Subway orders all hitting 42g protein. Key hack: 10:1 calorie-to-protein ratio. Tricks: open-faced sandwich (remove half bread), sauces on side, extra buffalo sauce is only 5cal. Not traditional swap format but practical high-protein ordering guide."
+  }
+}

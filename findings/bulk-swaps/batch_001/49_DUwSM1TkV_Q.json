@@ -1,0 +1,54 @@
+{
+  "position": 49,
+  "url": "https://www.instagram.com/p/DUwSM1TkV_Q/",
+  "shortcode": "DUwSM1TkV_Q",
+  "creator": "@sethgolie",
+  "views": 64774,
+  "likes": 2350,
+  "duration": 34.969,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You wanna go to Texas Roadhouse for dinner? Yeah, bro, I'll get the eight ounce sirloin with steamed broccoli, a side salad with light ranch, and a Coke Zero. Okay, that's awesome. But what if we went to Olive Garden instead? Yeah, I'd get the grilled chicken margarita with steamed broccoli, no potatoes, a light salad dressing, and a Diet Coke. Nice. And then what if we went to Applebee's? What would you order there? I'm gonna get the grilled chicken breast with the green beans, the broccoli, and a Coke Zero. Bro, how do you know how to order everything at every restaurant? Bro, do you not follow Seth G. yet? I'm gonna make sure to follow Seth G. right now.",
+  "caption": "Comment FASTFOOD for my FREE fast food cheat sheet. Texas Roadhouse: 8 oz sirloin + steamed broccoli + side salad with light ranch on the side + Coke Zero (670 calories 70 G protein). Optional add 1 roll for 80 calories. Olive Garden: Grilled chicken margarita + steamed broccoli (no potatoes) + salad with light dressing on the side + Diet Coke (590 calories 52 G protein). Optional add 1 breadstick for 100 calories. Applebees: Grilled chicken breast + green beans + broccoli + Diet Coke (490 calories 50 G protein).",
+  "ocr_summary": "Texas Roadhouse: 1950 cal / 65g protein (original) vs 670 cal / 60g protein (swap). Olive Garden: 1800 cal / 65g protein (original) vs 590 cal / 52g protein (swap). Applebees: 1750 cal / 60g protein (original) vs 490 cal / 50g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Texas Roadhouse",
+        "original_meal": "Typical Texas Roadhouse dinner",
+        "original_calories": 1950,
+        "original_protein": 65,
+        "swap_meal": "8 oz sirloin + steamed broccoli + side salad with light ranch + Coke Zero",
+        "swap_calories": 670,
+        "swap_protein": 70,
+        "swap_ingredients": ["8 oz sirloin", "steamed broccoli", "side salad", "light ranch", "Coke Zero"],
+        "is_swap": true,
+        "category": "sit-down restaurant"
+      },
+      {
+        "restaurant_name": "Olive Garden",
+        "original_meal": "Typical Olive Garden dinner",
+        "original_calories": 1800,
+        "original_protein": 65,
+        "swap_meal": "Grilled chicken margarita + steamed broccoli (no potatoes) + salad with light dressing + Diet Coke",
+        "swap_calories": 590,
+        "swap_protein": 52,
+        "swap_ingredients": ["grilled chicken margarita", "steamed broccoli", "salad", "light dressing", "Diet Coke"],
+        "is_swap": true,
+        "category": "sit-down restaurant"
+      },
+      {
+        "restaurant_name": "Applebee's",
+        "original_meal": "Typical Applebees dinner",
+        "original_calories": 1750,
+        "original_protein": 60,
+        "swap_meal": "Grilled chicken breast + green beans + broccoli + Coke Zero",
+        "swap_calories": 490,
+        "swap_protein": 50,
+        "swap_ingredients": ["grilled chicken breast", "green beans", "broccoli", "Coke Zero"],
+        "is_swap": true,
+        "category": "sit-down restaurant"
+      }
+    ],
+    "notes": "Multi-restaurant swap reel. Each swap saves 1000+ calories. Format: two guys discussing what to order at each restaurant. Optional add-ons mentioned (roll +80cal, breadstick +100cal)."
+  }
+}

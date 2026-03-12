@@ -1,0 +1,102 @@
+{
+  "position": 64,
+  "url": "https://www.instagram.com/p/DQJ3D78kbj7/",
+  "shortcode": "DQJ3D78kbj7",
+  "creator": "@pernllla",
+  "views": 129317,
+  "likes": -1,
+  "duration": 42.1,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "I'll have a steak burrito menu. I'll have a bowl with double chicken and swap out the rice and cheese for extra veggies. I'll just have a bagel with cream cheese and a coffee with sugar cream. And I'll have an egg white turkey sausage wake up wrap with an americano with a splash of almond milk. A Big Mac meal. And I'll have a grilled chicken sandwich with a side salad. A meatball marinara footlong with a cookie and a Coke. And I'll have a six inch wheat with double oven roasted chicken. I'll have a Crunchwrap Supreme and a Biobloss. And I'll have a power menu bowl with grilled chicken. I'll have a chipotle chicken avocado. I'll have the auto melt with a lemonade and I'll have the apple chicken salad with a diet lemonade. I'll have a Baconator combo with fries and a Coke and I'll have the grilled chicken sandwich with a small chili. How do I find all these easy swaps? I just check out the menu for that.",
+  "caption": "Comment menufit for free swaps & @menufit.app link to help you find macro friendly options when eating out. Macro Breakdown Below.",
+  "ocr_summary": "Chipotle: 1750 CAL vs 465 CAL/58g Protein; Dunkin: 780 CAL vs 260 CAL/19g Protein; McDonalds: 1330 CAL vs 430 CAL/37g Protein; Subway: 1580 CAL vs 420 CAL/46g Protein; Taco Bell: 920 CAL vs 450 CAL/26g Protein; Panera: 1020 CAL vs 490 CAL/31g Protein; Wendys: 1470 CAL vs 540 CAL/46g Protein",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Chipotle",
+        "original_meal": "Steak Burrito + Chips",
+        "original_calories": 1750,
+        "original_protein": 64,
+        "swap_meal": "Chicken Bowl with double chicken, fajita veggies, salsa, romaine (no rice, no beans, no cheese)",
+        "swap_calories": 465,
+        "swap_protein": 58,
+        "swap_ingredients": ["double chicken", "fajita veggies", "salsa", "romaine"],
+        "is_swap": true,
+        "category": "fast_casual"
+      },
+      {
+        "restaurant_name": "Dunkin Donuts",
+        "original_meal": "Bagel w/ cream cheese + Medium Iced Coffee with cream & sugar",
+        "original_calories": 780,
+        "original_protein": 15,
+        "swap_meal": "Egg White & Turkey Sausage Wake-Up Wrap + Iced Americano (1 Splenda, splash almond milk)",
+        "swap_calories": 260,
+        "swap_protein": 19,
+        "swap_ingredients": ["egg white", "turkey sausage", "wrap", "iced americano", "almond milk"],
+        "is_swap": true,
+        "category": "breakfast"
+      },
+      {
+        "restaurant_name": "McDonalds",
+        "original_meal": "Big Mac + Medium Fries + Medium Coke",
+        "original_calories": 1330,
+        "original_protein": 32,
+        "swap_meal": "Grilled Chicken Sandwich + Side Salad (balsamic) + Diet Coke",
+        "swap_calories": 430,
+        "swap_protein": 37,
+        "swap_ingredients": ["grilled chicken sandwich", "side salad", "balsamic dressing", "diet coke"],
+        "is_swap": true,
+        "category": "fast_food"
+      },
+      {
+        "restaurant_name": "Subway",
+        "original_meal": "Meatball Marinara Footlong + Cookie + Coke",
+        "original_calories": 1580,
+        "original_protein": 66,
+        "swap_meal": "6-inch Oven-Roasted Chicken on Wheat, double chicken, no cheese, mustard + water",
+        "swap_calories": 420,
+        "swap_protein": 46,
+        "swap_ingredients": ["oven-roasted chicken", "wheat bread", "double chicken", "mustard"],
+        "is_swap": true,
+        "category": "fast_casual"
+      },
+      {
+        "restaurant_name": "Taco Bell",
+        "original_meal": "Crunchwrap Supreme + Baja Blast",
+        "original_calories": 920,
+        "original_protein": 29,
+        "swap_meal": "Power Menu Bowl (no sour cream, no guac) + Diet Baja Blast",
+        "swap_calories": 450,
+        "swap_protein": 26,
+        "swap_ingredients": ["power menu bowl", "grilled chicken", "diet baja blast"],
+        "is_swap": true,
+        "category": "fast_food"
+      },
+      {
+        "restaurant_name": "Panera Bread",
+        "original_meal": "Chipotle Chicken Avocado Melt + Lemonade",
+        "original_calories": 1020,
+        "original_protein": 49,
+        "swap_meal": "Whole Fuji Apple Chicken Salad + Diet Lemonade",
+        "swap_calories": 560,
+        "swap_protein": 32,
+        "swap_ingredients": ["fuji apple chicken salad", "diet lemonade"],
+        "is_swap": true,
+        "category": "fast_casual"
+      },
+      {
+        "restaurant_name": "Wendys",
+        "original_meal": "Baconator combo with fries and Coke",
+        "original_calories": 1470,
+        "original_protein": null,
+        "swap_meal": "Grilled Chicken Sandwich + Small Chili",
+        "swap_calories": 540,
+        "swap_protein": 46,
+        "swap_ingredients": ["grilled chicken sandwich", "small chili"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Multi-restaurant swap compilation reel by @pernllla promoting MenuFit app. 7 swaps across major fast food/fast casual chains. All swaps focus on calorie reduction with maintained or improved protein."
+  }
+}

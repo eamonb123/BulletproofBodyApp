@@ -1,0 +1,23 @@
+{
+  "position": 33,
+  "url": "https://www.instagram.com/p/DSiYmzKka4E/",
+  "shortcode": "DSiYmzKka4E",
+  "transcript": "I was in a hurry again this morning, so I just got Dunkin' Donuts on the way to work. Yeah, I hit Dunkin' too, but I got the turkey sausage wrap, the egg white bites, the cold brew with almond milk, two pumps of sugar-free vanilla. Man, I didn't know you could order like that and still lose weight. Yeah, I'm actually down 20 pounds making food swaps like this. Dang, who taught you that? My coach, Seth G. He makes fat loss easy. I'm gonna make sure to follow Seth G right now.",
+  "caption": "Comment \u201cFASTFOOD\u201d for my fast food swap cheat sheet\n\nDunkin Donuts: Wake-Up Wrap with Turkey Sausage, Egg White & Veggie Omelet Bites, Medium Cold Brew w/ splash almond milk + 2 pump SF vanilla (380 calories with 24 G protein)\n\nThis order saves you over 1,000 calories and helps you stay on track with your fitness journey",
+  "ocr_text": "DUNKIN DONUTS 1460 CALORIES 35 G PROTEIN 380 CALORIES 24 G PROTEIN",
+  "visual_scenes": "Two men in studio with Dunkin Donuts branding and food display. Comparing standard Dunkin order (1460 cal) vs swap order (380 cal). Profile card CTA at end.",
+  "creator": "@sethgolie",
+  "views": 7487,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "parsed": {
+    "restaurant_name": "Dunkin' Donuts",
+    "original_meal": "Standard Dunkin' Donuts breakfast order",
+    "original_calories": 1460,
+    "swap_meal": "Wake-Up Wrap with Turkey Sausage, Egg White & Veggie Omelet Bites, Medium Cold Brew with splash almond milk + 2 pump SF vanilla",
+    "swap_calories": 380,
+    "swap_ingredients": ["turkey sausage wrap", "egg white bites", "veggie omelet bites", "cold brew", "almond milk", "sugar-free vanilla"],
+    "is_swap": true,
+    "category": "breakfast",
+    "notes": "Single restaurant swap. Saves 1080 calories. Breakfast-focused. 380 cal, 24g protein."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "position": 70,
+  "url": "https://www.instagram.com/p/DRU8AI_D04i/",
+  "shortcode": "DRU8AI_D04i",
+  "creator": "@mahdii.cpt",
+  "views": 103446,
+  "likes": 4837,
+  "duration": 47,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "If you want to lose weight, this is exactly what you need to order from Taco Bell. If you go to Taco Bell but you don't customize your food, that means you're getting something high in calorie and low in protein. So both of these options that I'm going to tell you, you need to customize them, it's so easy. The first option is Cantina Chicken Soft Taco, but you need to add extra chicken and easy on avocado ranch sauce. Now you have a taco that has 250 calories and around 20 grams of protein. And please do not use this sauce that comes with it and get some mild sauce. The calories on this is so low that you can't even get two of them, which means you will have 40 grams of protein. And also for the drink, you can get the Baja Blast Zero Sugar that has only 15 calories, which is almost zero calories. Your next option is Cantina chicken bowl. Yes, you need to customize this too. You need to add extra chicken, easy on rice, easy on beans, and easy on guac poli. Now you have a bowl that has 30 grams of protein with only 380 calories. And never forget that many people go to Taco Bell, get this meal that has thousands of calories and way less protein. Tell me your favorite fast food place in the comments and I'll make a video about it.",
+  "caption": "2 high protein options at Taco Bell\n\nMake sure you always customize your meals at taco bell!\n\nOption 1: Cantina Chicken Soft Taco, Extra chicken, Easy on the Avocado Ranch Sauce\n\nOption 2: Cantina Chicken Bowl, Extra chicken, Easy on beans, Easy on rice, Easy on guac\n\nWhat fast-food spot should I break down next?",
+  "ocr_summary": "Option 1: Cantina Chicken Soft Taco $2.99 260 Cal -> customized 250cal 20g Protein. Option 2: Cantina Chicken Bowl $7.39 530 Cal -> customized 380cal 30g Protein. Baja Blast Zero Sugar 15 Cal. Standard TB meal referenced as 2000 cal.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Taco Bell",
+        "original_meal": "Cantina Chicken Soft Taco (standard)",
+        "original_calories": 260,
+        "original_protein": null,
+        "swap_meal": "Cantina Chicken Soft Taco (customized: extra chicken, easy avocado ranch sauce, mild sauce instead of included sauce)",
+        "swap_calories": 250,
+        "swap_protein": 20,
+        "swap_ingredients": ["Cantina Chicken Soft Taco", "Extra Slow-Roasted Chicken (+60 cal)", "Easy Avocado Ranch Sauce (-15 cal)", "Mild sauce packet"],
+        "is_swap": true,
+        "category": "fast_food_customization"
+      },
+      {
+        "restaurant_name": "Taco Bell",
+        "original_meal": "Cantina Chicken Bowl (standard)",
+        "original_calories": 530,
+        "original_protein": null,
+        "swap_meal": "Cantina Chicken Bowl (customized: extra chicken, easy rice, easy beans, easy guac)",
+        "swap_calories": 380,
+        "swap_protein": 30,
+        "swap_ingredients": ["Cantina Chicken Bowl", "Extra Slow-Roasted Chicken (+60 cal)", "Easy Seasoned Rice (-80 cal)", "Easy Black Beans (-50 cal)", "Easy Guacamole (-20 cal)"],
+        "is_swap": true,
+        "category": "fast_food_customization"
+      }
+    ],
+    "notes": "Two customization swaps at Taco Bell. Both involve modifying existing menu items by adding protein and reducing calorie-dense toppings. Creator shows the Taco Bell app customization screen. Also recommends Baja Blast Zero Sugar (15 cal) as drink. References standard TB meals as 2000+ cal comparison. Option 1 can be doubled to 2x tacos = 500 cal, 40g protein."
+  }
+}

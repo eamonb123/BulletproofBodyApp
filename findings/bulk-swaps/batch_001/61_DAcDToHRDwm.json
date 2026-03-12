@@ -1,0 +1,30 @@
+{
+  "position": 61,
+  "url": "https://www.instagram.com/p/DAcDToHRDwm/",
+  "shortcode": "DAcDToHRDwm",
+  "creator": "@trainermikeyy",
+  "views": 36260,
+  "likes": 1744,
+  "duration": 48.433,
+  "extracted_at": "2026-03-11T12:10:00Z",
+  "transcript": "If you're out of Buffalo Wild Wings right now, I'm gonna show you how to make a meal under 600 calories with 60 grams of protein. Please do the six bone-in wings. Can I do only drums? Can I do half? with a six. I think it's only one. It's only one? All right, I'll just do medium. I have celery and carrots on the side. Just got the meal, you guys. I paid six wings. This was the lunch combo. Carrots and celery on the side. And it comes with a side. Total of $12.80 here at Buffalo Wild Wings. I did six bone-in wings. Only drums. This is 450 calories with 60 grams of protein. Celery and carrots on the side, 20 to 30 calories. If you want it to be under 600 calories, we're skipping out on the fries. Same thing with ranch and blue cheese. Two to 300 calories for each cup. Instead for dipping sauce I got sweet barbecue diet pepsi on the side zero calories for a total 565 calories 60 grams of protein enjoy guys",
+  "caption": "Buffalo Wild Wings On a Diet #buffalowings #diet #protein #lowcalorie #reels",
+  "ocr_summary": "Hook: Under 600 calories, 60g Protein. Nutrition guide shown: 565 calories, 61g protein, 28g fat, 21g carbs. Price: $12.80",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Buffalo Wild Wings",
+        "original_meal": null,
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "6 Bone-In Wings (Drums Only, Medium) + Celery & Carrots + Sweet BBQ Dipping Sauce + Diet Pepsi",
+        "swap_calories": 565,
+        "swap_protein": 61,
+        "swap_ingredients": ["bone-in chicken wings", "drums", "medium sauce", "celery", "carrots", "sweet barbecue sauce", "diet pepsi"],
+        "is_swap": false,
+        "category": "macro_friendly_order"
+      }
+    ],
+    "notes": "Single macro-friendly order at BWW. Key tips: skip fries (save calories), skip ranch/blue cheese (200-300 cal per cup), use sweet barbecue as dipping sauce instead, diet soda for zero calories. Nutrition guide shown on screen: 565 cal, 61g P, 28g F, 21g C. Vlog-style format ordering at the restaurant."
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "position": 69,
+  "url": "https://www.instagram.com/p/DP4BrpoDRyD/",
+  "shortcode": "DP4BrpoDRyD",
+  "creator": "@fasteatsss",
+  "views": 982,
+  "likes": 29,
+  "duration": 94,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "For 535 calories and 46 grams of protein, this is impossible to pass up. I'm a weight loss dietician. This is one of my three favorite orders from Taco Bell. And I'm going to preface this by saying that if you're worried about sodium, this ain't for you. But if you're going to be out at a fast food restaurant anyways, and you want a healthy alternative, you're going to want to choose this. And of course, I always started off with something to drink. So I went with the Baja Blast Zero. It has 15 calories, I think. That's pretty good. And if y'all didn't know this, Taco Bell just came out with chicken nuggets. Yes, actual chicken nuggets. I was surprised too. But the macros on these things are insane. They're 36 grams of protein for 345 calories for a five count. I mean, I really can't think of anywhere else that does chicken nuggets with macros like that. And then for the dipping sauce, I went with the house bell sauce because it's the lowest in calories. And then for some extra fiber, protein, and flavor, I went with the pintos and cheese. So let's give this thing a try without any sauces first. Bon Apple tea. It's definitely crispy and it's not overpowered with salt like most other fast food restaurants are. I mean, honestly, pretty good. I give it eight and a half out of 10. So let's try it with the sauce. Now that sauce is thick bone apple tea. I've never had the bell sauce before, but it really just tastes like a taco seasoning dip. Overall with the dip 9.25 out of 10 best sauce to dip it in those, the pintos and cheese. Shit. I need to get back in the gym and really honestly, it's because it's got the fiber, the protein and the flavor. So you really don't even need a sauce in my opinion. Bone apple tea. I mean, that's pretty good like that. 12 out of 10. Let's save the best for last. Bone apple tea. I give that an I don't know out of 10. I mean, all in all, I gotta say, I'm pretty impressed with these. You should definitely give these a try. Let me know what you think. Macros are listed out in the caption for you.",
+  "caption": "Best Taco Bell Order\n\n@j.newtrition\n\nRevealing A Taco Bell Order That\u2019s High In Protein, Lower In Calories, And Packed With Flavor To Keep You On Track.",
+  "ocr_summary": "Taco Bell Order, 46g Protein & 535 Calories",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Taco Bell",
+        "original_meal": "Standard Taco Bell order",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Baja Blast Zero + Chicken Nuggets (5ct) + Bell Sauce + Pintos and Cheese",
+        "swap_calories": 535,
+        "swap_protein": 46,
+        "swap_ingredients": ["Baja Blast Zero", "Chicken Nuggets (5 count)", "Bell Sauce (house dipping)", "Pintos and Cheese"],
+        "is_swap": false,
+        "category": "fast_food_order"
+      }
+    ],
+    "notes": "This is a healthy order recommendation, not a swap comparison. No original meal shown. Creator @j.newtrition is credited as source, reposted by @fasteatsss. The order is: Baja Blast Zero (15 cal), Chicken Nuggets 5ct (345 cal, 36g protein), Bell Sauce, Pintos and Cheese. Total: 535 cal, 46g protein."
+  }
+}

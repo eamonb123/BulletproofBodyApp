@@ -1,0 +1,30 @@
+{
+  "position": 14,
+  "url": "https://www.instagram.com/p/DUPAV-NEQLa/",
+  "shortcode": "DUPAV-NEQLa",
+  "creator": "@sethgolie",
+  "views": 7098,
+  "likes": 277,
+  "duration": 20.781,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, I'm starving. You wanna go to Panda Express with me? I'm down. I'm just gonna get the bowl. We're gonna do double grilled chicken teriyaki and then a large diet coke. Wait, and you're losing weight eating like that? Yeah, I've been able to lose 20 pounds and I still eat out whenever I want. Nice, who's your coach? Seth G changed the game for me. Man, I'm gonna make sure to follow Seth G right now.",
+  "caption": "Comment FASTFOOD for my fast food cheat sheet. Panda Express: Bowl: Super Greens + Double Grilled Teriyaki Chicken + Large Diet Coke (760 calories 73G protein). Saves you over a 1,000 calories and helps you stay on track with your fitness journey. Follow @sethgolie for fast food swaps.",
+  "ocr_summary": "Panda Express: 1910 cal / 53g protein -> 760 cal / 73g protein",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Panda Express",
+        "original_meal": "Standard Panda Express bowl (rice, orange chicken, etc.)",
+        "original_calories": 1910,
+        "original_protein": 53,
+        "swap_meal": "Bowl with super greens + double grilled teriyaki chicken + large Diet Coke",
+        "swap_calories": 760,
+        "swap_protein": 73,
+        "swap_ingredients": ["super greens", "double grilled teriyaki chicken", "large Diet Coke"],
+        "is_swap": true,
+        "category": "bowl"
+      }
+    ],
+    "notes": "Single restaurant swap (Panda Express only). Same skit format. Slightly different calorie/protein numbers than position 13's Panda Express swap (760/73 vs 690/69). Same creator as positions 12 and 13."
+  }
+}

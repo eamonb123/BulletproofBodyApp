@@ -1,0 +1,54 @@
+{
+  "position": 65,
+  "url": "https://www.instagram.com/p/DRmkIcdDp7K/",
+  "shortcode": "DRmkIcdDp7K",
+  "creator": "@ccristina_fit",
+  "views": 215328,
+  "likes": 4993,
+  "duration": 25.658,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Can I please have a three finger combo with a Coke? I will also do that, but with coleslaw instead of fries, no sauce and a Diet Coke. Let's do a spicy deluxe with a large fry and a soda. And I'll have the cool wrap with no dressing, a side of the five count grilled nuggets and an unsweet iced tea. Ooh, and I'll have the grilled cheese burrito, please. And I'll have the cantina chicken bowl with extra chicken and easy seasoned rice. Wow, where can I find those healthy swaps? Just download the ManyFit app.",
+  "caption": "HOW TO ORDER: Fast Food with @menufit.app! Swaps Mentioned: Raising Canes - 3 Finger Combo, coleslaw instead of fries, no sauce, Diet soda or water = 640 cals, 44g protein. Chick-fil-A - Cool wrap, no dressing (sub hot sauce or mustard), 5ct grilled nuggets, Unsweet iced tea or water = 430 cals, 58 protein. Taco Bell - Cantina chicken bowl, extra chicken, easy seasoned rice, Diet soda or water = 450 cals, 31 protein.",
+  "ocr_summary": "Raising Canes: 1150 Cal vs 640 Cal/44g Protein; Chick-fil-A: 1390 Cal vs 430 Cal/58g Protein; Taco Bell: 710 Cal vs 450 Cal/31g Protein",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Raising Canes",
+        "original_meal": "3 Finger Combo with Coke",
+        "original_calories": 1150,
+        "original_protein": 48,
+        "swap_meal": "3 Finger Combo, coleslaw instead of fries, no sauce, Diet Coke",
+        "swap_calories": 640,
+        "swap_protein": 44,
+        "swap_ingredients": ["3 chicken fingers", "coleslaw", "diet coke"],
+        "is_swap": true,
+        "category": "fast_food"
+      },
+      {
+        "restaurant_name": "Chick-fil-A",
+        "original_meal": "Spicy Deluxe + Large Fry + Soda",
+        "original_calories": 1390,
+        "original_protein": 41,
+        "swap_meal": "Cool Wrap (no dressing, sub hot sauce/mustard) + 5ct Grilled Nuggets + Unsweet Iced Tea",
+        "swap_calories": 430,
+        "swap_protein": 58,
+        "swap_ingredients": ["cool wrap", "grilled nuggets", "hot sauce", "unsweet iced tea"],
+        "is_swap": true,
+        "category": "fast_food"
+      },
+      {
+        "restaurant_name": "Taco Bell",
+        "original_meal": "Grilled Cheese Burrito",
+        "original_calories": 710,
+        "original_protein": 25,
+        "swap_meal": "Cantina Chicken Bowl, extra chicken, easy seasoned rice, Diet soda",
+        "swap_calories": 450,
+        "swap_protein": 31,
+        "swap_ingredients": ["cantina chicken bowl", "extra chicken", "seasoned rice (light)", "diet soda"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Multi-restaurant swap compilation by @ccristina_fit promoting MenuFit app. 3 swaps across Raising Canes, Chick-fil-A, and Taco Bell. Focus on calorie reduction with protein maintenance."
+  }
+}

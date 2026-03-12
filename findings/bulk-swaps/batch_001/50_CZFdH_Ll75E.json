@@ -1,0 +1,90 @@
+{
+  "position": 50,
+  "url": "https://www.instagram.com/p/CZFdH_Ll75E/",
+  "shortcode": "CZFdH_Ll75E",
+  "creator": "@the.millennial.nutritionist",
+  "views": 0,
+  "likes": 271,
+  "duration": 0,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "",
+  "caption": "Who else loves Sweet Green?? I had a client this week tell me that her family really wanted to go out to eat and she was able to make a healthy choice because of being in my program! She knew to check the calorie info online and just picked some low calorie options instead of just completely blowing her whole day.",
+  "ocr_summary": "Miso Bowl: 120 cal / 30g protein. Chicken Pesto Parm: 525 cal / 37g protein. Guacamole Greens: 515 cal / 27g protein. Super Green Goddess: 485 cal / 20g protein. Shroomami: 645 cal / 26g protein. Crispy Rice Bowl: 600 cal / 31g protein.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Sweetgreen",
+        "original_meal": "N/A - no original comparison shown",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Miso Bowl",
+        "swap_calories": 120,
+        "swap_protein": 30,
+        "swap_ingredients": ["miso bowl ingredients"],
+        "is_swap": false,
+        "category": "fast-casual"
+      },
+      {
+        "restaurant_name": "Sweetgreen",
+        "original_meal": "N/A",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Chicken Pesto Parm",
+        "swap_calories": 525,
+        "swap_protein": 37,
+        "swap_ingredients": ["chicken pesto parm bowl ingredients"],
+        "is_swap": false,
+        "category": "fast-casual"
+      },
+      {
+        "restaurant_name": "Sweetgreen",
+        "original_meal": "N/A",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Guacamole Greens",
+        "swap_calories": 515,
+        "swap_protein": 27,
+        "swap_ingredients": ["guacamole greens bowl ingredients"],
+        "is_swap": false,
+        "category": "fast-casual"
+      },
+      {
+        "restaurant_name": "Sweetgreen",
+        "original_meal": "N/A",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Super Green Goddess",
+        "swap_calories": 485,
+        "swap_protein": 20,
+        "swap_ingredients": ["super green goddess bowl ingredients"],
+        "is_swap": false,
+        "category": "fast-casual"
+      },
+      {
+        "restaurant_name": "Sweetgreen",
+        "original_meal": "N/A",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Shroomami",
+        "swap_calories": 645,
+        "swap_protein": 26,
+        "swap_ingredients": ["shroomami bowl ingredients"],
+        "is_swap": false,
+        "category": "fast-casual"
+      },
+      {
+        "restaurant_name": "Sweetgreen",
+        "original_meal": "N/A",
+        "original_calories": null,
+        "original_protein": null,
+        "swap_meal": "Crispy Rice Bowl",
+        "swap_calories": 600,
+        "swap_protein": 31,
+        "swap_ingredients": ["crispy rice bowl ingredients"],
+        "is_swap": false,
+        "category": "fast-casual"
+      }
+    ],
+    "notes": "Image post (not a reel). NOT a swap format - this is a 'low calorie options at Sweetgreen' infographic. No original meal comparison. Lists 6 bowls with calorie and protein info. Post type: image/carousel."
+  }
+}

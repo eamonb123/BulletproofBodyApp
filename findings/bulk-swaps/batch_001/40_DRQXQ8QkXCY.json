@@ -1,0 +1,30 @@
+{
+  "position": 40,
+  "url": "https://www.instagram.com/p/DRQXQ8QkXCY/",
+  "shortcode": "DRQXQ8QkXCY",
+  "creator": "@sethgolie",
+  "views": 10929,
+  "likes": 266,
+  "duration": 12.533,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Dude, I'm starving. Let's go to Five Guys. Yeah, let me get the hamburger lettuce wrapped with all the veggies on it and a Coke Zero. Man, I never would have thought to order like that. Dude, you're not following Seth G. yet? I'm gonna follow Seth G. right now.",
+  "caption": "You're not FAT because you eat fast food, it's because how you order\n\nNext time you go to Five Guys order this:\n\nHamburger lettuce wrapped with all the veggies, mustard and a Coke Zero\n(470 calories 33 G protein)\n\nThis will save you over 1000 cal and keep you on track with your fitness journey\n\nSave this for later\n\nFollow @sethgolie for fast food swaps\n\nEating out tips\nRestaurant swaps\nMen's health and fitness\n\n#macrofriendly #fitover40",
+  "ocr_summary": "Five Guys: 3240 cal / 86g protein (original) vs 470 cal / 33g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Five Guys",
+        "original_meal": "Standard Five Guys meal (burger + fries + soda)",
+        "original_calories": 3240,
+        "original_protein": 86,
+        "swap_meal": "Hamburger lettuce wrapped with all veggies, mustard + Coke Zero",
+        "swap_calories": 470,
+        "swap_protein": 33,
+        "swap_ingredients": ["hamburger patty", "lettuce wrap", "veggies", "mustard", "Coke Zero"],
+        "is_swap": true,
+        "category": "fast_food"
+      }
+    ],
+    "notes": "Single Five Guys swap. Massive calorie difference (2770 cal saved) by removing bun (lettuce wrap), skipping fries entirely, using mustard instead of mayo/ketchup, and diet drink. Protein drops significantly (86 to 33) because the original includes a large fries which has some protein."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "position": 13,
+  "url": "https://www.instagram.com/p/DUUgDywEcXu/",
+  "shortcode": "DUUgDywEcXu",
+  "transcript": "I'm starving, you wanna go to Chipotle? Yeah, I'll get the bowl, double chicken, no rice, no beans or cheese. Let's do extra fajita veggies and extra lettuce and a Diet Coke. Okay, cool, but how about Panda Express instead? Yeah, I'll get the bowl with the super greens and double grilled chicken teriyaki and a Coke Zero. What if we went to Raising Cane's though? I'll get four naked strips and then the coleslaw, a Coke Zero and a hot Louisiana sauce. Man, how do you know to order at every restaurant? Bro, are you not following Seth G yet? I'm gonna make sure to follow Seth G right now.",
+  "caption": "Comment \"FASTFOOD\" for my FREE fast food swap cheat sheet\n\nSteal these 3 fast food orders to stay on track with your fitness journey\n\nChipotle:\nBowl with No Rice, Extra Chicken, Fajita Veggies, Fresh Tomato Salsa, Light Cheese, Lettuce & Coke Zero\n(390 calories 66 G protein)\n\nPanda Express:\nBowl with super greens + double chicken teriyaki + Diet Coke\n(690 calories 69 G protein)\n\nRaising Canes:\n4 NAKED strips + coleslaw + Coke Zero + Hot Louisiana sauce\n(520 calories 55 G protein)",
+  "ocr_text": "Chipotle | 1690 calories 43g protein | 390 calories 66g protein | Panda Express | 1730 calories 53g protein | 690 calories 69g protein | Raising Cane's | 1600 calories 52g protein | 520 calories 55g protein",
+  "visual_scenes": "Two men in black shirts holding fast food meals with nutritional comparisons. Three restaurant segments: Chipotle, Panda Express, Raising Cane's. Studio setting. Ends with creator profile CTA.",
+  "creator": "@sethgolie",
+  "views": 35444,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "parsed": {
+    "restaurant_name": "Chipotle",
+    "original_meal": "Regular Chipotle bowl (1,690 cal)",
+    "original_calories": 1690,
+    "swap_meal": "Bowl with No Rice, Extra Chicken, Fajita Veggies, Fresh Tomato Salsa, Light Cheese, Lettuce & Coke Zero",
+    "swap_calories": 390,
+    "swap_ingredients": ["Bowl (no rice)", "Extra Chicken", "Fajita Veggies", "Fresh Tomato Salsa", "Light Cheese", "Lettuce", "Coke Zero"],
+    "is_swap": true,
+    "category": "bowl",
+    "notes": "Multi-restaurant reel. Also includes Panda Express (super greens + double chicken teriyaki, 690cal/69g) and Raising Cane's (4 naked strips + coleslaw, 520cal/55g). Top performer at 35K views."
+  }
+}

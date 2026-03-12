@@ -1,0 +1,30 @@
+{
+  "position": 25,
+  "url": "https://www.instagram.com/p/DTWfQZOka9q/",
+  "shortcode": "DTWfQZOka9q",
+  "creator": "@sethgolie",
+  "views": 8734,
+  "likes": 274,
+  "duration": 15.836,
+  "extracted_at": "2026-03-11T00:00:00Z",
+  "transcript": "Bro, let's hit Buffalo Wild Wings for the game tonight. I'm down. I will get the five-piece chicken tenders naked, and then I will get a side salad, no croutons, light vinaigrette, and a Diet Coke. Oh, damn. I didn't even know you could order like that. You must not be following Seth G. yet. Shit. I better follow Seth G. right now.",
+  "caption": "Comment \"FASTFOOD\" for my fast food cheat sheet 🔥\n\nGoing to Buffalo Wild Wings for the game?\n\nOrder this to stay on track 👇🏼\n\nNaked Tenders (5 count) + Side Salad (no croutons, light vinaigrette) + Diet Coke \n(380 calories 65 G protein)\n\nSave this for later ☑️\n\nFollow @sethgolie for fast food swaps 🙌🏼\n\nMacro friendly meals\nEating out tips\nNutrition tips\nRestaurant swaps\nMen's Health & Fitness \n\n#macrofriendly #fitover40",
+  "ocr_summary": "Buffalo Wild Wings: 10 count wings = 2,040 cal / 60g protein (original) vs 380 cal / 65g protein (swap).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Buffalo Wild Wings",
+        "original_meal": "10 Count Wings",
+        "original_calories": 2040,
+        "original_protein": 60,
+        "swap_meal": "Naked Tenders (5 count) + Side Salad (no croutons, light vinaigrette) + Diet Coke",
+        "swap_calories": 380,
+        "swap_protein": 65,
+        "swap_ingredients": ["Naked Tenders (5 count)", "Side Salad (no croutons, light vinaigrette)", "Diet Coke"],
+        "is_swap": true,
+        "category": "casual_dining"
+      }
+    ],
+    "notes": "Single swap reel for Buffalo Wild Wings. Skit format. CTA shows Seth Golie's IG profile (23.5K followers). Comment 'FASTFOOD' for cheat sheet lead magnet."
+  }
+}
