@@ -821,7 +821,7 @@ export default function JumperPage() {
 
               <div className="grid gap-2 sm:grid-cols-2">
                 <Link
-                  href="/bible"
+                  href="/takeout"
                   className="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-center text-base font-semibold text-zinc-200"
                 >
                   Browse Full Fast Food Bible

@@ -445,7 +445,15 @@ function HeroScreen({ restaurants, onSelectRestaurant }: { restaurants: Restaura
             transition={{ delay: 0.2 }}
             className="mb-6 text-center text-sm font-semibold uppercase tracking-[0.25em] text-emerald-400"
           >
-            Pick the spot you think you can&apos;t eat at and still lose weight.
+            Pick your takeout spot.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.35 }}
+            className="mb-6 text-center text-base text-zinc-400"
+          >
+            We&apos;ll show you what to order there and still lose weight.
           </motion.p>
 
           {/* Search bar */}
@@ -803,7 +811,7 @@ function RestaurantRequestButton({ searchQuery, trackEvent }: { searchQuery: str
 // ─── Tooltip Callout (non-blocking) ──────────────────
 function TooltipCallout({ swapCount, onDismiss }: { swapCount: number; onDismiss: () => void }) {
   const message = swapCount === 0
-    ? "Pick the spot you think you can\u2019t eat at and still lose weight."
+    ? "Pick your takeout spot."
     : "Nice. Now pick a different spot. Same game, bigger savings.";
 
   return (
@@ -1255,7 +1263,7 @@ function BiblePage() {
               </h1>
               <p className="mt-1 text-base text-zinc-400">
                 {completedSwaps.length === 0
-                  ? "Pick the spot you think you can\u2019t eat at and still lose weight."
+                  ? "We\u2019ll show you what to order there and still lose weight."
                   : "Every swap. Every restaurant. Search anything."}
               </p>
             </div>
@@ -3125,217 +3133,104 @@ function RestaurantDetailView({
       );
     }
 
-    // No exact template match — score all swaps by similarity to user's order and recommend the best one
+    // No exact template match — pick best similarity-scored swap, go straight to side-by-side reveal
     if (!hasValidSwap) {
-      // "Already dialed" threshold: if user's order is under 500 cal, they're already lean
-      const ALREADY_DIALED_CAL = 500;
-      const isAlreadyDialed = checkedTotalCal <= ALREADY_DIALED_CAL;
-
       // Score each available swap by similarity to the user's order
       const userIngNames = new Set(checkedItems.map((i) => i.name.toLowerCase()));
       const userCatIds = new Set(checkedItems.map((i) => i.category_id));
       const userMealTypes = new Set(checkedItems.map((i) => {
-        // Infer meal type from category: look up which template originals contain items from this category
         for (const orig of originals) {
           if (orig.ingredients.some((oi: MealIngredient) => oi.id === i.id)) return orig.meal_type;
         }
         return null;
       }).filter(Boolean));
 
-      const scoredSwaps = availableTemplateSwaps.map((s) => {
+      // Prefer Eamon-approved swaps; only fall back to LLM if none exist
+      const eamonSwaps = availableTemplateSwaps.filter((s) => s.swap.source === "eamon");
+      const swapsToScore = eamonSwaps.length > 0 ? eamonSwaps : availableTemplateSwaps;
+
+      const scoredSwaps = swapsToScore.map((s) => {
         let score = 0;
-
-        // 1. Calorie proximity: how close is the original's calories to what the user ordered?
-        //    Closer = better match (they eat at this appetite level)
         const calDiff = Math.abs(s.original.totals.calories - checkedTotalCal);
-        score += Math.max(0, 50 - (calDiff / 40)); // up to 50 pts, loses 1pt per 40cal difference
-
-        // 2. Ingredient overlap: do they share any ingredients?
+        score += Math.max(0, 50 - (calDiff / 40));
         const origIngNames = new Set(s.original.ingredients.map((ing: MealIngredient) => ing.name.toLowerCase()));
-        let ingredientOverlap = 0;
-        for (const name of userIngNames) {
-          if (origIngNames.has(name)) ingredientOverlap++;
-        }
-        score += ingredientOverlap * 15; // 15 pts per shared ingredient
-
-        // 3. Category overlap: are they ordering from the same food categories?
+        for (const name of userIngNames) { if (origIngNames.has(name)) score += 15; }
         const origCatIds = new Set(s.original.ingredients.map((ing: MealIngredient) => {
           const menuItem = menuItems.find((mi) => mi.id === ing.id);
           return menuItem?.category_id;
         }).filter(Boolean));
-        let catOverlap = 0;
-        for (const catId of userCatIds) {
-          if (origCatIds.has(catId)) catOverlap++;
-        }
-        score += catOverlap * 10; // 10 pts per shared category
-
-        // 4. Meal type match
-        if (s.original.meal_type && userMealTypes.has(s.original.meal_type)) {
-          score += 20;
-        }
-
-        // 5. Eamon-approved bonus
-        if (s.swap.source === "eamon") score += 10;
-
-        // 6. Savings magnitude (prefer bigger savings, but not the only factor)
-        score += Math.min(20, s.savings / 50); // up to 20 pts
-
+        for (const catId of userCatIds) { if (origCatIds.has(catId)) score += 10; }
+        if (s.original.meal_type && userMealTypes.has(s.original.meal_type)) score += 20;
+        score += Math.min(20, s.savings / 50);
         return { ...s, score };
       });
 
       scoredSwaps.sort((a, b) => b.score - a.score);
-      const bestRecommendation = scoredSwaps[0] ?? null;
-      const runners = scoredSwaps.slice(1, 3);
+      const bestRec = scoredSwaps[0] ?? null;
 
-      if (isAlreadyDialed) {
+      if (bestRec) {
+        // Build optimizedItems + templateSwap from the best-scored swap, show ALL user items on left
+        const swapIngIds = new Set(bestRec.swap.ingredients.map((si: MealIngredient) => si.id));
+        const recOptItems: OptItem[] = checkedItems.map((item) => {
+          if (swapIngIds.has(item.id)) {
+            return { original: item, swap: null, savings: 0 };
+          }
+          return {
+            original: item,
+            swap: { name: "(removed)", calories: 0, protein_g: 0, source: (bestRec.swap.source === "eamon" ? "eamon" : "auto") as ("auto" | "eamon") },
+            savings: Math.round(item.calories),
+            _templateRemoved: true,
+          };
+        });
+        const recTemplateSwap = {
+          name: bestRec.swap.name,
+          source: bestRec.swap.source,
+          ingredients: bestRec.swap.ingredients,
+          totalCal: bestRec.swap.totals.calories,
+          totalProtein: bestRec.swap.totals.protein,
+        };
+        const recOptCal = Math.round(recTemplateSwap.totalCal) + recOptItems.filter((o) => !o.swap && !(o as any)._templateRemoved).reduce((sum, o) => sum + Math.round(o.original.calories), 0);
+        const recSavings = checkedTotalCal - recOptCal;
+        const recWeeklyLbs = recSavings > 0 ? ((recSavings * 7) / 3500).toFixed(1) : "0";
+
+        // If personalize was clicked, show weight form
+        if (showPersonalize) {
+          return (
+            <SwapSavingsCard
+              savings={recSavings}
+              restaurantName={restaurant.name}
+              swapName={`${checkedItems.length} item${checkedItems.length > 1 ? "s" : ""} optimized`}
+              onSwapComplete={onSwapComplete}
+              onNavigateAway={onNavigateAway}
+              trackEvent={trackEvent}
+              capturedEmailRef={capturedEmailRef}
+              startAtWeight
+              onBackFromWeight={() => setShowPersonalize(false)}
+            />
+          );
+        }
+
         return (
-          <div className="mx-auto max-w-lg pb-10">
-            <BackButton onClick={() => setShowOptimized(false)} />
-            <div className="text-center mt-8 mb-8">
-              <div className="h-16 w-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-bold text-white mb-2">
-                That&apos;s already pretty dialed
-              </h2>
-              <p className="text-sm text-zinc-400 max-w-sm mx-auto">
-                Your order is <span className="text-emerald-400 font-semibold">{checkedTotalCal} cal</span> — that&apos;s solid.
-                Want to see other options at this restaurant?
-              </p>
-            </div>
-
-            {scoredSwaps.length > 0 && (
-              <div className="mb-8">
-                <p className="text-xs text-zinc-500 uppercase tracking-wider mb-4 text-center">
-                  Other swaps to explore
-                </p>
-                <div className="space-y-3">
-                  {scoredSwaps.slice(0, 3).map((s) => (
-                    <motion.button
-                      key={s.original.id}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => {
-                        const origIngIds = new Set(s.original.ingredients.map((ing: MealIngredient) => ing.id));
-                        setCheckedIds(origIngIds);
-                        setShowOptimized(false);
-                        setTimeout(() => setShowOptimized(true), 100);
-                      }}
-                      className="flex w-full items-center justify-between rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 text-left transition-all hover:border-emerald-500/30"
-                    >
-                      <div className="min-w-0 flex-1">
-                        <p className="font-semibold text-white">{s.original.name}</p>
-                        <p className="text-sm text-zinc-400">
-                          {Math.round(s.original.totals.calories)} cal → {Math.round(s.swap.totals.calories)} cal
-                        </p>
-                      </div>
-                      <div className="flex-shrink-0 ml-3 text-right">
-                        <span className="text-emerald-400 font-bold">-{Math.round(s.savings)} cal</span>
-                      </div>
-                    </motion.button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <motion.button
-              whileTap={{ scale: 0.97 }}
-              onClick={() => setShowOptimized(false)}
-              className="w-full rounded-2xl border border-zinc-700 px-6 py-4 text-sm text-zinc-300 transition-all hover:border-zinc-500"
-            >
-              Go back and pick different items
-            </motion.button>
-          </div>
+          <BibleSwapReveal
+            restaurant={restaurant}
+            checkedItems={checkedItems}
+            optimizedItems={recOptItems}
+            checkedTotalCal={checkedTotalCal}
+            optimizedTotalCal={recOptCal}
+            totalSavings={recSavings}
+            weeklyLbs={recWeeklyLbs}
+            onBack={() => setShowOptimized(false)}
+            onSwapComplete={onSwapComplete}
+            onNavigateAway={onNavigateAway}
+            onPersonalize={() => setShowPersonalize(true)}
+            trackEvent={trackEvent}
+            capturedEmailRef={capturedEmailRef}
+            getItemEmoji={getItemEmoji}
+            templateSwap={recTemplateSwap}
+          />
         );
       }
-
-      // Normal case: show the best recommendation confidently
-      return (
-        <div className="mx-auto max-w-lg pb-10">
-          <BackButton onClick={() => setShowOptimized(false)} />
-
-          {bestRecommendation && (
-            <div className="mt-6">
-              <p className="text-xs text-zinc-500 uppercase tracking-wider mb-4 text-center">
-                Here&apos;s what we&apos;d order instead
-              </p>
-
-              <motion.button
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => {
-                  const origIngIds = new Set(bestRecommendation.original.ingredients.map((ing: MealIngredient) => ing.id));
-                  setCheckedIds(origIngIds);
-                  setShowOptimized(false);
-                  setTimeout(() => setShowOptimized(true), 100);
-                }}
-                className="flex w-full items-center justify-between rounded-2xl border-2 border-emerald-500/40 bg-emerald-500/[0.06] p-5 text-left transition-all hover:border-emerald-500/60"
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="text-lg font-bold text-white">{bestRecommendation.original.name}</p>
-                  <p className="text-sm text-zinc-400 mt-1">
-                    {Math.round(bestRecommendation.original.totals.calories)} cal → {Math.round(bestRecommendation.swap.totals.calories)} cal
-                  </p>
-                  {bestRecommendation.swap.source === "eamon" && (
-                    <p className="text-[10px] text-amber-400 font-semibold mt-1.5 uppercase tracking-wider">Eamon&apos;s Pick</p>
-                  )}
-                </div>
-                <div className="flex-shrink-0 ml-3 text-right">
-                  <span className="text-2xl font-bold text-emerald-400">-{Math.round(bestRecommendation.savings)}</span>
-                  <p className="text-xs text-emerald-400/70">cal saved</p>
-                </div>
-              </motion.button>
-
-              <p className="text-xs text-zinc-500 text-center mt-3">
-                Your order: {checkedTotalCal} cal — this swap lands you at {Math.round(bestRecommendation.swap.totals.calories)} cal
-              </p>
-            </div>
-          )}
-
-          {runners.length > 0 && (
-            <div className="mt-8 mb-8">
-              <p className="text-xs text-zinc-500 uppercase tracking-wider mb-4 text-center">
-                Other options
-              </p>
-              <div className="space-y-3">
-                {runners.map((s) => (
-                  <motion.button
-                    key={s.original.id}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => {
-                      const origIngIds = new Set(s.original.ingredients.map((ing: MealIngredient) => ing.id));
-                      setCheckedIds(origIngIds);
-                      setShowOptimized(false);
-                      setTimeout(() => setShowOptimized(true), 100);
-                    }}
-                    className="flex w-full items-center justify-between rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 text-left transition-all hover:border-emerald-500/30"
-                  >
-                    <div className="min-w-0 flex-1">
-                      <p className="font-semibold text-white">{s.original.name}</p>
-                      <p className="text-sm text-zinc-400">
-                        {Math.round(s.original.totals.calories)} cal → {Math.round(s.swap.totals.calories)} cal
-                      </p>
-                    </div>
-                    <div className="flex-shrink-0 ml-3 text-right">
-                      <span className="text-emerald-400 font-bold">-{Math.round(s.savings)} cal</span>
-                    </div>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-            onClick={() => setShowOptimized(false)}
-            className="w-full rounded-2xl border border-zinc-700 px-6 py-4 text-sm text-zinc-300 transition-all hover:border-zinc-500"
-          >
-            Go back and pick different items
-          </motion.button>
-        </div>
-      );
+      // No swaps available at all — fall through to hasValidSwap render below
     }
 
     return (

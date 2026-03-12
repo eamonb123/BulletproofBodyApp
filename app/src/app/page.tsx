@@ -3,7 +3,7 @@ import Link from "next/link";
 const modules = [
   {
     name: "Fast Food Bible",
-    href: "/bible",
+    href: "/takeout",
     description: "Pick your restaurant. See the swap. Lose the fat.",
   },
   {
@@ -13,7 +13,7 @@ const modules = [
   },
   {
     name: "Snack Bible Lead Magnet",
-    href: "/snack-bible-landing",
+    href: "/snacks",
     description: "Landing page — hero + brand grid + demo experience.",
   },
   {

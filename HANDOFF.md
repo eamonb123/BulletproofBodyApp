@@ -1,10 +1,45 @@
 # HANDOFF — BulletproofBodyApp
 
-> Last updated: 2026-03-12 session 9
+> Last updated: 2026-03-12 session 10
 
 ## What Was Built This Session
 
-### 1. Concierge Page Redesign (`/concierge`)
+### 1. Snack Bible Demo UX Overhaul
+- Changed "Same taste" → "Same craving" across all snack bible pages (demo, landing, OG image, layout metadata)
+- Removed dashboard from demo flow entirely — demo now loops back to snack grid
+- Removed "Skip tutorial" and "Skip — show me the full dashboard" buttons
+- "Keep exploring swaps" now calls `advanceToDashboard()` → saves completed snack to localStorage → redirects to `/snacks?pick=1&stacked=1`
+- Bare URL visits to `/snack-bible-demo` redirect to `/snacks?pick=1`
+
+### 2. Snack Bible Landing Page Updates (`/snacks`)
+- Updated headline: "Pick your guilty pleasure." with subtext "We'll show you how to lose weight without giving it up."
+- CTA button: "Show me how." with "Takes 60 seconds." as subtext below
+- Added shine animation to CTA button (linear gradient sweep, 1.5s duration, 4s repeat delay)
+- Added `?pick=1` URL param to skip hero and show grid directly
+- Added `?stacked=1` URL param to trigger stack encouragement tooltip
+
+### 3. Stack Encouragement + Progress Tracking
+- `StackTooltip` component (matching fast food bible `TooltipCallout` pattern): "Nice — now pick a different snack. Same game, bigger savings."
+- `SnackProgressBanner` showing completed swap count + total calories saved
+- Green checkmark overlay + emerald border on completed snacks in grid
+- `CompletedSnack` interface + localStorage persistence (`bb_completed_snacks`)
+- Fixed scroll-to-top race condition with `requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "instant" }))`
+- Fixed content vertically centering off-screen: changed from `items-center` to `items-start pt-16`
+
+### 4. Route Renaming
+- `/snack-bible-landing` → `/snacks`
+- `/bible` → `/takeout`
+- Updated all internal references across 8 files: page.tsx, snack-bible-demo/page.tsx, start/page.tsx, snacks/layout.tsx, takeout/layout.tsx, jumper/page.tsx, experiments/dark-landing/page.tsx, concierge-full/page.tsx, directory/page.tsx
+- OG/meta URLs updated to match new routes
+
+### 5. Deployed to Render (3 deploys)
+- Deploy 1: Core demo UX changes (Same craving, remove dashboard, loop back to grid)
+- Deploy 2: Stack tooltip + meta description fixes
+- Deploy 3: Progress banner + checkmarks on snack grid
+
+## Previous Sessions
+
+### Session 9: Concierge Page Redesign
 - Full redesign with transformation photo grid (16 photos, 3 per row, chunked into groups of 9)
 - Evolving CTA buttons with shimmer gloss effect and animated arrow — currently all say "Book a call" and link directly to Calendly
 - Founder section with before/after photo, frosted overlay, bio, and personal quote
@@ -194,8 +229,9 @@ Lean Harissa Chicken Pita  | pita | 450 cal | 32g P | -530 saved
 | `/concierge/book` | Calendly embed page (dark theme) |
 | `/concierge-full` | Detailed landing page with full sales copy |
 | `/experiments/dark-landing` | Lead Magnet (gamified swap experience) |
-| `/bible` | Fast Food Bible (search-first reference tool) |
-| `/snack-bible` | Snack Bible (side-by-side snack swaps) |
+| `/takeout` | Fast Food Bible (search-first reference tool) — was `/bible` |
+| `/snacks` | Snack Bible Landing (hero + brand grid + demo entry) — was `/snack-bible-landing` |
+| `/snack-bible` | Snack Bible (side-by-side snack swaps, client tool) |
 | `/snack-bible-demo` | Snack Bible demo/generating screen |
 | `/grocery-bible` | Grocery Store Bible (home-food decision layer) |
 | `/grocery-order-optimizer` | Grocery Order Optimizer (cart-level replacement layer) |
@@ -239,7 +275,7 @@ npm run dev  # Port 3456
 URLs:
 - Directory: http://localhost:3456/
 - Lead Magnet: http://localhost:3456/experiments/dark-landing
-- Fast Food Bible: http://localhost:3456/bible
+- Fast Food Bible: http://localhost:3456/takeout
 - Snack Bible: http://localhost:3456/snack-bible
 - Grocery Store Bible: http://localhost:3456/grocery-bible
 - Grocery Order Optimizer: http://localhost:3456/grocery-order-optimizer
@@ -248,7 +284,7 @@ URLs:
 ## Key Files
 
 - `app/src/app/page.tsx` — Directory page
-- `app/src/app/bible/page.tsx` — Fast Food Bible (~580 lines)
+- `app/src/app/takeout/page.tsx` — Fast Food Bible (~580 lines)
 - `app/src/app/experiments/dark-landing/page.tsx` — Lead Magnet (~2100 lines)
 - `app/src/app/api/restaurant/[id]/route.ts` — Restaurant data API
 - `app/src/app/api/restaurants/route.ts` — Restaurant list API

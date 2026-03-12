@@ -727,7 +727,7 @@ function DarkLandingClient() {
                   goalWeight,
                   userEmail,
                 }));
-                window.location.href = "/bible";
+                window.location.href = "/takeout";
               }}
               onWatchVSL={() => {
                 sessionStorage.setItem("dl_session", JSON.stringify({

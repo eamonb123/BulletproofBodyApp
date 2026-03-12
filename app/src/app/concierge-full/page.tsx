@@ -196,7 +196,7 @@ function StickyNav() {
 // ─── Page ──────────────────────────────────────────────
 const FROM_ROUTES: Record<string, { href: string; label: string }> = {
   "snack-bible": { href: "/snack-bible-demo", label: "Back to Snack Bible" },
-  "bible": { href: "/bible", label: "Back to Fast Food Bible" },
+  "takeout": { href: "/takeout", label: "Back to Fast Food Bible" },
 };
 
 export default function ConciergePage() {

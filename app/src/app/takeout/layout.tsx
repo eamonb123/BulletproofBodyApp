@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Lose Your Next 10 lbs Without Giving Up DoorDash",
   description:
-    "Pick what you normally order. We'll show you exactly where the fat is hiding. Takes 60 seconds.",
+    "Pick your takeout spot. We'll show you what to order there and still lose weight. Takes 60 seconds.",
   openGraph: {
     title: "Lose Your Next 10 lbs Without Giving Up DoorDash",
     description:
-      "Pick what you normally order. We'll show you exactly where the fat is hiding. Takes 60 seconds.",
+      "Pick your takeout spot. We'll show you what to order there and still lose weight. Takes 60 seconds.",
     siteName: "Bulletproof Body",
     type: "website",
-    url: "https://bulletproofbody.ai/bible",
+    url: "https://bulletproofbody.ai/takeout",
     images: [
       {
         url: "https://bulletproofbody.ai/og-bible.png",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lose Your Next 10 lbs Without Giving Up DoorDash",
     description:
-      "Pick what you normally order. We'll show you exactly where the fat is hiding. Takes 60 seconds.",
+      "Pick your takeout spot. We'll show you what to order there and still lose weight. Takes 60 seconds.",
     images: ["https://bulletproofbody.ai/og-bible.png"],
   },
 };

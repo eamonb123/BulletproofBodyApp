@@ -241,7 +241,7 @@ function SnackBibleDemoInner() {
   // Redirect to landing if no snack param and not skipping to dashboard
   useEffect(() => {
     if (!snackParam && !skipToDashboard) {
-      router.replace("/snack-bible-landing?pick=1");
+      router.replace("/snacks?pick=1");
     }
   }, [snackParam, skipToDashboard, router]);
 
@@ -504,7 +504,7 @@ function SnackBibleDemoInner() {
   }
 
   function handleSkipTutorial() {
-    router.push("/snack-bible-landing?pick=1&stacked=1");
+    router.push("/snacks?pick=1&stacked=1");
   }
 
   function saveCompletedSnack() {
@@ -521,7 +521,7 @@ function SnackBibleDemoInner() {
 
   function advanceToDashboard() {
     saveCompletedSnack();
-    router.push("/snack-bible-landing?pick=1&stacked=1");
+    router.push("/snacks?pick=1&stacked=1");
   }
 
   // Dynamic tour positioning — re-calculates on scroll/resize so dialog

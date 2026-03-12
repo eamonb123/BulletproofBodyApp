@@ -65,7 +65,7 @@ const tools = [
     initialBg: "bg-cyan-500/10 text-cyan-300",
   },
   {
-    href: "/bible",
+    href: "/takeout",
     title: "Fast Food Bible",
     subtitle: "Client Vector",
     description:
@@ -112,7 +112,7 @@ const godModeLinks = [
     label: "Grocery Bible",
   },
   {
-    href: "/bible",
+    href: "/takeout",
     label: "Fast Food Bible",
   },
   {

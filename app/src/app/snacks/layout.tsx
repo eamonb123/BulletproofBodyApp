@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Pick your guilty pleasure. We'll show you how to lose weight without giving it up. Takes 60 seconds.",
     siteName: "Bulletproof Body",
     type: "website",
-    url: "https://bulletproofbody.ai/snack-bible-landing",
+    url: "https://bulletproofbody.ai/snacks",
     images: [
       {
         url: "https://bulletproofbody.ai/og-snack-bible.png",
