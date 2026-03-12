@@ -91,34 +91,23 @@ const tools = [
 ];
 
 const godModeLinks = [
-  {
-    href: "/jumper",
-    label: "Calorie Jumper",
-  },
-  {
-    href: "/experiments/dark-landing?god=1",
-    label: "Swap Tool + God Mode",
-  },
-  {
-    href: "/vsl",
-    label: "VSL Page",
-  },
-  {
-    href: "/snack-bible",
-    label: "Snack Bible",
-  },
-  {
-    href: "/grocery-bible",
-    label: "Grocery Bible",
-  },
-  {
-    href: "/takeout",
-    label: "Fast Food Bible",
-  },
-  {
-    href: "/restaurant-bible",
-    label: "Restaurant Bible",
-  },
+  { href: "/jumper", label: "Calorie Jumper" },
+  { href: "/experiments/dark-landing?god=1", label: "Swap Tool + God Mode" },
+  { href: "/vsl", label: "VSL Page" },
+  { href: "/snack-bible", label: "Snack Bible" },
+  { href: "/snacks", label: "Snack Bible Lead Magnet" },
+  { href: "/snack-bible-demo", label: "Snack Bible Demo" },
+  { href: "/grocery-bible", label: "Grocery Bible" },
+  { href: "/grocery-order-optimizer", label: "Grocery Order Optimizer" },
+  { href: "/takeout", label: "Fast Food Bible" },
+  { href: "/restaurant-bible", label: "Restaurant Bible" },
+  { href: "/recipe", label: "Recipe Bible" },
+  { href: "/concierge", label: "Concierge" },
+  { href: "/concierge-full", label: "Concierge Full" },
+  { href: "/free", label: "Free Tool" },
+  { href: "/start", label: "Start" },
+  { href: "/weekly-check-in", label: "Weekly Check-In" },
+  { href: "/analytics", label: "Analytics" },
 ];
 
 export default function Home() {
