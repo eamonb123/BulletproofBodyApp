@@ -58,6 +58,190 @@ interface EmailData {
   completedMeals: CompletedMeal[];
   sessionTotalSavings: number;
   source?: string;
+  recipeIngredients?: {
+    original: { name: string; quantity: string; calories: number; protein_g: number }[];
+    swap: { name: string; quantity: string; calories: number; protein_g: number }[];
+  };
+  videoUrl?: string;
+}
+
+function instacartLink(name: string): string {
+  return `https://www.instacart.com/store/s?k=${encodeURIComponent(name)}`;
+}
+
+function buildRecipeEmailHtml(data: EmailData): string {
+  data.calSavedPerOrder = Math.round(data.calSavedPerOrder);
+  data.currentWeight = Math.round(data.currentWeight);
+  data.goalWeight = Math.round(data.goalWeight);
+  data.weeksToGoal = Math.round(data.weeksToGoal);
+  const origCal = Math.round(data.originalCalories ?? 0);
+  const swapCal = Math.round(data.swapCalories ?? 0);
+  const savings = origCal - swapCal;
+  const recipeName = data.restaurantName || data.swapName || "Your Recipe";
+  const lbsPerWeek = data.lbsPerWeek?.toFixed?.(1) ?? "1.0";
+  const multipliedLbs = (data.lbsPerWeek * 4).toFixed(1);
+
+  const orig = data.recipeIngredients?.original ?? [];
+  const swap = data.recipeIngredients?.swap ?? [];
+
+  const origProtein = Math.round(orig.reduce((s, i) => s + (i.protein_g || 0), 0));
+  const swapProtein = Math.round(swap.reduce((s, i) => s + (i.protein_g || 0), 0));
+  const proteinDiff = swapProtein - origProtein;
+  const proteinNote = proteinDiff > 0 ? ` (+${proteinDiff}g protein)` : "";
+
+  // Build combined rows: Original → Swap → Saved (paired by display_order)
+  const combinedRows = orig.map((o, idx) => {
+    const s = swap[idx];
+    const saved = s ? Math.round(o.calories) - Math.round(s.calories) : 0;
+    const shopUrl = s ? instacartLink(s.name) : "";
+    const isZeroCal = s?.calories === 0;
+    return `<tr>
+      <td style="padding: 10px 8px; font-size: 13px; border-bottom: 1px solid #f0f0f0;">
+        <span style="color: #999; text-decoration: line-through;">${o.name}</span>
+        <span style="color: #999; font-size: 12px;"> (${Math.round(o.calories)})</span>
+        <br>
+        <span style="color: #059669; font-weight: 600;">${s?.name ?? "—"}</span>
+        <span style="color: #059669; font-size: 12px;"> ${s?.quantity ?? ""}</span>
+        ${s && !isZeroCal ? `<a href="${shopUrl}" style="color: #059669; font-size: 10px; text-decoration: underline; margin-left: 4px;">Shop</a>` : ""}
+      </td>
+      <td style="padding: 10px 8px; font-size: 14px; color: #059669; font-weight: 700; text-align: center; border-bottom: 1px solid #f0f0f0; white-space: nowrap;">
+        ${s ? Math.round(s.calories) : "—"} cal
+      </td>
+      <td style="padding: 10px 8px; font-size: 13px; font-weight: 600; text-align: right; border-bottom: 1px solid #f0f0f0; color: ${saved > 0 ? "#dc2626" : "#999"};">
+        ${saved > 0 ? `-${saved}` : "0"}
+      </td>
+    </tr>`;
+  }).join("");
+
+  // "Order all" link — search for the main ingredient (highest cal swap item)
+  const mainItem = [...swap].sort((a, b) => b.calories - a.calories)[0];
+  const orderAllUrl = mainItem ? instacartLink(mainItem.name) : "https://www.instacart.com";
+
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; background-color: #ffffff; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <div style="max-width: 520px; margin: 0 auto; padding: 40px 24px;">
+
+    <!-- Headline -->
+    <h1 style="font-size: 26px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; color: #111;">
+      Your ${recipeName} Recipe
+    </h1>
+    <p style="font-size: 16px; color: #059669; font-weight: 600; margin: 0 0 32px 0;">
+      ${swapCal} calories &middot; ${swapProtein}g protein${proteinNote}
+    </p>
+
+    <!-- THE RECIPE: Combined Swap Table -->
+    <div style="border: 2px solid #e5e7eb; border-radius: 16px; padding: 24px; margin-bottom: 24px;">
+      <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; margin: 0 0 4px 0; color: #111;">
+        Your ${recipeName} — Optimized
+      </p>
+      <p style="font-size: 13px; color: #999; margin: 0 0 16px 0;">
+        <span style="color: #999; text-decoration: line-through;">Old ingredient</span> → <span style="color: #059669; font-weight: 600;">New swap</span>
+      </p>
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="padding: 6px 8px; font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; border-bottom: 2px solid #e5e7eb;">Swap</th>
+            <th style="padding: 6px 8px; font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; text-align: center; border-bottom: 2px solid #e5e7eb;">New Cal</th>
+            <th style="padding: 6px 8px; font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; text-align: right; border-bottom: 2px solid #e5e7eb;">Saved</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${combinedRows}
+          <tr style="background: #f0fdf4;">
+            <td style="padding: 12px 8px; font-size: 14px; font-weight: 700; color: #111; border-top: 2px solid #bbf7d0;">
+              <span style="color: #999; font-weight: 400; font-size: 12px;">${origCal} cal →</span> <span style="color: #059669;">${swapCal} cal</span>
+            </td>
+            <td style="padding: 12px 8px; font-size: 16px; font-weight: 700; color: #059669; text-align: center; border-top: 2px solid #bbf7d0;">
+              ${swapCal}
+            </td>
+            <td style="padding: 12px 8px; font-size: 16px; font-weight: 700; color: #dc2626; text-align: right; border-top: 2px solid #bbf7d0;">
+              -${savings}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- How to make it -->
+    <p style="font-size: 15px; color: #444; line-height: 1.7; margin-bottom: 24px;">
+      <strong style="color: #111;">How to make it:</strong> Same method as regular ${recipeName.toLowerCase()}. Just swap the ingredients above. That&rsquo;s it.${data.videoUrl ? `
+      <br/><br/>
+      <a href="${data.videoUrl}" style="color: #059669; font-weight: 600; text-decoration: underline;">Watch me make it step by step →</a>` : ""}
+    </p>
+
+    <!-- Order CTA -->
+    <div style="text-align: center; margin-bottom: 32px;">
+      <a href="${orderAllUrl}" style="display: inline-block; background: #059669; color: #fff; font-weight: 600; font-size: 16px; padding: 16px 36px; border-radius: 12px; text-decoration: none;">
+        🛒 Order ingredients on Instacart
+      </a>
+      <p style="font-size: 12px; color: #999; margin: 8px 0 0 0;">Delivered to your door. No store trip needed.</p>
+    </div>
+
+    <!-- The math -->
+    <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 24px;">
+      <p style="font-size: 14px; color: #666; margin: 0 0 4px 0;">Same ${recipeName.toLowerCase()}. Same experience.</p>
+      <p style="font-size: 28px; font-weight: 700; color: #059669; margin: 0;">${savings} fewer calories</p>
+      <p style="font-size: 14px; color: #666; margin: 4px 0 0 0;">That&rsquo;s <strong style="color: #111;">${lbsPerWeek} lbs of fat per week</strong> just from breakfast.</p>
+    </div>
+
+    <!-- Projection -->
+    <div style="background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 16px; padding: 28px; text-align: center; margin-bottom: 32px;">
+      <p style="font-size: 12px; color: #6b7280; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">Your timeline</p>
+      <p style="font-size: 32px; font-weight: 700; color: #059669; margin: 0;">${data.goalWeight} lbs</p>
+      <p style="font-size: 17px; font-weight: 600; color: #111; margin: 6px 0 0 0;">by ${data.targetDate}</p>
+    </div>
+
+    <!-- The Gap -->
+    <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 16px; padding: 24px; margin-bottom: 32px;">
+      <h2 style="font-size: 18px; font-weight: 600; margin: 0 0 12px 0; color: #111;">But here&rsquo;s the thing.</h2>
+      <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0 0 16px 0;">
+        That was <strong style="color: #111;">one recipe</strong>. You probably cook 3 or 4 meals a week. Each one has the same kind of hidden calories &mdash; the oils, the bread, the syrups, the sauces nobody thinks about.
+      </p>
+      <p style="font-size: 15px; color: #444; line-height: 1.8; margin: 0;">
+        If you optimized all of them? That ${lbsPerWeek} lbs/week becomes <strong style="color: #059669; font-size: 17px;">${multipliedLbs} lbs/week.</strong>
+      </p>
+    </div>
+
+    <!-- VSL CTA -->
+    <div style="text-align: center; margin-bottom: 32px;">
+      <p style="font-size: 15px; color: #444; margin: 0 0 20px 0; line-height: 1.8;">
+        I made a 35-minute video that breaks down exactly how we find every hidden calorie in your week and build a system around the food you already love. No meal prep. No restriction. Just math.
+      </p>
+      <a href="https://bulletproofbody.ai/vsl" style="display: inline-block; background: #111; color: #fff; font-weight: 600; font-size: 16px; padding: 16px 36px; border-radius: 12px; text-decoration: none;">
+        Watch the video
+      </a>
+    </div>
+
+    <!-- P.S. -->
+    <div style="border-top: 1px solid #e5e7eb; padding-top: 24px; margin-bottom: 24px;">
+      <p style="font-size: 14px; color: #666; line-height: 1.7;">
+        <strong style="color: #333;">P.S.</strong> Reply to this email with another recipe you make at home and I&rsquo;ll optimize it for you &mdash; ingredients, calories, shopping links, the whole thing.
+      </p>
+    </div>
+
+    <!-- Sign off -->
+    <div style="margin-bottom: 32px;">
+      <p style="font-size: 15px; color: #333; margin: 0;">Eamon</p>
+      <p style="font-size: 13px; color: #888; margin: 4px 0 0 0;">Bulletproof Body</p>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding-top: 20px; border-top: 1px solid #e5e7eb;">
+      <p style="font-size: 11px; color: #999; text-align: center;">
+        Bulletproof Body
+        <br>
+        <a href="{unsubscribe_url}" style="color: #999;">Unsubscribe</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>`;
 }
 
 function buildEmailHtml(data: EmailData): string {
@@ -250,12 +434,16 @@ export async function POST(req: NextRequest) {
     const resendKey = process.env.RESEND_API_KEY;
     if (resendKey) {
       try {
-        const html = buildEmailHtml(data);
         const source = data.source || "Fast Food Bible";
         const isSnack = source === "Snack Bible";
+        const isRecipe = source === "Recipe Bible";
+
+        const html = isRecipe ? buildRecipeEmailHtml(data) : buildEmailHtml(data);
 
         // Subject line — different per source
-        const subject = isSnack
+        const subject = isRecipe
+          ? `Your ${data.restaurantName || "recipe"} recipe (${Math.round(data.swapCalories || 0)} cal, ${Math.round((data.recipeIngredients?.swap ?? []).reduce((s: number, i: { protein_g?: number }) => s + (i.protein_g || 0), 0))}g protein)`
+          : isSnack
           ? `You just found ${data.calSavedPerOrder} hidden calories in ${data.restaurantName || "your snack"}`
           : `You just found ${data.calSavedPerOrder} hidden calories at ${data.restaurantName || "your restaurant"}`;
 
