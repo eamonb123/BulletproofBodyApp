@@ -328,7 +328,7 @@ function RecipeReveal({
                   {!cardGone && (
                     <motion.div exit={{ opacity: 0, y: -40, height: 0, marginBottom: 0, padding: 0 }} transition={{ duration: 0.4, ease: "easeOut" }}
                       className="w-full rounded-2xl border border-emerald-500/25 bg-emerald-500/5 p-5 mb-6 overflow-hidden">
-                      <h2 className="text-lg font-bold text-white mb-1">Sending...</h2>
+                      <h2 className="text-lg font-bold text-white mb-1">{barDone ? "Recipe sent to your email!" : "Sending..."}</h2>
                       {!barDone ? (
                         <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
                           <motion.div className="h-full rounded-full bg-emerald-500" initial={{ width: "0%" }} animate={{ width: "100%" }}
