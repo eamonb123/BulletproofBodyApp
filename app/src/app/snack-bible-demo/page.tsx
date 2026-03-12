@@ -504,12 +504,12 @@ function SnackBibleDemoInner() {
   }
 
   function handleSkipTutorial() {
-    router.push("/snack-bible-landing?pick=1");
+    router.push("/snack-bible-landing?pick=1&stacked=1");
   }
 
   function advanceToDashboard() {
     // Demo flow loops back to landing — dashboard is only accessible via /snack-bible-demo?skip=dashboard
-    router.push("/snack-bible-landing?pick=1");
+    router.push("/snack-bible-landing?pick=1&stacked=1");
   }
 
   // Dynamic tour positioning — re-calculates on scroll/resize so dialog
@@ -2376,7 +2376,7 @@ function ProjectionScreen({
               <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
             </motion.button>
             <button
-              onClick={() => window.location.href = "/snack-bible-landing?pick=1"}
+              onClick={() => window.location.href = "/snack-bible-landing?pick=1&stacked=1"}
               className="w-full text-center text-sm text-zinc-600 hover:text-zinc-400 transition-colors py-2"
             >
               Keep exploring swaps

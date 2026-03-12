@@ -233,10 +233,41 @@ export default function SnackBibleLandingPage() {
   );
 }
 
+// ─── Stack Encouragement Tooltip ───────────────────
+function StackTooltip({ onDismiss }: { onDismiss: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ delay: 0.3, type: "spring", stiffness: 300, damping: 25 }}
+      className="pointer-events-none absolute left-1/2 top-2 z-30 w-[90%] max-w-md -translate-x-1/2"
+    >
+      <div className="pointer-events-auto relative rounded-2xl border border-emerald-500/30 bg-zinc-900/95 px-5 py-4 shadow-[0_0_40px_rgba(16,185,129,0.1)] backdrop-blur-sm">
+        <button
+          onClick={onDismiss}
+          className="absolute right-3 top-3 text-zinc-500 hover:text-zinc-300 transition-colors"
+        >
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <p className="pr-6 text-sm font-bold text-white">Nice. Now pick a different snack. Same game, bigger savings.</p>
+        <p className="mt-1 text-xs text-zinc-400">Let&apos;s stack another one.</p>
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2">
+          <div className="h-0 w-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-emerald-500/30" />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 function SnackBibleLanding() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [awake, setAwake] = useState(searchParams.get("pick") === "1");
+  const isReturning = searchParams.get("stacked") === "1";
+  const [awake, setAwake] = useState(searchParams.get("pick") === "1" || isReturning);
+  const [showStackTooltip, setShowStackTooltip] = useState(isReturning);
   const [search, setSearch] = useState("");
 
   const filtered = useMemo(() => {
@@ -372,8 +403,14 @@ function SnackBibleLanding() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="flex min-h-[100dvh] flex-col items-center px-4 py-10 sm:px-8"
+            className="relative flex min-h-[100dvh] flex-col items-center px-4 py-10 sm:px-8"
           >
+            {/* Stack encouragement tooltip (shown when returning from a completed swap) */}
+            <AnimatePresence>
+              {showStackTooltip && (
+                <StackTooltip onDismiss={() => setShowStackTooltip(false)} />
+              )}
+            </AnimatePresence>
             {/* Brand mark */}
             <div className="mb-6">
               <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-zinc-500">Bulletproof Body</p>
