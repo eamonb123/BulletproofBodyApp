@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const bookingUrl = "/concierge/book";
+const bookingUrl = "https://calendly.com/eamon-barkhordarian/connect-time-clone";
 
 const stats = [
   { value: "19 lbs", label: "avg fat lost in 12 weeks" },
@@ -77,12 +77,11 @@ function chunk<T>(arr: T[], size: number): T[][] {
   return chunks;
 }
 
-// Evolving CTAs — earns more commitment as proof stacks
 const CTA_LABELS = [
-  "See what\u2019s hiding in your food",
-  "Get your personalized plan",
-  "Let\u2019s map your food",
-  "Book your free strategy call",
+  "Book a call",
+  "Book a call",
+  "Book a call",
+  "Book a call",
 ];
 
 function CtaButton({ index }: { index: number }) {
