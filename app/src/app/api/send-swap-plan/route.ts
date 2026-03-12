@@ -125,15 +125,11 @@ function buildRecipeEmailHtml(data: EmailData): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="margin: 0; padding: 0; background-color: #ffffff; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <!-- Preview text (visible in inbox, hidden in email body) -->
+  <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all;">
+    Here&rsquo;s the exact recipe &mdash; plus a link to order everything to your door on Instacart.
+  </div>
   <div style="max-width: 520px; margin: 0 auto; padding: 40px 24px;">
-
-    <!-- Headline -->
-    <h1 style="font-size: 26px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; color: #111;">
-      Your ${recipeName} Recipe
-    </h1>
-    <p style="font-size: 16px; color: #059669; font-weight: 600; margin: 0 0 32px 0;">
-      ${swapCal} calories &middot; ${swapProtein}g protein${proteinNote}
-    </p>
 
     <!-- THE RECIPE: Combined Swap Table -->
     <div style="border: 2px solid #e5e7eb; border-radius: 16px; padding: 24px; margin-bottom: 24px;">
@@ -441,8 +437,11 @@ export async function POST(req: NextRequest) {
         const html = isRecipe ? buildRecipeEmailHtml(data) : buildEmailHtml(data);
 
         // Subject line — different per source
+        const recipeSavings = isRecipe
+          ? Math.round((data.originalCalories || 0) - (data.swapCalories || 0))
+          : 0;
         const subject = isRecipe
-          ? `Your ${data.restaurantName || "recipe"} recipe (${Math.round(data.swapCalories || 0)} cal, ${Math.round((data.recipeIngredients?.swap ?? []).reduce((s: number, i: { protein_g?: number }) => s + (i.protein_g || 0), 0))}g protein)`
+          ? `Your ${data.restaurantName || "recipe"} recipe (${recipeSavings} calories less)`
           : isSnack
           ? `You just found ${data.calSavedPerOrder} hidden calories in ${data.restaurantName || "your snack"}`
           : `You just found ${data.calSavedPerOrder} hidden calories at ${data.restaurantName || "your restaurant"}`;
