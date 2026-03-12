@@ -78,54 +78,54 @@ interface RestaurantDetail {
 
 const LOGO_EXTENSION_BY_ID: Record<string, string> = {
   applebees: "png",
-  arbys: "svg",
+  arbys: "png",
   bjs: "png",
   burgerking: "png",
   bww: "png",
   cava: "png",
-  cheesecakefactory: "svg",
-  chickfila: "svg",
-  chilis: "svg",
-  chipotle: "svg",
-  crackerbarrel: "svg",
-  dairyqueen: "svg",
+  cheesecakefactory: "png",
+  chickfila: "png",
+  chilis: "png",
+  chipotle: "png",
+  crackerbarrel: "png",
+  dairyqueen: "png",
   dennys: "png",
-  dunkin: "svg",
+  dunkin: "png",
   firehousesubs: "png",
   firstwatch: "png",
   ihop: "png",
-  innout: "svg",
-  jerseymikes: "svg",
-  jimmyjohns: "svg",
+  innout: "png",
+  jerseymikes: "png",
+  jimmyjohns: "png",
   kfc: "png",
   littlecaesars: "png",
   longhorn: "png",
   mcdonalds: "png",
   moes: "png",
-  olivegarden: "svg",
+  olivegarden: "png",
   outback: "png",
   pandaexpress: "png",
-  panera: "svg",
+  panera: "png",
   papajohns: "png",
-  pizzahut: "svg",
-  popeyes: "svg",
+  pizzahut: "png",
+  popeyes: "png",
   puravida: "png",
-  qdoba: "svg",
+  qdoba: "png",
   raisingcanes: "png",
   redlobster: "png",
   sheetz: "png",
-  smoothieking: "svg",
-  sonic: "svg",
+  smoothieking: "png",
+  sonic: "png",
   subway: "png",
-  sweetgreen: "svg",
+  sweetgreen: "png",
   tacobell: "png",
   texasroadhouse: "png",
-  tropicalsmoothie: "svg",
-  wafflehouse: "svg",
+  tropicalsmoothie: "png",
+  wafflehouse: "png",
   wawa: "png",
   wendys: "png",
-  whataburger: "svg",
-  yardhouse: "svg",
+  whataburger: "png",
+  yardhouse: "png",
   zaxbys: "png",
 };
 
@@ -2718,7 +2718,7 @@ function BibleSwapReveal({
                           className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
                           style={{ background: "rgba(16, 185, 129, 0.06)", boxShadow: "0 0 12px 2px rgba(16,185,129,0.04), inset 0 1px 0 rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.15)" }}
                         >
-                          <span className="text-emerald-400 truncate mr-2">{ing.name}</span>
+                          <span className="text-emerald-400 truncate mr-2">{ing.quantity !== 1 ? `${ing.quantity === 0.5 ? "½" : ing.quantity === 2 ? "2x" : `${ing.quantity}x`} ` : ""}{ing.name}</span>
                           <span className="text-emerald-400 tabular-nums flex-shrink-0 font-semibold">{Math.round(ing.calories * ing.quantity)}</span>
                         </div>
                       );
@@ -3100,20 +3100,18 @@ function RestaurantDetailView({
   // Only show swap reveal if we have a template match — auto-fallback produces garbage
   const hasValidSwap = !!templateSwap && totalSavings >= 100;
 
-  // Collect available template swaps for this restaurant (for suggestions)
-  const availableTemplateSwaps = originals
-    .filter((orig) => (swapMap.get(orig.id) || []).length > 0)
-    .map((orig) => {
-      const swaps = swapMap.get(orig.id) || [];
-      const best = [...swaps].sort((a, b) => {
-        if (a.source === "eamon" && b.source !== "eamon") return -1;
-        if (b.source === "eamon" && a.source !== "eamon") return 1;
-        return a.totals.calories - b.totals.calories;
-      })[0];
-      return { original: orig, swap: best, savings: orig.totals.calories - best.totals.calories };
-    })
-    .filter((s) => s.savings >= 100)
-    .sort((a, b) => b.savings - a.savings);
+  // Collect ALL available swaps for this restaurant (flatten all swaps per original)
+  const availableTemplateSwaps: { original: Meal; swap: Meal; savings: number }[] = [];
+  for (const orig of originals) {
+    const swaps = swapMap.get(orig.id) || [];
+    for (const swap of swaps) {
+      const savings = orig.totals.calories - swap.totals.calories;
+      if (savings >= 100) {
+        availableTemplateSwaps.push({ original: orig, swap, savings });
+      }
+    }
+  }
+  availableTemplateSwaps.sort((a, b) => b.savings - a.savings);
 
   if (showOptimized && checkedItems.length > 0) {
     // If "Personalize this for my goals" was clicked, show SwapSavingsCard (weight form flow)
@@ -3149,19 +3147,40 @@ function RestaurantDetailView({
       const eamonSwaps = availableTemplateSwaps.filter((s) => s.swap.source === "eamon");
       const swapsToScore = eamonSwaps.length > 0 ? eamonSwaps : availableTemplateSwaps;
 
+      // Meal floor: if user ordered a real meal (400+ cal), the swap should also feel like a meal
+      const MEAL_FLOOR_CAL = 400;
+      const userOrderedMeal = checkedTotalCal >= MEAL_FLOOR_CAL;
+
       const scoredSwaps = swapsToScore.map((s) => {
         let score = 0;
-        const calDiff = Math.abs(s.original.totals.calories - checkedTotalCal);
+        // 1. Calorie proximity: swap calories close to user's order = similar appetite
+        const calDiff = Math.abs(s.swap.totals.calories - checkedTotalCal);
         score += Math.max(0, 50 - (calDiff / 40));
-        const origIngNames = new Set(s.original.ingredients.map((ing: MealIngredient) => ing.name.toLowerCase()));
-        for (const name of userIngNames) { if (origIngNames.has(name)) score += 15; }
-        const origCatIds = new Set(s.original.ingredients.map((ing: MealIngredient) => {
+        // 2. Swap ingredient name overlap with user's checked items
+        const swapIngNames = new Set(s.swap.ingredients.map((ing: MealIngredient) => ing.name.toLowerCase()));
+        for (const name of userIngNames) { if (swapIngNames.has(name)) score += 15; }
+        // 3. Swap ingredient category overlap
+        const swapCatIds = new Set(s.swap.ingredients.map((ing: MealIngredient) => {
           const menuItem = menuItems.find((mi) => mi.id === ing.id);
           return menuItem?.category_id;
         }).filter(Boolean));
-        for (const catId of userCatIds) { if (origCatIds.has(catId)) score += 10; }
+        for (const catId of userCatIds) { if (swapCatIds.has(catId)) score += 10; }
+        // 4. Meal type match (original's meal type matches user's)
         if (s.original.meal_type && userMealTypes.has(s.original.meal_type)) score += 20;
+        // 5. Savings magnitude
         score += Math.min(20, s.savings / 50);
+        // 6. Swap name relevance: if swap name contains words from user's items, boost it
+        const swapNameLower = s.swap.name.toLowerCase();
+        for (const item of checkedItems) {
+          const words = item.name.toLowerCase().split(/\s+/);
+          for (const word of words) {
+            if (word.length > 3 && swapNameLower.includes(word)) { score += 10; break; }
+          }
+        }
+        // 7. Meal floor penalty: if user ordered a real meal, penalize swaps that feel like a snack
+        if (userOrderedMeal && s.swap.totals.calories < MEAL_FLOOR_CAL) {
+          score -= 50; // heavy penalty — a 170 cal swap for a 730 cal order feels restrictive
+        }
         return { ...s, score };
       });
 
@@ -3189,7 +3208,8 @@ function RestaurantDetailView({
           totalCal: bestRec.swap.totals.calories,
           totalProtein: bestRec.swap.totals.protein,
         };
-        const recOptCal = Math.round(recTemplateSwap.totalCal) + recOptItems.filter((o) => !o.swap && !(o as any)._templateRemoved).reduce((sum, o) => sum + Math.round(o.original.calories), 0);
+        // Only add kept items that are NOT already counted in the swap's ingredient total
+        const recOptCal = Math.round(recTemplateSwap.totalCal) + recOptItems.filter((o) => !o.swap && !(o as any)._templateRemoved && !swapIngIds.has(o.original.id)).reduce((sum, o) => sum + Math.round(o.original.calories), 0);
         const recSavings = checkedTotalCal - recOptCal;
         const recWeeklyLbs = recSavings > 0 ? ((recSavings * 7) / 3500).toFixed(1) : "0";
 
@@ -3339,9 +3359,9 @@ function RestaurantDetailView({
                   const isChecked = checkedIds.has(item.id);
                   const hasMealSwap = ingredientToMeal.has(item.id) && swapMap.has(ingredientToMeal.get(item.id)!.id);
                   return (
-                    <motion.button key={item.id}
+                    <motion.div key={item.id} role="button" tabIndex={0}
                       onClick={() => { trackEvent?.("bible_meal_checked", { restaurant: restaurant.name, meal: item.name, calories: Math.round(item.calories), checked: !isChecked }); toggleChecked(item.id); }}
-                      className={`flex w-full items-center gap-3 rounded-xl border p-4 text-left transition-all ${isChecked ? "border-emerald-500/50 bg-emerald-500/5" : "border-zinc-800 bg-zinc-900/60 hover:border-zinc-600"}`}
+                      className={`flex w-full items-center gap-3 rounded-xl border p-4 text-left transition-all cursor-pointer ${isChecked ? "border-emerald-500/50 bg-emerald-500/5" : "border-zinc-800 bg-zinc-900/60 hover:border-zinc-600"}`}
                       whileTap={{ scale: 0.98 }}>
                       {/* Checkmark circle */}
                       <div className={`flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border-2 transition-all ${isChecked ? "border-emerald-500 bg-emerald-500" : "border-zinc-600"}`}>
@@ -3363,7 +3383,7 @@ function RestaurantDetailView({
                       {hasMealSwap && (
                         <span className="flex-shrink-0 rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-400">SWAP</span>
                       )}
-                    </motion.button>
+                    </motion.div>
                   );
                 })}
               </div>
