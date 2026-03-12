@@ -434,11 +434,11 @@ function RecipeReveal({
         </AnimatePresence>
 
         {/* Side-by-side comparison (ingredients INSIDE boxes) */}
-        <div className="mb-6 grid grid-cols-2 gap-3">
+        <div className="mb-6 grid grid-cols-2 gap-2 sm:gap-3">
           {/* LEFT: Normal Recipe */}
           <motion.div
             initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}
-            className={`rounded-2xl border p-5 transition-all duration-700 ${revealed ? "border-red-500/30 bg-red-500/5" : "border-zinc-800 bg-zinc-900/60"}`}
+            className={`rounded-2xl border p-3 sm:p-5 transition-all duration-700 ${revealed ? "border-red-500/30 bg-red-500/5" : "border-zinc-800 bg-zinc-900/60"}`}
           >
             <div className="mb-4 text-center">
               {recipe.image_url ? (
@@ -456,9 +456,9 @@ function RecipeReveal({
             </div>
             <div className="space-y-1.5">
               {original.map((ing) => (
-                <div key={ing.id} className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
+                <div key={ing.id} className="flex items-center justify-between rounded-lg px-1.5 sm:px-2.5 py-1.5 sm:py-2 text-[11px] sm:text-xs"
                   style={{ background: "rgba(39, 39, 42, 0.5)", boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-                  <span className="mr-2 truncate text-zinc-400">{ing.name}</span>
+                  <span className="mr-1 truncate text-zinc-400">{ing.name}</span>
                   <span className="flex-shrink-0 font-medium tabular-nums text-zinc-500">{ing.calories}</span>
                 </div>
               ))}
@@ -474,7 +474,7 @@ function RecipeReveal({
           {/* RIGHT: Optimized Recipe */}
           <motion.div
             initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-            className={`rounded-2xl border p-5 transition-all duration-700 ${revealed ? "border-emerald-500/40 bg-emerald-500/5 shadow-[0_0_30px_rgba(16,185,129,0.08)]" : "border-zinc-800 bg-zinc-900/60"}`}
+            className={`rounded-2xl border p-3 sm:p-5 transition-all duration-700 ${revealed ? "border-emerald-500/40 bg-emerald-500/5 shadow-[0_0_30px_rgba(16,185,129,0.08)]" : "border-zinc-800 bg-zinc-900/60"}`}
           >
             <div className="mb-4 text-center">
               {revealed ? (
@@ -513,9 +513,9 @@ function RecipeReveal({
               <div className="space-y-1.5">
                 {swap.map((ing, i) => (
                   <motion.div key={ing.id} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 + i * 0.08 }}
-                    className="flex items-center justify-between rounded-lg px-2.5 py-2 text-xs"
+                    className="flex items-center justify-between rounded-lg px-1.5 sm:px-2.5 py-1.5 sm:py-2 text-[11px] sm:text-xs"
                     style={{ background: "rgba(16, 185, 129, 0.08)", border: "1px solid rgba(16,185,129,0.15)" }}>
-                    <span className="mr-2 truncate text-emerald-400">{ing.name}</span>
+                    <span className="mr-1 truncate text-emerald-400">{ing.name}</span>
                     <span className="flex-shrink-0 font-medium tabular-nums text-emerald-400">{ing.calories}</span>
                   </motion.div>
                 ))}
@@ -523,7 +523,7 @@ function RecipeReveal({
             ) : (
               <div className="space-y-1.5">
                 {original.map((_, i) => (
-                  <div key={i} className="flex items-center justify-between rounded-lg px-2.5 py-2"
+                  <div key={i} className="flex items-center justify-between rounded-lg px-1.5 sm:px-2.5 py-1.5 sm:py-2"
                     style={{ background: "rgba(39, 39, 42, 0.3)" }}>
                     <div className="h-3 rounded bg-zinc-700/50" style={{ width: `${70 - i * 8}%` }} />
                     <div className="h-3 w-8 rounded bg-zinc-700/50" />
