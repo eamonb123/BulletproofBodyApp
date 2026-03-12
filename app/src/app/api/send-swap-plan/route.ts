@@ -179,20 +179,6 @@ function buildRecipeEmailHtml(data: EmailData): string {
       <p style="font-size: 12px; color: #999; margin: 8px 0 0 0;">Delivered to your door. No store trip needed.</p>
     </div>
 
-    <!-- The math -->
-    <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 24px;">
-      <p style="font-size: 14px; color: #666; margin: 0 0 4px 0;">Same ${recipeName.toLowerCase()}. Same experience.</p>
-      <p style="font-size: 28px; font-weight: 700; color: #059669; margin: 0;">${savings} fewer calories</p>
-      <p style="font-size: 14px; color: #666; margin: 4px 0 0 0;">That&rsquo;s <strong style="color: #111;">${lbsPerWeek} lbs of fat per week</strong> just from breakfast.</p>
-    </div>
-
-    <!-- Projection -->
-    <div style="background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 16px; padding: 28px; text-align: center; margin-bottom: 32px;">
-      <p style="font-size: 12px; color: #6b7280; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">Your timeline</p>
-      <p style="font-size: 32px; font-weight: 700; color: #059669; margin: 0;">${data.goalWeight} lbs</p>
-      <p style="font-size: 17px; font-weight: 600; color: #111; margin: 6px 0 0 0;">by ${data.targetDate}</p>
-    </div>
-
     <!-- The Gap -->
     <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 16px; padding: 24px; margin-bottom: 32px;">
       <h2 style="font-size: 18px; font-weight: 600; margin: 0 0 12px 0; color: #111;">But here&rsquo;s the thing.</h2>
