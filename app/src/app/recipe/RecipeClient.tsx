@@ -32,7 +32,7 @@ interface Ingredient {
 }
 
 interface RecipeDetail {
-  recipe: { id: string; name: string; emoji: string; image_url?: string };
+  recipe: { id: string; name: string; emoji: string; image_url?: string; video_url?: string };
   original: Ingredient[];
   swap: Ingredient[];
 }
