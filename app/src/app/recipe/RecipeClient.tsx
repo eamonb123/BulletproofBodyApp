@@ -250,7 +250,7 @@ function RecipeReveal({
 
                 <motion.button whileTap={{ scale: 0.97 }} onClick={() => setPhase("projection")} disabled={!canContinueWeight}
                   className={`w-full rounded-2xl px-8 py-4 text-base font-semibold transition-all ${canContinueWeight ? "bg-emerald-500 text-black hover:bg-emerald-400" : "bg-zinc-800 text-zinc-600 cursor-not-allowed"}`}>
-                  Show me my timeline
+                  Get my personalized recipe
                 </motion.button>
               </motion.div>
             )}
