@@ -681,7 +681,7 @@ function SnackBibleDemoInner() {
               swapCal={tutorialSwapCal}
               swapRevealed={swapRevealed}
               onReveal={() => setSwapRevealed(true)}
-              onContinue={() => { setFlowState("weight"); window.scrollTo(0, 0); }}
+              onContinue={() => { setFlowState("weight"); requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "instant" })); }}
               onBack={() => window.history.back()}
               calSaved={tutorialCalSaved}
               swapPair={tutorialSwapPair}
@@ -696,15 +696,15 @@ function SnackBibleDemoInner() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="mx-auto flex min-h-[70vh] items-center justify-center"
+              className="mx-auto flex min-h-[70vh] items-start justify-center pt-16"
             >
               <WeightInputScreen
                 currentWeight={currentWeight}
                 goalWeight={goalWeight}
                 onCurrentChange={setCurrentWeight}
                 onGoalChange={setGoalWeight}
-                onContinue={() => { setFlowState("projection"); window.scrollTo(0, 0); }}
-                onBack={() => { setFlowState("compare"); window.scrollTo(0, 0); }}
+                onContinue={() => { setFlowState("projection"); requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "instant" })); }}
+                onBack={() => { setFlowState("compare"); requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "instant" })); }}
               />
             </motion.div>
           )}
@@ -717,7 +717,7 @@ function SnackBibleDemoInner() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="mx-auto flex min-h-[70vh] items-center justify-center"
+              className="mx-auto flex min-h-[70vh] items-start justify-center pt-16"
             >
               <ProjectionScreen
                 currentWeight={currentWeight}
@@ -735,7 +735,7 @@ function SnackBibleDemoInner() {
                   setEmailDialogEmail(capturedEmail);
                   setEmailSent(true);
                 }}
-                onBack={() => { setFlowState("weight"); window.scrollTo(0, 0); }}
+                onBack={() => { setFlowState("weight"); requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "instant" })); }}
                 stackSwap={stackSwap ? {
                   name: getFoodLove(getTutorialBrand(Object.entries(BRAND_TO_SWAP_ID).find(([, v]) => v === stackSwap.id)?.[0] ?? null)),
                   calSaved: stackSwap.original.calories - stackSwap.swap.calories,
@@ -2260,7 +2260,7 @@ function ProjectionScreen({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col items-center justify-center min-h-[70vh] text-center px-2"
+          className="flex flex-col items-center justify-start min-h-[70vh] text-center px-2 pt-16"
         >
           {/* Progress card — fills → checkmark → slides up */}
           <AnimatePresence>
