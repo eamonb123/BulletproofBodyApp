@@ -2,34 +2,14 @@ import Link from "next/link";
 
 const modules = [
   {
-    name: "Fast Food Bible",
+    name: "How to Lose 10 lbs Without Giving Up Fast Food",
     href: "/takeout",
     description: "Pick your restaurant. See the swap. Lose the fat.",
   },
   {
-    name: "Snack Bible",
-    href: "/snack-bible",
-    description: "Client tool — personalized snack swaps with weekly impact.",
-  },
-  {
-    name: "Snack Bible Lead Magnet",
+    name: "How to Lose 10 lbs Without Giving Up Your Favorite Snacks",
     href: "/snacks",
-    description: "Landing page — hero + brand grid + demo experience.",
-  },
-  {
-    name: "Snack Bible Demo",
-    href: "/snack-bible-demo",
-    description: "Interactive demo — sample swaps, live stats, search + capture.",
-  },
-  {
-    name: "Concierge",
-    href: "/concierge",
-    description: "Coaching sales page.",
-  },
-  {
-    name: "VSL",
-    href: "/vsl",
-    description: "Video sales letter.",
+    description: "See where the hidden calories are in your go-to snacks.",
   },
 ];
 
@@ -40,7 +20,7 @@ export default function Home() {
         <h1 className="text-3xl font-bold tracking-tight mb-2">
           BULLETPROOF BODY
         </h1>
-        <p className="text-gray-400 mb-8">Directory</p>
+        <p className="text-gray-400 mb-8">Free Tools</p>
 
         <div className="space-y-4">
           {modules.map((m) => (
@@ -52,9 +32,6 @@ export default function Home() {
               <div className="font-semibold text-lg">{m.name}</div>
               <div className="text-sm text-gray-400 mt-1">
                 {m.description}
-              </div>
-              <div className="text-xs text-gray-600 mt-1 font-mono">
-                {m.href}
               </div>
             </Link>
           ))}
