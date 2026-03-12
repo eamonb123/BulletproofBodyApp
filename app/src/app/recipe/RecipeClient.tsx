@@ -214,7 +214,7 @@ function RecipeReveal({
                   Back
                 </button>
 
-                <h2 className="text-2xl font-bold text-white mb-2">Let&apos;s tie this to your goals</h2>
+                <h2 className="text-2xl font-bold text-white mb-2">Let&apos;s tailor this recipe to your weight loss goals</h2>
                 <p className="text-sm text-zinc-500 mb-8">Two numbers. That&apos;s it.</p>
 
                 <div className="mb-6">
@@ -304,7 +304,10 @@ function RecipeReveal({
 
                 <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.5 }}>
                   <p className="text-center text-sm text-zinc-400 mb-4">
-                    Want us to email you this recipe with your plan?
+                    Where should I send your recipe pack?
+                  </p>
+                  <p className="text-center text-xs text-zinc-600 mb-3">
+                    Video + grocery list + one-click order link
                   </p>
                   <form onSubmit={(e) => { e.preventDefault(); if (email.includes("@")) { setBarDone(false); setCardGone(false); setBridgeStep(0); setPhase("generating"); } }} className="flex gap-2">
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
@@ -532,15 +535,16 @@ function RecipeReveal({
         {!revealed ? (
           <motion.button whileTap={{ scale: 0.97 }} onClick={() => setRevealed(true)}
             className="mt-6 w-full rounded-2xl bg-emerald-500 px-6 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400">
-            Show me the swap &rarr;
+            Show me the optimized recipe &rarr;
           </motion.button>
         ) : (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="mt-6 space-y-2">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="mt-6 space-y-3">
+            <p className="text-center text-sm text-zinc-400">Your recipe&apos;s ready — it&apos;s all above ↑</p>
             <motion.button whileTap={{ scale: 0.97 }} onClick={() => setPhase("weight")}
               className="w-full rounded-2xl bg-white px-6 py-4 text-base font-bold text-black transition-all hover:bg-zinc-200">
-              Personalize this for my goals
+              Personalize this recipe to my weight loss goals
             </motion.button>
-            <p className="text-center text-xs text-zinc-500">Takes 30 seconds.</p>
+            <p className="text-center text-xs text-zinc-500">Takes 10 seconds.</p>
           </motion.div>
         )}
       </div>
