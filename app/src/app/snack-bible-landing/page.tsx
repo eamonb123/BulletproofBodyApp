@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { Suspense, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 // ─── Snack Brand Data ───────────────────────────────
 interface SnackBrand {
@@ -225,9 +225,18 @@ function SnackLogo({ brand }: { brand: SnackBrand }) {
 }
 
 // ─── Main Page Component ───────────────────────────
-export default function SnackBibleLanding() {
+export default function SnackBibleLandingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black" />}>
+      <SnackBibleLanding />
+    </Suspense>
+  );
+}
+
+function SnackBibleLanding() {
   const router = useRouter();
-  const [awake, setAwake] = useState(false);
+  const searchParams = useSearchParams();
+  const [awake, setAwake] = useState(searchParams.get("pick") === "1");
   const [search, setSearch] = useState("");
 
   const filtered = useMemo(() => {
@@ -298,22 +307,28 @@ export default function SnackBibleLanding() {
             {/* CTA */}
             <motion.button
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.4 }}
+              animate={{ opacity: 1, y: 0, scale: [1, 1.03, 1] }}
+              transition={{ delay: 0.6, duration: 0.4, scale: { delay: 1.2, duration: 1.5, repeat: Infinity, repeatDelay: 3 } }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => setAwake(true)}
-              className="rounded-2xl bg-emerald-500 px-10 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400 sm:text-lg"
+              className="relative overflow-hidden rounded-2xl bg-emerald-500 px-10 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400 sm:text-lg"
             >
-              Show me how.
+              <span className="relative z-10">Show me how.</span>
+              <motion.span
+                className="absolute inset-0 z-0"
+                style={{ background: "linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%)" }}
+                animate={{ x: ["-100%", "200%"] }}
+                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 4, ease: "easeInOut", delay: 1.5 }}
+              />
             </motion.button>
-
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="mt-4 text-sm text-zinc-500"
+              className="mt-3 text-sm text-zinc-500"
             >
-              See the swap. Same taste, no prep. Takes 60 seconds.
+              Takes 60 seconds.
             </motion.p>
 
             <style jsx>{`
@@ -368,9 +383,17 @@ export default function SnackBibleLanding() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mb-6 text-center text-sm font-semibold uppercase tracking-[0.25em] text-emerald-400"
+              className="mb-2 text-center text-sm font-semibold uppercase tracking-[0.25em] text-emerald-400"
             >
-              Pick the snack you think you can&apos;t eat and still lose weight.
+              Pick your guilty pleasure.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.35 }}
+              className="mb-6 text-center text-sm text-zinc-500"
+            >
+              We&apos;ll show you how to lose weight without giving it up.
             </motion.p>
 
             {/* Search */}

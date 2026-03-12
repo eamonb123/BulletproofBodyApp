@@ -86,7 +86,7 @@ export async function GET() {
             lineHeight: 1.4,
           }}
         >
-          See the swap. Same taste, no prep, already packaged.
+          See the swap. Same craving, no prep, already packaged.
         </div>
 
         {/* Bottom brand */}

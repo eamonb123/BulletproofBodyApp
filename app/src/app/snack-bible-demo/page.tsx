@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { AnimatePresence, motion, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 // ─── Types ───────────────────────────────────────
 interface SnackItem {
@@ -227,6 +227,7 @@ export default function SnackBibleDemoPage() {
 // ─── Main Page ──────────────────────────────────
 function SnackBibleDemoInner() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const snackParam = searchParams.get("snack");
   const skipToDashboard = searchParams.get("skip") === "dashboard";
 
@@ -234,8 +235,15 @@ function SnackBibleDemoInner() {
   const [loading, setLoading] = useState(true);
   const [frequencyByPairId, setFrequencyByPairId] = useState<Record<string, number>>({});
 
-  // Flow state machine — ?skip=dashboard bypasses tutorial, otherwise show tutorial if snackParam
-  const [flowState, setFlowState] = useState<FlowState>(skipToDashboard ? "dashboard" : snackParam ? "compare" : "dashboard");
+  // Flow state machine — ?skip=dashboard shows client dashboard, ?snack= starts tutorial, otherwise redirect to landing
+  const [flowState, setFlowState] = useState<FlowState>(skipToDashboard ? "dashboard" : snackParam ? "compare" : "compare");
+
+  // Redirect to landing if no snack param and not skipping to dashboard
+  useEffect(() => {
+    if (!snackParam && !skipToDashboard) {
+      router.replace("/snack-bible-landing?pick=1");
+    }
+  }, [snackParam, skipToDashboard, router]);
 
   // Weight inputs
   const [currentWeight, setCurrentWeight] = useState<number | null>(null);
@@ -496,18 +504,12 @@ function SnackBibleDemoInner() {
   }
 
   function handleSkipTutorial() {
-    setFlowState("dashboard");
-    window.scrollTo(0, 0);
+    router.push("/snack-bible-landing?pick=1");
   }
 
   function advanceToDashboard() {
-    setFlowState("dashboard");
-    window.scrollTo(0, 0);
-    // Trigger tour on first dashboard visit
-    if (!tourTriggered) {
-      setTourTriggered(true);
-      trackEvent("snack_bible_tutorial_start", { snack_param: snackParam, plan_size: myPlanIds.size });
-    }
+    // Demo flow loops back to landing — dashboard is only accessible via /snack-bible-demo?skip=dashboard
+    router.push("/snack-bible-landing?pick=1");
   }
 
   // Dynamic tour positioning — re-calculates on scroll/resize so dialog
@@ -667,15 +669,7 @@ function SnackBibleDemoInner() {
   return (
     <div className="min-h-screen bg-black text-white">
       <main className="relative mx-auto w-full max-w-6xl px-4 pb-20 pt-6">
-        {/* Skip tutorial link — visible during tutorial steps */}
-        {flowState !== "dashboard" && (
-          <button
-            onClick={handleSkipTutorial}
-            className="absolute right-4 top-6 z-30 text-sm text-zinc-500 transition-colors hover:text-zinc-300"
-          >
-            Skip tutorial
-          </button>
-        )}
+        {/* Skip tutorial removed — demo flow should always complete */}
 
         <AnimatePresence mode="wait">
           {/* ─── COMPARE STEP ─── */}
@@ -1727,7 +1721,7 @@ function CompareScreen({
             transition={{ type: "spring" }}
             className="text-xl font-bold leading-tight sm:text-3xl text-white"
           >
-            Same taste. <span className="text-emerald-400">{pctFewer}% fewer calories.</span>
+            Same craving. <span className="text-emerald-400">{pctFewer}% fewer calories.</span>
           </motion.h1>
         )}
       </div>
@@ -2382,7 +2376,7 @@ function ProjectionScreen({
               <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
             </motion.button>
             <button
-              onClick={onContinue}
+              onClick={() => window.location.href = "/snack-bible-landing?pick=1"}
               className="w-full text-center text-sm text-zinc-600 hover:text-zinc-400 transition-colors py-2"
             >
               Keep exploring swaps
@@ -2739,20 +2733,8 @@ function ProjectionScreen({
       </motion.div>
       )}
 
-      {/* Skip email — go straight to dashboard */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: animationDone ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
-        className="mt-6 text-center"
-      >
-        <button
-          onClick={onContinue}
-          className="text-sm text-zinc-600 hover:text-zinc-400 transition-colors"
-        >
-          Skip — show me the full dashboard
-        </button>
-      </motion.div>
+      {/* Spacer below email capture */}
+      <div className="mt-6" />
     </div>
   );
 }
