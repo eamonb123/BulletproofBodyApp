@@ -497,10 +497,12 @@ function SnackBibleDemoInner() {
 
   function handleSkipTutorial() {
     setFlowState("dashboard");
+    window.scrollTo(0, 0);
   }
 
   function advanceToDashboard() {
     setFlowState("dashboard");
+    window.scrollTo(0, 0);
     // Trigger tour on first dashboard visit
     if (!tourTriggered) {
       setTourTriggered(true);
@@ -685,7 +687,7 @@ function SnackBibleDemoInner() {
               swapCal={tutorialSwapCal}
               swapRevealed={swapRevealed}
               onReveal={() => setSwapRevealed(true)}
-              onContinue={() => setFlowState("weight")}
+              onContinue={() => { setFlowState("weight"); window.scrollTo(0, 0); }}
               onBack={() => window.history.back()}
               calSaved={tutorialCalSaved}
               swapPair={tutorialSwapPair}
@@ -707,8 +709,8 @@ function SnackBibleDemoInner() {
                 goalWeight={goalWeight}
                 onCurrentChange={setCurrentWeight}
                 onGoalChange={setGoalWeight}
-                onContinue={() => setFlowState("projection")}
-                onBack={() => setFlowState("compare")}
+                onContinue={() => { setFlowState("projection"); window.scrollTo(0, 0); }}
+                onBack={() => { setFlowState("compare"); window.scrollTo(0, 0); }}
               />
             </motion.div>
           )}
@@ -739,7 +741,7 @@ function SnackBibleDemoInner() {
                   setEmailDialogEmail(capturedEmail);
                   setEmailSent(true);
                 }}
-                onBack={() => setFlowState("weight")}
+                onBack={() => { setFlowState("weight"); window.scrollTo(0, 0); }}
                 stackSwap={stackSwap ? {
                   name: getFoodLove(getTutorialBrand(Object.entries(BRAND_TO_SWAP_ID).find(([, v]) => v === stackSwap.id)?.[0] ?? null)),
                   calSaved: stackSwap.original.calories - stackSwap.swap.calories,

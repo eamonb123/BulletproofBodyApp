@@ -1,10 +1,40 @@
 # HANDOFF — BulletproofBodyApp
 
-> Last updated: 2026-03-08 session 8
+> Last updated: 2026-03-12 session 9
 
 ## What Was Built This Session
 
-### 1. Snack Bible Personalization (Client-Facing)
+### 1. Concierge Page Redesign (`/concierge`)
+- Full redesign with transformation photo grid (16 photos, 3 per row, chunked into groups of 9)
+- Evolving CTA buttons with shimmer gloss effect and animated arrow — currently all say "Book a call" and link directly to Calendly
+- Founder section with before/after photo, frosted overlay, bio, and personal quote
+- Styled testimonial quote cards (6 cards, 2-column grid) with highlighted phrases, avatar initials, professional titles
+- Screenshot testimonials section ("Straight from the DMs") — 6 screenshots in 3-column grid
+- Footer link to `/concierge-full` for detailed landing page
+
+### 2. Concierge Booking Page (`/concierge/book`)
+- Dark-themed Calendly embed page (black bg, emerald accent)
+- Back button to `/concierge`
+- Note: CTAs currently bypass this page and go straight to Calendly URL
+
+### 3. Concierge Full Landing Page (`/concierge-full`)
+- Detailed landing page with full sales copy
+- Accessible from footer of `/concierge`
+
+### 4. Snack Bible Generating Screen Redesign
+- Timer-based animation sequencing (barDone → cardGone → bridgeStep states)
+- Changed metric from calories to lbs/week
+- Progress bar fills with CSS easeOut, morphs into green SVG checkmark
+- Card exits via AnimatePresence
+- Bridge content staggers: "Just now / X.X lbs of fat per week" → "That was two snacks" → "Now imagine..." → "What if all you had to do was eat..." → CTA
+
+### 5. Transformation Photos + Testimonials
+- 16 compressed transformation photos in `public/transformations/` (from "authority square (12)" folder)
+- 9 compressed testimonial screenshots in `public/testimonials/`
+
+## Previous Sessions
+
+### Session 8: Snack Bible Personalization (Client-Facing)
 - Added sample-first -> personalize flow in `/snack-bible`
 - `Personalize This For Me` panel: create/load profile by client name
 - New profile tables:
@@ -160,9 +190,13 @@ Lean Harissa Chicken Pita  | pita | 450 cal | 32g P | -530 saved
 | Route | Purpose |
 |-------|---------|
 | `/` | Directory — links to all active modules |
+| `/concierge` | Concierge landing page (transformation grid + testimonials + CTAs → Calendly) |
+| `/concierge/book` | Calendly embed page (dark theme) |
+| `/concierge-full` | Detailed landing page with full sales copy |
 | `/experiments/dark-landing` | Lead Magnet (gamified swap experience) |
 | `/bible` | Fast Food Bible (search-first reference tool) |
 | `/snack-bible` | Snack Bible (side-by-side snack swaps) |
+| `/snack-bible-demo` | Snack Bible demo/generating screen |
 | `/grocery-bible` | Grocery Store Bible (home-food decision layer) |
 | `/grocery-order-optimizer` | Grocery Order Optimizer (cart-level replacement layer) |
 | `/restaurant-bible` | Restaurant Bible (wild-west spec and rules surface) |

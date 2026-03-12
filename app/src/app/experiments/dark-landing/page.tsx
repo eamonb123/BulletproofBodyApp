@@ -365,6 +365,7 @@ function DarkLandingClient() {
           setSelectedRestaurant(current.id);
           setFlow("meal-type");
           setSwipeDirection(null);
+          window.scrollTo(0, 0);
         }, 300);
       } else {
         setTimeout(() => {
@@ -440,10 +441,12 @@ function DarkLandingClient() {
     setQuantities({});
     setBuildStep(0);
     setFlow("meal-type");
+    window.scrollTo(0, 0);
   };
 
   const resetAll = () => {
     setFlow("landing");
+    window.scrollTo(0, 0);
     setSelectedRestaurant(null);
     setSelectedMealType(null);
     setSelectedTemplateMeal(null);
@@ -551,7 +554,7 @@ function DarkLandingClient() {
 
         <AnimatePresence mode="wait">
           {flow === "landing" && (
-            <LandingScreen key="landing" onStart={() => setFlow("swipe")} />
+            <LandingScreen key="landing" onStart={() => { setFlow("swipe"); window.scrollTo(0, 0); }} />
           )}
           {flow === "swipe" && (
             <SwipeScreen
@@ -584,6 +587,7 @@ function DarkLandingClient() {
                 } else {
                   setFlow("pick-meal");
                 }
+                window.scrollTo(0, 0);
               }}
             />
           )}
@@ -600,10 +604,12 @@ function DarkLandingClient() {
               onSelect={(meal) => {
                 setSelectedTemplateMeal(meal);
                 setFlow("reveal");
+                window.scrollTo(0, 0);
               }}
               onBack={() => {
                 setSelectedMealType(null);
                 setFlow("meal-type");
+                window.scrollTo(0, 0);
               }}
             />
           )}
@@ -628,8 +634,9 @@ function DarkLandingClient() {
                 } else {
                   setFlow("reveal");
                 }
+                window.scrollTo(0, 0);
               }}
-              onDone={() => setFlow("reveal")}
+              onDone={() => { setFlow("reveal"); window.scrollTo(0, 0); }}
               onBack={() => {
                 if (buildStep > 0) {
                   setBuildStep((s) => s - 1);
@@ -637,6 +644,7 @@ function DarkLandingClient() {
                   setFlow("meal-type");
                   setQuantities({});
                 }
+                window.scrollTo(0, 0);
               }}
             />
           )}
@@ -649,7 +657,7 @@ function DarkLandingClient() {
               swap={findSwap()}
               mealType={selectedMealType!}
               originalMealName={selectedTemplateMeal?.name}
-              onPersonalize={() => setFlow("weight")}
+              onPersonalize={() => { setFlow("weight"); window.scrollTo(0, 0); }}
               onBack={() => {
                 if (selectedTemplateMeal) {
                   setFlow("pick-meal");
@@ -657,6 +665,7 @@ function DarkLandingClient() {
                   setFlow("build");
                   setBuildStep(buildSteps.length - 1);
                 }
+                window.scrollTo(0, 0);
               }}
             />
           )}
@@ -667,8 +676,8 @@ function DarkLandingClient() {
               goalWeight={goalWeight}
               onCurrentChange={setCurrentWeight}
               onGoalChange={setGoalWeight}
-              onContinue={() => setFlow("projection")}
-              onBack={() => setFlow("reveal")}
+              onContinue={() => { setFlow("projection"); window.scrollTo(0, 0); }}
+              onBack={() => { setFlow("reveal"); window.scrollTo(0, 0); }}
             />
           )}
           {flow === "projection" && (
@@ -687,9 +696,10 @@ function DarkLandingClient() {
                 setUserEmail(email);
                 if (!bibleSavings) saveCurrentMeal();
                 setFlow("generating");
+                window.scrollTo(0, 0);
               }}
               isBibleDeepLink={!!bibleSavings}
-              onBack={() => setFlow("weight")}
+              onBack={() => { setFlow("weight"); window.scrollTo(0, 0); }}
             />
           )}
           {flow === "generating" && (
@@ -697,8 +707,8 @@ function DarkLandingClient() {
               key="generating"
               email={userEmail}
               restaurantName={completedMeals.length > 0 ? completedMeals[completedMeals.length - 1].restaurant : "your restaurant"}
-              onContinue={() => setFlow("crossroads")}
-              onBack={() => setFlow("projection")}
+              onContinue={() => { setFlow("crossroads"); window.scrollTo(0, 0); }}
+              onBack={() => { setFlow("projection"); window.scrollTo(0, 0); }}
             />
           )}
           {flow === "crossroads" && (

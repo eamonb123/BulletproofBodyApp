@@ -1082,11 +1082,13 @@ function BiblePage() {
       setShowTutorial(true);
       setFlow("grid");
     }
+    window.scrollTo(0, 0);
   }, [completedSwaps, passedGate, trackEvent]);
 
   const handleHeroStart = useCallback(() => {
     setFlow("grid");
     setShowTutorial(true);
+    window.scrollTo(0, 0);
   }, []);
 
   const handleRestaurantSelect = useCallback((id: string) => {
@@ -1094,6 +1096,7 @@ function BiblePage() {
     trackEvent("bible_restaurant_selected", { restaurant_id: id, restaurant_name: r?.name ?? id });
     setSelectedId(id);
     setFlow("detail");
+    window.scrollTo(0, 0);
   }, [restaurants, trackEvent]);
 
   // ─── Fetch restaurant list ─────────────────────────
@@ -1191,7 +1194,7 @@ function BiblePage() {
       {flow === "gate" && (
         <GateScreen
           completedSwaps={completedSwaps}
-          onContinue={() => { trackEvent("bible_crossroads_keep_swapping", { swap_count: completedSwaps.length }); setPassedGate(true); setFlow("free"); }}
+          onContinue={() => { trackEvent("bible_crossroads_keep_swapping", { swap_count: completedSwaps.length }); setPassedGate(true); setFlow("free"); window.scrollTo(0, 0); }}
           onVSL={() => { trackEvent("bible_crossroads_vsl", { swap_count: completedSwaps.length }); navigateAway("/vsl"); }}
           onConcierge={() => { trackEvent("bible_crossroads_concierge", { swap_count: completedSwaps.length }); navigateAway("/concierge"); }}
         />
@@ -1400,7 +1403,7 @@ function BiblePage() {
                         restaurant={restaurants.find((r) => r.id === selectedId)!}
                         detail={restaurantData[selectedId]}
                         loading={loadingDetail}
-                        onBack={() => { setSelectedId(null); setIsOptimizedView(false); setFlow(passedGate ? "free" : "grid"); }}
+                        onBack={() => { setSelectedId(null); setIsOptimizedView(false); setFlow(passedGate ? "free" : "grid"); window.scrollTo(0, 0); }}
                         onSwapComplete={handleSwapComplete}
                         onNavigateAway={navigateAway}
                         trackEvent={trackEvent}

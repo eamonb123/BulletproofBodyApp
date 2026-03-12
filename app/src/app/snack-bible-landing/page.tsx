@@ -192,6 +192,8 @@ function SnackLogo({ brand }: { brand: SnackBrand }) {
           alt={brand.name}
           width={200}
           height={200}
+          unoptimized
+          loading="eager"
           className="h-auto w-auto"
           style={imgStyle}
           onError={() => setImgError(true)}
