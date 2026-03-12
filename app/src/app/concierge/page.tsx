@@ -1,559 +1,261 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
-const calendlyUrl = "https://calendly.com/eamon-barkhordarian/connect-time-clone";
+const bookingUrl = "/concierge/book";
 
-// ─── FAQ Data (from ICP fears) ─────────────────────────
-const faqSections = [
+const stats = [
+  { value: "19 lbs", label: "avg fat lost in 12 weeks" },
+  { value: "3x/wk", label: "clients still eat out" },
+  { value: "0", label: "foods you give up" },
+];
+
+const transformations = [
+  "transform-8", "transform-11", "transform-14",
+  "transform-16", "transform-18", "transform-19",
+  "transform-20", "transform-21", "transform-22",
+  "transform-23", "transform-24", "transform-25",
+  "transform-26", "transform-27", "transform-28", "transform-29",
+];
+
+const textTestimonials = [
+  "travel-no-gain",
+  "10-beers",
+  "tux-too-loose",
+  "down-10-lbs",
+  "broke-280s",
+  "energy-king",
+];
+
+// Styled quote cards — real results, ICP-relevant framing
+const quoteCards = [
   {
-    label: "Food & Lifestyle",
-    items: [
-      {
-        q: "Do I have to give up my favorite foods?",
-        a: "No. That's the whole point. We don't remove anything. We swap it for a smarter version that satisfies the same craving. If you love Chipotle, you're still eating Chipotle. If you love cereal before bed, cereal stays. We just find the version that costs you 300 fewer calories.",
-      },
-      {
-        q: "I eat out a lot. Is that a problem?",
-        a: "It's actually an advantage. Restaurants have predictable menus. Once we map your go-to spots, every order becomes a decision you've already made. Most of our clients eat out 4-5 times a week and still lose a pound of fat every week.",
-      },
-      {
-        q: "Can I still drink?",
-        a: "Yes. One of our clients went on a 10-day cruise to Italy, drank every day, and came back four pounds lighter. Alcohol has calories. We just build it into the math instead of pretending it doesn't exist.",
-      },
-    ],
+    quote: "After 3 weeks of traveling and eating out every night, having pastries in Paris... I somehow managed to not gain a single pound.",
+    name: "Suleiman J.",
+    title: "Management Consultant",
+    highlight: "not gain a single pound",
   },
   {
-    label: "The Program",
-    items: [
-      {
-        q: "I've tried everything and nothing worked. Why is this different?",
-        a: "Because everything you've tried asked you to change your life. We don't. We take the life you're already living. The restaurants, the snacks, the grocery runs. And we find where the calories are hiding. You've never had someone build around YOUR worst week, not your ideal one.",
-      },
-      {
-        q: "My schedule is insane. How much time does this take?",
-        a: "One of our clients works 12-hour days, 7 to 7. He still hits his goals every week. The nutrition piece doesn't require more time. It requires understanding. We do the research. You make the swaps.",
-      },
-      {
-        q: "What if I quit again?",
-        a: "Every plan you've tried was designed to make you quit. They demanded perfection. And when you missed one day, the guilt spiral wrote off the whole week. Our system is built for your worst days. Miss a workout? Drop your calories 300 and keep moving. No drama. No restart Monday.",
-      },
-    ],
+    quote: "Hit 219 today — down 10 pounds since we started. You explained it in such a simple way that made everything click.",
+    name: "Ryan S.",
+    title: "Software Engineer",
+    highlight: "everything click",
   },
   {
-    label: "Getting Started",
-    items: [
-      {
-        q: "Is this worth the investment?",
-        a: "You've already spent thousands on gym memberships you don't use, supplements that didn't work, and programs that gave you a PDF meal plan. This is the first time someone builds the entire system around your actual life. And you keep the knowledge forever.",
-      },
-      {
-        q: "How do I get a spot?",
-        a: "Book a free 15-minute strategy call. We'll look at what you actually eat, show you where the biggest calorie savings are hiding, and show you what your personalized food ecosystem would look like.",
-      },
-    ],
+    quote: "Somehow managed to still lose 2.3 lbs this week even though I went out partying and drank 10 beers. This system is unreal.",
+    name: "Blake M.",
+    title: "VP of Sales",
+    highlight: "lose 2.3 lbs this week",
+  },
+  {
+    quote: "I got fitted for this tux last week and today the wedding is next week. Should I get refitted? Does it look loose? HELP.",
+    name: "Suleiman J.",
+    title: "Management Consultant",
+    highlight: "Does it look loose?",
+  },
+  {
+    quote: "Haven't been in the 130s since the beginning of med school, which is 7 years ago. Feel like a completely different person.",
+    name: "Priya K.",
+    title: "Resident Physician",
+    highlight: "7 years ago",
+  },
+  {
+    quote: "Feel a lot more energy, waking up like a king at 4:50 AM. My friend said I'm in the best shape she's seen me in.",
+    name: "Marcus D.",
+    title: "Startup Founder",
+    highlight: "best shape she\u2019s seen me in",
   },
 ];
 
-// ─── Proof metrics ─────────────────────────────────────
-const metrics = [
-  { value: "19 lbs", label: "avg fat lost in 12 weeks", icon: "scale" },
-  { value: "3x/wk", label: "still eating out", icon: "food" },
-  { value: "12-hr", label: "workdays, still hitting goals", icon: "clock" },
-  { value: "1 day", label: "to get back on track after a holiday", icon: "refresh" },
+// Split transformations into chunks of 9
+function chunk<T>(arr: T[], size: number): T[][] {
+  const chunks: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    chunks.push(arr.slice(i, i + size));
+  }
+  return chunks;
+}
+
+// Evolving CTAs — earns more commitment as proof stacks
+const CTA_LABELS = [
+  "See what\u2019s hiding in your food",
+  "Get your personalized plan",
+  "Let\u2019s map your food",
+  "Book your free strategy call",
 ];
 
-// ─── Protocol steps ────────────────────────────────────
-const steps = [
-  {
-    num: "01",
-    title: "SEE IT",
-    desc: "We look at everything you eat. Every restaurant, every snack, every grocery run. No judgment. Just data. We find exactly where the <strong class='text-white'>hidden calories</strong> are.",
-  },
-  {
-    num: "02",
-    title: "SWAP IT",
-    desc: "<strong class='text-white'>Same food. Smarter version.</strong> We build side-by-side swaps that honor what you love. Same craving, fewer calories, more protein. You choose which ones you want.",
-  },
-  {
-    num: "03",
-    title: "LIVE IT",
-    desc: "We build your personalized food ecosystem and keep it updated. New restaurant? We add it. New craving? We find a swap. <strong class='text-white'>The system evolves with your life.</strong>",
-  },
-];
-
-// ─── Testimonials ──────────────────────────────────────
-const testimonials = [
-  {
-    quote: "I went on a cruise. Ate as much as I wanted. Drank alcohol every day. Come back, down four pounds of body fat on a 10-day trip to Italy with all the pasta.",
-    name: "Joel G.",
-    title: "Business Owner",
-    weeks: "Week 15",
-  },
-  {
-    quote: "In the midst of extremely high stress, changing schedule, when everything just kind of went down. I hit all my calorie goals, hit my protein goals, got my workouts every day. It's become my safe haven.",
-    name: "Joel G.",
-    title: "Business Owner",
-    weeks: "Week 18",
-  },
-  {
-    quote: "I have too much information. There's no chance I'm going to be over 20% again, probably even 15.",
-    name: "Joel G.",
-    title: "Business Owner",
-    weeks: "Week 41",
-  },
-];
-
-// ─── FAQ Accordion Item ────────────────────────────────
-function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
+function CtaButton({ index }: { index: number }) {
+  const label = CTA_LABELS[Math.min(index, CTA_LABELS.length - 1)];
+  const isFinal = index === CTA_LABELS.length - 1;
   return (
-    <div className="border-b border-zinc-800">
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between py-5 text-left text-[15px] font-medium text-white transition-colors hover:text-emerald-400"
+    <div className="flex justify-center py-8">
+      <motion.a
+        href={bookingUrl}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
+        className={`group relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-2xl font-bold text-black ${
+          isFinal
+            ? "w-full max-w-sm px-10 py-5 text-lg bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.4)]"
+            : "w-full max-w-xs px-8 py-4 text-base bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.25)]"
+        }`}
       >
-        {q}
-        <svg
-          className={`ml-4 h-5 w-5 shrink-0 text-zinc-500 transition-transform ${open ? "rotate-180" : ""}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
+        {/* Shimmer gloss on hover */}
+        <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+        <span className="relative">{label}</span>
+        <motion.span
+          className="relative text-lg"
+          animate={{ x: [0, 4, 0] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      {open && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="pb-5 text-sm leading-relaxed text-zinc-400"
-        >
-          {a}
-        </motion.div>
-      )}
+          &rarr;
+        </motion.span>
+      </motion.a>
     </div>
   );
 }
 
-// ─── CTA Button ────────────────────────────────────────
-function CtaButton({ className = "" }: { className?: string }) {
-  return (
-    <a
-      href={calendlyUrl}
-      target="_blank"
-      rel="noreferrer"
-      className={`inline-flex items-center justify-center rounded-full bg-emerald-400 px-8 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-emerald-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] ${className}`}
-    >
-      Get Your Food Ecosystem
-    </a>
-  );
-}
-
-// ─── Sticky Nav ────────────────────────────────────────
-function StickyNav() {
-  const links = [
-    { id: "problem", label: "Problem" },
-    { id: "protocol", label: "Protocol" },
-    { id: "solution", label: "Solution" },
-    { id: "proof", label: "Results" },
-    { id: "founder", label: "Founder" },
-    { id: "faq", label: "FAQ" },
-  ];
-  return (
-    <nav className="sticky top-0 z-50 border-b border-zinc-800/60 bg-zinc-950/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
-        <span className="text-sm font-bold tracking-wider text-white">
-          BULLETPROOF<span className="text-emerald-400"> BODY</span>
-        </span>
-        <div className="hidden items-center gap-6 sm:flex">
-          {links.map((l) => (
-            <a
-              key={l.id}
-              href={`#${l.id}`}
-              className="text-xs font-medium uppercase tracking-wider text-zinc-400 transition-colors hover:text-white"
-            >
-              {l.label}
-            </a>
-          ))}
-          <a
-            href={calendlyUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-full bg-emerald-400 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-black transition-colors hover:bg-emerald-300"
-          >
-            Get Your Ecosystem
-          </a>
-        </div>
-      </div>
-    </nav>
-  );
-}
-
-// ─── Page ──────────────────────────────────────────────
-const FROM_ROUTES: Record<string, { href: string; label: string }> = {
-  "snack-bible": { href: "/snack-bible-demo", label: "Back to Snack Bible" },
-  "bible": { href: "/bible", label: "Back to Fast Food Bible" },
-};
-
-export default function ConciergePage() {
-  const [backRoute, setBackRoute] = useState<{ href: string; label: string } | null>(null);
-  useEffect(() => {
-    const from = new URLSearchParams(window.location.search).get("from");
-    if (from && FROM_ROUTES[from]) {
-      setBackRoute(FROM_ROUTES[from]);
-    } else if (document.referrer && new URL(document.referrer).origin === window.location.origin) {
-      setBackRoute({ href: "", label: "Back" }); // fallback to history.back()
-    }
-  }, []);
+export default function ConciergeSimplePage() {
+  const transformChunks = chunk(transformations, 9);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
-      <StickyNav />
+    <div className="min-h-screen bg-black text-white">
+      {/* Hero — face + one-liner */}
+      <div className="flex flex-col items-center justify-center px-4 pt-16 pb-8 text-center">
+        {/* Photo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="mb-6"
+        >
+          <Image
+            src="/eamon-founder.jpeg"
+            alt="Eamon Barkhordarian"
+            width={120}
+            height={120}
+            className="rounded-full border-2 border-emerald-500/40 object-cover"
+            style={{ width: 120, height: 120, objectPosition: "center 35%" }}
+          />
+        </motion.div>
 
-      {/* ── HERO ──────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent" />
-        <div className="relative mx-auto max-w-5xl px-5 pb-16 pt-20 sm:px-8 sm:pt-28">
-          {backRoute && (
-            backRoute.href ? (
-              <a
-                href={backRoute.href}
-                className="mb-6 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-zinc-200"
-              >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-                {backRoute.label}
-              </a>
-            ) : (
-              <button
-                onClick={() => window.history.back()}
-                className="mb-6 inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-zinc-200"
-              >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-                {backRoute.label}
-              </button>
-            )
-          )}
-          <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-            You run your career with{" "}
-            <span className="text-emerald-400">data.</span>
-            <br />
-            Why are you running your body on guesswork?
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400 sm:text-xl">
-            There are <span className="text-emerald-400 font-bold">15+ lbs of fat</span> hiding in the food you already eat.
-            Not because you&apos;re eating too much. Because nobody showed you
-            where the calories are hiding.
-          </p>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <CtaButton />
-            <span className="text-sm text-zinc-500">
-              Complimentary for qualified applicants
-            </span>
-          </div>
-        </div>
-      </section>
+        {/* Name + title */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-sm text-zinc-500 uppercase tracking-[0.2em] mb-2"
+        >
+          Eamon Barkhordarian
+        </motion.p>
 
-      {/* ── PROBLEM ───────────────────────────────────── */}
-      <section id="problem" className="border-t border-zinc-800/60">
-        <div className="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-red-400">
-                The Problem
-              </p>
-              <h2 className="mt-4 text-3xl font-extrabold leading-tight sm:text-5xl">
-                You&apos;re a high-performer{" "}
-                <span className="text-red-400">running on autopilot.</span>
-              </h2>
-              <p className="mt-6 text-base leading-relaxed text-zinc-400">
-                You manage teams. You close deals. You solve problems that would
-                make most people&apos;s heads spin. But you can&apos;t figure out lunch
-                without ordering DoorDash.
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-zinc-400">
-                You <span className="text-white font-semibold">know more about nutrition than most people.</span> And you&apos;re still here.
-              </p>
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="text-2xl sm:text-3xl font-extrabold leading-snug max-w-md mb-3"
+        >
+          I&apos;ll build this for{" "}
+          <span className="text-emerald-400">everything you eat.</span>
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="text-base text-zinc-400 max-w-sm mb-8"
+        >
+          15-minute call. I&apos;ll show you exactly where the hidden calories
+          are and what your personalized food ecosystem looks like.
+        </motion.p>
+
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="flex gap-6 sm:gap-10 mb-6"
+        >
+          {stats.map((s) => (
+            <div key={s.label} className="text-center">
+              <p className="text-2xl font-bold text-emerald-400 tabular-nums">{s.value}</p>
+              <p className="text-xs text-zinc-500 mt-1 max-w-[80px]">{s.label}</p>
             </div>
-            <div className="space-y-4">
-              {[
-                "Ordering the same takeout you've always ordered. Not realizing it's <strong class='text-white'>400 calories more</strong> than it needs to be.",
-                "Forgetting to eat until 2 PM, then <strong class='text-white'>inhaling whatever's fastest.</strong>",
-                "Hitting 9 PM, scrolling fitness videos, <strong class='text-white'>knowing more than the guy in the reel.</strong> And weighing 40 pounds more.",
-                "Starting fresh <strong class='text-white'>every Monday.</strong> Again.",
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="flex gap-3 rounded-xl border border-zinc-800 bg-zinc-900/40 p-4"
-                >
-                  <span className="mt-0.5 text-red-400">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </span>
-                  <p className="text-sm leading-relaxed text-zinc-300" dangerouslySetInnerHTML={{ __html: item }} />
+          ))}
+        </motion.div>
+      </div>
+
+      {/* CTA 1: curiosity — "See what's hiding in your food" */}
+      <CtaButton index={0} />
+
+      {/* Transformation grid — 3 per row, chunked with CTA after every 9 */}
+      <div className="px-4 max-w-2xl mx-auto">
+        <p className="text-xs text-zinc-500 uppercase tracking-[0.25em] text-center mb-4">Real clients. Real results.</p>
+        {transformChunks.map((group, gi) => (
+          <div key={gi}>
+            <div className="grid grid-cols-3 gap-2">
+              {group.map((name) => (
+                <div key={name} className="rounded-xl overflow-hidden border border-zinc-800 aspect-square relative">
+                  <Image
+                    src={`/transformations/${name}.jpg`}
+                    alt="Client transformation"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 33vw, 220px"
+                    unoptimized
+                  />
                 </div>
               ))}
-              <div className="mt-6 rounded-xl border border-zinc-700 bg-zinc-900/60 p-4">
-                <p className="text-sm font-medium italic text-zinc-300">
-                  &ldquo;I manage a team. I solve problems that would make most
-                  people&apos;s heads spin. But I can&apos;t figure out how to eat
-                  lunch without ordering DoorDash.&rdquo;
-                </p>
-              </div>
             </div>
+            {/* CTA 2 after first chunk, CTA 3 after second */}
+            <CtaButton index={gi + 1} />
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
 
-      {/* ── PROTOCOL ──────────────────────────────────── */}
-      <section id="protocol" className="border-t border-zinc-800/60 bg-zinc-900/30">
-        <div className="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
-            The Protocol
-          </p>
-          <h2 className="mt-4 text-center text-3xl font-extrabold sm:text-5xl">
-            From autopilot to{" "}
-            <span className="text-emerald-400">control.</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-base text-zinc-400">
-            We don&apos;t ask you to meal prep. We don&apos;t give you a PDF. We take
-            <span className="text-white font-semibold"> what you already eat</span> and make it work for you.
-          </p>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-xl font-extrabold text-white sm:text-2xl">
-            Built for your worst week. Not just your best one.
-          </p>
-          <div className="mt-14 grid gap-6 sm:grid-cols-3">
-            {steps.map((s) => (
-              <div
-                key={s.num}
-                className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-6"
-              >
-                <span className="text-4xl font-extrabold text-emerald-400/30">{s.num}</span>
-                <h3 className="mt-3 text-xl font-extrabold tracking-tight">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400" dangerouslySetInnerHTML={{ __html: s.desc }} />
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <CtaButton />
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA REFRAME ───────────────────────────────── */}
+      {/* ── FOUNDER SECTION ─────────────────────────── */}
       <section className="border-t border-zinc-800/60">
-        <div className="mx-auto max-w-3xl px-5 py-20 text-center sm:px-8 sm:py-28">
-          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full border border-emerald-500/30 bg-emerald-500/10">
-            <svg className="h-7 w-7 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <h2 className="text-3xl font-extrabold sm:text-5xl">
-            This is not a diet consultation.
-            <br />
-            This is a{" "}
-            <span className="text-emerald-400">personalized food ecosystem.</span>
-          </h2>
-          <div className="mx-auto mt-8 max-w-md space-y-2 text-center text-base text-zinc-500">
-            <p>The work dinner.</p>
-            <p>The business trip.</p>
-            <p>The late night with nothing planned.</p>
-          </div>
-          <p className="mx-auto mt-6 max-w-xl text-center text-xl font-extrabold text-white sm:text-2xl">
-            Your worst week is what we design for.
-          </p>
-          <p className="mx-auto mt-4 max-w-xl text-center text-sm text-zinc-500">
-            In 15 minutes, we&apos;ll show you where the calories are hiding
-            and what your personalized ecosystem would look like.
-          </p>
-          <div className="mt-8">
-            <CtaButton />
-          </div>
-        </div>
-      </section>
-
-      {/* ── SOLUTION ──────────────────────────────────── */}
-      <section id="solution" className="border-t border-zinc-800/60 bg-zinc-900/30">
-        <div className="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
-            The Solution
-          </p>
-          <h2 className="mt-4 text-3xl font-extrabold sm:text-5xl">
-            Your personalized{" "}
-            <span className="text-emerald-400">food ecosystem.</span>
-          </h2>
-          <p className="mt-4 max-w-2xl text-base text-zinc-400">
-            <span className="text-white font-semibold">Not a meal plan. Not a PDF.</span> A living system built around everything you
-            already eat. One that evolves with your life.
-          </p>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {[
-              {
-                title: "Every Restaurant",
-                desc: "Your go-to spots, mapped and optimized. Chipotle, CAVA, the Thai place on the corner. We find the swap that saves <strong class='text-emerald-400'>300+ calories</strong> at each one.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                ),
-              },
-              {
-                title: "Every Snack",
-                desc: "The protein bar that replaces the candy bar. The chips that <strong class='text-white'>cut calories in half.</strong> Same craving profile, fraction of the cost.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                ),
-              },
-              {
-                title: "Every Grocery Run",
-                desc: "What to buy, where to buy it, <strong class='text-white'>one click to order.</strong> We don't ask you to go to the store. We bring the store to your door.",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
-                ),
-              },
-              {
-                title: "Always Evolving",
-                desc: "New restaurant? We add it. Traveling? We build a travel plan. Your life changes. The ecosystem adapts. <strong class='text-white'>You never start over.</strong>",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                ),
-              },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-6"
-              >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10">
-                  <svg className="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    {item.icon}
-                  </svg>
-                </div>
-                <h3 className="text-lg font-bold">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400" dangerouslySetInnerHTML={{ __html: item.desc }} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PROOF / METRICS ───────────────────────────── */}
-      <section id="proof" className="border-t border-zinc-800/60">
-        <div className="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
-            Proven Results
-          </p>
-          <h2 className="mt-4 text-center text-3xl font-extrabold sm:text-5xl">
-            Metrics that{" "}
-            <span className="text-emerald-400">move.</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-center text-base text-zinc-400">
-            Our clients don&apos;t just &ldquo;feel better.&rdquo; They see <span className="text-white font-semibold">measurable
-            changes</span> while eating the food they love.
-          </p>
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {metrics.map((m, i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 text-center"
-              >
-                <p className="text-3xl font-extrabold text-emerald-400 sm:text-4xl">{m.value}</p>
-                <p className="mt-2 text-xs leading-snug text-zinc-400">{m.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── TESTIMONIALS ──────────────────────────────── */}
-      <section className="border-t border-zinc-800/60 bg-zinc-900/30">
-        <div className="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
-            Real Results
-          </p>
-          <h2 className="mt-4 text-center text-3xl font-extrabold sm:text-5xl">
-            From high-performers{" "}
-            <span className="text-emerald-400">like you.</span>
-          </h2>
-          <div className="mt-12 grid gap-6 sm:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-6"
-              >
-                <div className="mb-4 text-3xl text-emerald-400/40">&ldquo;</div>
-                <p className="text-sm leading-relaxed text-zinc-300">
-                  &ldquo;{t.quote}&rdquo;
+        <div className="mx-auto max-w-2xl px-5 py-16 sm:py-20">
+          <div className="flex flex-col items-center text-center sm:text-left sm:flex-row sm:items-start gap-8">
+            <div className="relative flex-shrink-0 overflow-hidden rounded-2xl border border-zinc-700/60 bg-zinc-900/40 w-48 sm:w-56">
+              <Image
+                src="/eamon-before-after.png"
+                alt="Eamon Barkhordarian transformation"
+                width={224}
+                height={300}
+                className="w-full object-cover object-top"
+                unoptimized
+              />
+              <div className="absolute inset-x-2 bottom-2 rounded-lg border border-emerald-500/20 bg-zinc-950/70 px-3 py-2 backdrop-blur-md">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-emerald-400">
+                  CEO @ Bulletproof Body
                 </p>
-                <div className="mt-5 border-t border-zinc-800 pt-4">
-                  <p className="text-sm font-bold text-white">{t.name}</p>
-                  <p className="text-xs text-emerald-400">{t.title}</p>
-                  <p className="mt-1 text-[11px] text-zinc-500">{t.weeks}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <CtaButton />
-          </div>
-        </div>
-      </section>
-
-      {/* ── FOUNDER ───────────────────────────────────── */}
-      <section id="founder" className="border-t border-zinc-800/60">
-        <div className="mx-auto max-w-5xl px-5 py-20 sm:px-8 sm:py-28">
-          <div className="grid gap-12 lg:grid-cols-5 lg:gap-16">
-            <div className="lg:col-span-2">
-              <div className="relative overflow-hidden rounded-2xl border border-zinc-700/60 bg-zinc-900/40">
-                <img
-                  src="/eamon-before-after.png"
-                  alt="Eamon Barkhordarian before and after transformation"
-                  className="w-full max-h-[500px] object-cover object-top"
-                />
-                {/* Frosted card overlay */}
-                <div className="absolute inset-x-3 bottom-3 rounded-xl border border-emerald-500/20 bg-zinc-950/70 px-5 py-4 backdrop-blur-md">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-emerald-400">
-                    CEO @ Bulletproof Body
-                  </p>
-                  <p className="mt-1 text-lg font-extrabold tracking-tight text-white">
-                    Eamon Barkhordarian
-                  </p>
-                  <p className="mt-0.5 text-xs text-zinc-400">
-                    Engineer &amp; Nutrition Strategist
-                  </p>
-                </div>
+                <p className="text-sm font-extrabold text-white">Eamon Barkhordarian</p>
+                <p className="text-[10px] text-zinc-400">Engineer &amp; Nutrition Strategist</p>
               </div>
             </div>
-            <div className="lg:col-span-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
-                The Founder
-              </p>
-              <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">
-                Built by someone who{" "}
-                <span className="text-emerald-400">lived it.</span>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">The Founder</p>
+              <h2 className="mt-3 text-2xl sm:text-3xl font-extrabold">
+                Built by someone who <span className="text-emerald-400">lived it.</span>
               </h2>
-              <p className="mt-5 text-base leading-relaxed text-zinc-400">
-                Eamon isn&apos;t a fitness influencer. He&apos;s an <span className="text-white font-semibold">entrepreneur and
-                ex-engineer</span> who used to be athletic. Built a career, and watched the
-                weight creep on while ordering DoorDash every night.
+              <p className="mt-4 text-sm leading-relaxed text-zinc-400">
+                Eamon isn&apos;t a fitness influencer. He&apos;s an{" "}
+                <span className="text-white font-semibold">entrepreneur and ex-engineer</span> who
+                watched the weight creep on while ordering DoorDash every night.
               </p>
-              <p className="mt-4 text-base leading-relaxed text-zinc-400">
-                He lived the exact life you&apos;re living. Desk all day, business on
-                his mind, body on the back burner. He figured out the math, <span className="text-white font-semibold">lost the
-                weight without giving up the food he loved</span>, and built the system so you
-                don&apos;t have to figure it out yourself.
+              <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+                He figured out the math,{" "}
+                <span className="text-white font-semibold">lost the weight without giving up the food he loved</span>,
+                and built the system so you don&apos;t have to figure it out yourself.
               </p>
-              <div className="mt-6 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5">
-                <p className="text-sm font-medium italic text-zinc-300">
-                  &ldquo;I was the guy eating <span className="text-emerald-400 font-semibold">4,000 calories a day</span> without realizing it.
-                  I was the guy who knew more about nutrition than his trainer. And
-                  weighed 40 pounds more. I built Bulletproof Body because <span className="text-white font-semibold">I needed it
-                  first.</span>&rdquo;
+              <div className="mt-5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4">
+                <p className="text-sm italic text-zinc-300">
+                  &ldquo;I was the guy eating <span className="text-emerald-400 font-semibold">4,000 calories a day</span> without
+                  realizing it. I built Bulletproof Body because{" "}
+                  <span className="text-white font-semibold">I needed it first.</span>&rdquo;
                 </p>
               </div>
             </div>
@@ -561,51 +263,43 @@ export default function ConciergePage() {
         </div>
       </section>
 
-      {/* ── FEATURED ON / AUTHORITY ─────────────────── */}
-      <section className="border-t border-zinc-800/60">
-        <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
-          <p className="text-center text-sm font-semibold uppercase tracking-[0.25em] text-zinc-300">
-            Featured On
-          </p>
-          <div className="mt-8 grid grid-cols-2 gap-0 overflow-hidden rounded-2xl border border-zinc-700 sm:grid-cols-4">
-            {[
-              { src: "/authority/tedx.webp", alt: "TEDx", cls: "h-10 sm:h-14" },
-              { src: "/authority/tony-robbins-coaching.svg", alt: "Tony Robbins Coaching", cls: "h-14 brightness-0 invert sm:h-20" },
-              { src: "/authority/mastermind-summit.webp", alt: "Mastermind World Summit", cls: "h-16 sm:h-24" },
-              { src: "/authority/tonight-show.webp", alt: "The Tonight Show Starring Jimmy Fallon", cls: "h-14 sm:h-20" },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-center border-zinc-700 px-6 py-8 opacity-80 transition-all duration-300 hover:bg-zinc-800/50 hover:opacity-100 [&:not(:last-child)]:border-r max-sm:[&:nth-child(-n+2)]:border-b"
-              >
-                <img src={item.src} alt={item.alt} className={`w-auto object-contain ${item.cls}`} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CtaButton index={2} />
 
-      {/* ── FAQ ───────────────────────────────────────── */}
-      <section id="faq" className="border-t border-zinc-800/60 bg-zinc-900/30">
-        <div className="mx-auto max-w-3xl px-5 py-20 sm:px-8 sm:py-28">
-          <h2 className="text-center text-3xl font-extrabold sm:text-5xl">
-            No gimmicks.{" "}
-            <span className="text-emerald-400">Just answers.</span>
+      {/* ── STYLED TESTIMONIAL CARDS ─────────────────── */}
+      <section className="border-t border-zinc-800/60">
+        <div className="mx-auto max-w-2xl px-5 py-16 sm:py-20">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400 text-center">Social Proof</p>
+          <h2 className="mt-3 text-2xl sm:text-3xl font-extrabold text-center">
+            Real people. <span className="text-emerald-400">Real words.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-center text-base text-zinc-400">
-            Here&apos;s exactly how the program works, what we expect from you, and what
-            you can expect from us.
+          <p className="mt-2 text-sm text-zinc-500 text-center">
+            We don&apos;t ask for reviews — we deliver results that compel them.
           </p>
-          <div className="mt-14 space-y-10">
-            {faqSections.map((section) => (
-              <div key={section.label}>
-                <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
-                  {section.label}
-                </p>
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 px-6">
-                  {section.items.map((item, i) => (
-                    <FaqItem key={i} q={item.q} a={item.a} />
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {quoteCards.map((card) => (
+              <div
+                key={card.name + card.highlight}
+                className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5"
+              >
+                <p className="text-2xl text-emerald-500/30 font-serif leading-none">&ldquo;</p>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+                  {card.quote.split(card.highlight).map((part, i, arr) => (
+                    <span key={i}>
+                      {part}
+                      {i < arr.length - 1 && (
+                        <span className="text-white font-semibold">{card.highlight}</span>
+                      )}
+                    </span>
                   ))}
+                </p>
+                <div className="mt-4 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center text-xs font-bold text-zinc-300">
+                    {card.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-white">{card.name}</p>
+                    <p className="text-xs text-emerald-400 uppercase tracking-wider">{card.title}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -613,31 +307,38 @@ export default function ConciergePage() {
         </div>
       </section>
 
-      {/* ── FINAL CTA ─────────────────────────────────── */}
-      <section className="border-t border-zinc-800/60">
-        <div className="mx-auto max-w-3xl px-5 py-20 text-center sm:px-8 sm:py-28">
-          <h2 className="text-3xl font-extrabold sm:text-5xl">
-            You&apos;ve already seen the math.
-            <br />
-            <span className="text-emerald-400">Let us build the system.</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base text-zinc-400">
-            In <span className="text-white font-semibold">15 minutes</span>, we&apos;ll show you where the calories are hiding
-            and what your personalized food ecosystem would look like.
-          </p>
-          <div className="mt-8">
-            <CtaButton />
-          </div>
-          <p className="mt-4 text-sm text-zinc-500">
-            Complimentary for qualified applicants. No meal plans. No judgment.
-          </p>
-        </div>
-      </section>
+      {/* CTA final */}
+      <CtaButton index={3} />
 
-      {/* ── FOOTER ────────────────────────────────────── */}
-      <footer className="border-t border-zinc-800/60 py-8 text-center text-xs text-zinc-600">
-        Bulletproof Body. Built for busy professionals who eat out.
-      </footer>
+      {/* Screenshot testimonials — 3 per row */}
+      <div className="px-4 max-w-2xl mx-auto mb-10">
+        <p className="text-xs text-zinc-500 uppercase tracking-[0.25em] text-center mb-4">Straight from the DMs</p>
+        <div className="grid grid-cols-3 gap-2">
+          {textTestimonials.map((name) => (
+            <div key={name} className="rounded-xl overflow-hidden border border-zinc-800 aspect-[3/4] relative">
+              <Image
+                src={`/testimonials/${name}.jpg`}
+                alt="Client testimonial"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 33vw, 220px"
+                unoptimized
+              />
+            </div>
+          ))}
+        </div>
+        <CtaButton index={3} />
+      </div>
+
+      {/* Footer escape */}
+      <div className="text-center pb-12">
+        <a
+          href="/concierge-full"
+          className="text-sm text-zinc-600 hover:text-zinc-400 transition-colors"
+        >
+          Want to learn more first?
+        </a>
+      </div>
     </div>
   );
 }

@@ -420,6 +420,23 @@ function SnackBibleDemoInner() {
 
   const calSavedPerSwap = tutorialCalSaved;
 
+  // Stack swap: highest-gap swap from a different craving category
+  // Prefer pairs where BOTH original and swap have images (for the product card)
+  const stackSwap = useMemo(() => {
+    if (allPairs.length === 0 || !tutorialSwapPair) return null;
+    const myCategory = tutorialSwapPair.craving;
+    const candidates = allPairs
+      .filter((p) => p.craving !== myCategory && p.id !== tutorialSwapPair.id)
+      .map((p) => ({
+        pair: p,
+        gap: p.original.calories - p.swap.calories,
+        hasImages: p.original.image_url && p.swap.image_url ? 1 : 0,
+      }))
+      // Sort by: has both images first, then by gap descending
+      .sort((a, b) => b.hasImages - a.hasImages || b.gap - a.gap);
+    return candidates[0]?.pair ?? null;
+  }, [allPairs, tutorialSwapPair]);
+
   // ─── Handlers ────────────────────────────────────
   function handleDismiss(pairId: string) {
     setDismissedIds((prev) => new Set(prev).add(pairId));
@@ -669,6 +686,7 @@ function SnackBibleDemoInner() {
               swapRevealed={swapRevealed}
               onReveal={() => setSwapRevealed(true)}
               onContinue={() => setFlowState("weight")}
+              onBack={() => window.history.back()}
               calSaved={tutorialCalSaved}
               swapPair={tutorialSwapPair}
             />
@@ -722,6 +740,16 @@ function SnackBibleDemoInner() {
                   setEmailSent(true);
                 }}
                 onBack={() => setFlowState("weight")}
+                stackSwap={stackSwap ? {
+                  name: getFoodLove(getTutorialBrand(Object.entries(BRAND_TO_SWAP_ID).find(([, v]) => v === stackSwap.id)?.[0] ?? null)),
+                  calSaved: stackSwap.original.calories - stackSwap.swap.calories,
+                  originalName: stackSwap.original.brand,
+                  swapName: stackSwap.swap.brand,
+                  originalImageUrl: stackSwap.original.image_url,
+                  swapImageUrl: stackSwap.swap.image_url,
+                  originalCalories: stackSwap.original.calories,
+                  swapCalories: stackSwap.swap.calories,
+                } : undefined}
               />
             </motion.div>
           )}
@@ -1639,6 +1667,7 @@ function CompareScreen({
   swapRevealed,
   onReveal,
   onContinue,
+  onBack,
   calSaved,
   swapPair,
 }: {
@@ -1648,6 +1677,7 @@ function CompareScreen({
   swapRevealed: boolean;
   onReveal: () => void;
   onContinue: () => void;
+  onBack: () => void;
   calSaved: number;
   swapPair?: SnackSwapPair | null;
 }) {
@@ -1660,6 +1690,7 @@ function CompareScreen({
   // Math assumes 7x/week (daily snack)
   const lbsPerWeek = ((calSaved * 7) / 3500);
   const lbsPerMonth = lbsPerWeek * 4;
+  const pctFewer = Math.round(((originalCal - swapCal) / originalCal) * 100);
 
   return (
     <motion.div
@@ -1670,68 +1701,57 @@ function CompareScreen({
       transition={{ duration: 0.5 }}
       className="mx-auto max-w-2xl py-4 sm:py-8"
     >
+      {/* Back */}
+      <button
+        onClick={onBack}
+        className="mb-4 flex items-center gap-1 text-sm text-zinc-500 transition-colors hover:text-zinc-300"
+      >
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back
+      </button>
+
+      {/* Title */}
       <div className="mb-4 sm:mb-8 text-center">
-        <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-emerald-400">
-          Snack Bible
-        </p>
         {!swapRevealed ? (
-          <h1 className="mt-1.5 text-lg font-bold leading-tight sm:text-3xl">
-            Want to learn how to lose up to{" "}
-            <span className="text-emerald-400">{lbsPerWeek.toFixed(1)} lbs a week</span>
-            {" "}simply by adjusting your current {brandName}?
+          <h1 className="text-lg font-bold leading-tight sm:text-3xl">
+            Lose fat without giving up your favorite guilty pleasures.
           </h1>
         ) : (
-          <>
-            <motion.h1
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-1.5 text-lg font-bold leading-tight sm:text-3xl"
-            >
-              We find you the lowest-calorie healthy version of all your favorite snacks
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="mt-1 text-sm text-zinc-400 sm:text-base"
-            >
-              So you can lose fat without giving up the snacks you love.
-            </motion.p>
-          </>
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-lg font-bold leading-tight sm:text-3xl"
+          >
+            Lose fat without giving up your favorite guilty pleasures.
+          </motion.h1>
         )}
       </div>
 
-      {/* Two-card comparison */}
+      {/* Two images side by side */}
       <div className="grid gap-3 sm:gap-4 grid-cols-2">
         {/* Left: Their snack */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-3 sm:p-5"
+          className="text-center"
         >
-          <div className="text-center mb-2 sm:mb-4">
-            <div className="relative h-40 w-40 sm:h-48 sm:w-48 mx-auto overflow-hidden rounded-xl bg-white">
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-3 sm:p-4 mb-2">
+            <div className="relative h-36 w-36 sm:h-44 sm:w-44 mx-auto overflow-hidden rounded-xl bg-white">
               <Image
                 src={logoSrc}
                 alt={brandName}
                 fill
                 className="object-contain p-[6px]"
-                sizes="208px"
+                sizes="176px"
                 onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
               />
             </div>
-            <p className="text-[10px] sm:text-xs text-zinc-500 uppercase tracking-wider mt-1.5 sm:mt-2">
-              Your Favorite Snack
-            </p>
           </div>
-          <div className="min-h-[2.5rem] sm:min-h-[3rem] flex items-end justify-center mb-2 sm:mb-3">
-            <p className="text-center text-base sm:text-lg font-semibold text-white">{brandName}</p>
-          </div>
-          <div className="rounded-xl bg-zinc-950/70 px-2 py-2 sm:px-3 sm:py-3 text-center" style={{ boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-            <p className="text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500">Calories</p>
-            <p className="text-3xl sm:text-4xl font-bold tabular-nums text-white">{originalCal}</p>
-          </div>
+          <p className="text-sm sm:text-base font-semibold text-white">{brandName}</p>
+          <p className="text-2xl sm:text-3xl font-bold tabular-nums text-white mt-1">{originalCal} <span className="text-sm sm:text-base font-normal text-zinc-500">cal</span></p>
         </motion.div>
 
         {/* Right: Swap or placeholder */}
@@ -1743,18 +1763,17 @@ function CompareScreen({
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-3 sm:p-5"
+              className="text-center"
             >
-              <div className="text-center mb-2 sm:mb-4">
-                {/* Breathing "?" with blurred snack behind */}
-                <div className="relative inline-block">
-                  <div className="w-40 h-40 sm:w-48 sm:h-48 mx-auto rounded-xl overflow-hidden opacity-20 blur-sm bg-white">
+              <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-3 sm:p-4 mb-2">
+                <div className="relative h-36 w-36 sm:h-44 sm:w-44 mx-auto rounded-xl overflow-hidden">
+                  <div className="absolute inset-0 opacity-20 blur-sm bg-white">
                     <Image
                       src={logoSrc}
                       alt=""
                       fill
                       className="object-contain p-[6px]"
-                      sizes="208px"
+                      sizes="176px"
                       onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                     />
                   </div>
@@ -1768,29 +1787,9 @@ function CompareScreen({
                     </motion.span>
                   </div>
                 </div>
-                <p className="text-[10px] sm:text-xs text-zinc-500 uppercase tracking-wider mt-1.5 sm:mt-2">
-                  Optimized Snack
-                </p>
               </div>
-              {/* Skeleton name */}
-              <div className="min-h-[2.5rem] sm:min-h-[3rem] flex items-end justify-center mb-2 sm:mb-3">
-                <div className="h-4 sm:h-5 w-2/3 rounded bg-zinc-800" />
-              </div>
-              <div className="rounded-xl bg-zinc-950/70 px-2 py-2 sm:px-3 sm:py-3 text-center" style={{ boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-                <p className="text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500">Calories</p>
-                <div className="h-[36px] sm:h-[40px] flex items-center justify-center">
-                  <div className="flex gap-1.5">
-                    {[0, 1, 2].map((i) => (
-                      <motion.div
-                        key={i}
-                        animate={{ opacity: [0.3, 1, 0.3] }}
-                        transition={{ repeat: Infinity, duration: 1.5, delay: i * 0.2 }}
-                        className="h-2 w-2 rounded-full bg-emerald-500/50"
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <div className="h-4 sm:h-5 w-2/3 mx-auto rounded bg-zinc-800 mb-2" />
+              <div className="h-7 sm:h-8 w-1/3 mx-auto rounded bg-zinc-800" />
             </motion.div>
           ) : (
             <motion.div
@@ -1798,60 +1797,42 @@ function CompareScreen({
               initial={{ opacity: 0, scale: 0.9, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="rounded-2xl border border-emerald-500/40 bg-emerald-500/5 p-3 sm:p-5 shadow-[0_0_30px_rgba(16,185,129,0.08)]"
+              className="text-center"
             >
-              <div className="text-center mb-2 sm:mb-4">
+              <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/5 p-3 sm:p-4 mb-2 shadow-[0_0_30px_rgba(16,185,129,0.08)]">
                 <motion.div
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto rounded-xl overflow-hidden bg-white"
+                  className="relative h-36 w-36 sm:h-44 sm:w-44 mx-auto rounded-xl overflow-hidden bg-white"
                 >
                   <Image
                     src={swapLogoSrc}
                     alt={swapName}
                     fill
                     className="object-contain p-[6px]"
-                    sizes="208px"
+                    sizes="176px"
                     unoptimized
                     onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                   />
                 </motion.div>
-                <p className="text-[10px] sm:text-xs uppercase tracking-wider mt-1.5 sm:mt-2">
-                  <span className="text-emerald-400">Optimized Snack</span>
-                </p>
               </div>
-              <p className="text-center text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">{swapName}</p>
-              <div className="rounded-xl bg-zinc-950/70 px-2 py-2 sm:px-3 sm:py-3 text-center" style={{ boxShadow: "0 0 12px 2px rgba(255,255,255,0.03), inset 0 1px 0 rgba(255,255,255,0.05)" }}>
-                <p className="text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500">Calories</p>
+              <p className="text-sm sm:text-base font-semibold text-white">{swapName}</p>
+              <p className="mt-1">
                 <AnimatedCalories
                   value={swapCal}
-                  className="text-3xl sm:text-4xl font-bold tabular-nums text-emerald-400"
+                  className="text-2xl sm:text-3xl font-bold tabular-nums text-emerald-400"
                 />
-                <span className="text-xs sm:text-sm text-zinc-500 ml-1">cal</span>
-              </div>
+                <span className="text-sm sm:text-base font-normal text-zinc-500 ml-1">cal</span>
+              </p>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {/* Post-reveal rationale */}
-      <AnimatePresence>
-        {swapRevealed && swapPair?.rationale && (
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mt-3 sm:mt-4 text-center text-xs sm:text-sm italic text-zinc-400 leading-relaxed px-2"
-          >
-            {swapPair.rationale}
-          </motion.p>
-        )}
-      </AnimatePresence>
-
       {/* Pre-reveal: Show me the swap button */}
       {!swapRevealed && (
-        <div className="mt-4 sm:mt-8 text-center">
+        <div className="mt-6 sm:mt-8 text-center">
           <motion.button
             whileTap={{ scale: 0.97 }}
             onClick={onReveal}
@@ -1859,73 +1840,46 @@ function CompareScreen({
           >
             Show me the swap
           </motion.button>
-          <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-zinc-500">
-            No gym. No meal prep. Just ordering smarter.
-          </p>
         </div>
       )}
 
-      {/* Post-reveal: Bible-style bottom section */}
+      {/* Post-reveal: minimal bottom */}
       <AnimatePresence>
         {swapRevealed && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
+            className="text-center"
           >
-            {/* JUST FROM THIS ONE SWAP card */}
-            <div className="mt-3 sm:mt-5 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4 sm:p-6 text-center">
-              <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-zinc-500 font-medium mb-3">
-                Just from this one swap
-              </p>
-              <div className="flex justify-center gap-6 sm:gap-10">
-                <div>
-                  <p className="text-2xl sm:text-3xl font-black text-emerald-400">
-                    <AnimatedCalories value={calSaved} className="text-2xl sm:text-3xl font-black text-emerald-400" />
-                  </p>
-                  <p className="text-[10px] sm:text-xs text-zinc-500">cal saved per swap</p>
-                </div>
-                <div className="w-px bg-zinc-800" />
-                <div>
-                  <p className="text-2xl sm:text-3xl font-black text-white">{lbsPerWeek.toFixed(1)}</p>
-                  <p className="text-[10px] sm:text-xs text-zinc-500">lbs/week</p>
-                </div>
-              </div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="mt-5 sm:mt-8 text-xl sm:text-3xl font-extrabold text-white"
+            >
+              Same taste. <span className="text-emerald-400">{pctFewer}% fewer calories.</span>
+            </motion.p>
 
-              <p className="mt-4 text-xs sm:text-sm text-zinc-500">
-                No gym. No meal prep. Just ordering smarter.
-              </p>
+            <motion.button
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={onContinue}
+              className="mt-6 w-full rounded-2xl bg-white px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-black transition-all hover:bg-zinc-200"
+            >
+              Personalize this for my goals
+            </motion.button>
 
-              <p className="mt-4 text-xs sm:text-sm text-zinc-400">
-                Want to see exactly when you&apos;ll hit your goal weight?
-              </p>
-
-              {/* White CTA button (matches Bible) */}
-              <motion.button
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={onContinue}
-                className="mt-3 w-full rounded-2xl bg-white px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold text-black transition-all hover:bg-zinc-200"
-              >
-                Personalize this for my goals
-              </motion.button>
-
-              <p className="mt-2 text-xs text-zinc-600">
-                2 quick questions. See your personal timeline.
-              </p>
-            </div>
-
-            {/* "Not quite right?" feedback widget — outside the card */}
-            <SnackFeedbackWidget
-              snackId={brand?.id ?? "unknown"}
-              originalName={brandName}
-              originalCal={originalCal}
-              swapName={swapName}
-              swapCal={swapCal}
-              calSaved={calSaved}
-            />
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="mt-2 text-xs text-zinc-600"
+            >
+              Takes 30 seconds.
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -2072,33 +2026,10 @@ function WeightInputScreen({
 
 // ─── Projection Screen ──────────────────────────
 // ─── Snack Bible generating screen constants ───
-const SNACK_REPORT_DURATION_MS = 10500;
-const SNACK_GENERATING_BLOCKS = [
-  {
-    threshold: 10,
-    label: "Why diets failed you",
-    copy: "They asked you to eat less. We just showed you how to snack smarter.",
-  },
-  {
-    threshold: 40,
-    label: "What just happened",
-    copy: "Same craving. Same satisfaction. Fewer calories. No willpower required.",
-  },
-  {
-    threshold: 70,
-    label: "How it works",
-    bullets: [
-      "We swap your real snacks, not your lifestyle.",
-      "Built for your worst cravings. No restriction.",
-      "Small changes that add up to real weight loss every week.",
-    ],
-  },
-];
-const SNACK_REPORT_STEPS = [
-  { threshold: 20, label: "Adding up your weekly calorie savings" },
-  { threshold: 55, label: "Mapping your weight loss timeline" },
-  { threshold: 85, label: "Putting together your swap plan" },
-];
+const SNACK_REPORT_DURATION_MS = 9000;
+const PROGRESS_FILL_MS = 1200;       // bar fills in 1.2s
+const CHECKMARK_PAUSE_MS = 600;      // checkmark visible before sliding up
+const BRIDGE_STAGGER_MS = 1800;      // 1.8s between each bridge line
 
 function ProjectionScreen({
   currentWeight,
@@ -2114,6 +2045,7 @@ function ProjectionScreen({
   onContinue,
   onEmailCapture,
   onBack,
+  stackSwap,
 }: {
   currentWeight: number;
   goalWeight: number;
@@ -2128,12 +2060,23 @@ function ProjectionScreen({
   onContinue: () => void;
   onEmailCapture?: (email: string) => void;
   onBack: () => void;
+  stackSwap?: {
+    name: string;
+    calSaved: number;
+    originalName: string;
+    swapName: string;
+    originalImageUrl: string | null;
+    swapImageUrl: string | null;
+    originalCalories: number;
+    swapCalories: number;
+  };
 }) {
   const [animationDone, setAnimationDone] = useState(false);
   const [email, setEmail] = useState("");
   const [phase, setPhase] = useState<"projection" | "generating">("projection");
   const [genProgress, setGenProgress] = useState(0);
-  const [genComplete, setGenComplete] = useState(false);
+  const [showStack, setShowStack] = useState(false);
+  const [rollingDate, setRollingDate] = useState<string | null>(null);
 
   const weightToLose = currentWeight - goalWeight;
   const lbsPerWeek = (calSavedPerSwap * ordersPerWeek) / 3500;
@@ -2145,6 +2088,70 @@ function ProjectionScreen({
     day: "numeric",
     year: "numeric",
   });
+
+  // Stack math
+  const stackCalSaved = stackSwap ? calSavedPerSwap + stackSwap.calSaved : calSavedPerSwap;
+  const stackLbsPerWeek = (stackCalSaved * ordersPerWeek) / 3500;
+  const stackWeeksToGoal = stackLbsPerWeek > 0 ? Math.ceil(weightToLose / stackLbsPerWeek) : 999;
+  const stackTargetDate = new Date();
+  stackTargetDate.setDate(stackTargetDate.getDate() + stackWeeksToGoal * 7);
+  const stackTargetDateStr = stackTargetDate.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  // Slot machine date roller — runs once when showStack fires, stops at stack date
+  const rollerRanRef = useRef(false);
+  const rollerDoneRef = useRef(false);
+  // Stable values for the effect (not Date objects which change identity each render)
+  const weeksToGoalStable = weeksToGoal;
+  const stackWeeksToGoalStable = stackWeeksToGoal;
+  useEffect(() => {
+    if (!showStack || rollerRanRef.current) return;
+    rollerRanRef.current = true;
+
+    // Build month steps from original date → stack date
+    const now = new Date();
+    const origDate = new Date(now);
+    origDate.setDate(origDate.getDate() + weeksToGoalStable * 7);
+    const stackDate = new Date(now);
+    stackDate.setDate(stackDate.getDate() + stackWeeksToGoalStable * 7);
+    const fmt = (d: Date) => d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+
+    const steps: string[] = [];
+    const cursor = new Date(origDate);
+    while (cursor >= stackDate) {
+      steps.push(fmt(cursor));
+      cursor.setMonth(cursor.getMonth() - 1);
+    }
+    steps.push(fmt(stackDate));
+
+    if (steps.length < 2) { setRollingDate(fmt(stackDate)); rollerDoneRef.current = true; return; }
+
+    let i = 0;
+    let cancelled = false;
+    const totalSteps = steps.length;
+    const tick = () => {
+      if (cancelled) return;
+      i++;
+      if (i >= totalSteps) {
+        setRollingDate(steps[totalSteps - 1]);
+        rollerDoneRef.current = true;
+        return;
+      }
+      setRollingDate(steps[i]);
+      const progress = i / totalSteps;
+      const delay = 80 + Math.pow(progress, 2) * 300;
+      setTimeout(tick, delay);
+    };
+    // Start after graph line begins drawing
+    const timeout = setTimeout(() => {
+      setRollingDate(steps[0]);
+      setTimeout(tick, 80);
+    }, 1200);
+    return () => { cancelled = true; clearTimeout(timeout); };
+  }, [showStack, weeksToGoalStable, stackWeeksToGoalStable]);
 
   // Generate curve points
   const points = 12;
@@ -2198,7 +2205,6 @@ function ProjectionScreen({
       setGenProgress(pct);
       if (pct >= 100) {
         window.clearInterval(timer);
-        setGenComplete(true);
         if (!emailFired && email.includes("@")) {
           emailFired = true;
           onEmailCapture?.(email);
@@ -2230,141 +2236,193 @@ function ProjectionScreen({
   const handleEmailSubmit = () => {
     if (!email.includes("@")) return;
     setGenProgress(0);
-    setGenComplete(false);
     setPhase("generating");
   };
 
-  // ─── Generating phase (full-screen) ───
+  // ─── Generating phase — progress bar → checkmark → bridge with staggered pauses ───
+  const swapCount = showStack && stackSwap ? 2 : 1;
+  const displayLbs = showStack && stackSwap ? stackLbsPerWeek : lbsPerWeek;
+  const displayLbsStr = displayLbs >= 1 ? displayLbs.toFixed(1) : displayLbs.toFixed(2);
+
+  // Phase timeline: bar fills → checkmark → slides up → bridge lines stagger in
+  const [barDone, setBarDone] = useState(false);
+  const [cardGone, setCardGone] = useState(false);
+  const [bridgeStep, setBridgeStep] = useState(0); // 0-5: each bridge line
+
+  useEffect(() => {
+    if (phase !== "generating") return;
+    // Step 1: bar fills
+    const t1 = setTimeout(() => setBarDone(true), PROGRESS_FILL_MS);
+    // Step 2: card slides up and disappears (after checkmark pause)
+    const t2 = setTimeout(() => setCardGone(true), PROGRESS_FILL_MS + CHECKMARK_PAUSE_MS + 400);
+    // Step 3: bridge lines stagger in
+    const bridgeStart = PROGRESS_FILL_MS + CHECKMARK_PAUSE_MS + 900;
+    const timers: ReturnType<typeof setTimeout>[] = [t1, t2];
+    for (let i = 1; i <= 5; i++) {
+      timers.push(setTimeout(() => setBridgeStep(i), bridgeStart + (i - 1) * BRIDGE_STAGGER_MS));
+    }
+    return () => timers.forEach(clearTimeout);
+  }, [phase]);
+
   if (phase === "generating") {
     return (
       <div className="w-full max-w-md">
         <motion.div
           key="generating"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center justify-center min-h-[70vh] text-center px-2"
         >
-          {/* Report card with progress + checklist */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="rounded-2xl border border-emerald-500/25 bg-emerald-500/5 p-6 mb-5"
-          >
-            {!genComplete ? (
-              <>
-                <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-2">Building your plan</p>
-                <h2 className="text-xl font-bold text-white mb-1">Crunching the numbers on your {snackName} swap</h2>
-                <p className="text-sm text-zinc-500 mb-5">
-                  {email ? `We'll send this to ${email}` : "Hang tight"}
+          {/* Progress card — fills → checkmark → slides up */}
+          <AnimatePresence>
+            {!cardGone && (
+              <motion.div
+                exit={{ opacity: 0, y: -40, height: 0, marginBottom: 0, padding: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="w-full rounded-2xl border border-emerald-500/25 bg-emerald-500/5 p-5 mb-6 overflow-hidden"
+              >
+                <h2 className="text-lg font-bold text-white mb-1">
+                  Crunching the numbers on your {snackName} swap
+                </h2>
+                <p className="text-sm text-zinc-500 mb-3">
+                  {email ? `Sending to ${email}` : "Hang tight"}
                 </p>
-
-                {/* Progress bar */}
-                <div className="mb-5">
+                {/* Bar or checkmark */}
+                {!barDone ? (
                   <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
                     <motion.div
                       className="h-full rounded-full bg-emerald-500"
-                      animate={{ width: `${genProgress}%` }}
-                      transition={{ type: "spring", stiffness: 80, damping: 20 }}
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: PROGRESS_FILL_MS / 1000, ease: "easeOut" }}
                     />
                   </div>
-                </div>
-
-                {/* Checklist steps */}
-                <div className="space-y-3">
-                  {SNACK_REPORT_STEPS.map((step) => {
-                    const done = genProgress >= step.threshold;
-                    return (
-                      <motion.div
-                        key={step.label}
-                        initial={{ opacity: 0.4 }}
-                        animate={{ opacity: done ? 1 : 0.4 }}
-                        className="flex items-center gap-3"
-                      >
-                        {done ? (
-                          <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                            className="h-5 w-5 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0"
-                          >
-                            <svg className="h-3 w-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </motion.div>
-                        ) : (
-                          <div className="h-5 w-5 rounded-full border border-zinc-700 flex-shrink-0" />
-                        )}
-                        <span className={`text-sm ${done ? "text-zinc-200" : "text-zinc-600"} transition-colors`}>
-                          {step.label}
-                        </span>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </>
-            ) : (
-              /* Plan ready state */
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                className="text-center py-2"
-              >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                  className="h-12 w-12 rounded-full bg-emerald-500 flex items-center justify-center mx-auto mb-4"
-                >
-                  <svg className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </motion.div>
-                <h2 className="text-2xl font-bold text-emerald-400 mb-2">Your plan is ready</h2>
-                <p className="text-sm text-zinc-500 mb-5">
-                  {email ? `Also sent to ${email}` : "See your personalized results"}
-                </p>
-                <motion.button
-                  whileTap={{ scale: 0.97 }}
-                  onClick={onContinue}
-                  className="w-full rounded-2xl bg-emerald-500 px-8 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400"
-                >
-                  See My Full Swap Dashboard
-                </motion.button>
-              </motion.div>
-            )}
-          </motion.div>
-
-          {/* Content blocks — fade in at staggered thresholds */}
-          {SNACK_GENERATING_BLOCKS.map((block) => {
-            const active = genProgress >= block.threshold;
-            return (
-              <motion.div
-                key={block.label}
-                initial={{ opacity: 0.15 }}
-                animate={{ opacity: active ? 1 : 0.15 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 mb-4"
-              >
-                <p className={`text-[11px] uppercase tracking-[0.2em] mb-3 transition-colors duration-500 ${active ? "text-zinc-400" : "text-zinc-700"}`}>{block.label}</p>
-                {"bullets" in block && block.bullets ? (
-                  <div className="space-y-2">
-                    {block.bullets.map((line) => (
-                      <p key={line} className={`text-base leading-relaxed transition-colors duration-500 ${active ? "text-zinc-200" : "text-zinc-800"}`}>{line}</p>
-                    ))}
-                  </div>
                 ) : (
-                  <p className={`text-lg leading-snug transition-colors duration-500 ${active ? "text-zinc-200" : "text-zinc-800"}`}>{"copy" in block ? block.copy : ""}</p>
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="flex justify-center"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                  </motion.div>
                 )}
               </motion.div>
-            );
-          })}
+            )}
+          </AnimatePresence>
+
+          {/* Bridge content — staggers in with pauses */}
+
+          {/* Line 1: Personalized anchor */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: bridgeStep >= 1 ? 1 : 0, y: bridgeStep >= 1 ? 0 : 20 }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-xs text-zinc-500 uppercase tracking-[0.25em] mb-3">Just now</p>
+            <p className="text-4xl sm:text-5xl font-extrabold text-emerald-400 tabular-nums">
+              {displayLbsStr} lbs
+            </p>
+            <p className="text-lg text-zinc-400 mt-2">
+              of fat per week from{" "}
+              <span className="text-white font-semibold">
+                {swapCount === 1 ? "1 snack swap" : `${swapCount} snack swaps`}
+              </span>
+            </p>
+          </motion.div>
+
+          {/* Line 2: Bridge reframe */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: bridgeStep >= 2 ? 1 : 0, y: bridgeStep >= 2 ? 0 : 15 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-sm mt-8"
+          >
+            <p className="text-xl sm:text-2xl font-bold text-white leading-snug">
+              {swapCount === 1 ? "That was one snack." : "That was two snacks."}
+            </p>
+            <p className="text-xl sm:text-2xl text-zinc-400 mt-2 leading-snug">
+              You probably grab 4 or 5 a week.
+            </p>
+          </motion.div>
+
+          {/* Line 3: Scale expand */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: bridgeStep >= 3 ? 1 : 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-base text-zinc-400 mt-8 max-w-sm"
+          >
+            Now imagine we did that for{" "}
+            <span className="text-white font-semibold">every snack, every meal, every restaurant.</span>
+          </motion.p>
+
+          {/* Line 4: Killer line */}
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: bridgeStep >= 4 ? 1 : 0, y: bridgeStep >= 4 ? 0 : 12 }}
+            transition={{ duration: 0.5 }}
+            className="text-base sm:text-lg text-emerald-400 font-semibold leading-relaxed mt-8 max-w-sm"
+          >
+            What if all you had to do was eat — and the weight just came off?
+          </motion.p>
+
+          {/* Line 5: CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: bridgeStep >= 5 ? 1 : 0, y: bridgeStep >= 5 ? 0 : 10 }}
+            transition={{ duration: 0.4 }}
+            className="mt-10 w-full max-w-sm space-y-3"
+          >
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              onClick={() => window.location.href = "/concierge"}
+              className="w-full rounded-2xl bg-emerald-500 px-6 py-4 text-base font-bold text-black transition-all hover:bg-emerald-400 flex items-center justify-center gap-2"
+            >
+              <span>See how it works</span>
+              <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>&rarr;</motion.span>
+            </motion.button>
+            <button
+              onClick={onContinue}
+              className="w-full text-center text-sm text-zinc-600 hover:text-zinc-400 transition-colors py-2"
+            >
+              Keep exploring swaps
+            </button>
+          </motion.div>
+
         </motion.div>
       </div>
     );
   }
+
+  // ─── Graph: both lines always use the same X-axis (original timeline) ───
+  // Stack line reaches goal earlier, so its endpoint is partway through the graph
+  const stackRatio = weeksToGoal > 0 ? Math.min(stackWeeksToGoal / weeksToGoal, 1) : 1;
+
+  // Stack curve: reaches goal weight at stackRatio of the X-axis
+  // Only draw up to the goal point — no flat line beyond it
+  const stackGoalXIndex = Math.round(stackRatio * points);
+  const stackCurveData: { x: number; weight: number }[] = [];
+  for (let i = 0; i <= stackGoalXIndex; i++) {
+    const t = i / points;
+    const scaledT = stackRatio > 0 ? Math.min(t / stackRatio, 1) : 1;
+    const progress = 1 - Math.pow(1 - scaledT, 1.8);
+    const weight = currentWeight - weightToLose * progress;
+    stackCurveData.push({ x: i, weight: Math.max(goalWeight, Math.round(weight * 10) / 10) });
+  }
+
+  const stackPathD = stackCurveData
+    .map((d, i) => {
+      const x = toX(d.x);
+      const y = toY(d.weight);
+      return i === 0 ? `M ${x} ${y}` : `L ${x} ${y}`;
+    })
+    .join(" ");
 
   // ─── Projection phase (graph + email capture) ───
   return (
@@ -2380,26 +2438,50 @@ function ProjectionScreen({
         Back
       </button>
 
-      {/* Headline */}
+      {/* Headline — biggest element on screen */}
       <div className="mb-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
-          className="text-2xl font-bold"
+          className="text-3xl sm:text-4xl font-extrabold leading-tight"
         >
           You&apos;ll hit{" "}
           <span className="text-emerald-400">{goalWeight} lbs</span> by{" "}
-          <span className="text-emerald-400">{targetDateStr}</span>
+          <span className="text-emerald-400 inline-block overflow-hidden">
+            {rollingDate ? (
+              <motion.span
+                key={rollingDate}
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.06 }}
+                className="inline-block"
+              >
+                {rollingDate}
+              </motion.span>
+            ) : showStack && rollerDoneRef.current ? (
+              stackTargetDateStr
+            ) : (
+              targetDateStr
+            )}
+          </span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ delay: 2 }}
-          className="mt-3 text-xl font-bold text-white"
+          className="mt-2 text-sm text-zinc-400"
         >
-          Without giving up your love for{" "}
-          <span className="text-emerald-400">{snackName}</span>.
+          {showStack
+            ? <>
+                {weeksToGoal > 0 && stackWeeksToGoal > 0 && (
+                  <span className="text-emerald-400 font-semibold">{Math.round(weeksToGoal / stackWeeksToGoal)}x faster</span>
+                )}{" "}
+                by stacking your {snackName} + nightly {stackSwap?.name ?? "ice cream"} swaps.
+              </>
+            : <>Without giving up your love for <span className="text-emerald-400">{snackName}</span>.</>
+          }
         </motion.p>
       </div>
 
@@ -2430,18 +2512,57 @@ function ProjectionScreen({
             {goalWeight}
           </text>
 
+          {/* Original single-swap line (green → dotted gray when stack shown) */}
           <motion.path
             d={pathD}
             fill="none"
-            stroke="#34d399"
-            strokeWidth={2.5}
+            stroke={showStack ? "#52525b" : "#34d399"}
+            strokeWidth={showStack ? 1.5 : 2.5}
+            strokeDasharray={showStack ? "6 4" : "none"}
             strokeLinecap="round"
             strokeLinejoin="round"
             initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
+            animate={{ pathLength: 1, stroke: showStack ? "#52525b" : "#34d399", strokeWidth: showStack ? 1.5 : 2.5 }}
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           />
 
+          {/* Stack line (brighter green, steeper, reaches goal sooner) */}
+          {showStack && (
+            <motion.path
+              d={stackPathD}
+              fill="none"
+              stroke="#34d399"
+              strokeWidth={2.5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            />
+          )}
+
+          {/* Original endpoint anchor — stays visible when stack is shown */}
+          {showStack && (
+            <>
+              <circle
+                cx={toX(points)}
+                cy={toY(goalWeight)}
+                r={3}
+                fill="#52525b"
+              />
+              <text
+                x={toX(points)}
+                y={svgH - 4}
+                textAnchor="middle"
+                fill="#52525b"
+                fontSize={8}
+              >
+                {targetDate.toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+              </text>
+            </>
+          )}
+
+          {/* NOW dot */}
           <motion.circle
             cx={toX(0)}
             cy={toY(currentWeight)}
@@ -2452,16 +2573,24 @@ function ProjectionScreen({
             transition={{ delay: 0.3 }}
           />
 
+          {/* GOAL dot — slides left when stack is shown */}
           <motion.circle
-            cx={toX(points)}
-            cy={toY(goalWeight)}
             r={5}
             fill="#34d399"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 2, type: "spring", stiffness: 300 }}
+            initial={{ opacity: 0, scale: 0, cx: toX(points), cy: toY(goalWeight) }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              cx: showStack ? toX(stackGoalXIndex) : toX(points),
+              cy: toY(goalWeight),
+            }}
+            transition={showStack
+              ? { cx: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 2 }, default: { delay: 2, type: "spring", stiffness: 300 } }
+              : { delay: 2, type: "spring", stiffness: 300 }
+            }
           />
 
+          {/* NOW label */}
           <motion.text
             x={toX(0)}
             y={toY(currentWeight) - 12}
@@ -2476,31 +2605,46 @@ function ProjectionScreen({
             NOW
           </motion.text>
 
+          {/* GOAL label — slides with dot */}
           <motion.text
-            x={toX(points)}
-            y={toY(goalWeight) - 12}
             textAnchor="middle"
             fill="#34d399"
             fontSize={9}
             fontWeight="bold"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.2 }}
+            initial={{ opacity: 0, x: toX(points), y: toY(goalWeight) - 12 }}
+            animate={{
+              opacity: 1,
+              x: showStack ? toX(stackGoalXIndex) : toX(points),
+              y: toY(goalWeight) - 12,
+            }}
+            transition={showStack
+              ? { x: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 2 }, default: { delay: 2.2 } }
+              : { delay: 2.2 }
+            }
           >
             GOAL
           </motion.text>
 
+          {/* Date label — slides with dot */}
           <motion.text
-            x={toX(points)}
-            y={svgH - 4}
             textAnchor="middle"
-            fill="#71717a"
+            fill="#34d399"
             fontSize={9}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.2 }}
+            fontWeight="bold"
+            initial={{ opacity: 0, x: toX(points), y: svgH - 4 }}
+            animate={{
+              opacity: 1,
+              x: showStack ? toX(stackGoalXIndex) : toX(points),
+              y: svgH - 4,
+            }}
+            transition={showStack
+              ? { x: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 2 }, default: { delay: 2.2 } }
+              : { delay: 2.2 }
+            }
           >
-            {targetDate.toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+            {showStack
+              ? stackTargetDate.toLocaleDateString("en-US", { month: "short", year: "numeric" })
+              : targetDate.toLocaleDateString("en-US", { month: "short", year: "numeric" })}
           </motion.text>
 
           <motion.text
@@ -2518,37 +2662,68 @@ function ProjectionScreen({
         </svg>
       </motion.div>
 
-      {/* Stats row */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2.2 }}
-        className="mb-8 flex justify-center gap-6 text-center"
-      >
-        <div>
-          <p className="text-lg font-bold text-white">{weeksToGoal}</p>
-          <p className="text-xs text-zinc-500">weeks</p>
-        </div>
-        <div className="w-px bg-zinc-800" />
-        <div>
-          <p className="text-lg font-bold text-white">{lbsPerWeek.toFixed(1)}</p>
-          <p className="text-xs text-zinc-500">lbs/week</p>
-        </div>
-        <div className="w-px bg-zinc-800" />
-        <div>
-          <p className="text-lg font-bold text-emerald-400">{weightToLose}</p>
-          <p className="text-xs text-zinc-500">lbs total</p>
-        </div>
-      </motion.div>
+      {/* Speed it up — one big tappable card */}
+      {stackSwap && !showStack && (
+        <motion.button
+          initial={{ opacity: 0, y: 10 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            boxShadow: [
+              "0 0 0 0 rgba(52, 211, 153, 0)",
+              "0 0 24px 6px rgba(52, 211, 153, 0.2)",
+              "0 0 0 0 rgba(52, 211, 153, 0)",
+            ],
+          }}
+          transition={{
+            opacity: { delay: 2.5 },
+            y: { delay: 2.5 },
+            boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 3 },
+          }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => setShowStack(true)}
+          className="relative mb-6 w-full overflow-hidden rounded-2xl border border-emerald-500/30 bg-zinc-900/80 p-5 text-center transition-all hover:border-emerald-400/50"
+        >
+          {/* Shimmer sweep */}
+          <motion.div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background: "linear-gradient(105deg, transparent 40%, rgba(52,211,153,0.07) 50%, transparent 60%)",
+            }}
+            animate={{ x: ["-100%", "200%"] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.5 }}
+          />
+          <p className="relative text-lg font-bold text-white mb-3">Want to speed it up?</p>
+          <div className="relative flex items-center justify-center gap-3">
+            <div className="relative h-20 w-20 rounded-xl bg-zinc-800 overflow-hidden ring-1 ring-zinc-700">
+              {stackSwap.originalImageUrl && (
+                <Image src={stackSwap.originalImageUrl} alt={stackSwap.originalName} fill className="object-contain p-1" sizes="80px" unoptimized />
+              )}
+            </div>
+            <svg className="h-4 w-4 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+            <div className="relative h-20 w-20 rounded-xl bg-zinc-800 overflow-hidden ring-1 ring-zinc-700">
+              {stackSwap.swapImageUrl && (
+                <Image src={stackSwap.swapImageUrl} alt={stackSwap.swapName} fill className="object-contain p-1" sizes="80px" unoptimized />
+              )}
+            </div>
+          </div>
+          <p className="relative mt-3 text-sm text-zinc-400">
+            Add {stackSwap.name} swap &middot; {stackSwap.originalCalories} → {stackSwap.swapCalories} cal
+          </p>
+        </motion.button>
+      )}
 
-      {/* Email capture */}
+      {/* Email capture — only show after stack animation OR if no stack swap available */}
+      {(showStack || !stackSwap) && (
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2.5 }}
+        transition={{ delay: showStack ? 3.5 : 2.8 }}
       >
         <p className="text-center text-sm text-zinc-400 mb-4">
-          Want us to email you this plan with your {snackName} swap?
+          Save your plan + see how the full system works
         </p>
         <form onSubmit={(e) => { e.preventDefault(); handleEmailSubmit(); }} className="flex gap-2">
           <input
@@ -2568,6 +2743,7 @@ function ProjectionScreen({
         </form>
         <p className="text-center text-[11px] text-zinc-700 mt-3">Just the plan. No spam. Unsubscribe anytime.</p>
       </motion.div>
+      )}
 
       {/* Skip email — go straight to dashboard */}
       <motion.div

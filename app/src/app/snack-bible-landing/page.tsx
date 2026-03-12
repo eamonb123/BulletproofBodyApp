@@ -276,18 +276,18 @@ export default function SnackBibleLanding() {
               <div className="marquee-row mb-3">
                 <div className="marquee-track marquee-left">
                   {[...row1, ...row1].map((b, i) => (
-                    <div key={`r1-${b.id}-${i}`} className="mx-1.5 h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border border-zinc-800 sm:h-20 sm:w-20">
+                    <button key={`r1-${b.id}-${i}`} onClick={() => router.push(`/snack-bible-demo?snack=${b.id}`)} className="mx-1.5 h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border border-zinc-800 transition-all hover:border-emerald-500/50 hover:scale-105 sm:h-20 sm:w-20 cursor-pointer">
                       <SnackLogo brand={b} />
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
               <div className="marquee-row">
                 <div className="marquee-track marquee-right">
                   {[...row2, ...row2].map((b, i) => (
-                    <div key={`r2-${b.id}-${i}`} className="mx-1.5 h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border border-zinc-800 sm:h-20 sm:w-20">
+                    <button key={`r2-${b.id}-${i}`} onClick={() => router.push(`/snack-bible-demo?snack=${b.id}`)} className="mx-1.5 h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl border border-zinc-800 transition-all hover:border-emerald-500/50 hover:scale-105 sm:h-20 sm:w-20 cursor-pointer">
                       <SnackLogo brand={b} />
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
