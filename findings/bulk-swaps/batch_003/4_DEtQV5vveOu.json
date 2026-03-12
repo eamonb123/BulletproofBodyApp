@@ -1,0 +1,29 @@
+{
+  "position": 4,
+  "url": "https://www.instagram.com/p/DEtQV5vveOu/",
+  "shortcode": "DEtQV5vveOu",
+  "creator": "@zoeroseziegler",
+  "views": 41745,
+  "likes": 1968,
+  "duration": "0:14",
+  "transcript": "Watch me order 60 grams worth of protein under 500 calories from Denny's. Can I build my own Grand Slam? Can I do two egg whites? Two of the turkey bacon strips? Can I get an English muffin? Is there any way that I could just do like a grilled chicken breast? Perfect. Extra protein.",
+  "caption": "Weight loss order from Denny's!! 60 g protein, under 500 cals\n\n@dennysdiner #food #foodie #foodporn #diet #weightloss #weightlossjourney #dennys",
+  "ocr_summary": "ORDER 60 GRAMS PROTEIN UNDER 500 CALORIES FROM DENNY'S; CAN BUILD MY OWN GRAND SLAM?; TWO EGG WHITES; THE TURKEY BACON STRIPS; AN ENGLISH MUFFIN; LIKE A GRILLED (chicken breast)",
+  "visual_scenes": "Woman at Denny's diner booth ordering food, talking head with bold text overlays showing each word of her order. Shows the ordering process live at the restaurant.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Denny's",
+        "original_meal": "Regular Grand Slam",
+        "original_calories": null,
+        "swap_meal": "Build Your Own Grand Slam (Lean Version)",
+        "swap_calories": 500,
+        "swap_protein": 60,
+        "swap_ingredients": ["two egg whites", "turkey bacon strips", "English muffin", "grilled chicken breast"],
+        "is_swap": true,
+        "swap_method": "Build Your Own Grand Slam - swap regular items for egg whites, turkey bacon, English muffin, and add grilled chicken breast",
+        "category": "breakfast"
+      }
+    ]
+  }
+}

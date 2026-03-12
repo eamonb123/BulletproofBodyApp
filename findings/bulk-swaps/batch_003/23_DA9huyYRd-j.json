@@ -1,0 +1,35 @@
+{
+  "position": 23,
+  "url": "https://www.instagram.com/p/DA9huyYRd-j/",
+  "shortcode": "DA9huyYRd-j",
+  "creator": "@trainermikeyy",
+  "views": 12239,
+  "likes": 748,
+  "duration": "0:43",
+  "transcript": "If you're at a Qdoba right now, I'm going to show you how to make a meal under 600 calories with almost 50 grams of protein. And I do black beans instead of double grilled chicken, pico, shredded cheese. So if the vending machine isn't working, you can always scan the barcode. Fonz is here, bro. Just got the meal you guys. This costs $18.61 here at Cordova. Double grilled chicken was 300 calories with 32 grams of protein. Black beans 140 calories with 9 grams of protein. Fonsa Zero, zero calories. Shredded cheese was 110 calories with 7 grams of protein. Lettuce and pico all for a total of 575 calories. 48 grams of protein. Enjoy you guys.",
+  "caption": "Qdoba Low Calorie, High Protein Meal On a Diet\n\ud83c\udf2f\ud83c\udf2e\ud83e\udd57\ud83e\udd64\ud83c\udf7d\ufe0f\n#diet #qdoba #lowcalorie #highprotein #reels",
+  "ocr_summary": "Qdoba Low Calorie, High Protein Meal | Create Your Own Bowl | Black Beans | Grilled Adobo Chicken (double) | Pico | Shredded Cheese | Lettuce | Fanta Zero | Total: 575 calories, 48g protein | Cost: $18.61",
+  "visual_scenes": "Man outside Qdoba restaurant talking to camera, shows ordering process on kiosk screen (bowl, rice options, beans, chicken, salsas/sauces, fajita veggies, shredded cheese). Then seated at table breaking down each ingredient with calorie overlays. Shows receipt ($18.61) and nutrition facts (575 cal, 28g fat, 34g carbs).",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Qdoba",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Double Grilled Adobo Chicken Bowl with black beans, pico, shredded cheese, lettuce, Fanta Zero",
+        "swap_calories": 575,
+        "swap_protein": 48,
+        "swap_ingredients": [
+          {"item": "Double Grilled Adobo Chicken", "calories": 300, "protein": 32},
+          {"item": "Black Beans", "calories": 140, "protein": 9},
+          {"item": "Shredded Cheese", "calories": 110, "protein": 7},
+          {"item": "Lettuce & Pico", "calories": 25, "protein": 0},
+          {"item": "Fanta Zero", "calories": 0, "protein": 0}
+        ],
+        "is_swap": false,
+        "notes": "No rice in this bowl. Cost $18.61. Nutrition facts show 575 cal, 28g fat, 34g carbs, 17g fiber.",
+        "category": "bowl"
+      }
+    ]
+  }
+}

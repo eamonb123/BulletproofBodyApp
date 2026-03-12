@@ -1,0 +1,32 @@
+{
+  "position": 20,
+  "url": "https://www.instagram.com/p/DTOg5U-kZ5j/",
+  "shortcode": "DTOg5U-kZ5j",
+  "creator": "@jackiereesecoaching",
+  "views": 207,
+  "likes": -1,
+  "duration": "0:23",
+  "transcript": "",
+  "caption": "LONGHORN STEAKHOUSE ORDER🥩for Weight Loss💪\n\nSAVE THIS VIDEO📌 \n\nFOLLOW FOR MORE💓\n\n#healthymeals #fitnessjourney #weightlossjourney #weightloss #loseweight",
+  "ocr_summary": "LONGHORN STEAKHOUSE ORDER FOR WEIGHT LOSS | PS WORKS ANY STEAKHOUSE | ORDER FILET MIGNON | NO BUTTER | MEDIUM IS BEST | POTATO | MODERATION | WITH salad | SAVE VIDEO | FOLLOW FOR TIPS",
+  "visual_scenes": "Woman in kitchen holding takeout container with grilled steaks and sides. Shows filet mignon, potato, and salad components. Text-only reel with word-by-word overlay, no audio transcript.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "LongHorn Steakhouse",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Filet Mignon (no butter, medium), baked potato (in moderation), side salad",
+        "swap_calories": null,
+        "swap_protein": null,
+        "swap_ingredients": [
+          {"item": "Filet Mignon (no butter)", "calories": null},
+          {"item": "Baked Potato (in moderation)", "calories": null},
+          {"item": "Side Salad", "calories": null}
+        ],
+        "is_swap": false,
+        "category": "steak"
+      }
+    ]
+  }
+}

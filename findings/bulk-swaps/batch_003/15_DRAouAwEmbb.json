@@ -1,0 +1,61 @@
+{
+  "position": 15,
+  "url": "https://www.instagram.com/p/DRAouAwEmbb/",
+  "shortcode": "DRAouAwEmbb",
+  "creator": "@frankie_pfw",
+  "views": 45203,
+  "likes": 1807,
+  "duration": "0:16",
+  "transcript": "It's believing it's hard",
+  "caption": "@menufit.app low calorie high protein fast food options! Whataburger Original: Whatachicken Sandwich (540 cal 29g) fries (420 cal 5g), coke (390 cal). Total: (1350 cal 34g protein) Low Calorie: Grilled Chicken sandwich, on a small bun, easy mayo instead of whatasauce (325 cal 30g protein), small fries (280 cal 3g), coke zero (0 cal). (Total: 605 cal 33g protein) High Protein: 2x Grilled Chicken sandwich, on a small bun, with buffalo sauce instead of whatasauce, with 2 extra grilled filets (total of three), with jack cheese (630 cal 82g protein x2 = 1260 cal 164g protein) Shake Shack Original: Single Shack Burger (500 cal 29g) fries (470 cal 6g) coke (210 cal). (total: 1180 cal 35g) Low Calorie: Single Shack Burger on a gluten free bun with mustard instead of the shack sauce (400 cal 25g) Vanilla Frozen Custard (280 cal 7g) coke zero (0 cal). (Total: 680 cal 32g) High Protein: Triple Shack Burger with only 1 slice of cheese, and mustard instead of shack sauce (830 cal 66g protein)",
+  "ocr_summary": "WHATABURGER - Original: 1350 Cal 34g Protein, Low Calorie: 605 Cal 33g Protein, High Protein: 1260 Cal 164g Protein. SHAKE SHACK - Original: 1180 Cal 35g Protein, Low Calorie: 680 Cal 32g Protein, High Protein: 830 Cal 66g Protein. MenuFit app promotion.",
+  "visual_scenes": "Three men standing in front of graphic displays showing Whataburger and Shake Shack nutritional comparisons. MenuFit app demo at end showing Chick-fil-A Grilled Protein Trio.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Whataburger",
+        "original_meal": "Whatachicken Sandwich + Fries + Coke",
+        "original_calories": 1350,
+        "swap_meal": "Grilled Chicken Sandwich (small bun, easy mayo) + Small Fries + Coke Zero",
+        "swap_calories": 605,
+        "swap_protein": 33,
+        "swap_ingredients": ["grilled chicken sandwich", "small bun", "easy mayo instead of whatasauce", "small fries", "coke zero"],
+        "is_swap": true,
+        "category": "chicken sandwich meal"
+      },
+      {
+        "restaurant_name": "Whataburger",
+        "original_meal": "Whatachicken Sandwich + Fries + Coke",
+        "original_calories": 1350,
+        "swap_meal": "2x Grilled Chicken Sandwich (small bun, buffalo sauce, 2 extra filets, jack cheese)",
+        "swap_calories": 1260,
+        "swap_protein": 164,
+        "swap_ingredients": ["2x grilled chicken sandwich", "small bun", "buffalo sauce", "2 extra grilled filets each", "jack cheese"],
+        "is_swap": true,
+        "category": "high protein chicken"
+      },
+      {
+        "restaurant_name": "Shake Shack",
+        "original_meal": "Single Shack Burger + Fries + Coke",
+        "original_calories": 1180,
+        "swap_meal": "Single Shack Burger (GF bun, mustard) + Vanilla Frozen Custard + Coke Zero",
+        "swap_calories": 680,
+        "swap_protein": 32,
+        "swap_ingredients": ["single shack burger", "gluten free bun", "mustard instead of shack sauce", "vanilla frozen custard", "coke zero"],
+        "is_swap": true,
+        "category": "burger meal"
+      },
+      {
+        "restaurant_name": "Shake Shack",
+        "original_meal": "Single Shack Burger + Fries + Coke",
+        "original_calories": 1180,
+        "swap_meal": "Triple Shack Burger (1 slice cheese, mustard instead of shack sauce)",
+        "swap_calories": 830,
+        "swap_protein": 66,
+        "swap_ingredients": ["triple shack burger", "1 slice cheese", "mustard instead of shack sauce"],
+        "is_swap": true,
+        "category": "high protein burger"
+      }
+    ]
+  }
+}

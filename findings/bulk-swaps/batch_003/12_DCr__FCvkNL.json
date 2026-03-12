@@ -1,0 +1,28 @@
+{
+  "position": 12,
+  "url": "https://www.instagram.com/p/DCr__FCvkNL/",
+  "shortcode": "DCr__FCvkNL",
+  "creator": "@smaller_sam.pcos",
+  "views": 219424,
+  "likes": 8490,
+  "duration": "1:30",
+  "transcript": "Did you know that Sonic has a crispy chicken wrap that's a lot like McDonald's used to be snack wrap? My order is 530 calories, 26 grams of protein. Yes. Thank you. They don't have the grilled chicken wrap anymore, so I got a crispy chicken wrap, take off the ranch, add bacon. I've lost 250 pounds. 200 pounds lost naturally through calorie deficit and exercise, and an additional 50 pounds lost with the help of Weight Care and Semaglutide. Weight Care is an online telehealth company that's able to provide GLP-1 at a fraction of the price of name brand. Weight care has physicians licensed in 50 states, no hidden membership or cancellation fees, and you'll have access to in-house dietitians and health coaches that will help you make sustainable lifestyle changes. Semaglutide has given me my life back. Especially going into the holidays, I'm really looking forward to having a different relationship with the food that used to control me. There's always a link in my bio to Weight Care's website where you can use my code SAM99 to get a $300 discount on your first prescription.",
+  "caption": "Sonic Order (530 cals + 26g protein) - 1 crispy chicken wrap, NO ranch, add bacon, and 1 barbecue sauce.",
+  "ocr_summary": "Minimal OCR - mostly Sonic branding on cups visible in frames. No calorie overlay text on screen.",
+  "visual_scenes": "Woman in car at Sonic drive-in, talking to camera selfie-style. Shows ordering, receiving food, eating crispy chicken wrap. Raw iPhone footage, no text overlays.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Sonic Drive-In",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Crispy Chicken Wrap (no ranch, add bacon, 1 barbecue sauce)",
+        "swap_calories": 530,
+        "swap_protein": 26,
+        "swap_ingredients": ["crispy chicken wrap", "no ranch", "bacon", "barbecue sauce"],
+        "is_swap": false,
+        "category": "wrap"
+      }
+    ]
+  }
+}

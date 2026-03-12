@@ -1,0 +1,33 @@
+{
+  "position": 9,
+  "url": "https://www.instagram.com/p/DORhM_tCSJT/",
+  "shortcode": "DORhM_tCSJT",
+  "creator": "@j.newtrition",
+  "views": 235137,
+  "likes": 13350,
+  "duration": "1:04",
+  "transcript": "If you think pizza can't fit into your diet, then you just don't know what to order. I'm a weight loss dietician and this is my pizza order. And what I like to order is half the calories in America's favorite pizza and has over 110 grams of protein for the entire thing. A traditional pan crust pepperoni pizza is over 2000 calories, which is more than what some people need in an entire day. I mean, it looks great, but each slice is over 250 calories and only 10 grams of protein. Now, the one thing that I always aim for when I'm in a calorie deficit is a 10 to one calorie to protein ratio. And if you're not familiar, if you're looking at a nutrition facts label, if it has a hundred calories, it should have at least grams of protein. And if it does, then that's a solid option. It's a fast and easy rule of thumb to assess what you're looking at and figure out if it's something that might work for you. So here's the absolute best order. It's a medium thin crust buffalo chicken pizza with extra chicken and light cheese. And I still like to add on banana peppers and onions with this and you can add on whatever veggies you like just to increase the food volume and help fill you up some more. Ordering the pizza this way cuts the calorie to protein ratio down from 25 to 13. That means each of these slices has one third less calories and 12 grams of protein each. So if you're stuck out with friends and family and the only thing they're willing to get is pizza, you know what to order. Bone Apple Tea.",
+  "caption": "Best Pizza order if you're trying to hit your goals. Original Pan Pizza is 2,000 cals and 80g protein. Buffalo Chicken Pizza has 1/3 cals per slice: 170 cals & 12g P / 20g C / 4g F. **Regular cheese is 20 cals more & 2g P / 3g C / 0g F",
+  "ocr_summary": "Pizza Hut Order - 12g Protein & 170 Calories per slice. Shows ordering process at Pizza Hut with nutrition breakdown.",
+  "visual_scenes": "Man at Pizza Hut ordering, showing the online ordering process, then showing the delivered pizza with nutrition overlay.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Pizza Hut",
+        "original_meal": "Traditional Pan Crust Pepperoni Pizza (medium)",
+        "original_calories": 2000,
+        "original_protein": 80,
+        "original_per_slice_calories": 250,
+        "original_per_slice_protein": 10,
+        "swap_meal": "Medium Thin Crust Buffalo Chicken Pizza (extra chicken, light cheese, banana peppers, onions)",
+        "swap_calories": 1360,
+        "swap_protein": 110,
+        "swap_per_slice_calories": 170,
+        "swap_per_slice_protein": 12,
+        "swap_ingredients": ["thin crust", "buffalo chicken (extra)", "light cheese", "banana peppers", "onions"],
+        "is_swap": true,
+        "category": "pizza"
+      }
+    ]
+  }
+}

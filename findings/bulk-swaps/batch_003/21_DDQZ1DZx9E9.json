@@ -1,0 +1,33 @@
+{
+  "position": 21,
+  "url": "https://www.instagram.com/p/DDQZ1DZx9E9/",
+  "shortcode": "DDQZ1DZx9E9",
+  "creator": "@trainermikeyy",
+  "views": 19382,
+  "likes": 896,
+  "duration": "0:45",
+  "transcript": "If you're at a Papa John's right now, I'm gonna show you how to make the lowest calorie pizza if you're still on your diet. I'm gonna grab this and I'm gonna order a pizza, small. Can I do gluten-free? Yeah, please. Original sauce with light cheese. What's the eight-inch? Isn't that personal? That something else? All right. I'll just do that then. No toppings, just light cheese. Just got the pizza, you guys. Came out to a total of, with the Pepsi, $16.51. Gluten-free crust is 90 calories. That's the lowest crust here. Light cheese was 35 calories with two grams of protein. Original sauce, 10 calories. And then this is all for a total of 810 calories, 24 grams of protein. So there's six slices. Each slice, 135 calories with four grams of protein. Enjoy you guys.",
+  "caption": "Papa John's Pizza On a Diet🍕\n#papajohns #pizza #diet #lowcalorie #reels",
+  "ocr_summary": "PAPA JOHN'S PIZZA | Lowest Calorie Pizza | Gluten-Free Crust | Light cheese | Original sauce | No toppings | Total: 810 calories whole pizza, 24g protein | Per slice: ~135 calories, 4g protein (6 slices)",
+  "visual_scenes": "Man outside Papa John's talking to camera, goes inside to order at counter, comes back outside with pizza box. Shows nutrition facts overlay: 810 cal, 30g fat, 24g protein for whole pizza.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Papa John's",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Small Gluten-Free Crust Pizza with original sauce, light cheese, no toppings (6 slices)",
+        "swap_calories": 810,
+        "swap_protein": 24,
+        "swap_ingredients": [
+          {"item": "Gluten-Free Crust (whole pizza)", "calories": 540},
+          {"item": "Light Cheese (whole pizza)", "calories": 210},
+          {"item": "Original Sauce (whole pizza)", "calories": 60}
+        ],
+        "is_swap": false,
+        "notes": "Per slice: ~135 cal, 4g protein. Total with Pepsi Zero: $16.51",
+        "category": "pizza"
+      }
+    ]
+  }
+}

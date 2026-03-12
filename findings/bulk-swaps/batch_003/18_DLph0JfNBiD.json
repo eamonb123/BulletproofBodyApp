@@ -1,0 +1,39 @@
+{
+  "position": 18,
+  "url": "https://www.instagram.com/p/DLph0JfNBiD/",
+  "shortcode": "DLph0JfNBiD",
+  "creator": "@zackmason.fitness",
+  "views": 8225,
+  "likes": 1964,
+  "duration": "0:10",
+  "transcript": "Bro, you wanna go to Outback? Okay, yeah, I'll get the eight ounce center cut sirloin with the loaded mashed potatoes. I was thinking more like seafood. Oh yeah, love seafood. Okay, so I'll get the shrimp on the barbie with the asparagus.",
+  "caption": "Share this for someone on a weight loss journey! Steak and Potatoes - 610 calories | 54g Protein. Shrimp on the Barbie - 670 Calories | 58g Protein. #fyp #weightloss #foryou #weightlosstransformation #motivation #overweight #gymtok #diet #outback",
+  "ocr_summary": "No on-screen text detected (carousel/slideshow style with no OCR frames extracted)",
+  "visual_scenes": "No visual frames extracted. Audio-only skit format with two people discussing Outback orders.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Outback Steakhouse",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "8oz Center Cut Sirloin + Loaded Mashed Potatoes",
+        "swap_calories": 610,
+        "swap_protein": 54,
+        "swap_ingredients": ["8oz center cut sirloin", "loaded mashed potatoes"],
+        "is_swap": false,
+        "category": "steak entree"
+      },
+      {
+        "restaurant_name": "Outback Steakhouse",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Shrimp on the Barbie + Asparagus",
+        "swap_calories": 670,
+        "swap_protein": 58,
+        "swap_ingredients": ["shrimp on the barbie", "asparagus"],
+        "is_swap": false,
+        "category": "seafood entree"
+      }
+    ]
+  }
+}

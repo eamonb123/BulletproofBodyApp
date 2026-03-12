@@ -1,0 +1,39 @@
+{
+  "position": 17,
+  "url": "https://www.instagram.com/p/DFqQ2quxus9/",
+  "shortcode": "DFqQ2quxus9",
+  "creator": "@coachvinicastanho",
+  "views": 1851,
+  "likes": 60,
+  "duration": "0:21",
+  "transcript": "Stop ordering this if you're on a weight loss journey and you're out back. This is like 2000 calories. Here's what to order instead. Meal number one is the chicken on the barbie, plain baked potato and broccoli. This is approximately 650 calories. Meal number two is the six ounce centricut celluline, baked potato and broccoli on the side. This meal is approximately 500 calories. Make sure to follow me for more content like this.",
+  "caption": "Outback Steakhouse Weight Loss Order #outbacksteakhouse #fatloss #weightloss #lowcalorie #healthychoices #nutritiontips #fitnesstips #weightlossmeals",
+  "ocr_summary": "OUTBACK STEAKHOUSE WEIGHT LOSS ORDER. STOP ORDERING THIS - 2000 CALORIES. MEAL NO. 1: Chicken on the Barbecue, plain baked potato and broccoli - 650 CALORIES. MEAL NO. 2: 6oz Sirloin, baked potato, broccoli - 500 CALORIES.",
+  "visual_scenes": "Man at Outback Steakhouse table with blooming onion (the bad order), then showing healthier plates - chicken with baked potato and broccoli, then sirloin steak with broccoli.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Outback Steakhouse",
+        "original_meal": "Blooming Onion (implied high-cal appetizer)",
+        "original_calories": 2000,
+        "swap_meal": "Chicken on the Barbie + Plain Baked Potato + Broccoli",
+        "swap_calories": 650,
+        "swap_protein": null,
+        "swap_ingredients": ["chicken on the barbie", "plain baked potato", "broccoli"],
+        "is_swap": true,
+        "category": "chicken entree"
+      },
+      {
+        "restaurant_name": "Outback Steakhouse",
+        "original_meal": "Blooming Onion (implied high-cal appetizer)",
+        "original_calories": 2000,
+        "swap_meal": "6oz Center-Cut Sirloin + Baked Potato + Broccoli",
+        "swap_calories": 500,
+        "swap_protein": null,
+        "swap_ingredients": ["6oz center-cut sirloin", "baked potato", "broccoli"],
+        "is_swap": true,
+        "category": "steak entree"
+      }
+    ]
+  }
+}

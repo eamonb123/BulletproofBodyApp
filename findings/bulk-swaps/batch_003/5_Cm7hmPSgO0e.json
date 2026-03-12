@@ -1,0 +1,56 @@
+{
+  "position": 5,
+  "url": "https://www.instagram.com/p/Cm7hmPSgO0e/",
+  "shortcode": "Cm7hmPSgO0e",
+  "creator": "@returnoftheathlete",
+  "views": 117,
+  "likes": 14,
+  "duration": "0:37",
+  "transcript": "If I found myself at a Denny's, I'm probably a little bit drunk, but if I was trying to eat healthy and stay fit, here's three things that I would get. First thing I'd look at is the wild Alaskan salmon dinner. It's going to be high in protein, low in calories, low in everything else that we're trying to stay low on, or sugars or sodium. Just make sure and pair it with some vegetables on the side. Then you've got the slow cooked pot roast. It's going to have one of the highest amounts of protein on anything on the menu. So if you're trying to get your protein, that could be a good option to go for. Last but not least, you have the tilapia ranchero dinner. Anytime you're getting tilapia, you're going to get one of the leanest fish. It's going to have a high amount of protein, low in calories. It's going to be something that you can use to eat lean.",
+  "caption": "I've put together a list of the healthiest foods I'd recommend at the top 40 chains in the US.\n\nThese are foods that are a combination of:\nLow calorie\nLow sugar\nLow sodium\nLow in saturated fat\nHigh in protein\n\nLet me know in the comments, if you want the full list\n\n#dennys #healthyfastfood #healthyjunkfood",
+  "ocr_summary": "IF I FOUND MYSELF AT A... Denny's; WILD ALASKAN SALMON DINNER - Calories: 350, Saturated Fat: 6g, Sodium: 830mg, Sugar: 0g, Protein: 32g; SLOW COOKED POT ROAST - Calories: 400, Saturated Fat: 6g, Sodium: 1260mg, Sugar: 2g, Protein: 43g; TILAPIA RANCHERO DINNER - Calories: 300, Saturated Fat: 3g, Sodium: 650mg, Sugar: 2g, Protein: 42g",
+  "visual_scenes": "Man in white cap talking head style in office/studio. Nutrition cards shown for each menu item with full macro breakdown. Jump cuts between talking and nutrition overlays.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Denny's",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Wild Alaskan Salmon Dinner",
+        "swap_calories": 350,
+        "swap_protein": 32,
+        "swap_ingredients": ["wild Alaskan salmon", "vegetables (side)"],
+        "swap_macros": "350 cal / 32g P / 6g sat fat / 830mg sodium / 0g sugar",
+        "is_swap": false,
+        "swap_method": "Order recommendation - pair with vegetables on the side",
+        "category": "dinner"
+      },
+      {
+        "restaurant_name": "Denny's",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Slow Cooked Pot Roast",
+        "swap_calories": 400,
+        "swap_protein": 43,
+        "swap_ingredients": ["slow cooked pot roast"],
+        "swap_macros": "400 cal / 43g P / 6g sat fat / 1260mg sodium / 2g sugar",
+        "is_swap": false,
+        "swap_method": "Order recommendation - highest protein on the menu",
+        "category": "dinner"
+      },
+      {
+        "restaurant_name": "Denny's",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Tilapia Ranchero Dinner",
+        "swap_calories": 300,
+        "swap_protein": 42,
+        "swap_ingredients": ["tilapia ranchero"],
+        "swap_macros": "300 cal / 42g P / 3g sat fat / 650mg sodium / 2g sugar",
+        "is_swap": false,
+        "swap_method": "Order recommendation - leanest fish option, high protein low calorie",
+        "category": "dinner"
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "position": 11,
+  "url": "https://www.instagram.com/p/DKuZHQuIZiO/",
+  "shortcode": "DKuZHQuIZiO",
+  "creator": "@fontyfitness",
+  "views": 171665,
+  "likes": 48276,
+  "duration": "0:36",
+  "transcript": "Did you know that a pepperoni pizza from Pizza Hut is nearly 3,000 calories? This is currently the most popular order in the U.S. And most people are getting a dipping sauce on the side to go with it, adding hundreds of extra calories. One pizza night can easily wipe out your deficit for the week if you don't know what to order. Which is exactly why I go around to every restaurant showing you what to order to help you stick to your calorie deficit. And I'll be going to Jersey Mike's next. So if you don't want to miss it, make sure you drop me a follow. Instead of going with the calorie bomb pepperoni pizza, swap it out for a thin and crispy buffalo chicken pizza with extra chicken. This pizza only comes up to $15 calories and packs over 100 grams of protein, allowing you to enjoy a pizza night while keeping your calories in check.",
+  "caption": "Pizza Hut for Weight Loss. Buffalo Chicken Pizza w/ 2x Chicken: Per Slice: 190 Calories | 13gP | 21gC | 6gF. Total Macros: 1520 Calories | 104gP | 168gC | 44gF",
+  "ocr_summary": "Pizza Hut for Fat Loss - pepperoni pizza is nearly 3,000 calories. Swap for thin and crispy Buffalo chicken pizza with extra chicken. Only 1520 calories with over 100g protein.",
+  "visual_scenes": "Man in white hoodie on black couch holding pepperoni pizza, then showing the swap pizza. Direct-to-camera talking head with subtitle overlays.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Pizza Hut",
+        "original_meal": "Pepperoni Pizza (large, pan crust)",
+        "original_calories": 3000,
+        "swap_meal": "Thin & Crispy Buffalo Chicken Pizza with 2x Chicken (medium)",
+        "swap_calories": 1520,
+        "swap_protein": 104,
+        "swap_per_slice_calories": 190,
+        "swap_per_slice_protein": 13,
+        "swap_ingredients": ["thin & crispy crust", "buffalo chicken (double)", "cheese"],
+        "is_swap": true,
+        "category": "pizza"
+      }
+    ]
+  }
+}

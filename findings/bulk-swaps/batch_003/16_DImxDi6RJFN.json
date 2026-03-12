@@ -1,0 +1,28 @@
+{
+  "position": 16,
+  "url": "https://www.instagram.com/p/DImxDi6RJFN/",
+  "shortcode": "DImxDi6RJFN",
+  "creator": "@trainermikeyy",
+  "views": 9770,
+  "likes": 423,
+  "duration": "1:05",
+  "transcript": "you're at a whataburger i'm gonna show you how to make a meal under 600 calories with over 50 grams of protein can i please do the chicken fajita taco so it's just no feed of veggies that'd be cool if you can if that's not too much do the four piece chicken bite does it come grilled or is it just regular um just fried yeah it's just fried was it the kids don't bite do you have like a just regular four piece no we I'll just do the regular four piece. I guess the kids. I'm okay right now. Just got the meal, you guys. I paid a total for the chicken fajita in the kids' meal, because it came with the chicken nuggets. 1816 at Whataburger. Chicken fajita taco, 340 calories. Either I had to get the six piece or the eight piece of the chicken bites. I only wanted the four piece. In that case, we're gonna skip out on both fries. You're gonna give this to your family and friends. 200 to 400 calories, four piece chicken nuggets is 260 calories. Gonna go with buffalo sauce, 25 calories per serving. Coke, zero on the side. Go for a total of 600 calories, three grams of protein. you guys.",
+  "caption": "Whataburger On a Diet #whataburger #fastfood #diet #lowcalorie #reels",
+  "ocr_summary": "Whataburger Low Calorie High Protein Meal. Under 600 calories with almost 50 grams of protein. Chicken Fajita Taco, 4 piece chicken nuggets, buffalo sauce, Coke Zero. Nutrition label: Calories 600, Protein 49g.",
+  "visual_scenes": "Man outside Whataburger ordering at drive-through. Shows menu board, ordering interaction. Then inside showing the food: chicken fajita taco and chicken nuggets. Nutrition label overlay at end showing ~600 cal, 49g protein.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Whataburger",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Chicken Fajita Taco + 4pc Chicken Nuggets + Buffalo Sauce + Coke Zero",
+        "swap_calories": 600,
+        "swap_protein": 49,
+        "swap_ingredients": ["chicken fajita taco (340 cal)", "4 piece chicken nuggets (260 cal)", "buffalo sauce (25 cal)", "coke zero (0 cal)"],
+        "is_swap": false,
+        "category": "combo meal"
+      }
+    ]
+  }
+}

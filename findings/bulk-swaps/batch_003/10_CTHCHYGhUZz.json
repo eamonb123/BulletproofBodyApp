@@ -1,0 +1,31 @@
+{
+  "position": 10,
+  "url": "https://www.instagram.com/p/CTHCHYGhUZz/",
+  "shortcode": "CTHCHYGhUZz",
+  "creator": "@bechardgrave",
+  "views": 101302,
+  "likes": 3168,
+  "duration": "0:14",
+  "transcript": "Low calorie Pizza Hut order hack. Did you guys know that a large cheese pizza from Pizza Hut is 2,368 calories? Neither did I. Anyway, this is what I got. Calories are on the screen and all the ordering details are in the caption below.",
+  "caption": "Low Calorie Pizza Hut Order. Did you know a large cheese pizza is 2368 calories?! This hack: 1 x Personal Pan Americano + 1 x Regular Chips. Total Calories: 695.",
+  "ocr_summary": "Shows Pizza Hut storefront, online ordering screen, food arriving. Final calorie overlay shows 386 CALORIES (pizza) and 309 CALORIES (chips).",
+  "visual_scenes": "Nighttime Pizza Hut exterior, screen recording of online ordering, then food reveal with calorie overlays. Closeup of pizza slice with fries.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Pizza Hut",
+        "original_meal": "Large Cheese Pizza",
+        "original_calories": 2368,
+        "swap_meal": "Personal Pan Americano + Regular Chips",
+        "swap_calories": 695,
+        "swap_protein": null,
+        "swap_ingredients": [
+          {"item": "Personal Pan Americano", "calories": 386},
+          {"item": "Regular Chips", "calories": 309}
+        ],
+        "is_swap": true,
+        "category": "pizza"
+      }
+    ]
+  }
+}

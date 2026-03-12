@@ -1,0 +1,56 @@
+{
+  "position": 3,
+  "url": "https://www.instagram.com/p/DI0eIoLJijt/",
+  "shortcode": "DI0eIoLJijt",
+  "creator": "@evidencebased_training",
+  "views": 244782,
+  "likes": 15371,
+  "duration": "1:13",
+  "transcript": "Give us the KFC. Who's got the KFC? Here's the jump up bro. Enjoy my man. I'm going to KFC right now. I'm going to show you three meals that are high protein and moderate in calories that you can eat on the go and still lose back. Their mate is so happy about this. Wow, look at that. The best part about this is. You're not even using maps or anything. You just know where the nearest KFC is. Just like everyone is. This cat doesn't give a fuck about diabetes, brother. Get a family feast please. No. What do you want? I'll do a twister. Oh sorry sorry, they made to get you in there brother. Do you follow us? Yeah. No man. I've got the front runner EBS, the gift from us, you give us the KFC, he's the jumper bro. First up we have a Zinger Crunch bowl, around 400 calories and 24 grams of protein, simple to fit in. The original Crunch Twister. 530 calories, 24 grams of protein also. Finally, you can't go wrong with a Zinger Burger. This is under 500 calories. I don't know how much protein, but I'm gonna pop it up. Guys, fat loss. You don't have to be perfect all the time. It's about the diet as a whole. Be consistent, have KFC or whatever every now and then. It's all A-OK.",
+  "caption": "High protein. Low cal. On the go.\nNot every meal has to be perfect - but if you can hit your protein and control your calories, you're already winning.\n\nHere's 3 KFC picks that get the job done:\n\nZinger Crunch Bowl\n24g Protein | 21g Fat | 25g Carbs\n~365 Calories\n\nZinger Burger\n26g Protein | 19g Fat | 44g Carbs\n~465 Calories\n\nCrunch Twister\n24g Protein | 28g Fat | 45g Carbs\n~530 Calories\n\nDM me \"Macros\" and I'll show you how to eat for results - even with drive-thru in the mix.",
+  "ocr_summary": "3 KFC OPTIONS UNDER 500 CAL HIGH PROTEIN; Zinger Crunch Bowl - Protein 24g, Fat 21g, Carbs 25g; Original Crunch Twister - Protein 24g, Fat 28g, Carbs 45g; Zinger Burger KFC - CALORIES 450, 26P, 19F, 44C",
+  "visual_scenes": "Man in white tank top in car with KFC items. Shows each item individually with nutrition overlay cards. Vlog-style with friends, drive-thru interaction.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "KFC",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Zinger Crunch Bowl",
+        "swap_calories": 365,
+        "swap_protein": 24,
+        "swap_ingredients": ["Zinger Crunch Bowl"],
+        "swap_macros": "365 cal / 24g P / 21g F / 25g C",
+        "is_swap": false,
+        "swap_method": "Order recommendation - high protein, low cal option",
+        "category": "bowl"
+      },
+      {
+        "restaurant_name": "KFC",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Zinger Burger",
+        "swap_calories": 465,
+        "swap_protein": 26,
+        "swap_ingredients": ["Zinger Burger"],
+        "swap_macros": "465 cal / 26g P / 19g F / 44g C",
+        "is_swap": false,
+        "swap_method": "Order recommendation - under 500 calories",
+        "category": "burger"
+      },
+      {
+        "restaurant_name": "KFC",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Original Crunch Twister",
+        "swap_calories": 530,
+        "swap_protein": 24,
+        "swap_ingredients": ["Original Crunch Twister"],
+        "swap_macros": "530 cal / 24g P / 28g F / 45g C",
+        "is_swap": false,
+        "swap_method": "Order recommendation - moderate calories with decent protein",
+        "category": "wrap"
+      }
+    ]
+  }
+}

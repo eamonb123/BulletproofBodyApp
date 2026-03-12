@@ -1,0 +1,36 @@
+{
+  "position": 22,
+  "url": "https://www.instagram.com/p/C-Ykr_wJGTf/",
+  "shortcode": "C-Ykr_wJGTf",
+  "creator": "@j.newtrition",
+  "views": 55583,
+  "likes": 2284,
+  "duration": "0:37",
+  "transcript": "whole thing is just over 500 calories. No way, I'm not finishing this entire thing. I'm a weight loss dietician and this is my go-to order for Qdoba. Everyone says Chipotle is going downhill and Qdoba has been standing in the corner like... Qdoba also doesn't charge for queso or guac on any of their entrees. So here's my go-to order for Qdoba. It's a grilled adobo chicken bowl with fajita veggies, lettuce, pico de gallo, shredded cheese, and vinaigrette dressing. That means this entire bowl with sauce and drink is 53 grams of protein for only 545 calories. Bon Appletit. For all my calorie tracking people, macros are listed out for you. And as Lane Norton says, even if you don't count calories, calories always count. Let me know where I should go next.",
+  "caption": "Fav Qdoba order for a macro friendly meal\u2063\n\u2063\nTotals: 595 cals & 53g P / 13g C / 37g F\u2063\n**I misspoke in the video. It's all the fast food and chemicals rotting my brain\u2063. Protein is high bc it's double protein \ud83d\ude2c\n\u2063\n#simplehighproteinmeals #foodhacks #fastfoodmenuhacks",
+  "ocr_summary": "Qdoba Order | 53g Protein & 595 Calories | Grilled adobo chicken bowl | Fajita veggies, lettuce, pico de gallo, shredded cheese, vinaigrette dressing",
+  "visual_scenes": "Man in kitchen holding Qdoba bowl on fork, eating and reacting. Shows Qdoba Mexican Eats storefront exterior briefly. Coke bottle visible throughout.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "Qdoba",
+        "original_meal": null,
+        "original_calories": null,
+        "swap_meal": "Grilled Adobo Chicken Bowl with fajita veggies, lettuce, pico de gallo, shredded cheese, vinaigrette dressing",
+        "swap_calories": 595,
+        "swap_protein": 53,
+        "swap_ingredients": [
+          {"item": "Grilled Adobo Chicken (double protein)", "calories": null},
+          {"item": "Fajita Veggies", "calories": null},
+          {"item": "Lettuce", "calories": null},
+          {"item": "Pico de Gallo", "calories": null},
+          {"item": "Shredded Cheese", "calories": null},
+          {"item": "Vinaigrette Dressing", "calories": null}
+        ],
+        "is_swap": false,
+        "notes": "Caption macros: 595 cals, 53g P / 13g C / 37g F. He says 545 cal in video but caption corrects to 595. Double protein noted in caption. Qdoba doesn't charge extra for queso or guac.",
+        "category": "bowl"
+      }
+    ]
+  }
+}

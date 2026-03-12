@@ -1,0 +1,37 @@
+{
+  "position": 6,
+  "url": "https://www.instagram.com/p/C_9NpsGRVTw/",
+  "shortcode": "C_9NpsGRVTw",
+  "creator": "@trainermikeyy",
+  "views": 22092,
+  "likes": 1586,
+  "duration": "0:59",
+  "transcript": "If you're at an IHOP right now, I'm going to show you how to make a meal under 600 calories with 50 grams of protein. Can you build your combo? Pancake combo? Yeah, please. Okay, how would you like your eggs? Instead of the regular eggs, can I do egg whites? Egg whites? Two egg whites, do turkey bacon. Do you guys have protein pancakes? We do. Can I please do that? Fluffy and then almond milk? We don't have almond milk. Do you have anything like low calorie? Whole milk. All right, you don't have hard skin? Okay, I'll do one. We have like the half and half. I'll do whole. Just got the meal, you guys. This is originally 580 calories, 21. grams of protein. No hash browns, no whipped cream. Double egg whites, 120 calories with 20 grams of protein. Fresh fruit on the side, 50 calories. Extra turkey bacon, 120 calories with 10 grams of protein. For the pancakes, sugar-free syrup here, you guys. Coffee, and then we're going light on the whole milk. If you want to sweeten this up, low calorie sweeteners here. For a total of 590 calories, 50 grams of protein. Enjoy, guys.",
+  "caption": "IHOP Pancakes For Weight Loss\n#pancakes #ihop #weightloss #fatloss #fitness #protein #reels",
+  "ocr_summary": "If you're at An IHOP; How to make A meal under 600 calories; 50 grams Protein; Build your Combo; Pancake combo; Instead of Regular Eggs Can I do Egg whites; 2 Egg Whites; Protein Pancakes; Coffee; Originally 580 calories; Double Egg Whites 120 cal 21g protein; Fresh fruit 50 calories; Turkey bacon 120 cal 10g protein; Sugar-free syrup 5 cal; Equal/Splenda/Sweet N Low 0 calories; Total: 590 calories 50 grams Protein",
+  "visual_scenes": "Man outside IHOP restaurant, then inside ordering at counter. Shows nutrition labels for each swap item. Breaks down each component with calorie/protein counts. Direct to camera style with text overlays.",
+  "parsed": {
+    "swaps": [
+      {
+        "restaurant_name": "IHOP",
+        "original_meal": "Build Your Combo Pancake Combo (original)",
+        "original_calories": 580,
+        "original_protein": 21,
+        "swap_meal": "Modified Pancake Combo (Lean Version)",
+        "swap_calories": 590,
+        "swap_protein": 50,
+        "swap_ingredients": [
+          "double egg whites (120 cal, 21g protein)",
+          "protein pancakes with sugar-free syrup (5 cal)",
+          "fresh fruit side (50 cal)",
+          "extra turkey bacon (120 cal, 10g protein)",
+          "coffee with light whole milk",
+          "low calorie sweetener (0 cal)"
+        ],
+        "is_swap": true,
+        "swap_method": "Build Your Combo: swap regular eggs for double egg whites, no hash browns, no whipped butter, protein pancakes instead of regular, sugar-free syrup, fresh fruit instead of hash browns, add extra turkey bacon for protein",
+        "category": "breakfast"
+      }
+    ]
+  }
+}
