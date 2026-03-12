@@ -302,23 +302,26 @@ function RecipeReveal({
                   </svg>
                 </motion.div>
 
-                <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.5 }}>
-                  <p className="text-center text-sm text-zinc-400 mb-4">
-                    Where should I send your recipe pack?
-                  </p>
-                  <p className="text-center text-xs text-zinc-600 mb-3">
-                    Video + grocery list + one-click order link
-                  </p>
+                <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.5 }}
+                  className="mt-2">
+                  <h3 className="text-center text-xl font-bold text-white mb-4">
+                    Where should I send your recipe?
+                  </h3>
+                  <div className="flex flex-col items-start gap-2 mb-5 mx-auto w-fit">
+                    <p className="text-sm text-zinc-300"><span className="text-emerald-400 mr-2">✓</span>Step-by-step video</p>
+                    <p className="text-sm text-zinc-300"><span className="text-emerald-400 mr-2">✓</span>Grocery list with exact brands</p>
+                    <p className="text-sm text-zinc-300"><span className="text-emerald-400 mr-2">✓</span>One-click Instacart order link</p>
+                  </div>
                   <form onSubmit={(e) => { e.preventDefault(); if (email.includes("@")) { setBarDone(false); setCardGone(false); setBridgeStep(0); setPhase("generating"); } }} className="flex gap-2">
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@email.com"
-                      className="flex-1 rounded-xl border-2 border-zinc-800 bg-zinc-900/60 px-4 py-3 text-sm text-white placeholder:text-zinc-600 focus:border-emerald-500/50 focus:outline-none transition-colors" />
+                      className="flex-1 rounded-xl border-2 border-zinc-800 bg-zinc-900/60 px-4 py-3.5 text-base text-white placeholder:text-zinc-600 focus:border-emerald-500/50 focus:outline-none transition-colors" />
                     <motion.button type="submit" whileTap={{ scale: 0.95 }}
-                      className="rounded-xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-black hover:bg-emerald-400 transition-colors flex-shrink-0">
+                      className="rounded-xl bg-emerald-500 px-6 py-3.5 text-base font-bold text-black hover:bg-emerald-400 transition-colors flex-shrink-0">
                       Send it
                     </motion.button>
                   </form>
-                  <p className="text-center text-[11px] text-zinc-700 mt-3">Just the recipe. No spam. Unsubscribe anytime.</p>
+                  <p className="text-center text-[11px] text-zinc-600 mt-3">Just the recipe. No spam. Unsubscribe anytime.</p>
                 </motion.div>
               </motion.div>
             )}
@@ -542,7 +545,7 @@ function RecipeReveal({
             <p className="text-center text-sm text-zinc-400">Your recipe&apos;s ready — it&apos;s all above ↑</p>
             <motion.button whileTap={{ scale: 0.97 }} onClick={() => setPhase("weight")}
               className="w-full rounded-2xl bg-white px-6 py-4 text-base font-bold text-black transition-all hover:bg-zinc-200">
-              Personalize this recipe to my weight loss goals
+              Personalize this recipe to my goals
             </motion.button>
             <p className="text-center text-xs text-zinc-500">Takes 10 seconds.</p>
           </motion.div>
