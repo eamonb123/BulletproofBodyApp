@@ -1,0 +1,110 @@
+{
+  "research_date": "2026-03-14",
+  "category": "coffee_creamers",
+  "swap_pair": {
+    "original": {
+      "product_name": "Coffee-Mate French Vanilla Liquid Coffee Creamer",
+      "brand": "Coffee-Mate (Nestle)",
+      "variant": "Original / Regular",
+      "bottle_size_fl_oz": 32,
+      "bottle_size_ml": 946,
+      "serving_size": "1 tbsp (15 ml)",
+      "servings_per_container": 63,
+      "nutrition_per_serving": {
+        "calories": 35,
+        "total_fat_g": 1.5,
+        "saturated_fat_g": 0,
+        "trans_fat_g": 0,
+        "cholesterol_mg": 0,
+        "sodium_mg": 5,
+        "total_carbohydrate_g": 5,
+        "dietary_fiber_g": 0,
+        "total_sugars_g": 5,
+        "added_sugars_g": 5,
+        "protein_g": 0
+      },
+      "ingredients": "Water, Sugar, Soybean Oil, and Less than 2% of Dipotassium Phosphate, Micellar Casein (a Milk Derivative), Mono- and Diglycerides, Cellulose Gel, Cellulose Gum, Carrageenan, Natural & Artificial Flavor, Sucralose, Acesulfame Potassium",
+      "contains": "Milk derivative",
+      "notes": "Non-dairy, cholesterol-free, gluten-free, lactose-free",
+      "sources": [
+        "https://www.goodnes.com/coffeemate/products/french-vanilla-liquid-creamer-32oz/",
+        "https://foods.fatsecret.com/calories-nutrition/coffee-mate/french-vanilla-liquid-coffee-creamer/1-tbsp",
+        "https://www.eatthismuch.com/calories/nestle-coffee-mate-french-vanilla-liquid-coffee-cr-574104"
+      ]
+    },
+    "swap": {
+      "product_name": "Coffee-Mate Zero Sugar French Vanilla Liquid Coffee Creamer",
+      "brand": "Coffee-Mate (Nestle)",
+      "variant": "Zero Sugar / Sugar Free",
+      "bottle_size_fl_oz": 32,
+      "bottle_size_ml": 946,
+      "serving_size": "1 tbsp (15 ml)",
+      "servings_per_container": 63,
+      "nutrition_per_serving": {
+        "calories": 10,
+        "total_fat_g": 1,
+        "saturated_fat_g": 0,
+        "trans_fat_g": 0,
+        "cholesterol_mg": 0,
+        "sodium_mg": 5,
+        "total_carbohydrate_g": 1,
+        "dietary_fiber_g": 0,
+        "total_sugars_g": 0,
+        "added_sugars_g": 0,
+        "protein_g": 0
+      },
+      "contains": "Milk derivative",
+      "notes": "Non-dairy, cholesterol-free, gluten-free, lactose-free, zero sugar",
+      "sources": [
+        "https://www.goodnes.com/coffeemate/products/zero-sugar-french-vanilla-creamer-32oz/",
+        "https://android.fatsecret.com/calories-nutrition/coffee-mate/zero-sugar-french-vanilla-creamer",
+        "https://www.eatthismuch.com/calories/zero-sugar-french-vanilla-coffee-creamer-4222690"
+      ]
+    }
+  },
+  "swap_analysis": {
+    "per_serving_savings": {
+      "calories": 25,
+      "total_fat_g": 0.5,
+      "total_carbohydrate_g": 4,
+      "total_sugars_g": 5
+    },
+    "usage_scenario": {
+      "description": "Realistic coffee drinker: 3 tbsp per day",
+      "tbsp_per_day": 3,
+      "original_daily": {
+        "calories": 105,
+        "fat_g": 4.5,
+        "carbs_g": 15,
+        "sugar_g": 15
+      },
+      "swap_daily": {
+        "calories": 30,
+        "fat_g": 3,
+        "carbs_g": 3,
+        "sugar_g": 0
+      },
+      "daily_savings": {
+        "calories": 75,
+        "fat_g": 1.5,
+        "carbs_g": 12,
+        "sugar_g": 15
+      },
+      "weekly_savings": {
+        "calories": 525,
+        "fat_g": 10.5,
+        "carbs_g": 84,
+        "sugar_g": 105
+      },
+      "annual_projection": {
+        "calories_saved": 27375,
+        "equivalent_lbs_fat": 7.8,
+        "note": "27,375 cal / 3,500 cal per lb = ~7.8 lbs of fat equivalent per year from this single swap"
+      }
+    }
+  },
+  "label_verification": {
+    "zero_sugar_label_matches_online": true,
+    "notes": "User-provided label data (10 cal, 1g fat, 0g sat fat, 5mg sodium, 0g carb, 0g sugar, 0g protein) is slightly different from online databases which show 1g carb. Online sources (FatSecret, EatThisMuch, official site) consistently show 1g total carb per tbsp. The label image may round down. Using 1g carb as the verified figure from multiple sources. All other values match."
+  }
+}

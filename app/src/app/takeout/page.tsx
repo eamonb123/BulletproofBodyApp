@@ -11,6 +11,7 @@ interface Restaurant {
   name: string;
   logo_emoji: string;
   cuisine: string;
+  food_keywords: string | null;
   website: string | null;
   hero_url: string | null;
   meal_count: number;
@@ -106,6 +107,7 @@ const LOGO_EXTENSION_BY_ID: Record<string, string> = {
   outback: "png",
   pandaexpress: "png",
   panera: "png",
+  pfchangs: "png",
   papajohns: "png",
   pizzahut: "png",
   popeyes: "png",
@@ -125,6 +127,7 @@ const LOGO_EXTENSION_BY_ID: Record<string, string> = {
   wawa: "png",
   wendys: "png",
   whataburger: "png",
+  wholefoods: "png",
   yardhouse: "png",
   zaxbys: "png",
 };
@@ -302,7 +305,7 @@ function HeroScreen({ restaurants, onSelectRestaurant }: { restaurants: Restaura
   const heroFiltered = useMemo(() => {
     const q = heroSearch.toLowerCase().trim();
     if (!q) return restaurants;
-    return restaurants.filter((r) => r.name.toLowerCase().includes(q) || r.cuisine?.toLowerCase().includes(q));
+    return restaurants.filter((r) => r.name.toLowerCase().includes(q) || r.cuisine?.toLowerCase().includes(q) || r.food_keywords?.toLowerCase().includes(q));
   }, [heroSearch, restaurants]);
 
   // Build two rows of logos for the marquee (sleeping state)
@@ -1138,7 +1141,8 @@ function BiblePage() {
     return restaurants.filter(
       (r) =>
         r.name.toLowerCase().includes(query) ||
-        r.cuisine?.toLowerCase().includes(query)
+        r.cuisine?.toLowerCase().includes(query) ||
+        r.food_keywords?.toLowerCase().includes(query)
     );
   }, [restaurants, query]);
 

@@ -1,1 +1,4 @@
 mcp
+chromadb
+openai
+python-dotenv

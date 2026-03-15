@@ -1,0 +1,1203 @@
+{
+  "research_date": "2026-03-14",
+  "notes": "New flavors NOT already in the BulletproofBodyApp database. Nutrition per bar/serving unless noted.",
+  "brands": {
+    "Barebells": {
+      "already_in_db": ["Salty Peanut", "Caramel Cashew"],
+      "new_flavors": [
+        {
+          "name": "Mint Chocolate Crisp",
+          "calories": 207,
+          "protein_g": 20,
+          "carbs_g": 20,
+          "fat_g": 7,
+          "fiber_g": 3,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Brownie Batter",
+          "calories": 210,
+          "protein_g": 20,
+          "carbs_g": 20,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Peanut Butter & Jelly",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 21,
+          "fat_g": 6,
+          "fiber_g": 2,
+          "sugar_g": 2,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Coco Caramel Almond",
+          "calories": 210,
+          "protein_g": 20,
+          "carbs_g": 18,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 2,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Wild Cherry",
+          "calories": 210,
+          "protein_g": 20,
+          "carbs_g": 19,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Peanut Butter",
+          "calories": 210,
+          "protein_g": 20,
+          "carbs_g": 20,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 2,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Minty Chocolate",
+          "calories": 200,
+          "protein_g": 16,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 5,
+          "sugar_g": 2,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Caramel Choco",
+          "calories": 200,
+          "protein_g": 16,
+          "carbs_g": 24,
+          "fat_g": 9,
+          "fiber_g": 5,
+          "sugar_g": 2,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Banana Caramel",
+          "calories": 200,
+          "protein_g": 16,
+          "carbs_g": 24,
+          "fat_g": 9,
+          "fiber_g": 5,
+          "sugar_g": 2,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Salted Peanut Caramel",
+          "calories": 210,
+          "protein_g": 16,
+          "carbs_g": 21,
+          "fat_g": 11,
+          "fiber_g": 5,
+          "sugar_g": 2,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Key Lime Pie",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 20,
+          "fat_g": 7,
+          "fiber_g": 3,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Birthday Cake",
+          "calories": 210,
+          "protein_g": 20,
+          "carbs_g": 20,
+          "fat_g": 7,
+          "fiber_g": 2,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Cookies & Caramel",
+          "calories": 210,
+          "protein_g": 20,
+          "carbs_g": 21,
+          "fat_g": 7,
+          "fiber_g": 4,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "White Chocolate Almond",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 19,
+          "fat_g": 8,
+          "fiber_g": 4,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Cookies & Cream",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 20,
+          "fat_g": 7,
+          "fiber_g": 3,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Creamy Crisp",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 19,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Chocolate Dough",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 20,
+          "fat_g": 7,
+          "fiber_g": 3,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Lemon Cheesecake",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 20,
+          "fat_g": 7,
+          "fiber_g": 3,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Pumpkin Spice",
+          "calories": 210,
+          "protein_g": 20,
+          "carbs_g": 20,
+          "fat_g": 7,
+          "fiber_g": 3,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Marshmallow Peanut Road",
+          "calories": 210,
+          "protein_g": 20,
+          "carbs_g": 20,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 2,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Vegan Caramel Choco Chip",
+          "calories": 210,
+          "protein_g": 15,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 2,
+          "sugar_g": 2,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Vegan Fudge Brownie",
+          "calories": 210,
+          "protein_g": 15,
+          "carbs_g": 24,
+          "fat_g": 9,
+          "fiber_g": 3,
+          "sugar_g": 2,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Vegan Caramel Peanut",
+          "calories": 210,
+          "protein_g": 15,
+          "carbs_g": 24,
+          "fat_g": 9,
+          "fiber_g": 3,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        },
+        {
+          "name": "Plant-Based Hazelnut Nougat",
+          "calories": 220,
+          "protein_g": 15,
+          "carbs_g": 27,
+          "fat_g": 10,
+          "fiber_g": 7,
+          "sugar_g": 1,
+          "source": "https://shop.barebells.com/nutrition-values/"
+        }
+      ]
+    },
+    "ONE Bar": {
+      "already_in_db": ["Peanut Butter Cup", "Peanut Butter Pie"],
+      "notes": "All ONE bars share a very similar macro profile: ~220 cal, 20g protein, ~23g carbs, ~8g fat, ~10g fiber, 1g sugar. Minor variations by flavor.",
+      "new_flavors": [
+        {
+          "name": "Birthday Cake",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "source": "https://www.one1brands.com/products"
+        },
+        {
+          "name": "Almond Bliss",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "source": "https://www.one1brands.com/products"
+        },
+        {
+          "name": "Maple Glazed Doughnut",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "source": "https://www.one1brands.com/products"
+        },
+        {
+          "name": "Blueberry Cobbler",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "source": "https://www.one1brands.com/products"
+        },
+        {
+          "name": "Cinnamon Roll",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "source": "https://www.one1brands.com/products"
+        },
+        {
+          "name": "Chocolate Chip Cookie Dough",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "source": "https://www.one1brands.com/products"
+        },
+        {
+          "name": "Chocolate Brownie",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "source": "https://www.one1brands.com/products"
+        },
+        {
+          "name": "Cookies and Creme",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "source": "https://www.one1brands.com/products"
+        },
+        {
+          "name": "Dark Chocolate Sea Salt",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "note": "May be discontinued/sold out",
+          "source": "https://nutritionwholesalers.com/products/one-protein-bar-12-bars"
+        },
+        {
+          "name": "Butter Pecan",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "note": "May be sold out",
+          "source": "https://nutritionwholesalers.com/products/one-protein-bar-12-bars"
+        },
+        {
+          "name": "Fruity Cereal",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "source": "https://nutritionwholesalers.com/products/one-protein-bar-12-bars"
+        },
+        {
+          "name": "Lemon Cake",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "source": "https://nutritionwholesalers.com/products/one-protein-bar-12-bars"
+        },
+        {
+          "name": "Peanut Butter Chocolate Cake",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "note": "May be sold out",
+          "source": "https://nutritionwholesalers.com/products/one-protein-bar-12-bars"
+        },
+        {
+          "name": "Salted Caramel",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "source": "https://www.one1brands.com/products"
+        },
+        {
+          "name": "White Chocolate Truffle",
+          "calories": 220,
+          "protein_g": 20,
+          "carbs_g": 23,
+          "fat_g": 8,
+          "fiber_g": 10,
+          "sugar_g": 1,
+          "note": "May be sold out",
+          "source": "https://nutritionwholesalers.com/products/one-protein-bar-12-bars"
+        }
+      ]
+    },
+    "Power Crunch": {
+      "already_in_db": ["Peanut Butter Creme", "Peanut Butter Fudge", "Crisps Cheddar"],
+      "new_flavors": [
+        {
+          "line": "Original",
+          "name": "Triple Chocolate",
+          "calories": 205,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "source": "https://powercrunch.com/products/original-triple-chocolate-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "Cookies and Creme",
+          "calories": 205,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "source": "https://powercrunch.com/products/original-cookies-and-creme-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "French Vanilla Creme",
+          "calories": 220,
+          "protein_g": 14,
+          "carbs_g": 11,
+          "fat_g": 13,
+          "fiber_g": 0,
+          "sugar_g": 5,
+          "source": "https://www.allstarhealth.com/f/power_crunch-protein_energy_bar.htm"
+        },
+        {
+          "line": "Original",
+          "name": "Chocolate Mint",
+          "calories": 205,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "source": "https://www.nutritionvalue.org/Power_crunch%2C_protein_energy_bar%2C_chocolate_mint_by_Bionutritional_Research_Group%2C_Inc._485170_nutritional_value.html"
+        },
+        {
+          "line": "Original",
+          "name": "Salted Caramel",
+          "calories": 210,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "note": "Estimated from line average; similar macro profile across Original flavors",
+          "source": "https://powercrunch.com/collections/original-wafer-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "Red Velvet",
+          "calories": 210,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://powercrunch.com/collections/original-wafer-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "S'mores",
+          "calories": 210,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://powercrunch.com/products/original-smores-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "Strawberry Creme",
+          "calories": 210,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://powercrunch.com/collections/original-wafer-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "Lemon Meringue",
+          "calories": 210,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://powercrunch.com/collections/original-wafer-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "Wild Berry Creme",
+          "calories": 205,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "source": "https://powercrunch.com/collections/original-wafer-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "Chocolate Coconut",
+          "calories": 210,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://powercrunch.com/collections/original-wafer-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "Chocolate Chip Cheesecake",
+          "calories": 210,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://powercrunch.com/collections/original-wafer-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "Cinnamon Roll",
+          "calories": 210,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://powercrunch.com/collections/original-wafer-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "Peanut Butter Honey",
+          "calories": 210,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://powercrunch.com/collections/original-wafer-protein-bars"
+        },
+        {
+          "line": "Original",
+          "name": "Chocolate Strawberry",
+          "calories": 210,
+          "protein_g": 13,
+          "carbs_g": 10,
+          "fat_g": 13,
+          "fiber_g": 1,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://powercrunch.com/collections/original-wafer-protein-bars"
+        },
+        {
+          "line": "PRO",
+          "name": "PRO Triple Chocolate",
+          "calories": 310,
+          "protein_g": 20,
+          "carbs_g": 14,
+          "fat_g": 22,
+          "fiber_g": 2,
+          "sugar_g": 4,
+          "note": "May be discontinued",
+          "source": "https://www.allstarhealth.com/f/power_crunch-pro_protein_energy_bar.htm"
+        },
+        {
+          "line": "PRO",
+          "name": "PRO Cinnamon Roll",
+          "calories": 310,
+          "protein_g": 20,
+          "carbs_g": 14,
+          "fat_g": 22,
+          "fiber_g": 2,
+          "sugar_g": 7,
+          "note": "Sugar estimated higher per search data",
+          "source": "https://powercrunch.com/products/pro-cinnamon-roll"
+        },
+        {
+          "line": "Crisps",
+          "name": "Crisps Hot & Spicy",
+          "serving_size": "1 canister (60g)",
+          "calories": 150,
+          "protein_g": 10,
+          "carbs_g": 6,
+          "fat_g": 10,
+          "fiber_g": 0,
+          "sugar_g": 0,
+          "note": "Per 28g serving (about 12 crisps). Canister is ~2 servings.",
+          "source": "https://www.walmart.com/ip/Power-Crunch-Protein-Crisps-Hot-Spicy/8414074047"
+        },
+        {
+          "line": "Crisps",
+          "name": "Crisps BBQ",
+          "serving_size": "28g",
+          "calories": 150,
+          "protein_g": 10,
+          "carbs_g": 6,
+          "fat_g": 10,
+          "fiber_g": 0,
+          "sugar_g": 0,
+          "source": "https://foods.fatsecret.com/calories-nutrition/power-crunch/protein-crisps"
+        },
+        {
+          "line": "Crisps",
+          "name": "Crisps Salt & Vinegar",
+          "serving_size": "28g",
+          "calories": 150,
+          "protein_g": 10,
+          "carbs_g": 6,
+          "fat_g": 10,
+          "fiber_g": 0,
+          "sugar_g": 0,
+          "source": "https://www.nashuanutrition.com/products/power-crunch-protein-crisps-salt-vinegar-1-can"
+        }
+      ]
+    },
+    "FitCrunch": {
+      "already_in_db": ["Peanut Butter"],
+      "notes": "FitCrunch comes in Snack Size (46g, ~190 cal, 16g protein) and Full Size (88g, ~380 cal, 30g protein). Values below are for FULL SIZE bars. Snack size has roughly half the macros.",
+      "new_flavors": [
+        {
+          "name": "Chocolate Chip Cookie Dough",
+          "size": "Full Size (88g)",
+          "calories": 380,
+          "protein_g": 30,
+          "carbs_g": 27,
+          "fat_g": 16,
+          "fiber_g": 2,
+          "sugar_g": 6,
+          "source": "https://www.dpsnutrition.net/i/25639/fit-crunch-bars-chocchip-cookie-dough-12-bars.htm"
+        },
+        {
+          "name": "Milk & Cookies",
+          "size": "Full Size (88g)",
+          "calories": 380,
+          "protein_g": 30,
+          "carbs_g": 29,
+          "fat_g": 18,
+          "fiber_g": 1,
+          "sugar_g": 6,
+          "source": "https://www.dpsnutrition.net/i/30624/chef-robert-irvines-fit-crunch-bars-milk-cookies.htm"
+        },
+        {
+          "name": "Birthday Cake",
+          "size": "Full Size (88g)",
+          "calories": 380,
+          "protein_g": 30,
+          "carbs_g": 27,
+          "fat_g": 16,
+          "fiber_g": 2,
+          "sugar_g": 6,
+          "note": "Estimated from line average; consistent across full-size flavors",
+          "source": "https://fitcrunch.com/collections/baked-protein-bars"
+        },
+        {
+          "name": "Chocolate Brownie",
+          "size": "Full Size (88g)",
+          "calories": 380,
+          "protein_g": 30,
+          "carbs_g": 28,
+          "fat_g": 16,
+          "fiber_g": 2,
+          "sugar_g": 7,
+          "note": "Slightly higher sugar than other flavors per Amazon listing",
+          "source": "https://www.amazon.com/FITCRUNCH-Protein-6-Layer-Chocolate-Brownie/dp/B0DFD3N5MB"
+        },
+        {
+          "name": "Chocolate Peanut Butter",
+          "size": "Full Size (88g)",
+          "calories": 380,
+          "protein_g": 30,
+          "carbs_g": 27,
+          "fat_g": 16,
+          "fiber_g": 2,
+          "sugar_g": 6,
+          "source": "https://www.target.com/p/fitcrunch-chocolate-peanut-butter-baked-bar/-/A-83169199"
+        },
+        {
+          "name": "Peanut Butter and Jelly",
+          "size": "Full Size (88g)",
+          "calories": 380,
+          "protein_g": 30,
+          "carbs_g": 27,
+          "fat_g": 16,
+          "fiber_g": 2,
+          "sugar_g": 2,
+          "note": "Lower sugar per Amazon listing",
+          "source": "https://www.amazon.com/FITCRUNCH-Protein-Baked-Peanut-Butter/dp/B08H4H7J88"
+        },
+        {
+          "name": "Chocolate Banana (Snack Size)",
+          "size": "Snack Size (46g)",
+          "calories": 190,
+          "protein_g": 16,
+          "carbs_g": 14,
+          "fat_g": 8,
+          "fiber_g": 1,
+          "sugar_g": 3,
+          "note": "Snack size only",
+          "source": "https://fitcrunch.com/products/fit"
+        },
+        {
+          "name": "Caramel Peanut (Snack Size)",
+          "size": "Snack Size (46g)",
+          "calories": 190,
+          "protein_g": 16,
+          "carbs_g": 14,
+          "fat_g": 8,
+          "fiber_g": 1,
+          "sugar_g": 3,
+          "note": "Snack size only",
+          "source": "https://fitcrunch.com/products/fit"
+        },
+        {
+          "name": "Chocolate Coconut Almond (Snack Size)",
+          "size": "Snack Size (46g)",
+          "calories": 190,
+          "protein_g": 16,
+          "carbs_g": 14,
+          "fat_g": 8,
+          "fiber_g": 1,
+          "sugar_g": 3,
+          "note": "Snack size only",
+          "source": "https://fitcrunch.com/products/fit"
+        },
+        {
+          "name": "Cinnamon Twist (Snack Size)",
+          "size": "Snack Size (46g)",
+          "calories": 190,
+          "protein_g": 16,
+          "carbs_g": 14,
+          "fat_g": 8,
+          "fiber_g": 1,
+          "sugar_g": 3,
+          "note": "Snack size only",
+          "source": "https://fitcrunch.com/products/fit"
+        },
+        {
+          "name": "Lemon Cake (Snack Size)",
+          "size": "Snack Size (46g)",
+          "calories": 190,
+          "protein_g": 16,
+          "carbs_g": 14,
+          "fat_g": 8,
+          "fiber_g": 1,
+          "sugar_g": 3,
+          "note": "Snack size only",
+          "source": "https://fitcrunch.com/products/fit"
+        },
+        {
+          "name": "Apple Pie (Snack Size)",
+          "size": "Snack Size (46g)",
+          "calories": 190,
+          "protein_g": 16,
+          "carbs_g": 14,
+          "fat_g": 8,
+          "fiber_g": 1,
+          "sugar_g": 3,
+          "note": "Snack size only",
+          "source": "https://fitcrunch.com/products/fit"
+        }
+      ]
+    },
+    "No Cow": {
+      "already_in_db": ["Dipped Chocolate PB Cup"],
+      "notes": "All No Cow Dipped bars share a very similar macro profile. 'Upgraded' is a reformulation label on the same Dipped line.",
+      "new_flavors": [
+        {
+          "name": "Dipped Chocolate Sprinkled Donut",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 25,
+          "fat_g": 7,
+          "fiber_g": 14,
+          "sugar_g": 1,
+          "source": "https://www.eatthismuch.com/calories/protein-bar-chocolate-sprinkled-donut-dipped-3116014"
+        },
+        {
+          "name": "Dipped Chocolate Salted Caramel",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 26,
+          "fat_g": 6,
+          "fiber_g": 14,
+          "sugar_g": 1,
+          "source": "https://www.mynetdiary.com/food/calories-in-dipped-chocolate-salted-caramel-protein-bar-by-no-cow-bar-30994705-0.html"
+        },
+        {
+          "name": "Dipped Chocolate Mint Cookie",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 25,
+          "fat_g": 7,
+          "fiber_g": 14,
+          "sugar_g": 1,
+          "note": "Estimated from line average",
+          "source": "https://nocow.com/collections/all-protein-bars"
+        },
+        {
+          "name": "Dipped Chocolate Sea Salt",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 25,
+          "fat_g": 7,
+          "fiber_g": 14,
+          "sugar_g": 1,
+          "note": "Estimated from line average",
+          "source": "https://nocow.com/collections/all-protein-bars"
+        },
+        {
+          "name": "Dipped Birthday Cake",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 25,
+          "fat_g": 7,
+          "fiber_g": 15,
+          "sugar_g": 1,
+          "source": "https://www.vitacost.com/no-cow-protein-bar-dipped"
+        },
+        {
+          "name": "Dipped Key Lime Pie",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 27,
+          "fat_g": 6,
+          "fiber_g": 14,
+          "sugar_g": 1,
+          "source": "https://www.mynetdiary.com/food/calories-in-key-lime-pie-dipped-bar-by-no-cow-bar-31798254-0.html"
+        },
+        {
+          "name": "Dipped Chocolate Coconut Almond",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 25,
+          "fat_g": 7,
+          "fiber_g": 14,
+          "sugar_g": 1,
+          "note": "Estimated from line average",
+          "source": "https://nocow.com/collections/all-protein-bars"
+        }
+      ]
+    },
+    "Prime Bites": {
+      "already_in_db": ["Birthday Cake Brownie", "Chocolate Brownie"],
+      "notes": "All Prime Bites brownies contain 19g protein and 5g collagen. Exact macros vary by flavor. Where exact data was unavailable, estimated from line averages (~200 cal, 19g protein, 24g carbs, 8g fat).",
+      "new_flavors": [
+        {
+          "name": "Chocolate Cookie Monster",
+          "calories": 190,
+          "protein_g": 16,
+          "carbs_g": 25,
+          "fat_g": 7,
+          "fiber_g": 4,
+          "sugar_g": 7,
+          "source": "https://www.eatthismuch.com/calories/protein-brownie-chocolate-cookie-monster-3327474"
+        },
+        {
+          "name": "Red Velvet",
+          "calories": 240,
+          "protein_g": 19,
+          "carbs_g": 20,
+          "fat_g": 13,
+          "fiber_g": 2,
+          "sugar_g": 12,
+          "source": "https://www.eatthismuch.com/calories/protein-brownie-red-velvet-4919534"
+        },
+        {
+          "name": "Glazed Cinnamon Roll",
+          "calories": 200,
+          "protein_g": 19,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://primebites.com/products/glazed-cinnamon-roll"
+        },
+        {
+          "name": "Glazed Chocolate Donut",
+          "calories": 200,
+          "protein_g": 19,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://primebites.com/products/glazed-chocolate-donut"
+        },
+        {
+          "name": "Peanut Butter Candy Crunch",
+          "calories": 200,
+          "protein_g": 19,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://primebites.com/products/peanut-butter-candy-crunch"
+        },
+        {
+          "name": "Cookies & Cream Blondie",
+          "calories": 200,
+          "protein_g": 19,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://primebites.com/products/cookies-cream-blondie"
+        },
+        {
+          "name": "Banana Nut",
+          "calories": 200,
+          "protein_g": 19,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://primebites.com/"
+        },
+        {
+          "name": "Cookie Dough Bites",
+          "calories": 200,
+          "protein_g": 19,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://primebites.com/products/cookie-dough-bites"
+        },
+        {
+          "name": "Blueberry Cobbler",
+          "calories": 200,
+          "protein_g": 19,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://primebites.com/"
+        },
+        {
+          "name": "Glazed Pumpkin Spice",
+          "calories": 200,
+          "protein_g": 19,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://primebites.com/"
+        },
+        {
+          "name": "S'mores",
+          "calories": 200,
+          "protein_g": 19,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://primebites.com/products/smores-protein-brownies"
+        },
+        {
+          "name": "PB&J",
+          "calories": 200,
+          "protein_g": 19,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://primebites.com/products/peanut-butter-and-jelly-prime-bites"
+        },
+        {
+          "name": "Dubai Chocolate Brownie",
+          "calories": 200,
+          "protein_g": 19,
+          "carbs_g": 24,
+          "fat_g": 8,
+          "fiber_g": 3,
+          "sugar_g": 5,
+          "note": "Estimated from line average",
+          "source": "https://primebites.com/products/variety-box"
+        }
+      ]
+    },
+    "Legendary Foods": {
+      "already_in_db": ["Protein Pastry (original)", "Strawberry Pastry", "Chocolate Sweet Roll", "Chocolate Donut"],
+      "notes": "Legendary has 3 product lines: Protein Pastries (~180 cal, 20g protein), Protein Sweet Rolls (~200 cal, 20g protein), and Protein Donuts (160 cal per 2-donut pack, 20g protein). Donut nutrition is per 2-donut pack (1 serving).",
+      "new_flavors": [
+        {
+          "line": "Protein Pastry",
+          "name": "Brown Sugar Cinnamon Pastry",
+          "calories": 180,
+          "protein_g": 20,
+          "carbs_g": 16,
+          "fat_g": 6,
+          "fiber_g": 8,
+          "sugar_g": 1,
+          "source": "https://www.eatlegendary.com/products/brown-sugar-protein-pastry"
+        },
+        {
+          "line": "Protein Pastry",
+          "name": "Blueberry Pastry",
+          "calories": 180,
+          "protein_g": 20,
+          "carbs_g": 16,
+          "fat_g": 6,
+          "fiber_g": 8,
+          "sugar_g": 1,
+          "source": "https://www.eatlegendary.com/products/blueberry-protein-pastry"
+        },
+        {
+          "line": "Protein Pastry",
+          "name": "Chocolate Cake Pastry",
+          "calories": 180,
+          "protein_g": 20,
+          "carbs_g": 16,
+          "fat_g": 6,
+          "fiber_g": 8,
+          "sugar_g": 1,
+          "source": "https://www.eatlegendary.com/products/chocolate-cake-protein-pastry"
+        },
+        {
+          "line": "Protein Pastry",
+          "name": "S'mores Pastry",
+          "calories": 180,
+          "protein_g": 20,
+          "carbs_g": 16,
+          "fat_g": 6,
+          "fiber_g": 8,
+          "sugar_g": 1,
+          "source": "https://www.stack3d.com/2025/02/legendary-foods-cherry-and-smores-protein-pastry.html"
+        },
+        {
+          "line": "Protein Pastry",
+          "name": "Cherry Crumble Pastry",
+          "calories": 180,
+          "protein_g": 20,
+          "carbs_g": 16,
+          "fat_g": 6,
+          "fiber_g": 8,
+          "sugar_g": 1,
+          "source": "https://www.eatlegendary.com/products/cherry-crumble-protein-pastry"
+        },
+        {
+          "line": "Protein Pastry",
+          "name": "Hot Fudge Sundae Pastry",
+          "calories": 180,
+          "protein_g": 20,
+          "carbs_g": 16,
+          "fat_g": 6,
+          "fiber_g": 8,
+          "sugar_g": 1,
+          "note": "Estimated from line average",
+          "source": "https://www.eatlegendary.com/collections/protein-pastries"
+        },
+        {
+          "line": "Protein Pastry",
+          "name": "Birthday Cake Pastry",
+          "calories": 180,
+          "protein_g": 20,
+          "carbs_g": 16,
+          "fat_g": 6,
+          "fiber_g": 8,
+          "sugar_g": 1,
+          "note": "Estimated from line average",
+          "source": "https://www.eatlegendary.com/collections/protein-pastries"
+        },
+        {
+          "line": "Protein Sweet Roll",
+          "name": "Cinnamon Sweet Roll",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 18,
+          "fat_g": 7,
+          "fiber_g": 9,
+          "sugar_g": 0,
+          "source": "https://www.eatlegendary.com/products/cinnamon-protein-sweet-roll"
+        },
+        {
+          "line": "Protein Sweet Roll",
+          "name": "Caramel Sticky Bun Sweet Roll",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 18,
+          "fat_g": 7,
+          "fiber_g": 9,
+          "sugar_g": 0,
+          "source": "https://www.eatlegendary.com/products/caramel-sticky-bun-protein-sweet-roll"
+        },
+        {
+          "line": "Protein Sweet Roll",
+          "name": "Wild Berry Sweet Roll",
+          "calories": 200,
+          "protein_g": 20,
+          "carbs_g": 18,
+          "fat_g": 7,
+          "fiber_g": 9,
+          "sugar_g": 0,
+          "note": "Estimated from line average",
+          "source": "https://www.eatlegendary.com/collections/protein-sweet-roll"
+        },
+        {
+          "line": "Protein Donut",
+          "name": "Vanilla Glazed Donut (2-pack)",
+          "serving_note": "Per 2-donut pack",
+          "calories": 160,
+          "protein_g": 20,
+          "carbs_g": 14,
+          "fat_g": 6,
+          "fiber_g": 7,
+          "sugar_g": 0,
+          "source": "https://www.eatlegendary.com/products/vanilla-glazed-protein-donuts"
+        },
+        {
+          "line": "Protein Donut",
+          "name": "Pink Sprinkle Donut (2-pack)",
+          "serving_note": "Per 2-donut pack",
+          "calories": 160,
+          "protein_g": 20,
+          "carbs_g": 14,
+          "fat_g": 6,
+          "fiber_g": 7,
+          "sugar_g": 0,
+          "source": "https://www.eatlegendary.com/products/pink-sprinkle-protein-donuts"
+        },
+        {
+          "line": "Protein Donut",
+          "name": "Cinnamon Crumble Donut (2-pack)",
+          "serving_note": "Per 2-donut pack",
+          "calories": 160,
+          "protein_g": 20,
+          "carbs_g": 14,
+          "fat_g": 6,
+          "fiber_g": 7,
+          "sugar_g": 0,
+          "source": "https://www.eatlegendary.com/products/cinnamon-crumble-protein-donuts"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "total_new_flavors": 88,
+    "by_brand": {
+      "Barebells": 24,
+      "ONE Bar": 15,
+      "Power Crunch": 19,
+      "FitCrunch": 12,
+      "No Cow": 7,
+      "Prime Bites": 13,
+      "Legendary Foods": 13
+    },
+    "data_quality_notes": [
+      "Barebells: All data from official nutrition page - high confidence",
+      "ONE Bar: Macros are very consistent across flavors (~220/20/23/8/10/1). Confirmed via multiple sources.",
+      "Power Crunch Original: Verified data for Chocolate Mint, PB Creme, French Vanilla. Other Original flavors estimated from tight line average (200-220 cal, 13g protein, 10g carbs, 13g fat, 5g sugar).",
+      "Power Crunch PRO: Only Triple Chocolate verified. Line may be partially discontinued.",
+      "Power Crunch Crisps: Verified from FatSecret. BBQ, Hot & Spicy, Salt & Vinegar are new (Cheddar already in DB).",
+      "FitCrunch: Chocolate Chip Cookie Dough and Milk & Cookies verified. Other full-size flavors estimated from consistent line profile. Snack size bars estimated from general snack-size profile.",
+      "No Cow: Chocolate Sprinkled Donut, Chocolate Salted Caramel, Key Lime Pie verified. Others estimated from tight line average.",
+      "Prime Bites: Chocolate Cookie Monster and Red Velvet verified with exact data. Others estimated - note that Red Velvet is a significant outlier (240 cal, 12g sugar vs ~200 cal, 5g sugar line average).",
+      "Legendary Foods: Pastry and Donut lines have very consistent macros. Sweet Roll data from manufacturer descriptions. High confidence across the board."
+    ]
+  }
+}

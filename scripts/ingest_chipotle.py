@@ -391,10 +391,11 @@ def ingest():
 
     # ── Insert Restaurant ───────────────────────────────
     c.execute("""
-        INSERT INTO restaurants (id, name, logo_emoji, cuisine, website, nutrition_source)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO restaurants (id, name, logo_emoji, cuisine, website, nutrition_source, food_keywords)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     """, (RESTAURANT["id"], RESTAURANT["name"], RESTAURANT["logo_emoji"],
-          RESTAURANT["cuisine"], RESTAURANT["website"], RESTAURANT["nutrition_source"]))
+          RESTAURANT["cuisine"], RESTAURANT["website"], RESTAURANT["nutrition_source"],
+          RESTAURANT.get("food_keywords", "")))
     print(f"\n[+] Restaurant: {RESTAURANT['name']}")
 
     # ── Insert Categories ───────────────────────────────

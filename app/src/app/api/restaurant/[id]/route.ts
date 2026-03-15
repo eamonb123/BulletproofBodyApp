@@ -43,9 +43,10 @@ export async function GET(
 
     const mealsWithIngredients = meals.map((meal) => {
       const mealIngredients = db.prepare(`
-        SELECT i.*, tmi.quantity
+        SELECT i.*, tmi.quantity, mc.name as category_name
         FROM template_meal_ingredients tmi
         JOIN ingredients i ON i.id = tmi.ingredient_id
+        LEFT JOIN menu_categories mc ON mc.id = i.category_id
         WHERE tmi.template_meal_id = ?
       `).all(meal.id);
 

@@ -10,6 +10,7 @@ interface RestaurantRow {
   website: string;
   nutrition_source: string;
   hero_image_path: string | null;
+  food_keywords: string | null;
   created_at: string;
   ingredient_count: number;
   meal_count: number;
@@ -27,6 +28,7 @@ export async function GET() {
         (SELECT COUNT(*) FROM template_meals WHERE restaurant_id = r.id AND is_swap = 0) as meal_count,
         (SELECT COUNT(*) FROM template_meals WHERE restaurant_id = r.id AND is_swap = 1) as swap_count
       FROM restaurants r
+      WHERE COALESCE(r.restaurant_type, 'chain') = 'chain'
       ORDER BY r.name
     `
       )

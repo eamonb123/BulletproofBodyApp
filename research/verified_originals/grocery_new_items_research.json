@@ -1,0 +1,106 @@
+{
+  "research_date": "2026-03-14",
+  "notes": "Nutrition data researched via web search from FatSecret, Nutritionix, EatThisMuch, Amazon, and manufacturer sites.",
+  "items": [
+    {
+      "name": "G Hughes Sugar Free Lemon Herb Marinade",
+      "serving_size": "1 tbsp (15g)",
+      "calories": 10,
+      "protein_g": 0,
+      "carbs_g": 1,
+      "fat_g": 0.5,
+      "fiber_g": 0,
+      "sugar_g": 0,
+      "sodium_mg": 130,
+      "source_url": "https://foods.fatsecret.com/calories-nutrition/g-hughes/sugar-free-lemon-herb-marinade"
+    },
+    {
+      "name": "G Hughes Sugar Free Teriyaki Marinade",
+      "serving_size": "1 tbsp (15g)",
+      "calories": 5,
+      "protein_g": 0,
+      "carbs_g": 1,
+      "fat_g": 0,
+      "fiber_g": 0,
+      "sugar_g": 0,
+      "sodium_mg": 380,
+      "source_url": "https://foods.fatsecret.com/calories-nutrition/g-hughes/sugar-free-teriyaki-marinade"
+    },
+    {
+      "name": "G Hughes Sugar Free Orange Ginger Marinade",
+      "serving_size": "1 tbsp (15g)",
+      "calories": 5,
+      "protein_g": 0,
+      "carbs_g": 1,
+      "fat_g": 0,
+      "fiber_g": 0,
+      "sugar_g": 0,
+      "sodium_mg": 240,
+      "source_url": "https://www.fatsecret.com/calories-nutrition/g-hughes/sugar-free-orange-ginger-marinade"
+    },
+    {
+      "name": "Oscar Mayer Naturally Hardwood Smoked Bacon (Regular)",
+      "serving_size": "2 slices cooked (14g)",
+      "calories": 90,
+      "protein_g": 7,
+      "carbs_g": 0,
+      "fat_g": 7,
+      "fiber_g": 0,
+      "sugar_g": 0,
+      "sodium_mg": 350,
+      "source_url": "https://www.calorieking.com/us/en/foods/f/calories-in-deli-luncheon-meat-bacon-skilled-cooked/ufjK8SwQQW-S019NGHP9Vg"
+    },
+    {
+      "name": "Oscar Mayer Turkey Bacon",
+      "serving_size": "2 slices cooked (16g)",
+      "calories": 60,
+      "protein_g": 4,
+      "carbs_g": 1,
+      "fat_g": 4.5,
+      "fiber_g": 0,
+      "sugar_g": 0,
+      "sodium_mg": 180,
+      "notes": "Values vary by variety (58% Less Fat version: 35 cal, 1.5g fat per 2 slices). Standard Oscar Mayer Turkey Bacon shown here.",
+      "source_url": "https://www.eatthismuch.com/calories/turkey-bacon-2042300?a=2:1"
+    },
+    {
+      "name": "Happy Belly (Amazon Fresh) Plain Nonfat Greek Yogurt",
+      "serving_size": "3/4 cup (170g)",
+      "calories": 90,
+      "protein_g": 17,
+      "carbs_g": 5,
+      "fat_g": 0,
+      "fiber_g": 0,
+      "sugar_g": 4,
+      "sodium_mg": 60,
+      "per_2_tbsp_approx": {
+        "serving_size": "2 tbsp (30g)",
+        "calories": 16,
+        "protein_g": 3,
+        "carbs_g": 1,
+        "fat_g": 0,
+        "fiber_g": 0,
+        "sugar_g": 0.7,
+        "notes": "Calculated from 3/4 cup (170g) label. Great sour cream replacement: sour cream is ~60 cal / 6g fat per 2 tbsp vs ~16 cal / 0g fat for nonfat Greek yogurt."
+      },
+      "source_url": "https://www.nutritionix.com/i/happy-belly/greek-nonfat-yogurt-plain/5e33d25ace96ed06262184bc"
+    },
+    {
+      "name": "G Hughes Sugar Free Ranch Dressing",
+      "serving_size": "2 tbsp (30ml)",
+      "calories": 80,
+      "protein_g": 0,
+      "carbs_g": 1,
+      "fat_g": 8,
+      "fiber_g": 0,
+      "sugar_g": 0,
+      "sodium_mg": 350,
+      "source_url": "https://foods.fatsecret.com/calories-nutrition/g-hughes/sugar-free-ranch"
+    }
+  ],
+  "comparison_notes": {
+    "bacon_swap": "Regular bacon (90 cal, 7g fat) vs Turkey bacon (60 cal, 4.5g fat) = 30 cal savings, 2.5g less fat per 2 slices. Oscar Mayer 58% Less Fat Turkey Bacon drops to 35 cal, 1.5g fat.",
+    "sour_cream_swap": "Regular sour cream (~60 cal, 6g fat per 2 tbsp) vs Nonfat Greek yogurt (~16 cal, 0g fat per 2 tbsp) = 44 cal savings, 6g less fat. Plus 3g protein bonus.",
+    "marinades": "All 3 G Hughes marinades are extremely low cal (5-10 cal per tbsp) with 0-1g carbs, 0g sugar. Excellent for adding flavor without calories. Lemon Herb has slight fat (0.5g) from canola oil."
+  }
+}

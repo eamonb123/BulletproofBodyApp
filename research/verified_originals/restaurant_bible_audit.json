@@ -1,0 +1,685 @@
+{
+  "audit_date": "2026-03-14",
+  "source": "Eamon's Restaurant Bible (Notion export)",
+  "source_path": "/Users/eamon.barkhordarian/Downloads/Private & Shared 2/Restaurant Bible/",
+  "total_files": 33,
+  "total_cuisines": 29,
+  "unique_hacks_count": 34,
+  "db_restaurants_total": 50,
+  "db_restaurants_all_stubs": true,
+  "db_restaurants_note": "All 50 restaurants in DB have < 100 ingredients (17-65 range). These are chain restaurants with spider-scraped nutrition data. The Restaurant Bible covers CUISINE TYPES (not chains), so there is almost zero overlap - different data entirely.",
+
+  "cuisines": [
+    {
+      "cuisine": "Afghan",
+      "file": "Afghan 1a8ac4b8c01c8186a9cfceae33f1edef.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": ["deep-fried items", "heavy cream sauces", "excessive rice or bread servings"],
+      "opt_for_items": ["kebabs (chicken, lamb, beef)", "Qabuli Palaw", "Borani Banjan (eggplant)", "Ashak (steamed leek dumplings)", "Shorwa (soup)"],
+      "best_sides": ["Salata (tomato/cucumber salad)", "Sabzi (spinach/greens)", "Doogh (yogurt drink)"],
+      "calorie_data": [],
+      "unique_hacks": ["yogurt-based sauces over cream-based"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "HIGH - entirely new cuisine. Ordering strategy with specific dish names for Afghan restaurants."
+    },
+    {
+      "cuisine": "Alcohol",
+      "file": "Alcohol (1) 1a8ac4b8c01c800bbe3dd79fb1a74844.md",
+      "already_in_db": false,
+      "spider_research_exists": true,
+      "spider_file": "spider_alcohol.json",
+      "avoid_items": ["sugary cocktails (Margaritas, Pina Coladas, Daiquiris)", "premixed drinks", "flavored spirits"],
+      "opt_for_items": ["clear spirits with soda water", "wine spritzers", "light beer", "straight spirits neat/rocks", "dry red or white wine", "champagne/sparkling wine"],
+      "calorie_data": ["references '7 Drinks Under 100 Calories' article"],
+      "unique_hacks": ["use zero-calorie sweeteners in mixed drinks", "glass of water between alcoholic beverages", "eat before you drink"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "LOW - spider_alcohol.json likely covers specific products. Bible adds ordering strategy/general rules."
+    },
+    {
+      "cuisine": "All You Can Eat BBQ (index)",
+      "file": "All You Can Eat BBQ 1a8ac4b8c01c81a7ac6dfd98820e676b.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": [],
+      "opt_for_items": [],
+      "calorie_data": [],
+      "unique_hacks": [],
+      "dishes_with_macros": [],
+      "new_value_for_db": "NONE - index page only, links to Korean BBQ and Mongolian BBQ sub-pages"
+    },
+    {
+      "cuisine": "Korean BBQ",
+      "file": "All You Can Eat BBQ/Korean BBQ Ordering Out Guide 1a8ac4b8c01c8140b0a4fca15ec72de8.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": ["thin sliced beef brisket (Chadolbagi)", "short rib", "pork belly", "tons of rice", "fish cake", "rice cakes", "sesame oil (limit to small amount)"],
+      "opt_for_items": ["Boneless Chicken (Dak Galbi)", "Dak Bulgogi (Chicken Bulgogi)", "Flank Steak (Chimasal)", "Bone-in Thigh / Fire Chicken (Buldak)", "all veggie sides", "bean sprouts", "kimchi", "radish", "spring onions"],
+      "calorie_data": [],
+      "unique_hacks": ["portion rice to less than what is served", "load up on veggie banchan sides"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "HIGH - entirely new cuisine with Korean-specific dish names and ordering strategy"
+    },
+    {
+      "cuisine": "Mongolian BBQ",
+      "file": "All You Can Eat BBQ/All You Can Eat Mongolian BBQ 1a8ac4b8c01c81ffb839cad01ba6aefe.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": ["heavy sauces", "noodles", "rice"],
+      "opt_for_items": ["chicken breast", "turkey breast", "lean beef (sirloin/round)", "pork tenderloin", "fish (tilapia/cod)", "shrimp", "egg whites", "load up on vegetables"],
+      "calorie_data": [],
+      "unique_hacks": ["ask the cook to avoid using oil", "use vinegar-based sauces instead of sugar-heavy ones"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - general lean protein advice applicable to build-your-own BBQ format"
+    },
+    {
+      "cuisine": "American (General)",
+      "file": "American 1a8ac4b8c01c81f7b9bfcb24db14c1e8.md",
+      "already_in_db": true,
+      "db_note": "Multiple American chains in DB (Applebee's, Chili's, Denny's, etc.)",
+      "spider_research_exists": false,
+      "avoid_items": ["fried foods (fried chicken, fries, onion rings)", "heavy sauces and dressings", "refined carbs (white bread, large pasta)", "high-cal appetizers (cheese sticks, loaded nachos)", "sugary drinks"],
+      "opt_for_items": ["grilled chicken or turkey", "lean steak (sirloin/tenderloin)", "grilled/baked fish", "steamed/roasted vegetables", "garden salads (dressing on side)", "sweet potato", "brown rice/quinoa", "whole wheat bread", "broth-based soups"],
+      "best_sides": ["side salad", "fruit", "baked potato (with salsa or Greek yogurt instead of butter/sour cream)"],
+      "calorie_data": [],
+      "unique_hacks": ["share a meal or ask for half portion", "ask for sauces/dressings on the side"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "LOW - general advice. DB already has specific chain menus."
+    },
+    {
+      "cuisine": "American Brunch",
+      "file": "American Brunch Ordering Bible 1a8ac4b8c01c81cb938ceb6f00f383c0.md",
+      "already_in_db": true,
+      "db_note": "IHOP, Waffle House, First Watch, Denny's, Cracker Barrel in DB",
+      "spider_research_exists": false,
+      "avoid_items": ["juices", "egg yolks", "bacon/sausage", "granola", "avocado toast", "pancakes", "parfaits (unless Greek yogurt no sugar)", "nut butters", "oils", "cheeses"],
+      "opt_for_items": ["black coffee (almond milk only if needed)", "egg white omelette (build your own)", "no oil cooking", "no cheese", "protein: egg whites, chicken breast, turkey", "tons of veggies: spinach, mushrooms, peppers, tomatoes, onions", "toast OR potatoes (not both)", "sliced tomatoes", "Greek yogurt", "side salad"],
+      "calorie_data": [],
+      "unique_hacks": ["ask for meals cooked with NO oil", "toast OR potatoes - never both", "almond milk is the only acceptable milk addition"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - brunch-specific ordering rules not in chain DB data. The 'toast OR potatoes' rule is Eamon gold."
+    },
+    {
+      "cuisine": "Burger Guide",
+      "file": "American/Ordering the Right Burger 1a8ac4b8c01c81589738d91c9cae5502.md",
+      "already_in_db": true,
+      "db_note": "In-N-Out, Burger King, Wendy's, Whataburger, Sonic in DB",
+      "spider_research_exists": false,
+      "avoid_items": ["sauces", "dressings", "bun", "fries", "bacon", "cheese", "fried chicken"],
+      "opt_for_items": ["lettuce wrap (order 2 lettuce wrap burgers)", "replace ground beef with grilled chicken or salmon", "side salad", "turkey burger"],
+      "calorie_data": ["plain hamburger vs cheeseburger with mayo = ~250 cal and 20g fat difference"],
+      "unique_hacks": ["order bunless and get 2 lettuce-wrapped burgers instead of 1 regular burger", "turkey burger = same protein, less fat"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - the '2 lettuce wrap burgers' hack is unique coaching content"
+    },
+    {
+      "cuisine": "Banh Mi (Vietnamese Sandwich)",
+      "file": "Bahn Mi 1a8ac4b8c01c81dd8f66f56e7eafb463.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": ["BBQ pork", "pate", "roast beef (fatty)"],
+      "opt_for_items": ["chicken", "deli meats", "load up on veggies"],
+      "calorie_data": ["typical Banh Mi nutrition referenced via image"],
+      "unique_hacks": ["on days you eat Banh Mi, eat high protein + veggies for other meals to compensate for the carb-heavy sandwich", "chicken and deli meats are highest protein with least fat"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - unique day-planning strategy around carb-heavy meals"
+    },
+    {
+      "cuisine": "Buffalo Wild Wings",
+      "file": "Buffalo Wild Wings 1a8ac4b8c01c815fa3b4f96489a39bf0.md",
+      "already_in_db": true,
+      "db_ingredient_count": 38,
+      "spider_research_exists": false,
+      "avoid_items": [],
+      "opt_for_items": [],
+      "calorie_data": [],
+      "unique_hacks": [],
+      "dishes_with_macros": [],
+      "new_value_for_db": "NONE - file only contains an external link to chasingvibrance.com article"
+    },
+    {
+      "cuisine": "Chinese",
+      "file": "Chinese 1a8ac4b8c01c81b6a515fe3d2c17fee4.md",
+      "already_in_db": false,
+      "spider_research_exists": true,
+      "spider_file": "spider_chinese_takeout.json",
+      "avoid_items": ["deep-fried egg rolls", "General Tso's chicken", "fried dumplings", "fried rice", "lo mein noodles", "crab rangoon"],
+      "opt_for_items": ["stir-fry protein + veggies in brown sauce", "low sodium soy sauce", "steamed dumplings", "hot and sour soup", "egg drop soup", "beef and broccoli", "vegetable stir fry", "Kung Pao chicken", "Buddha's Delight", "Moo goo gai pan", "Chop suey", "Chicken and broccoli", "Baked salmon", "Happy Family Stir Fry", "Moo shu vegetables", "Eggplant with garlic sauce", "Shrimp with lobster sauce"],
+      "calorie_data": [],
+      "unique_hacks": ["order light sauce or sauce on the side", "thicker/stickier sauces = more calories", "try to avoid rice altogether", "choose baked/steamed/boiled/sauteed over battered/fried"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - spider covers specific items with calories. Bible adds ordering strategy and comprehensive dish recommendations."
+    },
+    {
+      "cuisine": "Dim Sum",
+      "file": "DimSum 1a8ac4b8c01c81359908e5ab21bf43ab.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": ["fried items", "fatty meats", "dense carb items"],
+      "opt_for_items": ["simple steamed items", "veg dishes", "beef balls", "ribs steamed with black beans", "Cheung fun", "Chiu chow dumplings", "Ha gao (shrimp dumplings)", "steamed Chinese broccoli", "chicken and basil griddle-top dumplings", "seafood options (lower cal than pork)"],
+      "calorie_data": [],
+      "unique_hacks": ["hit the tea hard (fills you up)", "shoot for conservative volume", "steamed/soup preparations = lower calories than fried", "seafood > pork for lower calories (but costs more)"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "HIGH - entirely new cuisine category with specific dim sum dish recommendations"
+    },
+    {
+      "cuisine": "Hibachi",
+      "file": "Hibachi 1a8ac4b8c01c8187aa17cabc28bc876a.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": ["heavy sauces", "fried rice", "tempura (fried foods)"],
+      "opt_for_items": ["chicken breast", "turkey breast", "lean beef (sirloin/filet mignon)", "pork tenderloin", "fish (salmon, tilapia, cod)", "shrimp", "egg whites", "load up on vegetables", "soy sauce or vinegar-based sauces"],
+      "calorie_data": [],
+      "unique_hacks": ["ask the cook to avoid using oil or butter", "use sauces sparingly"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - hibachi-specific ordering strategy"
+    },
+    {
+      "cuisine": "Indian",
+      "file": "Indian 1a8ac4b8c01c819dabcec4597d77120f.md",
+      "already_in_db": false,
+      "spider_research_exists": true,
+      "spider_file": "spider_indian_food.json",
+      "avoid_items": ["samosa", "naan", "creamy sauces", "pakoras (fried veggies)", "fried foods"],
+      "opt_for_items": ["tandoori protein (chicken, lamb, beef, fish)", "kabobs", "Dal dishes", "Baingan Bharta (fire roasted eggplant)", "Aloo Gobi (potatoes and cauliflower)"],
+      "best_sides": ["aloo gobhi", "baingan bharta", "saag (spinach)", "mixed Indian vegetables"],
+      "calorie_data": [],
+      "unique_hacks": ["tandoori = clay oven cooked without heavy sauces = lean protein", "tandoori chicken is healthier than tikka masala"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - spider covers specific items. Bible adds ordering strategy and tandoori rule."
+    },
+    {
+      "cuisine": "Indonesian",
+      "file": "Indonesian Order Guide 1a8ac4b8c01c81f79cb1ffac9fc1f1dd.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": [],
+      "opt_for_items": [],
+      "calorie_data": [],
+      "unique_hacks": [],
+      "dishes_with_macros": [],
+      "new_value_for_db": "NONE - empty file (title only)"
+    },
+    {
+      "cuisine": "Italian",
+      "file": "Italian Ordering Out Bible 1a8ac4b8c01c81f79c8ee753c28cc962.md",
+      "already_in_db": true,
+      "db_note": "Olive Garden in DB",
+      "spider_research_exists": false,
+      "avoid_items": ["breaddy appetizers", "carbs/starches (bread, pasta, mashed potatoes)", "sauces to avoid (linked)"],
+      "opt_for_items": ["Minestrone Soup (appetizer)", "meatballs (without pasta)", "Steamed Clams", "Cioppino fish stew", "Fresh Fish", "side salad"],
+      "calorie_data": [],
+      "unique_hacks": ["order meatballs WITHOUT the pasta, add a side salad with veggies instead"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - the 'meatballs without pasta + salad' hack is unique coaching content"
+    },
+    {
+      "cuisine": "Japanese",
+      "file": "Japanese Ordering out Guide 1a8ac4b8c01c8109be56c009df0c608d.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": ["tempura", "tonkatsu (fried pork cutlet)", "karaage (fried chicken)", "ramen with fatty broths", "heavy cream sauces", "excessive white rice", "sugary desserts (mochi, taiyaki)"],
+      "opt_for_items": ["sashimi", "nigiri sushi", "tuna/salmon/yellowtail/mackerel/octopus", "yakitori (grilled chicken skewers)", "grilled fish", "soba noodles", "udon in clear broth", "shirataki noodles", "chirashi", "miso soup", "shabu-shabu", "edamame", "ohitashi", "tsukemono", "hiyayakko (cold tofu)", "traditional Japanese breakfast"],
+      "calorie_data": [],
+      "unique_hacks": ["ask for smaller rice servings or skip rice", "drink green tea/water", "izakaya: choose grilled, avoid fried", "ramen shops: lighter broths, more vegetables, less noodles", "shirataki noodles = very low cal, high fiber"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "HIGH - extremely comprehensive guide covering sushi, izakaya, ramen, teppanyaki, street food, breakfast"
+    },
+    {
+      "cuisine": "Lebanese",
+      "file": "Lebanese Ordering Out Guide 1a8ac4b8c01c816b9969d2554de76286.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": [],
+      "opt_for_items": [],
+      "calorie_data": [],
+      "unique_hacks": [],
+      "dishes_with_macros": [],
+      "new_value_for_db": "NONE - empty file (title only)"
+    },
+    {
+      "cuisine": "Mediterranean",
+      "file": "Mediterranean Ordering Guide 1a8ac4b8c01c81889ab8cd3a32914df6.md",
+      "already_in_db": true,
+      "db_note": "CAVA in DB (45 ingredients)",
+      "spider_research_exists": false,
+      "avoid_items": [],
+      "opt_for_items": [],
+      "calorie_data": [],
+      "unique_hacks": [],
+      "dishes_with_macros": [],
+      "new_value_for_db": "NONE - empty file (title only)"
+    },
+    {
+      "cuisine": "Mexican",
+      "file": "Mexican 1a8ac4b8c01c81b29d8ff1f921ee8aa8.md",
+      "already_in_db": true,
+      "db_note": "Chipotle, Qdoba, Moe's, Taco Bell in DB",
+      "spider_research_exists": false,
+      "avoid_items": ["chips", "tortillas", "sour cream", "guacamole", "refried beans", "tortilla shells/strips on salads"],
+      "opt_for_items": ["fajitas (chicken, steak, seafood)", "burrito bowls (lettuce base, 2x grilled meat, beans not refried, veggies, salsa)", "corn tortillas over flour (40% fewer calories)"],
+      "calorie_data": ["corn tortillas ~40% fewer calories than flour"],
+      "unique_hacks": ["FAJITAS ARE THE WAY TO GO", "corn instead of flour = 40% fewer calories", "burrito bowl: lettuce base + 2x protein + beans + veggies + salsa", "taco salad: ask for no tortilla shell or strips"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - the fajita rule and corn tortilla swap are coaching gold. DB has chain data but not this strategy."
+    },
+    {
+      "cuisine": "Middle Eastern",
+      "file": "Middle Eastern 1a8ac4b8c01c815f92e7f0b9a5a9a3ad.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": ["gyro (more fat than protein)", "falafel (deep-fried)", "kibbeh (fried)", "rice (or choose brown)", "pita bread"],
+      "opt_for_items": ["chicken shawarma/kebabs", "baba ganoush (lower carb than hummus)", "lentil soup", "fattoush salad", "shakshouka", "shish taouk (chicken kebab)", "tzatziki"],
+      "best_sides": ["avocado salad with grilled shrimp", "peasant/shepherd's salad", "vegetables in place of starchy sides"],
+      "calorie_data": [],
+      "unique_hacks": ["baba ganoush over hummus (lower carb)", "cucumber slices instead of pita for dipping", "gyro has more fat than protein - avoid"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "HIGH - entirely new cuisine. Specific dish names with rationale."
+    },
+    {
+      "cuisine": "P.F. Chang's",
+      "file": "P F Chang's 1a8ac4b8c01c813babccfc06e87745d1.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": ["Peking duck (2,970 cal!)", "Chicken Pad Thai (1,360 cal)", "Crispy Honey Chicken (1,420 cal)", "Mandarin Crunch Salad (750 cal)", "Fried Rice (510 cal)"],
+      "opt_for_items": ["Edamame (400 cal, 36g protein)", "Spicy Tuna Roll (300 cal, 19g protein)", "Buddha's Feast steamed (200 cal)", "Egg Drop Soup cup (40 cal)", "Brown Rice (190 cal, 4g protein)"],
+      "calorie_data": [
+        "Peking duck: 2970 cal, 202g fat, 66g sat fat, 157g carbs, 99g protein, 71g sugar",
+        "Chicken Pad Thai: 1360 cal, 41g fat, 7g sat fat, 191g carbs, 58g protein, 50g sugar",
+        "Crispy Honey Chicken: 1420 cal, 68g fat, 10g sat fat, 1060mg sodium",
+        "Mandarin Crunch Salad: 750 cal, 46g fat, 6g sat fat, 75g carbs, 14g protein (+160 cal for chicken, +240 cal for salmon)",
+        "Fried Rice: 510 cal, 15g fat, 77g carbs, 13g protein, 700mg sodium",
+        "Edamame: 400 cal, 17g fat, 2.5g sat fat, 25g carbs, 36g protein",
+        "Spicy Tuna Roll: 300 cal, 6g fat, 1g sat fat, 43g carbs, 19g protein",
+        "Buddha's Feast steamed: 200 cal, 3g fat, 250mg sodium",
+        "Egg Drop Soup cup: 40 cal, 1g fat, 6g carbs, 1g protein",
+        "Brown Rice 6oz: 190 cal, 0g fat, 40g carbs, 4g protein"
+      ],
+      "unique_hacks": [],
+      "dishes_with_macros": [
+        {"dish": "Peking Duck", "calories": 2970, "protein": 99, "fat": 202, "carbs": 157},
+        {"dish": "Chicken Pad Thai", "calories": 1360, "protein": 58, "fat": 41, "carbs": 191},
+        {"dish": "Crispy Honey Chicken", "calories": 1420, "protein": null, "fat": 68, "carbs": null},
+        {"dish": "Edamame", "calories": 400, "protein": 36, "fat": 17, "carbs": 25},
+        {"dish": "Spicy Tuna Roll", "calories": 300, "protein": 19, "fat": 6, "carbs": 43},
+        {"dish": "Buddha's Feast (steamed)", "calories": 200, "protein": null, "fat": 3, "carbs": null},
+        {"dish": "Egg Drop Soup (cup)", "calories": 40, "protein": 1, "fat": 1, "carbs": 6},
+        {"dish": "Brown Rice (6oz)", "calories": 190, "protein": 4, "fat": 0, "carbs": 40},
+        {"dish": "Fried Rice", "calories": 510, "protein": 13, "fat": 15, "carbs": 77}
+      ],
+      "new_value_for_db": "HIGH - P.F. Chang's not in DB. Full macro data for 9 menu items. Could be added as a new restaurant."
+    },
+    {
+      "cuisine": "Pho",
+      "file": "Pho Ordering Guide 1a8ac4b8c01c814f82f0e8c7ff42b558.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": ["sauces (fish sauce, hoisin sauce, chili sauce)", "big sized bowls", "fatty meats (brisket, meatballs, flank steak)"],
+      "opt_for_items": ["smallest size (Nho) or medium (Lon)", "leanest cuts: chicken or seafood", "round cut steak (tai)", "beef tripe (sach)", "bean sprouts, Thai basil, scallions, cilantro, sawtooth herb"],
+      "calorie_data": ["medium pho bowl: 350-450 calories"],
+      "unique_hacks": ["don't touch the sauces - use herbs/lime for flavor instead", "order Nho (smallest) size", "tai (round cut) and sach (tripe) are leanest beef options"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "HIGH - entirely new cuisine with specific Vietnamese terminology for lean cuts"
+    },
+    {
+      "cuisine": "Pizza",
+      "file": "Pizza Guide 1a8ac4b8c01c810e9e08fb84ae042553.md",
+      "already_in_db": true,
+      "db_note": "Pizza Hut, Little Caesar's, Papa John's in DB",
+      "spider_research_exists": true,
+      "spider_file": "spider_frozen_pizza_protein_meals.json",
+      "avoid_items": ["hand-tossed/deep dish/stuffed crust", "sausage and pepperoni", "dipping sauces (ranch)", "heavy cheese"],
+      "opt_for_items": ["thin crust", "light cheese", "pile high with veggies (mushrooms, bell peppers, spinach, eggplant)", "grilled chicken topping", "side salad"],
+      "calorie_data": ["standard plain slice starts at 400 calories", "thin crust saves 50-80 calories per slice"],
+      "unique_hacks": [
+        "7 ways to build a better slice",
+        "ask for LIGHT cheese",
+        "thin crust saves 50-80 cal/slice",
+        "PAT THE TOP OF THE PIZZA WITH A NAPKIN to soak up extra oil",
+        "order a side salad to fill up",
+        "grilled chicken over sausage/pepperoni"
+      ],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - the napkin oil-blotting hack and 7-step system are coaching gold. DB has chain nutrition data."
+    },
+    {
+      "cuisine": "Salad (General)",
+      "file": "Salad Bible 1a8ac4b8c01c8100a532fd7ef49d05a4.md",
+      "already_in_db": true,
+      "db_note": "Sweetgreen, CAVA, Panera in DB",
+      "spider_research_exists": true,
+      "spider_file": "spider_ranch_dressings.json",
+      "avoid_items": ["heavy dressings/sauces", "crispy/crunchy items (croutons)", "deep fried meat", "cheeses", "bacon crumbles", "nuts", "avocado", "dried fruit"],
+      "opt_for_items": ["healthier dressings", "lean meat toppings", "darker greens (spinach, kale over iceberg)", "tons of low calorie veggies"],
+      "calorie_data": [],
+      "unique_hacks": ["darker greens = 10x more vitamins A and C than iceberg", "'crispy' and 'crunchy' are red flags on menus", "veggies are the 'pacifier of the stomach' - low cal, high volume"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "LOW - general advice. The 'pacifier of the stomach' line is pure Eamon voice."
+    },
+    {
+      "cuisine": "Sandwich Shop",
+      "file": "Salad Bible/Sandwich Shop 1a8ac4b8c01c8153a8fcc752019c83e7.md",
+      "already_in_db": true,
+      "db_note": "Subway, Jersey Mike's, Firehouse Subs, Jimmy John's in DB",
+      "spider_research_exists": false,
+      "avoid_items": ["heavy dressings/sauces/aiolis", "mayonnaise (110 cal/serving)", "ranch (110 cal/serving)", "BBQ sauce", "aioli sauce", "avocado", "heavy cheeses"],
+      "opt_for_items": ["open-face sandwich (cut carbs in half)", "chicken breast", "tuna salad/melt", "turkey slices", "roast beef", "light or no sauces"],
+      "calorie_data": ["mayonnaise: 110 cal/serving", "ranch: 110 cal/serving"],
+      "unique_hacks": ["throw away the top bun - eat open-faced to cut carb calories in half"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - the open-face hack is coaching gold. DB has chain data but not this strategy."
+    },
+    {
+      "cuisine": "Seafood",
+      "file": "Seafood 1a8ac4b8c01c81a4908efcccb9154410.md",
+      "already_in_db": true,
+      "db_note": "Red Lobster in DB",
+      "spider_research_exists": false,
+      "avoid_items": [],
+      "opt_for_items": [],
+      "calorie_data": [],
+      "unique_hacks": [],
+      "dishes_with_macros": [],
+      "new_value_for_db": "NONE - empty file (title only)"
+    },
+    {
+      "cuisine": "Sichuan Chinese",
+      "file": "Sichuan Ordering Out Guide 1a8ac4b8c01c810fab70d3f7b0e08051.md",
+      "already_in_db": false,
+      "spider_research_exists": true,
+      "spider_file": "spider_chinese_takeout.json",
+      "avoid_items": ["Dan Dan Noodles", "Chao Shou / Spicy Wontons", "Sichuan Eggplant Stir Fry"],
+      "opt_for_items": ["Fu Qi Fei Pian (Sliced Beef)", "Mapo Tofu", "Kung Pao Shrimp", "steamed vegetables or light salad instead of rice"],
+      "calorie_data": [],
+      "unique_hacks": ["swap rice bowl for light salad or steamed vegetables", "if you must have rice, portion to less than what is served"],
+      "dishes_with_macros": [],
+      "new_value_for_db": "MEDIUM - Sichuan-specific dish names with Chinese characters. Unique sub-cuisine of Chinese."
+    },
+    {
+      "cuisine": "Sports Bar / Wings",
+      "file": "Sports Bar Wings 1a8ac4b8c01c813a8633e12d2ec5ac02.md",
+      "already_in_db": true,
+      "db_note": "Buffalo Wild Wings, Applebee's, Chili's, Yard House in DB",
+      "spider_research_exists": false,
+      "avoid_items": ["fried wings", "dipping sauces"],
+      "opt_for_items": ["grilled wings no sauce", "Classic Buffalo sauce (Frank's RedHot = 0 calories + butter)", "celery sticks (ask for more!)", "diet soda", "grilled/roasted chicken sandwich (light on condiments)", "fresh vegetables or baked potato sides", "veggie slaw"],
+      "calorie_data": ["plain boneless wings: 80 calories each", "Frank's RedHot: 0 calories"],
+      "unique_hacks": [
+        "Frank's RedHot is 0 calories - it has to be this brand!",
+        "plain boneless wings are just 80 cal each",
+        "ask for MORE celery sticks - don't be afraid to ask for refills",
+        "remove bacon from BLT, sub mustard for mayo, add 2x chicken = save ~300 calories",
+        "diet soda helps reduce cal intake without sacrificing sweet taste"
+      ],
+      "dishes_with_macros": [],
+      "new_value_for_db": "HIGH - the Frank's RedHot hack, 80 cal boneless wings data, and BLT rebuild are pure coaching content"
+    },
+    {
+      "cuisine": "Steakhouse",
+      "file": "Steakhouse 1a8ac4b8c01c8195971bef8272fc96cb.md",
+      "already_in_db": true,
+      "db_note": "Texas Roadhouse, LongHorn Steakhouse, Outback Steakhouse in DB",
+      "spider_research_exists": false,
+      "avoid_items": ["rib-eye (protein:fat ratio 1:1)", "T-bone (1.2:1)", "porterhouse (1.5:1)", "ribs", "French dip sandwiches", "fried chicken", "French onion appetizers", "mashed potatoes", "fries"],
+      "opt_for_items": ["no more than 8oz cut", "sirloin tip side steak", "top round steak (London Broil)", "eye of round steak", "flank steak", "top sirloin", "bottom round", "skirt steak", "side salad", "baked potato", "corn", "coleslaw", "green beans"],
+      "calorie_data": [
+        "Sirloin Tip Side: 3.5oz = 200 cal, 39g protein, 5.4g fat",
+        "Top Round: 3.5oz = 240 cal, 36.9g protein, 7.6g fat",
+        "Eye of Round: 3.5oz = 276 cal, 49.8g protein, 7g fat",
+        "Flank Steak: 3.5oz = 276 cal, 49.8g protein, 7g fat"
+      ],
+      "unique_hacks": [
+        "any cut with 'loin' or 'round' in the name = lean",
+        "no more than 8oz portion",
+        "protein-to-fat ratios for cuts to avoid: rib-eye 1:1, T-bone 1.2:1, porterhouse 1.5:1",
+        "decide your dinner menu IN ADVANCE"
+      ],
+      "dishes_with_macros": [
+        {"dish": "Sirloin Tip Side Steak (3.5oz)", "calories": 200, "protein": 39, "fat": 5.4, "carbs": 0},
+        {"dish": "Top Round Steak (3.5oz)", "calories": 240, "protein": 36.9, "fat": 7.6, "carbs": 0},
+        {"dish": "Eye of Round Steak (3.5oz)", "calories": 276, "protein": 49.8, "fat": 7, "carbs": 0},
+        {"dish": "Flank Steak (3.5oz)", "calories": 276, "protein": 49.8, "fat": 7, "carbs": 0}
+      ],
+      "new_value_for_db": "HIGH - the 'loin/round' naming rule, protein:fat ratios, and steak macro data are coaching gold"
+    },
+    {
+      "cuisine": "Sushi",
+      "file": "Sushi 1a8ac4b8c01c812c801eedee114c8048.md",
+      "already_in_db": false,
+      "spider_research_exists": true,
+      "spider_file": "spider_sushi_poke.json",
+      "avoid_items": ["deep fried rolls", "special rolls", "deep fried dumplings", "having more than 2 rolls", "tempura (Shrimp Tempura/Spider rolls = 500+ cal each)", "sauces", "mayo/spicy mayo (adds 100 cal to spicy tuna)", "bowls of rice"],
+      "opt_for_items": ["sashimi (25-40 cal/oz)", "traditional rolls", "naruto rolls (cucumber wrapped)", "mackerel roll", "rainbow roll", "salmon cucumber roll", "shrimp roll"],
+      "best_sides": ["house salad (ginger dressing on side)", "edamame", "seaweed salad", "miso soup"],
+      "calorie_data": [
+        "sashimi: 25-40 cal per oz",
+        "edamame 1/2 cup: 100 cal, 3g fat, 9g carbs, 5g fiber, 8g protein",
+        "seaweed salad: 45-70 cal per serving",
+        "miso soup 1 cup: 40-50 cal, 1.3g fat, 5.3g carbs, 1.1g fiber, 3-4g protein",
+        "nigiri: 40-65 cal per piece",
+        "California roll: 250-300 cal per 6-piece roll",
+        "tuna/cucumber rolls: <200 cal for 6 pieces",
+        "salmon avocado/spicy tuna: ~300 cal per roll",
+        "Naruto roll (tuna, salmon, avocado): 110 cal, 13g protein",
+        "Shrimp tempura/spider rolls: 500+ cal each",
+        "spicy tuna roll: +100 cal over regular tuna from spicy mayo"
+      ],
+      "unique_hacks": [
+        "ASK FOR ROLLS CUT INTO 8 PIECES INSTEAD OF 6 - perfectly sized bites, feels like more food, same calories",
+        "fork-dip chopsticks into dressing to save tons of calories",
+        "order rolls 'naruto' = wrapped in cucumber instead of rice",
+        "whitefish/seabass/crab = lightest; eel/mackerel/salmon = heaviest",
+        "no more than 2 rolls per meal"
+      ],
+      "dishes_with_macros": [
+        {"dish": "Edamame (1/2 cup)", "calories": 100, "protein": 8, "fat": 3, "carbs": 9},
+        {"dish": "Miso Soup (1 cup)", "calories": 45, "protein": 3.5, "fat": 1.3, "carbs": 5.3},
+        {"dish": "Naruto Roll (tuna/salmon/avocado)", "calories": 110, "protein": 13, "fat": null, "carbs": null},
+        {"dish": "California Roll (6pc)", "calories": 275, "protein": null, "fat": null, "carbs": null},
+        {"dish": "Nigiri (per piece)", "calories": 52, "protein": null, "fat": null, "carbs": null}
+      ],
+      "new_value_for_db": "VERY HIGH - the 8-piece hack, naruto ordering tip, fork-dip dressing hack, and comprehensive calorie data are peak Eamon coaching content"
+    },
+    {
+      "cuisine": "Thai",
+      "file": "Thai 1a8ac4b8c01c819ebc64d669cb0eb37e.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": ["fried spring rolls", "Thai fried rice", "deep-fried items (crispy duck, fried tofu, crispy rolls)", "Pla Lard Prik", "Mussaman curry", "Thai tea (condensed milk + sugar)"],
+      "opt_for_items": ["summer rolls/fresh spring rolls (140 cal each)", "papaya salad", "plain steamed or aromatic rice", "satay (lean grilled meat)", "sizzling vegetables", "sauteed tofu", "garlic shrimp", "hot-and-sour soup", "stir-fried noodles", "scallops", "bamboo", "sauteed ginger chicken", "Thai salad", "tom yum", "low-fat green and red curry", "Pad Thai (mindful portions)", "Chicken Larb"],
+      "calorie_data": [
+        "summer rolls: 140 cal each",
+        "Pad Thai: 350 cal per cup"
+      ],
+      "unique_hacks": [
+        "Spring = deep-fried. Summer = not deep-fried. Choose accordingly.",
+        "fried tofu acts like a soybean sponge - sucks up oil. Ask for sauteed instead.",
+        "Thai tea = condensed milk + fistfuls of sugar = blood sugar spike = fat storage",
+        "skip dipping sauce on summer rolls (extra sodium and sugar)",
+        "Chicken Larb = high protein Thai 'salad' in lettuce wraps"
+      ],
+      "dishes_with_macros": [],
+      "new_value_for_db": "HIGH - the spring vs summer roll distinction is memorable coaching content. Comprehensive Thai ordering guide."
+    },
+    {
+      "cuisine": "Vietnamese (General)",
+      "file": "Vietnamese Ordering Guide 1a8ac4b8c01c8148a6c2c98ffd48d9f7.md",
+      "already_in_db": false,
+      "spider_research_exists": false,
+      "avoid_items": [],
+      "opt_for_items": ["lean protein + portioned noodles", "Shrimp Spring Rolls (Goi Cuon)", "Chicken Pho", "5 Spice Grilled Chicken", "Garlic Noodles with Shrimp", "Chao Ga (congee)", "Bo Tai Chanh (beef carpaccio)", "Caramelized Fish (Ca Kho To)", "Lemongrass Chicken", "Broken Rice Plate"],
+      "calorie_data": [
+        "Shrimp Spring Rolls: 100 cal each, 8g protein, 9g carbs, 4g fat",
+        "Chicken Pho (6oz thigh): 420 cal, 40g protein, 48g carbs, 15g fat",
+        "5 Spice Grilled Chicken (6oz thigh): 390 cal, 39g protein, 42g carbs, 15g fat",
+        "Ca Ri Ga curry (4oz thigh): 419 cal, 31g protein, 51g carbs, 15g fat",
+        "Garlic Noodles w/ Shrimp (6oz): 350 cal, 31g protein, 40g carbs, 5g fat",
+        "Chao Ga congee (5oz thigh): 350 cal, 35g protein, 36g carbs, 13g fat",
+        "Bo Tai Chanh beef carpaccio: 315 cal, 38g protein, 9g carbs, 15g fat",
+        "Bo Kho beef stew: 510 cal, 33g protein, 53g carbs, 19g fat",
+        "Caramelized Fish (Ca Kho To): 353 cal, 62g protein, 14g carbs, 0g fat",
+        "Shaking Beef: 420 cal, 24g protein, 42g carbs, 16g fat",
+        "Broken Rice Plate: 440 cal, 36g protein, 49g carbs, 16g fat",
+        "Lemongrass Chicken: 295 cal, 46g protein, 7g carbs, 9g fat"
+      ],
+      "unique_hacks": [
+        "avoid dipping sauce for spring rolls - extra calories",
+        "choose sunny side egg over egg meatloaf (pork-based = more calories) on broken rice",
+        "Caramelized Fish has 62g protein and 0g fat - one of the best dishes across all cuisines",
+        "Lemongrass Chicken is the leanest option at 295 cal, 46g protein",
+        "portion rice mindfully on all dishes"
+      ],
+      "dishes_with_macros": [
+        {"dish": "Vietnamese Shrimp Spring Roll", "calories": 100, "protein": 8, "fat": 4, "carbs": 9},
+        {"dish": "Chicken Pho (6oz thigh)", "calories": 420, "protein": 40, "fat": 15, "carbs": 48},
+        {"dish": "5 Spice Grilled Chicken (6oz thigh)", "calories": 390, "protein": 39, "fat": 15, "carbs": 42},
+        {"dish": "Ca Ri Ga (4oz thigh)", "calories": 419, "protein": 31, "fat": 15, "carbs": 51},
+        {"dish": "Garlic Noodles w/ Shrimp (6oz)", "calories": 350, "protein": 31, "fat": 5, "carbs": 40},
+        {"dish": "Chao Ga Congee (5oz thigh)", "calories": 350, "protein": 35, "fat": 13, "carbs": 36},
+        {"dish": "Bo Tai Chanh (Beef Carpaccio)", "calories": 315, "protein": 38, "fat": 15, "carbs": 9},
+        {"dish": "Bo Kho (Beef Stew)", "calories": 510, "protein": 33, "fat": 19, "carbs": 53},
+        {"dish": "Caramelized Fish (Ca Kho To)", "calories": 353, "protein": 62, "fat": 0, "carbs": 14},
+        {"dish": "Shaking Beef", "calories": 420, "protein": 24, "fat": 16, "carbs": 42},
+        {"dish": "Broken Rice Plate", "calories": 440, "protein": 36, "fat": 16, "carbs": 49},
+        {"dish": "Lemongrass Chicken", "calories": 295, "protein": 46, "fat": 9, "carbs": 7}
+      ],
+      "new_value_for_db": "VERY HIGH - 12 dishes with full macro breakdowns. This is the most data-rich guide in the entire Bible."
+    }
+  ],
+
+  "cuisines_NOT_in_our_db": [
+    "Afghan",
+    "Korean BBQ",
+    "Mongolian BBQ",
+    "Banh Mi",
+    "Chinese (general cuisine - Panda Express in DB but not this guide)",
+    "Dim Sum",
+    "Hibachi",
+    "Indian (general cuisine - no Indian chain in DB)",
+    "Japanese (general - no Japanese chain in DB)",
+    "Middle Eastern",
+    "P.F. Chang's",
+    "Pho",
+    "Sichuan Chinese",
+    "Sushi (general - no sushi chain in DB)",
+    "Thai",
+    "Vietnamese"
+  ],
+
+  "empty_files": [
+    "Indonesian Order Guide",
+    "Lebanese Ordering Out Guide",
+    "Mediterranean Ordering Guide",
+    "Seafood",
+    "Buffalo Wild Wings (link-only)"
+  ],
+
+  "top_value_guides_ranked": [
+    {
+      "rank": 1,
+      "cuisine": "Vietnamese",
+      "reason": "12 dishes with full macros. Richest calorie data in the Bible."
+    },
+    {
+      "rank": 2,
+      "cuisine": "Sushi",
+      "reason": "8-piece hack, naruto hack, fork-dip hack, extensive calorie data for rolls/nigiri/sashimi"
+    },
+    {
+      "rank": 3,
+      "cuisine": "P.F. Chang's",
+      "reason": "9 menu items with full macros. Could be a new restaurant in DB."
+    },
+    {
+      "rank": 4,
+      "cuisine": "Steakhouse",
+      "reason": "4 cuts with full macros, the 'loin/round' naming rule, protein:fat ratios"
+    },
+    {
+      "rank": 5,
+      "cuisine": "Thai",
+      "reason": "Spring vs Summer roll mnemonic, comprehensive avoid/opt-for"
+    },
+    {
+      "rank": 6,
+      "cuisine": "Sports Bar / Wings",
+      "reason": "Frank's RedHot 0-cal hack, 80-cal boneless wings, BLT rebuild saves 300 cal"
+    },
+    {
+      "rank": 7,
+      "cuisine": "Japanese",
+      "reason": "Most comprehensive guide - covers sushi, izakaya, ramen, teppanyaki, street food"
+    },
+    {
+      "rank": 8,
+      "cuisine": "Korean BBQ",
+      "reason": "Specific Korean dish names with lean protein picks"
+    },
+    {
+      "rank": 9,
+      "cuisine": "Mexican",
+      "reason": "Fajita rule, corn tortilla 40% savings, burrito bowl build"
+    },
+    {
+      "rank": 10,
+      "cuisine": "Pizza",
+      "reason": "Napkin oil-blot hack, thin crust saves 50-80 cal/slice"
+    }
+  ],
+
+  "signature_eamon_hacks": [
+    {"hack": "Ask for sushi rolls cut into 8 pieces instead of 6 - same calories, feels like more food", "cuisine": "Sushi"},
+    {"hack": "Order rolls 'naruto' style = wrapped in cucumber instead of rice", "cuisine": "Sushi"},
+    {"hack": "Fork-dip chopsticks into dressing instead of pouring - saves tons of calories", "cuisine": "Sushi"},
+    {"hack": "Spring = deep-fried. Summer = not deep-fried.", "cuisine": "Thai"},
+    {"hack": "Frank's RedHot is 0 calories (has to be THIS brand)", "cuisine": "Sports Bar"},
+    {"hack": "Pat the top of pizza with a napkin to soak up extra oil", "cuisine": "Pizza"},
+    {"hack": "Order 2 lettuce-wrapped burgers instead of 1 regular burger", "cuisine": "Burger"},
+    {"hack": "Throw away the top bun - eat open-faced to cut carb calories in half", "cuisine": "Sandwich"},
+    {"hack": "Order meatballs WITHOUT pasta + side salad", "cuisine": "Italian"},
+    {"hack": "Corn tortilla instead of flour = 40% fewer calories", "cuisine": "Mexican"},
+    {"hack": "FAJITAS are the way to go at Mexican", "cuisine": "Mexican"},
+    {"hack": "Toast OR potatoes at brunch - never both", "cuisine": "American Brunch"},
+    {"hack": "Ask for meals cooked with NO oil at brunch", "cuisine": "American Brunch"},
+    {"hack": "Any steak cut with 'loin' or 'round' in the name = lean", "cuisine": "Steakhouse"},
+    {"hack": "No more than 8oz steak portion", "cuisine": "Steakhouse"},
+    {"hack": "Tandoori = clay oven, no heavy sauces = lean protein", "cuisine": "Indian"},
+    {"hack": "Baba ganoush over hummus (lower carb)", "cuisine": "Middle Eastern"},
+    {"hack": "Cucumber slices instead of pita for dipping", "cuisine": "Middle Eastern"},
+    {"hack": "Caramelized Fish (Ca Kho To) = 62g protein, 0g fat - best dish in any cuisine", "cuisine": "Vietnamese"},
+    {"hack": "Choose sunny side egg over egg meatloaf on broken rice (pork-based = more cal)", "cuisine": "Vietnamese"},
+    {"hack": "Hit the tea hard at dim sum (fills you up)", "cuisine": "Dim Sum"},
+    {"hack": "Thicker/stickier sauces = more calories at Chinese", "cuisine": "Chinese"},
+    {"hack": "Pho: don't touch the sauces - use herbs and lime for flavor instead", "cuisine": "Pho"},
+    {"hack": "Pho: order Nho (smallest) size", "cuisine": "Pho"},
+    {"hack": "On days you eat Banh Mi, eat high protein + veggies for other meals to compensate", "cuisine": "Banh Mi"},
+    {"hack": "Fried tofu acts like a soybean sponge - ask for sauteed instead", "cuisine": "Thai"},
+    {"hack": "Remove bacon from BLT, sub mustard for mayo, add 2x chicken = save ~300 calories", "cuisine": "Sports Bar"},
+    {"hack": "Ask for MORE celery sticks at sports bars - free refills", "cuisine": "Sports Bar"},
+    {"hack": "Veggies are the 'pacifier of the stomach' - low cal, high volume", "cuisine": "Salad"},
+    {"hack": "Darker greens = 10x more vitamins A and C than iceberg", "cuisine": "Salad"},
+    {"hack": "Decide steakhouse dinner menu IN ADVANCE", "cuisine": "Steakhouse"},
+    {"hack": "Shirataki noodles at Japanese restaurants = very low cal, high fiber", "cuisine": "Japanese"},
+    {"hack": "Gyro has more fat than protein - avoid at Middle Eastern", "cuisine": "Middle Eastern"},
+    {"hack": "Rice swap: light salad or steamed vegetables instead", "cuisine": "Sichuan"}
+  ],
+
+  "db_stub_restaurants": {
+    "note": "All 50 restaurants in DB have 17-65 ingredients. These are chains with spider-scraped data. The Restaurant Bible covers CUISINES (Afghan, Thai, Korean BBQ, etc.) which are NOT represented as restaurants in the DB at all.",
+    "lowest_ingredient_counts": [
+      {"name": "Raising Cane's", "ingredients": 17},
+      {"name": "In-N-Out Burger", "ingredients": 22},
+      {"name": "Little Caesar's", "ingredients": 24},
+      {"name": "Pura Vida", "ingredients": 25},
+      {"name": "Waffle House", "ingredients": 25}
+    ],
+    "highest_ingredient_counts": [
+      {"name": "Sweetgreen", "ingredients": 65},
+      {"name": "Subway", "ingredients": 63},
+      {"name": "Chick-fil-A", "ingredients": 48},
+      {"name": "CAVA", "ingredients": 45},
+      {"name": "Qdoba Mexican Eats", "ingredients": 45}
+    ],
+    "pf_changs_action": "P.F. Chang's is NOT in the DB but has 9 menu items with full macros in the Bible. Could be added as restaurant #51."
+  }
+}

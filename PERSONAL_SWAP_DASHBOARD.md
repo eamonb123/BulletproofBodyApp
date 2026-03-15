@@ -425,3 +425,103 @@ POST /api/admin/client/[id]/bulk   → Bulk import items + swaps (JSON)
 | 6 | Do we show macros (protein/carbs/fat) per item, or just calories? | Eamon |
 | 7 | What's the calorie target logic? Is it RMR-based or Eamon assigns it? | Eamon |
 | 8 | Non-restaurant items (snacks, condiments) — do we generate sprites or use stock photos? | Kai |
+
+---
+
+## Food Ecosystem Dashboard v2 — Team Consultation (2026-03-14)
+
+> Updated vision from team consultation. Supersedes some Phase 1 assumptions above — particularly around tab structure, item states, and routing.
+
+### Route Change
+
+- **New pattern:** `/client/[firstname-lastname]` — uses first-last name as the URL slug (e.g., `/client/arman-zaheery`)
+- If duplicate names exist, append a number: `/client/arman-zaheery-2`
+- Replaces the previous `/client/[id]` UUID-based approach
+- Same page for **Eamon AND client** — Eamon builds it, client reviews and lives with it
+- Save button persists to the client's profile
+
+### Tab Structure
+
+```
+ALL | ORDERING OUT | SNACKS | AT HOME | DINING OUT
+```
+
+| Tab | Definition | Examples |
+|-----|-----------|----------|
+| **ALL** | Everything across all tabs. Default view. | — |
+| **Ordering Out** | DoorDash/drive-thru chains with predictable, published calories | Panda Express, Subway, Chipotle, McDonald's |
+| **Snacks** | Grab-and-go packaged items | Chips, protein bars, candy, ice cream, dried fruit |
+| **At Home** | Kitchen staples, sauces, bread, frozen meals, creamers, cooking oils — anything kept at home regardless of where purchased | Instacart groceries, Walmart runs, specialty online (Final Boss Sour dried fruit, Royal Bagels) |
+| **Dining Out** | Non-chain restaurants with no published nutrition (the Restaurant Bible / wild west) | Local restaurants, date night spots |
+
+**Overlap rule:** Packaged grab-and-go = Snack. Kitchen staple used in meals = At Home. Dried fruit = Snack. Low-cal BBQ sauce = At Home. Quest frozen pizza = At Home.
+
+### Unified Search
+
+Single search bar across ALL food types (snacks, takeout meals, grocery items):
+- Type "sandwich" → pulls from takeout chains
+- Type "chocolate" → pulls from snacks AND grocery
+- Results grouped by tab/category but surfaced in one stream
+
+### Four Item States
+
+| State | Visual | Meaning |
+|-------|--------|---------|
+| **Swap** | Green side-by-side cards (existing pattern) | "Here's the smarter version" |
+| **Keep** | Green checkmark | "You're already winning here" |
+| **Open Question** | Amber border | "Your coach has a question about this item" — e.g., coffee with cream: is it loved or convenience? |
+| **Education** | Info icon, expandable | Contextual insight — e.g., pizza calorie comparison across chains |
+
+### Eamon's Workflow (Real Example: Arman Zaheery)
+
+1. **Look at Trainerize food photos** + client comments about WHY they ate it
+2. **Classify:** Is this takeout, snack, grocery, or restaurant?
+3. **For takeout:** Find closest chain in DB (e.g., "cashew chicken" → Panda Express)
+4. **Search existing Eamon-approved swaps** in DB
+5. **Present options** to client as a menu
+
+**Two-pass system:**
+- **First pass:** Build initial menu from food photos + existing DB
+- **Second pass:** Approval meeting with client — refine, discuss, lock in
+
+**After approval:** Save to dashboard + create Trainerize custom meals
+
+### Decision Framework for Item Routing
+
+| Signal | Route to | Reasoning |
+|--------|----------|-----------|
+| Convenience | **Ordering Out** | Predictable portions, published calories |
+| Love/craving | **Keep** or gentle swap | Honor what they love |
+| Social/restaurant | **Dining Out** | Ordering scripts, 10:1 rule |
+| Home cooking | **At Home** | Ingredient-level swaps: oil spray instead of tablespoon, light mayo, etc. |
+
+### Coach Notes + Client Context
+
+- **Coach notes** per item: Eamon's personalized context explaining the reasoning (e.g., "You eat this after long days. The swap keeps the crunch you love but saves you 350 calories.")
+- **Client context** per item: Preserved from Phase 1 data collection (e.g., "Leftovers from work, takeout on Wednesday")
+
+### Cumulative Impact Bar
+
+- Aggregates across ALL tabs (same pattern as snack-bible)
+- Switching tabs still shows total impact from all toggled-on swaps
+- Always visible, always updating
+
+### Location Awareness (Phase 2)
+
+- Zip code/address for home + work + other locations
+- Google Maps API to find nearest chains
+- "Out of all sandwich spots, which is closest?"
+- **For now (Phase 1):** Eamon just types the restaurant name manually
+
+### The System Grows With Use
+
+As Eamon encounters new foods with clients, they get added to the DB. "We don't have creamers on standby — let's build that out together." Each client engagement enriches the database for future clients.
+
+### Updated Build Phases
+
+| Phase | Focus | Key Deliverables |
+|-------|-------|-----------------|
+| **Phase 1 (NOW)** | Client page MVP | Clone snack-bible layout, add tabs, unified search, save-to-profile, four item states, `/client/[firstname-lastname]` route |
+| **Phase 2** | Location-based discovery | Google Maps API, zip code input, nearest chain finder |
+| **Phase 3** | Trainerize auto-sync | Approved swaps → Trainerize custom meals automatically |
+| **Phase 4** | Client login/auth + progress | Client accounts, progress tracking, weight vs projected |

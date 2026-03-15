@@ -149,11 +149,11 @@ def ingest_restaurant(data, force=False, validate_only=False):
     # ── Restaurant ──────────────────────────────────────
     if not validate_only:
         c.execute("""
-            INSERT INTO restaurants (id, name, logo_emoji, cuisine, website, nutrition_source)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO restaurants (id, name, logo_emoji, cuisine, website, nutrition_source, food_keywords)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
         """, (rest_id, restaurant["name"], restaurant.get("logo_emoji", ""),
               restaurant.get("cuisine", ""), restaurant.get("website", ""),
-              restaurant.get("nutrition_source", "")))
+              restaurant.get("nutrition_source", ""), restaurant.get("food_keywords", "")))
     print(f"\n[+] Restaurant: {restaurant['name']}")
 
     # ── Categories ──────────────────────────────────────

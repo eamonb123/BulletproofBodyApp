@@ -91,3 +91,68 @@ export function estimateGeneralRange(dailyCaloriesSaved: number): {
     highLbs: Math.round(highWeekly * 10) / 10,
   };
 }
+
+/**
+ * Full Metabolism Equation (from EPM integrity_math.py)
+ *
+ * Total Daily Burn = RMR + Step Calories + Workout Calories + Cardio Calories
+ * Daily Deficit = Total Burn - Calories Consumed
+ *
+ * Coefficients:
+ *   Steps: 0.05 cal per step (100 cal per 2,000 steps)
+ *   Workout: 250 cal per session (default)
+ *   Cardio: estimated from minutes and avg HR
+ */
+
+const STEP_CAL_RATE = 0.05;
+const DEFAULT_WORKOUT_CAL = 250;
+
+export interface MetabolismEquation {
+  rmr: number;
+  stepsPerDay: number;
+  stepCaloriesPerDay: number;
+  workoutsPerWeek: number;
+  workoutCalPerSession: number;
+  workoutCaloriesPerDay: number;
+  cardioMinPerDay: number;
+  cardioCaloriesPerDay: number;
+  totalDailyBurn: number;
+  dailyCalorieTarget: number;
+  dailyDeficit: number;
+  weeklyFatLossLbs: number;
+}
+
+export function calculateMetabolismEquation(params: {
+  rmr: number;
+  stepsPerDay: number;
+  workoutsPerWeek: number;
+  workoutCalPerSession?: number;
+  cardioMinPerDay: number;
+  dailyCalorieTarget: number;
+}): MetabolismEquation {
+  const workoutCal = params.workoutCalPerSession ?? DEFAULT_WORKOUT_CAL;
+  const stepCalPerDay = params.stepsPerDay * STEP_CAL_RATE;
+  const workoutCalPerDay = (params.workoutsPerWeek * workoutCal) / 7;
+  // ~8 cal/min at moderate intensity
+  const cardioCalPerDay = params.cardioMinPerDay * 8;
+
+  const totalDailyBurn =
+    params.rmr + stepCalPerDay + workoutCalPerDay + cardioCalPerDay;
+  const dailyDeficit = totalDailyBurn - params.dailyCalorieTarget;
+  const weeklyLoss = (dailyDeficit * 7) / 3500;
+
+  return {
+    rmr: params.rmr,
+    stepsPerDay: params.stepsPerDay,
+    stepCaloriesPerDay: Math.round(stepCalPerDay),
+    workoutsPerWeek: params.workoutsPerWeek,
+    workoutCalPerSession: workoutCal,
+    workoutCaloriesPerDay: Math.round(workoutCalPerDay),
+    cardioMinPerDay: params.cardioMinPerDay,
+    cardioCaloriesPerDay: Math.round(cardioCalPerDay),
+    totalDailyBurn: Math.round(totalDailyBurn),
+    dailyCalorieTarget: params.dailyCalorieTarget,
+    dailyDeficit: Math.round(dailyDeficit),
+    weeklyFatLossLbs: Math.round(weeklyLoss * 100) / 100,
+  };
+}

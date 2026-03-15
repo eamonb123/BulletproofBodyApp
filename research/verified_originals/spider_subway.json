@@ -1,0 +1,134 @@
+{
+  "category": "subway_restaurant",
+  "research_date": "2026-03-14",
+  "researcher": "claude_agent",
+  "methodology": "Cross-referenced fastfoodnutrition.org (which pulls from Subway's official nutrition PDFs), Nutritionix, EatThisMuch, FatSecret, and CalorieKing. Subway's official PDF was not parseable but third-party aggregators consistently agree. All footlong values are based on default build: bread + meat + standard veggies (lettuce, tomato, cucumber, green pepper, red onion) with NO cheese and NO mayo unless noted. Subway renamed '9-Grain Wheat' to 'Hearty Multigrain' but they are the same bread.",
+  "key_insights": {
+    "bread_is_the_calorie_driver": "Bread alone accounts for 380-420 cal of a footlong sandwich. Artisan Italian (footlong): 420 cal, 4g F, 78g C, 16g P. Hearty Multigrain (footlong): 380 cal, 4g F, 72g C, 14g P. Choosing multigrain saves ~40 cal and 6g carbs.",
+    "protein_bowl_advantage": "Dropping bread saves 380-420 cal and 72-78g carbs. A protein bowl is essentially the meat + veggies + sauce. The Sweet Onion Teriyaki bowl at 300 cal / 34g P is one of the best fast-food protein-per-calorie options.",
+    "sauce_trap": "Sweet Onion sauce is 40 cal / 9g carbs per 21g serving (fat-free). Honey Mustard (fat-free version) is 30 cal / 7g carbs per 21g serving. Regular Honey Mustard is 60 cal with 5g fat. These add up fast if doubled.",
+    "double_meat_math": "Standard chicken portion for a 6-inch is ~17g protein. Double meat adds another portion (~17g P, ~60-80 cal). For a protein bowl, standard is ~34g P; double meat would be ~51g P and ~380-420 cal total.",
+    "artisan_italian_vs_multigrain": "Artisan Italian (6-inch): 210 cal, 2g F, 39g C, 8g P. Hearty Multigrain (6-inch): 190 cal, 2g F, 36g C, 7g P. Per footlong, Italian adds ~40 cal and ~6g carbs vs multigrain."
+  },
+  "bread_nutrition": {
+    "artisan_italian_6inch": {"calories": 210, "fat_g": 2, "carbs_g": 39, "protein_g": 8, "source": "eatthismuch.com / subway-calorie-calculator.com"},
+    "artisan_italian_footlong": {"calories": 420, "fat_g": 4, "carbs_g": 78, "protein_g": 16, "note": "Doubled from 6-inch"},
+    "hearty_multigrain_6inch": {"calories": 190, "fat_g": 2, "carbs_g": 36, "protein_g": 7, "source": "fastfoodnutrition.org", "note": "Formerly called 9-Grain Wheat"},
+    "hearty_multigrain_footlong": {"calories": 380, "fat_g": 4, "carbs_g": 72, "protein_g": 14, "note": "Doubled from 6-inch"}
+  },
+  "sauce_nutrition": {
+    "sweet_onion_sauce": {
+      "serving_size": "21g",
+      "calories": 40,
+      "fat_g": 0,
+      "carbs_g": 9,
+      "sugar_g": 8,
+      "protein_g": 0,
+      "notes": "Fat-free. Almost pure sugar. Ingredients: Sugar, Water, Corn Cider Vinegar, Soy Sauce (Water, Wheat, Soybeans, Salt), Corn Syrup, Modified Cornstarch, Rice Vinegar, Salt, Onion, Tomato Paste, Garlic, Ginger, Sesame Seed Oil, Poppyseed, Mustard Seed, Spice, Sesame Seeds, Potassium Sorbate, Sodium Benzoate, Yeast Extract, Green Onion, Red Bell Pepper, Citric Acid, Xanthan Gum, Natural Flavor.",
+      "source": "nutritionix.com, eatthismuch.com"
+    },
+    "honey_mustard_fat_free": {
+      "serving_size": "21g",
+      "calories": 30,
+      "fat_g": 0,
+      "carbs_g": 7,
+      "sugar_g": 6,
+      "protein_g": 0,
+      "notes": "Fat-free version. Mostly sugar and mustard.",
+      "source": "fastfoodnutrition.org"
+    },
+    "honey_mustard_regular": {
+      "serving_size": "21g (1.5 tbsp)",
+      "calories": 60,
+      "fat_g": 5,
+      "carbs_g": 3,
+      "protein_g": 0,
+      "notes": "Regular version with oil. 79% of calories from fat.",
+      "source": "eatthismuch.com"
+    }
+  },
+  "item_count": 6,
+  "items": [
+    {
+      "dish_name": "Sweet Onion Teriyaki Chicken Protein Bowl (Double Meat)",
+      "category": "protein_bowl",
+      "serving_size": "1 bowl (~350g)",
+      "claimed": {"calories": 580, "protein_g": 58, "carbs_g": 50, "fat_g": 20},
+      "verified": {"calories": 380, "protein_g": 51, "carbs_g": 42, "fat_g": 6},
+      "verification_notes": "SIGNIFICANT DISCREPANCY. Standard bowl (single meat) is 300 cal, 34g P, 33g C, 4.5g F per fastfoodnutrition.org. Double meat adds ~80 cal and ~17g P. Estimated double meat bowl: ~380 cal, ~51g P, ~42g C (extra teriyaki glaze on second portion), ~6g F. The claimed 580 cal / 58g P / 50g C / 20g F is WAY too high - that looks like it includes cheese and/or mayo, or is confused with a sandwich version. The 20g fat is impossible without cheese/mayo since the bowl has almost no fat sources.",
+      "verdict": "FAIL - claimed values are ~200 cal too high, fat is 3x too high. Likely confused with a sandwich or includes undisclosed cheese/mayo.",
+      "standard_ingredients": "Teriyaki-glazed chicken strips (double portion), sweet onion sauce, lettuce, tomatoes, cucumber, green peppers, red onions",
+      "source_url": "https://fastfoodnutrition.org/subway/sweet-onion-chicken-teriyaki-protein-bowl"
+    },
+    {
+      "dish_name": "Roast Beef Footlong on Artisan Italian",
+      "category": "footlong_sandwich",
+      "serving_size": "1 footlong sandwich (~450g)",
+      "claimed": {"calories": 580, "protein_g": 46, "carbs_g": 82, "fat_g": 8},
+      "verified": {"calories": 620, "protein_g": 44, "carbs_g": 85, "fat_g": 10},
+      "verification_notes": "The default Roast Beef footlong on fastfoodnutrition.org (9-Grain Wheat default bread) is 600 cal, 44g P, 82g C, 10g F. Switching to Artisan Italian adds ~40 cal and ~6g carbs (Italian is 420 cal/78g C per footlong vs Multigrain 380 cal/72g C). Adjusted: ~620 cal, ~44g P, ~85g C, ~10g F. The claimed 580 cal is ~40 cal too low (likely used multigrain numbers but said Italian bread). The 8g fat claim is slightly low - official shows 10g. The 46g protein claim is close but slightly high vs 44g verified.",
+      "verdict": "CLOSE but off - claimed calories are ~40 too low (wrong bread calc), fat is 2g too low, protein is 2g too high. Use 620/44/85/10.",
+      "standard_ingredients": "Roast beef (sliced, contains water, salt, dextrose, corn syrup, sodium phosphates), Artisan Italian bread, lettuce, tomatoes, cucumber, green peppers, red onions",
+      "source_url": "https://fastfoodnutrition.org/subway/roast-beef/footlong"
+    },
+    {
+      "dish_name": "Oven Roasted Chicken Footlong on Hearty Multigrain (9-Grain Wheat)",
+      "category": "footlong_sandwich",
+      "serving_size": "1 footlong sandwich (~450g)",
+      "claimed": {"calories": 560, "protein_g": 50, "carbs_g": 74, "fat_g": 10},
+      "verified": {"calories": 560, "protein_g": 42, "carbs_g": 82, "fat_g": 10},
+      "verification_notes": "Subway calls this 'Oven Roasted Chicken' not 'Grilled Chicken.' The footlong on 9-Grain Wheat (Hearty Multigrain) per fastfoodnutrition.org: 560 cal, 42g P, 82g C, 10g F. Calories and fat match perfectly. However, protein is claimed at 50g but verified at 42g (8g too high). Carbs are claimed at 74g but verified at 82g (8g too low). The protein/carb discrepancy is significant - the claimed values may have been pulled from a 'Footlong Pro' version (which has extra meat) or a different chicken product.",
+      "verdict": "PARTIAL MATCH - calories and fat correct, but protein overstated by 8g and carbs understated by 8g. Use 560/42/82/10.",
+      "standard_ingredients": "Oven roasted chicken patty (chicken breast with rib meat, water, chicken flavor, potato starch, sodium phosphate, dextrose, carrageenan), Hearty Multigrain bread, lettuce, tomatoes, cucumber, green peppers, red onions",
+      "source_url": "https://fastfoodnutrition.org/subway/oven-roasted-chicken/footlong"
+    },
+    {
+      "dish_name": "Oven-Roasted Turkey Footlong on Artisan Italian",
+      "category": "footlong_sandwich",
+      "serving_size": "1 footlong sandwich (~450g)",
+      "claimed": {"calories": 540, "protein_g": 38, "carbs_g": 78, "fat_g": 8},
+      "verified": {"calories": 560, "protein_g": 40, "carbs_g": 85, "fat_g": 6},
+      "verification_notes": "The default Turkey footlong on fastfoodnutrition.org (9-Grain Wheat default bread) is 520 cal, 40g P, 79g C, 6g F. Switching from Hearty Multigrain to Artisan Italian adds ~40 cal and ~6g carbs. Adjusted for Artisan Italian: ~560 cal, ~40g P, ~85g C, ~6g F. The claimed 540 cal is close but ~20 cal low. The 38g protein is close (verified 40g). The 78g carbs is slightly low vs ~85g on Italian bread. The 8g fat claim is 2g too high vs verified 6g.",
+      "verdict": "CLOSE - within ~20 cal. Protein 2g low, carbs ~7g low, fat 2g high vs verified. Use 560/40/85/6.",
+      "standard_ingredients": "Turkey breast (thin sliced, contains water, dextrose, salt, carrageenan, sodium phosphate, browned in soybean oil), Artisan Italian bread, lettuce, tomatoes, cucumber, green peppers, red onions",
+      "source_url": "https://fastfoodnutrition.org/subway/turkey-breast/footlong"
+    },
+    {
+      "dish_name": "Black Forest Ham Footlong on Hearty Multigrain (9-Grain Wheat)",
+      "category": "footlong_sandwich",
+      "serving_size": "1 footlong sandwich (~450g)",
+      "claimed": {"calories": 540, "protein_g": 38, "carbs_g": 76, "fat_g": 10},
+      "verified": {"calories": 540, "protein_g": 36, "carbs_g": 82, "fat_g": 8},
+      "verification_notes": "US version per fastfoodnutrition.org: 540 cal, 36g P, 82g C, 8g F on Hearty Multigrain. Calories match perfectly. Protein is claimed at 38g but verified at 36g (2g high). Carbs are claimed at 76g but verified at 82g (6g low). Fat is claimed at 10g but verified at 8g (2g high).",
+      "verdict": "PARTIAL MATCH - calories match, but protein +2g, carbs -6g, fat +2g vs verified. Use 540/36/82/8.",
+      "standard_ingredients": "Black forest ham (pork, water, dextrose, salt, sodium phosphate, sodium erythorbate, sodium nitrite, smoke), Hearty Multigrain bread, lettuce, tomatoes, cucumber, green peppers, red onions",
+      "source_url": "https://fastfoodnutrition.org/subway/black-forest-ham/footlong"
+    },
+    {
+      "dish_name": "Veggie Delite Footlong on Hearty Multigrain (9-Grain Wheat)",
+      "category": "footlong_sandwich",
+      "serving_size": "1 footlong sandwich (~400g)",
+      "claimed": {"calories": 400, "protein_g": 18, "carbs_g": 72, "fat_g": 6},
+      "verified": {"calories": 400, "protein_g": 16, "carbs_g": 78, "fat_g": 4},
+      "verification_notes": "Per fastfoodnutrition.org: 400 cal, 16g P, 78g C, 4g F. Calories match perfectly. Protein is claimed at 18g but verified at 16g (2g high). Carbs are claimed at 72g but verified at 78g (6g low). Fat is claimed at 6g but verified at 4g (2g high).",
+      "verdict": "CLOSE - calories match, but protein +2g, carbs -6g, fat +2g. Use 400/16/78/4.",
+      "standard_ingredients": "Hearty Multigrain bread, lettuce, tomatoes, cucumber, green peppers, red onions (no meat, no cheese)",
+      "source_url": "https://fastfoodnutrition.org/subway/veggie-delite/footlong"
+    }
+  ],
+  "verification_summary": {
+    "total_items": 6,
+    "pass": 0,
+    "close_but_off": 4,
+    "fail": 2,
+    "pattern_detected": "Across all items, there is a consistent pattern: protein is overstated by 2-8g, carbs are understated by 6-8g, and fat is slightly off by 2g. This suggests the original data source may have been using outdated Subway nutrition or mixing up bread types. The protein bowl (double meat) claim is the worst offender at ~200 cal too high.",
+    "items_needing_correction": [
+      "Sweet Onion Teriyaki Chicken Protein Bowl (Double Meat): 580->380 cal, 58->51g P, 50->42g C, 20->6g F",
+      "Oven Roasted Chicken Footlong: 50->42g P, 74->82g C",
+      "Roast Beef Footlong on Italian: 580->620 cal (wrong bread calc)",
+      "Black Forest Ham Footlong: 38->36g P, 76->82g C, 10->8g F",
+      "Veggie Delite Footlong: 18->16g P, 72->78g C, 6->4g F",
+      "Turkey Footlong on Italian: 540->560 cal, 78->85g C, 8->6g F"
+    ]
+  }
+}

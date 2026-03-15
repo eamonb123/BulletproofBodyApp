@@ -8,10 +8,18 @@ Manage the takeout food swap database, track leads, and view funnel analytics.
 import sqlite3
 import json
 import os
+import sys
 from datetime import datetime, timedelta
+from pathlib import Path
 from mcp.server.fastmcp import FastMCP
 
-DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "bulletproof_body.db")
+# Add project root to path for script imports
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+ROOT = Path(__file__).resolve().parent.parent
+DB_PATH = str(ROOT / "bulletproof_body.db")
+CHROMA_PATH = str(ROOT / "chroma_db")
+ENV_PATH = ROOT.parent / ".env"
 
 mcp = FastMCP("bulletproof-body")
 
@@ -20,6 +28,110 @@ def get_db():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
+
+
+# ── Semantic Search (God Search) ────────────────────────
+
+
+@mcp.tool()
+def food_db_search(
+    query: str,
+    n_results: int = 10,
+    food_type: str = "",
+    max_calories: int = 0,
+    swaps_only: bool = False,
+) -> str:
+    """Semantic search across ALL food databases — snacks, meals, takeout, grocery.
+
+    Use natural language: "frozen high protein meal", "low carb chips",
+    "chicken bowl under 500 calories", "healthy pizza alternative"
+
+    Args:
+        query: Natural language food description
+        n_results: Max results (default 10)
+        food_type: Filter by type: "snack_item", "template_meal", "food_item", or "" for all
+        max_calories: Max calories filter (0 = no limit)
+        swaps_only: If True, only return swap/healthier alternatives
+    """
+    from dotenv import load_dotenv
+    import chromadb
+    from openai import OpenAI
+
+    load_dotenv(str(ENV_PATH))
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        return "ERROR: OPENAI_API_KEY not found in .env"
+
+    openai_client = OpenAI(api_key=api_key)
+    chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
+
+    try:
+        collection = chroma_client.get_collection("food_items")
+    except Exception:
+        return "ERROR: ChromaDB collection 'food_items' not found. Run: python3 scripts/embed_foods.py"
+
+    # Embed the query
+    response = openai_client.embeddings.create(
+        model="text-embedding-3-small",
+        input=[query],
+    )
+    query_embedding = response.data[0].embedding
+
+    # Build where filter
+    where_conditions = []
+    if food_type:
+        where_conditions.append({"type": food_type})
+    if swaps_only:
+        where_conditions.append({"is_swap": 1})
+    if max_calories > 0:
+        where_conditions.append({"calories": {"$lte": max_calories}})
+
+    where_filter = None
+    if len(where_conditions) == 1:
+        where_filter = where_conditions[0]
+    elif len(where_conditions) > 1:
+        where_filter = {"$and": where_conditions}
+
+    # Query
+    results = collection.query(
+        query_embeddings=[query_embedding],
+        n_results=n_results,
+        where=where_filter,
+        include=["metadatas", "distances", "documents"],
+    )
+
+    if not results or not results["ids"] or not results["ids"][0]:
+        return "No food items found matching your query."
+
+    # Format output
+    type_labels = {
+        "snack_item": "Snack",
+        "template_meal": "Restaurant Meal",
+        "food_item": "Takeout",
+        "ecosystem_item": "Ecosystem",
+    }
+
+    lines = [f"Found {len(results['ids'][0])} results for \"{query}\":\n"]
+    for i, doc_id in enumerate(results["ids"][0]):
+        meta = results["metadatas"][0][i]
+        distance = results["distances"][0][i]
+        similarity = round(1.0 - (distance / 2.0), 3)
+
+        name = meta.get("name", "?")
+        brand = meta.get("brand", "")
+        cal = meta.get("calories", 0)
+        protein = meta.get("protein_g", 0.0)
+        carbs = meta.get("carbs_g", 0.0)
+        fat = meta.get("fat_g", 0.0)
+        item_type = type_labels.get(meta.get("type", ""), meta.get("type", ""))
+        is_swap = " [SWAP]" if meta.get("is_swap") else ""
+
+        brand_str = f" ({brand})" if brand else ""
+        macro_str = f"{cal} cal, {protein}g P, {carbs}g C, {fat}g F" if cal > 0 else "no nutrition data"
+
+        lines.append(f"  [{item_type}] {name}{brand_str} — {macro_str}{is_swap}  (match: {similarity})")
+
+    return "\n".join(lines)
 
 
 # ── Food Management ─────────────────────────────────────
@@ -378,6 +490,110 @@ def takeout_seed_menu(
     conn.commit()
     conn.close()
     return f"Seeded {restaurant}: {added} added, {skipped} skipped (already exist)."
+
+
+# ── Snack Item Management ──────────────────────────────
+
+
+@mcp.tool()
+def takeout_add_snack(
+    item_id: str,
+    name: str,
+    brand: str,
+    serving: str,
+    calories: int,
+    protein: float,
+    carbs: float,
+    fat: float,
+    item_category: str = "snack",
+    item_subcategory: str = "",
+    swap_craving_category: str = "",
+    is_hero: bool = True,
+    auto_pair: bool = True,
+) -> str:
+    """Add a snack/grocery item and auto-pair with opposite-side items in same craving category.
+
+    Args:
+        item_id: Unique ID (kebab-case, e.g., "brand-product-variant")
+        name: Display name
+        brand: Brand name
+        serving: Serving size (e.g., "1 bar (40g)")
+        calories: Calories per serving
+        protein: Grams of protein
+        carbs: Grams of carbs
+        fat: Grams of fat
+        item_category: "snack" or "grocery"
+        item_subcategory: Required for grocery (e.g., "dairy", "beverage", "cereal")
+        swap_craving_category: Craving category (e.g., "Salty & Crunchy", "Protein")
+        is_hero: True if this is the lower-cal swap alternative, False if enemy
+        auto_pair: If True, auto-create swap pairs to all opposite-side items
+    """
+    conn = get_db()
+    try:
+        conn.execute(
+            """INSERT INTO snack_items
+            (id, name, brand, serving, calories, protein_g, carbs_g, fat_g,
+             item_category, item_subcategory, swap_craving_category, is_hero)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            (item_id, name, brand, serving, calories, protein, carbs, fat,
+             item_category, item_subcategory, swap_craving_category, 1 if is_hero else 0),
+        )
+        conn.commit()
+
+        result_msg = f"Added snack: {brand} {name} — {calories} cal, {protein}g protein"
+
+        if auto_pair and swap_craving_category:
+            from scripts.auto_pair import auto_pair_item, embed_item
+            pair_result = auto_pair_item(item_id, conn=conn)
+            result_msg += f"\nAuto-paired: {pair_result['paired']} new swap pairs created"
+            if pair_result["skipped"]:
+                result_msg += f" ({pair_result['skipped']} already existed)"
+            if pair_result["errors"]:
+                result_msg += f"\nErrors: {pair_result['errors']}"
+
+            # Embed into ChromaDB
+            doc_id = embed_item(item_id)
+            if doc_id:
+                result_msg += f"\nEmbedded as: {doc_id}"
+
+        return result_msg
+    except sqlite3.IntegrityError:
+        return f"Snack '{item_id}' already exists. Use a different ID."
+    finally:
+        conn.close()
+
+
+@mcp.tool()
+def auto_pair_new_item(item_id: str, embed: bool = True) -> str:
+    """Auto-pair an existing snack_item with all opposite-side items in same craving category.
+
+    Call this after inserting a snack_item that has swap_craving_category and is_hero set.
+    Creates snack_swaps entries for every hero↔enemy pair in the same category.
+
+    Args:
+        item_id: The snack_items.id to auto-pair
+        embed: If True, also re-embed the item into ChromaDB
+    """
+    from scripts.auto_pair import auto_pair_item, embed_item
+
+    result = auto_pair_item(item_id)
+
+    if result["errors"]:
+        return f"Errors: {', '.join(result['errors'])}"
+
+    msg = (f"Auto-pair for '{item_id}' ({result['item_craving']}, "
+           f"{'hero' if result['is_hero'] else 'enemy'}):\n"
+           f"  New pairs created: {result['paired']}\n"
+           f"  Skipped (already exist): {result['skipped']}")
+
+    if embed:
+        doc_id = embed_item(item_id)
+        if doc_id:
+            msg += f"\n  Embedded as: {doc_id}"
+        else:
+            msg += "\n  Embedding failed"
+
+    return msg
 
 
 if __name__ == "__main__":
